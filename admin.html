@@ -3,298 +3,227 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>梁老师管理后台</title>
+<title>管理后台</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'PingFang SC','Microsoft YaHei',sans-serif;background:#f0f4ff;min-height:100vh;color:#1f2937}
-.page{max-width:700px;margin:0 auto;padding:1.5rem}
-h1{font-size:1.2rem;font-weight:700;margin-bottom:1.5rem;color:#1f2937}
-.card{background:white;border-radius:12px;padding:1.25rem;margin-bottom:1rem;box-shadow:0 2px 10px rgba(0,0,0,0.06)}
-.card h2{font-size:0.9rem;font-weight:700;margin-bottom:1rem;padding-bottom:0.6rem;border-bottom:1px solid #f3f4f6}
+body{margin:0;font-family:'PingFang SC','Microsoft YaHei',sans-serif;background:#f0f4ff}
+#A{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:#eef2ff}
+#B{display:none}
+.box{background:white;border-radius:16px;padding:2rem;width:90%;max-width:360px;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,0.12)}
+.box h2{margin:0 0 0.5rem;font-size:1.1rem}
+.box p{color:#6b7280;font-size:0.85rem;margin:0 0 1.25rem}
+.box input{width:100%;padding:0.75rem;border:2px solid #e5e7eb;border-radius:8px;font-size:1.1rem;text-align:center;outline:none;margin-bottom:1rem;display:block}
+.box input:focus{border-color:#4f46e5}
+.box button{width:100%;padding:0.85rem;background:#4f46e5;color:white;border:none;border-radius:8px;font-size:1rem;font-weight:700;cursor:pointer}
+.err{color:#dc2626;font-size:0.82rem;margin-top:0.5rem;min-height:1.2em}
+.wrap{max-width:700px;margin:0 auto;padding:1.5rem}
+.card{background:white;border-radius:12px;padding:1.25rem;margin-bottom:1rem;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+.card h3{font-size:0.9rem;font-weight:700;margin:0 0 1rem;padding-bottom:0.6rem;border-bottom:1px solid #f3f4f6}
 label{display:block;font-size:0.78rem;font-weight:600;color:#6b7280;margin-bottom:0.3rem}
-input{width:100%;padding:0.65rem 0.85rem;border:1.5px solid #e5e7eb;border-radius:8px;font-size:0.9rem;outline:none;margin-bottom:0.75rem}
-input:focus{border-color:#4f46e5}
+.fi{width:100%;padding:0.65rem 0.85rem;border:1.5px solid #e5e7eb;border-radius:8px;font-size:0.88rem;outline:none;margin-bottom:0.75rem;display:block}
+.fi:focus{border-color:#4f46e5}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem}
-button{padding:0.65rem 1.25rem;background:#4f46e5;color:white;border:none;border-radius:8px;font-size:0.88rem;font-weight:600;cursor:pointer}
-button:hover{background:#4338ca}
-button.del{background:none;border:1px solid #fecaca;color:#dc2626;padding:0.25rem 0.6rem;font-size:0.75rem}
+.btn{padding:0.65rem 1.25rem;background:#4f46e5;color:white;border:none;border-radius:8px;font-size:0.88rem;font-weight:600;cursor:pointer}
+.btn:hover{background:#4338ca}
+.btn-del{background:none;border:1px solid #fecaca;color:#dc2626;padding:0.25rem 0.6rem;font-size:0.75rem;cursor:pointer;border-radius:6px}
 .msg{font-size:0.82rem;margin-left:0.75rem;color:#16a34a}
-.msg.err{color:#dc2626}
-table{width:100%;border-collapse:collapse;font-size:0.85rem}
-th{background:#f9fafb;padding:0.6rem 0.75rem;text-align:left;font-weight:600;font-size:0.78rem;color:#6b7280;border-bottom:1px solid #f3f4f6}
-td{padding:0.65rem 0.75rem;border-bottom:1px solid #f3f4f6;vertical-align:middle}
-tr:last-child td{border-bottom:none}
-.cls-tag{background:#ede9fe;color:#6d28d9;border-radius:20px;padding:0.12rem 0.55rem;font-size:0.72rem;font-weight:600}
-.pwd-changed{font-size:0.68rem;color:#d97706}
-.pwd-init{font-size:0.68rem;color:#9ca3af}
-.status{padding:0.75rem;border-radius:8px;font-size:0.82rem;margin-bottom:1rem}
-.status.ok{background:#f0fdf4;border:1px solid #bbf7d0;color:#16a34a}
-.status.warn{background:#fffbeb;border:1px solid #fde68a;color:#d97706}
-.status.err{background:#fef2f2;border:1px solid #fecaca;color:#dc2626}
-#login-screen{display:flex;align-items:center;justify-content:center;min-height:100vh;background:#eef2ff}
-.login-box{background:white;border-radius:16px;padding:2rem;max-width:360px;width:100%;box-shadow:0 8px 32px rgba(0,0,0,0.12);text-align:center}
-.login-box h2{font-size:1.1rem;font-weight:700;margin-bottom:0.5rem}
-.login-box p{font-size:0.82rem;color:#6b7280;margin-bottom:1.5rem}
-.login-box input{margin-bottom:1rem}
-.login-box button{width:100%;padding:0.85rem;font-size:1rem}
-#main-screen{display:none}
+.msg.e{color:#dc2626}
+table{width:100%;border-collapse:collapse;font-size:0.82rem}
+th{background:#f9fafb;padding:0.55rem 0.7rem;text-align:left;font-size:0.75rem;font-weight:600;color:#6b7280;border-bottom:1px solid #f3f4f6}
+td{padding:0.6rem 0.7rem;border-bottom:1px solid #f3f4f6;vertical-align:middle}
+.tag{background:#ede9fe;color:#6d28d9;border-radius:20px;padding:0.12rem 0.5rem;font-size:0.7rem;font-weight:600}
+.ok{background:#f0fdf4;border:1px solid #bbf7d0;color:#16a34a;padding:0.6rem 0.85rem;border-radius:8px;font-size:0.82rem;margin-bottom:0.85rem}
+.warn{background:#fffbeb;border:1px solid #fde68a;color:#d97706;padding:0.6rem 0.85rem;border-radius:8px;font-size:0.82rem;margin-bottom:0.85rem}
 </style>
 </head>
 <body>
 
-<!-- LOGIN -->
-<div id="login-screen">
-  <div class="login-box">
+<div id="A">
+  <div class="box">
     <div style="font-size:2rem;margin-bottom:0.5rem">🔐</div>
     <h2>梁老师管理后台</h2>
     <p>请输入管理员密码</p>
-    <input type="password" id="pwd-input" placeholder="输入密码" 
-      style="text-align:center;font-size:1.1rem;letter-spacing:0.1em">
-    <button onclick="doLogin()">进入管理后台</button>
-    <div id="login-err" style="color:#dc2626;font-size:0.82rem;margin-top:0.75rem;min-height:1em"></div>
+    <input type="password" id="P" placeholder="输入密码">
+    <button id="LB">进入管理后台</button>
+    <div class="err" id="LE"></div>
   </div>
 </div>
 
-<!-- MAIN -->
-<div id="main-screen">
-  <div class="page">
-    <h1>🎓 梁老师管理后台 <span style="font-size:0.75rem;font-weight:400;color:#9ca3af;margin-left:0.5rem">学生账号管理</span></h1>
+<div id="B">
+<div class="wrap">
+<h1 style="font-size:1.1rem;font-weight:700;margin-bottom:1.25rem">🎓 梁老师管理后台</h1>
 
-    <!-- Token -->
-    <div class="card">
-      <h2>🔑 GitHub Token</h2>
-      <div id="token-status" class="status warn">⚠️ 未设置 Token，请先设置才能创建账号</div>
-      <label>GitHub Personal Access Token（只需设置一次）</label>
-      <div style="display:flex;gap:0.75rem">
-        <input type="password" id="token-inp" placeholder="粘贴 ghp_... token" style="margin-bottom:0">
-        <button onclick="saveToken()" style="white-space:nowrap">保存</button>
-      </div>
-    </div>
-
-    <!-- Create student -->
-    <div class="card">
-      <h2>➕ 创建学生账号</h2>
-      <div class="row">
-        <div><label>学生姓名</label><input type="text" id="s-name" placeholder="张三"></div>
-        <div><label>所在班级</label><input type="text" id="s-cls" placeholder="小托福A班"></div>
-      </div>
-      <div class="row">
-        <div><label>登录账号</label><input type="text" id="s-acc" placeholder="zhangsan"></div>
-        <div><label>初始密码</label><input type="text" id="s-pwd" placeholder="123456"></div>
-      </div>
-      <div style="display:flex;align-items:center">
-        <button onclick="createStudent()">✓ 创建账号</button>
-        <span id="create-msg" class="msg"></span>
-      </div>
-    </div>
-
-    <!-- Student list -->
-    <div class="card">
-      <h2>👥 学生账号列表</h2>
-      <div id="student-list">加载中…</div>
-    </div>
-
-    <!-- Data -->
-    <div class="card">
-      <h2>📊 学习数据</h2>
-      <div id="data-list">加载中…</div>
-    </div>
-
+<div class="card">
+  <h3>🔑 GitHub Token设置</h3>
+  <div id="TS"></div>
+  <label>Personal Access Token（每台管理电脑设置一次）</label>
+  <div style="display:flex;gap:0.75rem">
+    <input type="password" id="TI" class="fi" placeholder="粘贴 ghp_... token" style="margin-bottom:0">
+    <button class="btn" onclick="saveToken()">保存</button>
   </div>
+</div>
+
+<div class="card">
+  <h3>➕ 创建学生账号</h3>
+  <div class="row">
+    <div><label>学生姓名</label><input type="text" id="SN" class="fi" placeholder="张三"></div>
+    <div><label>所在班级</label><input type="text" id="SC" class="fi" placeholder="小托福A班"></div>
+  </div>
+  <div class="row">
+    <div><label>登录账号</label><input type="text" id="SA" class="fi" placeholder="zhangsan"></div>
+    <div><label>初始密码</label><input type="text" id="SP" class="fi" placeholder="123456"></div>
+  </div>
+  <button class="btn" onclick="createStudent()">✓ 创建账号</button>
+  <span id="CM" class="msg"></span>
+</div>
+
+<div class="card">
+  <h3>👥 学生账号列表</h3>
+  <div id="SL">加载中…</div>
+</div>
+
+<div class="card">
+  <h3>📊 学习数据</h3>
+  <div id="DL">加载中…</div>
+</div>
+</div>
 </div>
 
 <script>
-const ADMIN_PWD = 'liang888';
-const GH_USER = 'caesarlyq-claud';
-const GH_REPO = 'love-words';
-const GH_FILE = 'students.json';
-const GH_RAW = 'https://raw.githubusercontent.com/' + GH_USER + '/' + GH_REPO + '/main/' + GH_FILE;
-const GH_API = 'https://api.github.com/repos/' + GH_USER + '/' + GH_REPO + '/contents/' + GH_FILE;
-const TOKEN_KEY = 'wiz_gh_token';
+var PWD='liang888';
+var GH_RAW='https://raw.githubusercontent.com/caesarlyq-claud/love-words/main/students.json';
+var GH_API='https://api.github.com/repos/caesarlyq-claud/love-words/contents/students.json';
+var TK='wiz_gh_token';
+var cache=null;
 
-var _cache = null;
-
-// ===== LOGIN =====
-document.getElementById('pwd-input').addEventListener('keydown', function(e){
-  if(e.key === 'Enter') doLogin();
+// LOGIN
+document.getElementById('LB').addEventListener('click',function(){
+  var p=document.getElementById('P').value.trim();
+  if(p===PWD){
+    document.getElementById('A').style.display='none';
+    document.getElementById('B').style.display='block';
+    initMain();
+  } else {
+    document.getElementById('LE').textContent='密码错误，请重试';
+    document.getElementById('P').value='';
+  }
+});
+document.getElementById('P').addEventListener('keydown',function(e){
+  if(e.key==='Enter') document.getElementById('LB').click();
 });
 
-function doLogin(){
-  var pwd = document.getElementById('pwd-input').value.trim();
-  if(pwd === ADMIN_PWD){
-    document.getElementById('login-screen').style.display = 'none';
-    document.getElementById('main-screen').style.display = 'block';
-    checkToken();
-    loadStudents();
-  } else {
-    document.getElementById('login-err').textContent = '密码错误，请重试';
-    document.getElementById('pwd-input').value = '';
-    document.getElementById('pwd-input').focus();
-  }
+function initMain(){
+  checkToken();
+  loadStudents();
 }
 
-// ===== TOKEN =====
-function getToken(){ return localStorage.getItem(TOKEN_KEY) || ''; }
+// TOKEN
+function getToken(){return localStorage.getItem(TK)||'';}
 function saveToken(){
-  var t = document.getElementById('token-inp').value.trim();
-  if(!t){ alert('请输入Token'); return; }
-  localStorage.setItem(TOKEN_KEY, t);
-  document.getElementById('token-inp').value = '';
+  var t=document.getElementById('TI').value.trim();
+  if(!t){alert('请输入Token');return;}
+  localStorage.setItem(TK,t);
+  document.getElementById('TI').value='';
   checkToken();
   alert('✅ Token已保存！');
 }
 function checkToken(){
-  var el = document.getElementById('token-status');
+  var el=document.getElementById('TS');
   if(getToken()){
-    el.className = 'status ok';
-    el.textContent = '✅ Token已设置，可以正常创建账号';
+    el.className='ok'; el.textContent='✅ Token已设置，可以正常创建和删除账号';
   } else {
-    el.className = 'status warn';
-    el.textContent = '⚠️ 未设置 Token，请先设置才能创建账号';
+    el.className='warn'; el.textContent='⚠️ 未设置Token，请先设置才能创建账号';
   }
 }
 
-// ===== GITHUB =====
+// LOAD
 function loadStudents(){
-  fetch(GH_RAW + '?t=' + Date.now())
-    .then(function(r){ return r.ok ? r.json() : {}; })
-    .then(function(data){
-      _cache = data;
-      renderStudents(data);
-      renderData(data);
-    })
-    .catch(function(e){
-      _cache = {};
-      document.getElementById('student-list').textContent = '加载失败：' + e.message;
-    });
+  fetch(GH_RAW+'?t='+Date.now())
+    .then(function(r){return r.ok?r.json():{}})
+    .then(function(d){cache=d;renderSL(d);renderDL(d);})
+    .catch(function(e){cache={};document.getElementById('SL').textContent='加载失败:'+e.message;});
 }
 
+// SAVE
 function ghSave(data){
-  var token = getToken();
-  if(!token){ alert('请先设置GitHub Token'); return Promise.reject('no token'); }
-  
-  // First get SHA
-  return fetch(GH_API, {
-    headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json' }
-  })
-  .then(function(r){ return r.status === 404 ? {sha: null} : r.json(); })
-  .then(function(info){
-    var content = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
-    var body = { message: 'update students', content: content };
-    if(info.sha) body.sha = info.sha;
-    return fetch(GH_API, {
-      method: 'PUT',
-      headers: {
-        'Authorization': 'token ' + token,
-        'Accept': 'application/vnd.github.v3+json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(body)
+  var tk=getToken();
+  if(!tk){alert('请先设置Token');return Promise.reject('no token');}
+  return fetch(GH_API,{headers:{'Authorization':'token '+tk,'Accept':'application/vnd.github.v3+json'}})
+    .then(function(r){return r.status===404?{sha:null}:r.json();})
+    .then(function(info){
+      var content=btoa(unescape(encodeURIComponent(JSON.stringify(data,null,2))));
+      var body={message:'update students',content:content};
+      if(info.sha)body.sha=info.sha;
+      return fetch(GH_API,{method:'PUT',headers:{'Authorization':'token '+tk,'Accept':'application/vnd.github.v3+json','Content-Type':'application/json'},body:JSON.stringify(body)});
+    })
+    .then(function(r){
+      if(!r.ok)return r.text().then(function(t){throw new Error(t);});
+      cache=data; return r.json();
     });
-  })
-  .then(function(r){
-    if(!r.ok) return r.text().then(function(t){ throw new Error(t); });
-    _cache = data;
-    return r.json();
-  });
 }
 
-// ===== CREATE STUDENT =====
+// CREATE
 function createStudent(){
-  var name = document.getElementById('s-name').value.trim();
-  var cls  = document.getElementById('s-cls').value.trim();
-  var acc  = document.getElementById('s-acc').value.trim();
-  var pwd  = document.getElementById('s-pwd').value.trim();
-  var msg  = document.getElementById('create-msg');
-  
-  if(!name||!cls||!acc||!pwd){ msg.className='msg err'; msg.textContent='请填写所有字段'; return; }
-  if(!getToken()){ msg.className='msg err'; msg.textContent='请先设置Token'; return; }
-  if(_cache && _cache[acc]){ msg.className='msg err'; msg.textContent='账号已存在'; return; }
-  
-  msg.className='msg'; msg.textContent='创建中…';
-  
-  var data = Object.assign({}, _cache || {});
-  data[acc] = {
-    name: name, cls: cls, account: acc, pwd: pwd,
-    pwd_changed_at: null, progress: {}, wrong_bank: {},
-    trophies: 0, created_at: new Date().toISOString(), last_seen: null
-  };
-  
+  var name=document.getElementById('SN').value.trim();
+  var cls=document.getElementById('SC').value.trim();
+  var acc=document.getElementById('SA').value.trim();
+  var pwd=document.getElementById('SP').value.trim();
+  var msg=document.getElementById('CM');
+  if(!name||!cls||!acc||!pwd){msg.className='msg e';msg.textContent='请填写所有字段';return;}
+  if(!getToken()){msg.className='msg e';msg.textContent='请先设置Token';return;}
+  if(cache&&cache[acc]){msg.className='msg e';msg.textContent='账号已存在';return;}
+  msg.className='msg';msg.textContent='创建中…';
+  var data=Object.assign({},cache||{});
+  data[acc]={name:name,cls:cls,account:acc,pwd:pwd,pwd_changed_at:null,progress:{},wrong_bank:{},trophies:0,created_at:new Date().toISOString(),last_seen:null};
   ghSave(data).then(function(){
-    msg.className='msg'; msg.textContent='✓ 账号"' + acc + '"创建成功！';
-    document.getElementById('s-name').value='';
-    document.getElementById('s-cls').value='';
-    document.getElementById('s-acc').value='';
-    document.getElementById('s-pwd').value='';
-    renderStudents(data);
-    renderData(data);
-  }).catch(function(e){
-    msg.className='msg err'; msg.textContent='创建失败：' + e.message;
-  });
+    msg.className='msg';msg.textContent='✓ 账号"'+acc+'"创建成功！';
+    document.getElementById('SN').value='';
+    document.getElementById('SC').value='';
+    document.getElementById('SA').value='';
+    document.getElementById('SP').value='';
+    renderSL(data);renderDL(data);
+  }).catch(function(e){msg.className='msg e';msg.textContent='失败:'+e.message;});
 }
 
-// ===== DELETE =====
-function deleteStudent(acc){
-  if(!confirm('确定删除账号"' + acc + '"？')){return;}
+// DELETE
+function delStudent(acc){
+  if(!confirm('确定删除"'+acc+'"？'))return;
   if(!getToken()){alert('请先设置Token');return;}
-  var data = Object.assign({}, _cache || {});
+  var data=Object.assign({},cache||{});
   delete data[acc];
-  ghSave(data).then(function(){
-    renderStudents(data);
-    renderData(data);
-    alert('已删除');
-  }).catch(function(e){ alert('删除失败：' + e.message); });
+  ghSave(data).then(function(){renderSL(data);renderDL(data);alert('已删除');})
+    .catch(function(e){alert('删除失败:'+e.message);});
 }
 
-// ===== RENDER =====
-function renderStudents(data){
-  var entries = Object.entries(data || {});
-  if(!entries.length){
-    document.getElementById('student-list').innerHTML = '<p style="color:#9ca3af;text-align:center;padding:1rem">暂无学生账号</p>';
-    return;
-  }
-  var rows = entries.map(function(e){
-    var s = e[1];
-    var pwdTag = s.pwd_changed_at
-      ? '<span class="pwd-changed">已修改</span>'
-      : '<span class="pwd-init">初始</span>';
-    return '<tr>'
-      + '<td><strong>' + s.name + '</strong><br><span style="font-size:0.72rem;color:#9ca3af;font-family:monospace">' + e[0] + '</span></td>'
-      + '<td><span class="cls-tag">' + s.cls + '</span></td>'
-      + '<td style="font-family:monospace">' + s.pwd + ' ' + pwdTag + '</td>'
-      + '<td>' + (s.trophies||0) + ' 🏆</td>'
-      + '<td><button class="del" onclick="deleteStudent('' + e[0] + '')">删除</button></td>'
-      + '</tr>';
+// RENDER
+function renderSL(data){
+  var en=Object.entries(data||{});
+  if(!en.length){document.getElementById('SL').innerHTML='<p style="color:#9ca3af;text-align:center;padding:1rem">暂无学生账号</p>';return;}
+  var rows=en.map(function(e){
+    var s=e[1];
+    var pt=s.pwd_changed_at?'<span style="font-size:.68rem;color:#d97706">已修改</span>':'<span style="font-size:.68rem;color:#9ca3af">初始</span>';
+    return '<tr><td><strong>'+s.name+'</strong><br><span style="font-size:.7rem;color:#9ca3af;font-family:monospace">'+e[0]+'</span></td>'
+      +'<td><span class="tag">'+s.cls+'</span></td>'
+      +'<td style="font-family:monospace">'+s.pwd+' '+pt+'</td>'
+      +'<td>'+(s.trophies||0)+' 🏆</td>'
+      +'<td><button class="btn-del" onclick="delStudent(\''+e[0]+'\')">删除</button></td></tr>';
   }).join('');
-  document.getElementById('student-list').innerHTML =
-    '<table><thead><tr><th>姓名/账号</th><th>班级</th><th>密码</th><th>奖杯</th><th>操作</th></tr></thead><tbody>' + rows + '</tbody></table>';
+  document.getElementById('SL').innerHTML='<table><thead><tr><th>姓名/账号</th><th>班级</th><th>密码</th><th>奖杯</th><th>操作</th></tr></thead><tbody>'+rows+'</tbody></table>';
 }
-
-function renderData(data){
-  var entries = Object.entries(data || {});
-  if(!entries.length){
-    document.getElementById('data-list').innerHTML = '<p style="color:#9ca3af;text-align:center;padding:1rem">暂无数据</p>';
-    return;
-  }
-  var rows = entries.map(function(e){
-    var s = e[1];
-    var progress = s.progress || {};
-    var wrongBank = s.wrong_bank || {};
-    var totalU = Object.values(progress).reduce(function(sum,bk){return sum+Object.keys(bk).length;},0);
-    var doneU  = Object.values(progress).reduce(function(sum,bk){return sum+Object.values(bk).filter(function(v){return v.done;}).length;},0);
-    var wrongC = Object.keys(wrongBank).length;
-    var lastSeen = s.last_seen ? new Date(s.last_seen).toLocaleDateString('zh-CN') : '—';
-    return '<tr>'
-      + '<td><strong>' + s.name + '</strong><br><span style="font-size:0.72rem;color:#9ca3af">' + s.cls + '</span></td>'
-      + '<td style="font-weight:600;color:#16a34a">' + doneU + '</td>'
-      + '<td>' + totalU + '</td>'
-      + '<td style="color:' + (wrongC>15?'#dc2626':'#4b5563') + '">' + wrongC + '</td>'
-      + '<td>' + (s.trophies||0) + ' 🏆</td>'
-      + '<td style="font-size:0.8rem">' + lastSeen + '</td>'
-      + '</tr>';
+function renderDL(data){
+  var en=Object.entries(data||{});
+  if(!en.length){document.getElementById('DL').innerHTML='<p style="color:#9ca3af;text-align:center;padding:1rem">暂无数据</p>';return;}
+  var rows=en.map(function(e){
+    var s=e[1];var p=s.progress||{};var w=s.wrong_bank||{};
+    var tu=Object.values(p).reduce(function(sum,b){return sum+Object.keys(b).length;},0);
+    var du=Object.values(p).reduce(function(sum,b){return sum+Object.values(b).filter(function(v){return v.done;}).length;},0);
+    var wc=Object.keys(w).length;
+    var ls=s.last_seen?new Date(s.last_seen).toLocaleDateString('zh-CN'):'—';
+    return '<tr><td><strong>'+s.name+'</strong><br><span style="font-size:.7rem;color:#9ca3af">'+s.cls+'</span></td>'
+      +'<td style="font-weight:600;color:#16a34a">'+du+'</td><td>'+tu+'</td>'
+      +'<td style="color:'+(wc>15?'#dc2626':'#4b5563')+'">'+wc+'</td>'
+      +'<td>'+(s.trophies||0)+' 🏆</td><td style="font-size:.8rem">'+ls+'</td></tr>';
   }).join('');
-  document.getElementById('data-list').innerHTML =
-    '<table><thead><tr><th>学生</th><th>完成单元</th><th>学习过</th><th>错词数</th><th>奖杯</th><th>上次使用</th></tr></thead><tbody>' + rows + '</tbody></table>';
+  document.getElementById('DL').innerHTML='<table><thead><tr><th>学生</th><th>完成单元</th><th>学习过</th><th>错词数</th><th>奖杯</th><th>上次使用</th></tr></thead><tbody>'+rows+'</tbody></table>';
 }
 </script>
 </body>
