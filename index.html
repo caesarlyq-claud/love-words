@@ -377,7 +377,7 @@ html,body{font-family:'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-se
     </div>
     <div class="brand-title" id="brand-title"></div>
     <div class="brand-sub" onclick="adminTap()" style="cursor:default;user-select:none">More Than English !</div>
-    <form onsubmit="doLogin(event)">
+    <div id="login-form">
       <div class="form-group">
         <label>学生账号</label>
         <input id="inp-name" type="text" placeholder="输入你的账号" required autocomplete="off">
@@ -386,8 +386,8 @@ html,body{font-family:'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-se
         <label>登录密码</label>
         <input id="inp-pwd" type="password" placeholder="输入你的密码" required autocomplete="off">
       </div>
-      <button class="btn-start" type="submit">▶ 开始单词闯关</button>
-    </form>
+      <button class="btn-start" type="button" id="login-btn">▶ 开始单词闯关</button>
+    </div>
     <div class="login-divider"></div>
     <div class="login-slogan">和梁老师一起趣味记单词 ✦</div>
 
@@ -701,11 +701,10 @@ async function doLogin(){
     hideLoading();
     setNav();
     showBooks();
-    try{ await saveStudent(acc, Object.assign({}, s, {last_seen: new Date().toISOString()})); }catch(e2){}
+    try{ await saveStudent(acc, Object.assign({}, s, {last_seen:new Date().toISOString()})); }catch(e2){}
   }catch(err){
     hideLoading();
     toast('登录失败：' + err.message, 'err');
-    console.error(err);
   }
 }
 function flashInput(id,msg){const el=document.getElementById(id);el.style.borderColor='rgba(220,38,38,0.8)';el.style.boxShadow='0 0 0 3px rgba(220,38,38,0.25)';toast(msg,'err');setTimeout(()=>{el.style.borderColor='';el.style.boxShadow='';},1500);}
@@ -931,6 +930,25 @@ window.addEventListener('load', function(){
     if(el){ el.addEventListener('keydown', function(e){ if(e.key==='Enter') doLogin(); }); }
   });
 });
+
+// Login button + Enter key binding
+(function(){
+  function tryBind(){
+    var btn = document.getElementById('login-btn');
+    if(btn){
+      btn.addEventListener('click', doLogin);
+      ['inp-name','inp-pwd'].forEach(function(id){
+        var el = document.getElementById(id);
+        if(el){ el.addEventListener('keydown', function(e){ if(e.key==='Enter') doLogin(); }); }
+      });
+    }
+  }
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', tryBind);
+  } else {
+    tryBind();
+  }
+})();
 </script>
 </body>
 </html>
