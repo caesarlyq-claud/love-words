@@ -761,16 +761,25 @@ async function doLogin(e){
   const pwd=document.getElementById('inp-pwd').value.trim();
   if(!acc||!pwd)return;
   showLoading('正在连接…');
-  await GH_PROMISE;
-  showLoading('正在验证…');
   try{
+    await GH_PROMISE;
+    showLoading('正在验证…');
     const s=await getStudent(acc);
-    if(!s){hideLoading();flashInput('inp-name','账号不存在，请联系梁老师');return;}
-    if(s.pwd!==pwd){hideLoading();flashInput('inp-pwd','密码错误，请重新输入');return;}
+    if(!s){hideLoading();alert('账号不存在：'+acc);return;}
+    if(s.pwd!==pwd){hideLoading();alert('密码错误');return;}
     G.user=s;G.account=acc;
-    try{await saveStudent(acc,{...s,last_seen:new Date().toISOString()});}catch(e){}
-    hideLoading();setNav();showBooks();
-  }catch(err){hideLoading();toast('登录失败，请重试','err');console.error(err);}
+    try{await saveStudent(acc,{...s,last_seen:new Date().toISOString()});}catch(e){console.warn('save err',e);}
+    hideLoading();
+    alert('登录成功！即将进入词书选择');
+    setNav();
+    showBooks();
+    alert('showBooks已调用，当前屏幕应为s-books');
+  }catch(err){
+    hideLoading();
+    alert('登录出错：'+err.message+'
+'+err.stack);
+    console.error(err);
+  }
 }
 function flashInput(id,msg){const el=document.getElementById(id);el.style.borderColor='rgba(220,38,38,0.8)';el.style.boxShadow='0 0 0 3px rgba(220,38,38,0.25)';toast(msg,'err');setTimeout(()=>{el.style.borderColor='';el.style.boxShadow='';},1500);}
 function doLogout(){G.user=null;G.account=null;G.book=null;scr('s-login');}
