@@ -10,5 +10,17 @@
     "trophies": 0,
     "created_at": "2026-05-30T14:24:44.873Z",
     "last_seen": null
+  },
+  "董浩诚": {
+    "name": "董浩诚",
+    "cls": "小托福A班",
+    "account": "董浩诚",
+    "pwd": "666666",
+    "pwd_changed_at": null,
+    "progress": {},
+    "wrong_bank": {},
+    "trophies": 0,
+    "created_at": "2026-05-30T15:24:11.908Z",
+    "last_seen": null
   }
 }
