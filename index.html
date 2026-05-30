@@ -591,58 +591,140 @@ const WORD_DATA={"1":[{"w": "abandon", "p": "əˈbændən", "m": "放弃；弃�
 // 填入你的 Supabase Project URL 和 anon key
 // ============================================================
 const SUPABASE_URL = 'https://qgkxcmknhodyzrapimhc.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_xtXNeg4cXtr0jqnDXrWSeQ_STNx3Bv1';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFna3hjbWtuaG9keXpyYXBpbWhjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAxMzE3MjIsImV4cCI6MjA5NTcwNzcyMn0.e4AGa4s-EmJ1CArwANq5SDxpD7yWyGfQCTZH6Ecw-IU';
 
-// Supabase REST API helpers
+// ============================================================
+// STORAGE MODE: 'cloud' = Supabase, 'local' = localStorage fallback
+// ============================================================
+let STORAGE_MODE = 'cloud';
+
+function sbHeaders(extra) {
+  return {
+    'apikey': SUPABASE_KEY,
+    'Authorization': `Bearer ${SUPABASE_KEY}`,
+    'Content-Type': 'application/json',
+    ...extra
+  };
+}
+
 async function sbGet(table, filters = '') {
   const res = await fetch(`${SUPABASE_URL}/rest/v1/${table}${filters}`, {
-    headers: {
-      'apikey': SUPABASE_KEY,
-      'Authorization': `Bearer ${SUPABASE_KEY}`,
-      'Content-Type': 'application/json'
-    }
+    headers: sbHeaders()
   });
-  if (!res.ok) throw new Error(await res.text());
+  if (!res.ok) {
+    const body = await res.text();
+    throw new Error(`${res.status}: ${body}`);
+  }
   return res.json();
 }
 async function sbInsert(table, data) {
   const res = await fetch(`${SUPABASE_URL}/rest/v1/${table}`, {
     method: 'POST',
-    headers: {
-      'apikey': SUPABASE_KEY,
-      'Authorization': `Bearer ${SUPABASE_KEY}`,
-      'Content-Type': 'application/json',
-      'Prefer': 'return=representation'
-    },
+    headers: sbHeaders({'Prefer': 'return=representation'}),
     body: JSON.stringify(data)
   });
-  if (!res.ok) throw new Error(await res.text());
+  if (!res.ok) throw new Error(`${res.status}: ${await res.text()}`);
   return res.json();
 }
 async function sbUpdate(table, filters, data) {
   const res = await fetch(`${SUPABASE_URL}/rest/v1/${table}${filters}`, {
     method: 'PATCH',
-    headers: {
-      'apikey': SUPABASE_KEY,
-      'Authorization': `Bearer ${SUPABASE_KEY}`,
-      'Content-Type': 'application/json',
-      'Prefer': 'return=representation'
-    },
+    headers: sbHeaders({'Prefer': 'return=representation'}),
     body: JSON.stringify(data)
   });
-  if (!res.ok) throw new Error(await res.text());
+  if (!res.ok) throw new Error(`${res.status}: ${await res.text()}`);
   return res.json();
 }
 async function sbDelete(table, filters) {
   const res = await fetch(`${SUPABASE_URL}/rest/v1/${table}${filters}`, {
     method: 'DELETE',
-    headers: {
-      'apikey': SUPABASE_KEY,
-      'Authorization': `Bearer ${SUPABASE_KEY}`
-    }
+    headers: sbHeaders()
   });
-  if (!res.ok) throw new Error(await res.text());
+  if (!res.ok) throw new Error(`${res.status}: ${await res.text()}`);
 }
+
+// ============================================================
+// LOCAL STORAGE FALLBACK
+// ============================================================
+const LS_KEY = 'wiz_students_local';
+function lsLoad() { try { return JSON.parse(localStorage.getItem(LS_KEY)||'{}'); } catch(e) { return {}; } }
+function lsSave(data) { localStorage.setItem(LS_KEY, JSON.stringify(data)); }
+
+// Unified API — tries cloud first, falls back to local
+async function getStudent(account) {
+  if (STORAGE_MODE === 'cloud') {
+    try {
+      const rows = await sbGet('students', `?account=eq.${encodeURIComponent(account)}&select=*`);
+      return rows && rows.length ? rows[0] : null;
+    } catch(err) {
+      console.warn('Cloud unavailable, using local:', err.message);
+      STORAGE_MODE = 'local';
+      toast('⚠️ 云端暂时不可用，使用本地模式', 'warn');
+    }
+  }
+  // local fallback
+  const data = lsLoad();
+  return data[account] || null;
+}
+
+async function saveStudent(account, studentObj) {
+  if (STORAGE_MODE === 'cloud') {
+    try {
+      const existing = await sbGet('students', `?account=eq.${encodeURIComponent(account)}`);
+      if (existing && existing.length) {
+        await sbUpdate('students', `?account=eq.${encodeURIComponent(account)}`, studentObj);
+      } else {
+        await sbInsert('students', {...studentObj, account});
+      }
+      return;
+    } catch(err) {
+      console.warn('Cloud save failed, using local:', err.message);
+      STORAGE_MODE = 'local';
+    }
+  }
+  const data = lsLoad(); data[account] = studentObj; lsSave(data);
+}
+
+async function getAllStudents() {
+  if (STORAGE_MODE === 'cloud') {
+    try {
+      return await sbGet('students', '?order=created_at.asc');
+    } catch(err) {
+      console.warn('Cloud unavailable:', err.message);
+      STORAGE_MODE = 'local';
+    }
+  }
+  return Object.values(lsLoad());
+}
+
+async function deleteStudentDB(account) {
+  if (STORAGE_MODE === 'cloud') {
+    await sbDelete('students', `?account=eq.${encodeURIComponent(account)}`);
+    return;
+  }
+  const data = lsLoad(); delete data[account]; lsSave(data);
+}
+
+// Check cloud connectivity on startup
+async function checkCloudConnection() {
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/students?limit=1`, {
+      headers: sbHeaders()
+    });
+    if (res.ok || res.status === 406) {
+      STORAGE_MODE = 'cloud';
+      console.log('✅ Cloud connected');
+    } else {
+      const body = await res.text();
+      throw new Error(`${res.status}: ${body}`);
+    }
+  } catch(err) {
+    console.warn('Cloud check failed:', err.message);
+    STORAGE_MODE = 'local';
+    console.log('📱 Using local storage mode');
+  }
+}
+checkCloudConnection();
 
 // ============================================================
 // BOOKS CONFIG
@@ -718,7 +800,7 @@ function hideLoading() {
 }
 function toast(msg, type='ok') {
   const t = document.createElement('div');
-  const bg = type==='ok'?'#16a34a':type==='err'?'#dc2626':'#4f46e5';
+  const bg = type==='ok'?'#16a34a':type==='err'?'#dc2626':type==='warn'?'#d97706':'#4f46e5';
   t.style.cssText = `position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);background:${bg};color:white;padding:0.65rem 1.25rem;border-radius:10px;font-size:0.88rem;font-weight:600;z-index:300;box-shadow:0 4px 16px rgba(0,0,0,0.25);transition:opacity 0.4s`;
   t.textContent = msg;
   document.body.appendChild(t);
@@ -746,17 +828,16 @@ async function doLogin(e) {
   if (!acc || !pwd) return;
   showLoading('正在登录…');
   try {
-    const rows = await sbGet('students', `?account=eq.${encodeURIComponent(acc)}&select=*`);
-    if (!rows || rows.length === 0) {
+    const s = await getStudent(acc);
+    if (!s) {
       hideLoading(); flashInput('inp-name', '账号不存在，请联系梁老师'); return;
     }
-    const s = rows[0];
     if (s.pwd !== pwd) {
       hideLoading(); flashInput('inp-pwd', '密码错误，请重新输入'); return;
     }
     G.user = s; G.account = acc;
-    // Update last_seen
-    await sbUpdate('students', `?account=eq.${encodeURIComponent(acc)}`, {last_seen: new Date().toISOString()});
+    // Update last_seen (best effort)
+    try { await saveStudent(acc, {...s, last_seen: new Date().toISOString()}); } catch(e) {}
     hideLoading(); setNav(); showBooks();
   } catch (err) {
     hideLoading(); toast('网络错误，请检查连接', 'err'); console.error(err);
@@ -783,7 +864,8 @@ function setNav() {
 async function saveProg() {
   if (!G.user || !G.account) return;
   try {
-    await sbUpdate('students', `?account=eq.${encodeURIComponent(G.account)}`, {
+    await saveStudent(G.account, {
+      ...G.user,
       progress: G.user.progress || {},
       wrong_bank: G.user.wrong_bank || {},
       trophies: G.user.trophies || 0,
@@ -1106,10 +1188,8 @@ async function changePwd() {
   if (nw.length < 4) { showMsg(msg,'新密码至少4位','err'); return; }
   if (nw !== cf) { showMsg(msg,'两次输入不一致','err'); return; }
   try {
-    await sbUpdate('students', `?account=eq.${encodeURIComponent(G.account)}`, {
-      pwd: nw, pwd_changed_at: new Date().toISOString()
-    });
     G.user.pwd = nw; G.user.pwd_changed_at = new Date().toISOString();
+    await saveStudent(G.account, G.user);
     showMsg(msg, '✓ 密码修改成功', '');
     setTimeout(() => showBooks(), 1200);
   } catch(err) { showMsg(msg, '保存失败，请重试', 'err'); }
@@ -1152,14 +1232,15 @@ async function addStudent() {
   if (!name||!cls||!account||!pwd) { toast('请填写所有字段','err'); return; }
   showLoading('创建中…');
   try {
-    const existing = await sbGet('students', `?account=eq.${encodeURIComponent(account)}`);
-    if (existing && existing.length > 0) { hideLoading(); toast(`账号"${account}"已存在`,'err'); return; }
-    await sbInsert('students', {
+    const existing = await getStudent(account);
+    if (existing) { hideLoading(); toast(`账号"${account}"已存在`,'err'); return; }
+    const newStudent = {
       name, cls, account, pwd,
       pwd_changed_at: null,
       progress: {}, wrong_bank: {}, trophies: 0,
       created_at: new Date().toISOString(), last_seen: null
-    });
+    };
+    await saveStudent(account, newStudent);
     ['adm-name','adm-class','adm-account','adm-pwd'].forEach(id => document.getElementById(id).value='');
     const msg = document.getElementById('adm-msg');
     msg.textContent = `✓ "${account}" 创建成功`;
@@ -1172,7 +1253,7 @@ async function deleteStudent(account) {
   if (!confirm(`确定删除账号"${account}"？不可恢复。`)) return;
   showLoading('删除中…');
   try {
-    await sbDelete('students', `?account=eq.${encodeURIComponent(account)}`);
+    await deleteStudentDB(account);
     hideLoading(); renderStudentTable(); renderDataTable();
   } catch(err) { hideLoading(); toast('删除失败','err'); }
 }
@@ -1181,7 +1262,7 @@ async function renderStudentTable() {
   const wrap = document.getElementById('student-table-wrap');
   wrap.innerHTML = '<div class="empty-tip">加载中…</div>';
   try {
-    const students = await sbGet('students', '?order=created_at.asc');
+    const students = await getAllStudents();
     if (!students || !students.length) { wrap.innerHTML='<div class="empty-tip">暂无学生</div>'; return; }
     let rows = '';
     students.forEach(s => {
@@ -1204,7 +1285,7 @@ async function renderDataTable() {
   const wrap = document.getElementById('data-table-wrap');
   wrap.innerHTML = '<div class="empty-tip">加载中…</div>';
   try {
-    const students = await sbGet('students', '?order=last_seen.desc.nullslast');
+    const students = await getAllStudents();
     if (!students || !students.length) { wrap.innerHTML='<div class="empty-tip">暂无数据</div>'; return; }
     let rows = '';
     students.forEach(s => {
