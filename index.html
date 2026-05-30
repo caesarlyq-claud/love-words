@@ -580,734 +580,428 @@ html,body{font-family:'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-se
 </div>
 
 <script>
-
 // ============================================================
-// WORD DATA
+// WORD DATA — All 33 units, 2057 words
 // ============================================================
 const WORD_DATA={"1":[{"w": "abandon", "p": "əˈbændən", "m": "放弃；弃绝；对…绝望；对…断念"},{"w": "abnormal", "p": "æbˈnɔːrml", "m": "反常的，异常的；变态的", "an": ["normal adj. 正常的"]},{"w": "aboard", "p": "əˈbɔːrd", "m": "在飞机上；在船上；在火车上 prep. 在（飞机、船或火车）上"},{"w": "abolish", "p": "əˈbɑːlɪʃ", "m": "废除，废止"},{"w": "abrupt", "p": "əˈbrʌpt", "m": "突然的，意外的；（言语、行为）粗鲁的，唐突的"},{"w": "absolute", "p": "ˈæbsəluːt", "m": "绝对的，完全的", "de": ["absolutely adv. 绝对地，完全地"]},{"w": "absorb", "p": "əbˈsɔːrb", "m": "吸收；吸引…的注意力", "de": ["absorption n. 吸收；专注，专心致志"]},{"w": "abstract", "p": "ˈæbstrækt", "m": "抽象的；理论上的n. 摘要"},{"w": "absurd", "p": "əbˈsɜːrd", "m": "荒谬的，荒唐的", "de": ["absurdity n. 荒谬，可笑"]},{"w": "abundant", "p": "əˈbʌndənt", "m": "大量的，充足的", "de": ["abundance n. 大量，充足"]},{"w": "academic", "p": "ˌækəˈdemɪk", "m": "学校的，学院的；学术性的"},{"w": "accept", "p": "əkˈsept", "m": "接受", "de": ["acceptable adj. 可以接受的"]},{"w": "access", "p": "ˈækses", "m": "通道，入口；接近或取得…的方法或权利等", "co": ["have/get/obtain access to 接近；进入；使用"], "de": ["accessibility n. 可达性；可及性"]},{"w": "accommodation", "p": "əˌkɑːməˈdeɪʃn", "m": "（尤指仅供短期使用的）住处"},{"w": "accompany", "p": "əˈkʌmpəni", "m": "陪伴，陪同；伴随"},{"w": "accomplish", "p": "əˈkɑːmplɪʃ", "m": "完成（任务、使命、计划等）；实现；达到", "de": ["accomplishment n. 完成，实现"]},{"w": "according", "p": "əˈkɔːrdɪŋ", "m": "相符的，一致的，根据…而定的", "co": ["according to 按照，根据"]},{"w": "account", "p": "əˈkaʊnt", "m": "账户；账目，账单；解释，理由 vi. 解释；报账vt. 认为；把…视为"},{"w": "accountant", "p": "əˈkaʊntənt", "m": "会计人员，会计师"},{"w": "accumulate", "p": "əˈkjuːmjəleɪt", "m": "积累，堆积"},{"w": "accurate", "p": "ˈækjərət", "m": "精确的"},{"w": "accuse", "p": "əˈkjuːz", "m": "指责，谴责；控告", "co": ["accuse sb. of sth. 控告某人某事"]},{"w": "accustom", "p": "əˈkʌstəm", "m": "使习惯于", "co": ["be accustomed to习惯于"]},{"w": "achieve", "p": "əˈtʃiːv", "m": "取得，获得；实现，达成", "de": ["achievement n. 成就，成绩"]},{"w": "acknowledge", "p": "ækˈnɑːlɪdʒ", "m": "承认；感谢，鸣谢"},{"w": "acquaintance", "p": "əˈkweɪntəns", "m": "相识的人，熟人；相识"},{"w": "acquire", "p": "əˈkwaɪər", "m": "获得，得到", "de": ["acquirement n. 取得，获得"]},{"w": "act", "p": "ækt", "m": "行动；做；表演；起作用 n. 行为，行动；（戏剧中的）幕", "de": ["actor n. 男演员"]},{"w": "active", "p": "ˈæktɪv", "m": "活泼的，活跃的；积极的；【语】主动的", "an": ["inactive adj. 不积极的，不主动的"], "de": ["activity n. 活动；活力"]},{"w": "actual", "p": "ˈæktʃuəl", "m": "实际的，事实的，现实的，真实的", "de": ["actually adv. 实际上"]},{"w": "adapt", "p": "əˈdæpt", "m": "（使）适应，（使）适合；改编，改写"},{"w": "adjust", "p": "əˈdʒʌst", "m": "改变…以适应；调整；校正", "co": ["adjust to 调整以适应于"]},{"w": "administrate", "p": "ədˈmɪnɪstreɪt", "m": "管理，经营；实施", "de": ["administrator n. 管理员"]},{"w": "admire", "p": "ədˈmaɪər", "m": "赞赏；钦佩", "de": ["admirable adj. 令人称赞的；令人佩服的"]},{"w": "admit", "p": "ədˈmɪt", "m": "许可…进入；承认；供认", "de": ["admission n. 准许进入；承认"]},{"w": "adopt", "p": "əˈdɑːpt", "m": "收养；采取，采纳"},{"w": "adore", "p": "əˈdɔːr", "m": "爱慕，崇拜", "de": ["adorable adj. 值得崇拜的；可爱的"]},{"w": "adult", "p": "ˈædʌlt", "m": "成年人"},{"w": "advance", "p": "ədˈvæns", "m": "（使）前进，（使）发展 n. 前进，发展；改进，进步", "de": ["advanced adj. 高级的，高等的"]},{"w": "advantage", "p": "ədˈvæntɪdʒ", "m": "有利条件，优势", "an": ["disadvantage n. 不利条件，劣势"], "co": ["take advantage of 利用"]},{"w": "adventure", "p": "ədˈventʃər", "m": "冒险"},{"w": "advertise", "p": "ˈædvɜːrˌtaɪz", "m": "（给…）做广告宣传", "de": ["advertisement n. 广告"]},{"w": "advise", "p": "ədˈvaɪz", "m": "劝告；提建议", "co": ["advise sb. to do sth. 劝某人做某事", "follow sb.'s advice 接受某人意见ǁ ask advice of... 向…征求意见"], "de": ["advice （=suggestion）n. 意见，建议", "advocator n. 拥护者，提倡者"]},{"w": "afraid", "p": "əˈfreɪd", "m": "害怕的，恐惧的", "co": ["be afraid of（doing）sth. 害怕（做）某事（物）（指忧虑某事可能导致的后果）ǁbe"]},{"w": "Africa", "p": "ˈæfrɪkə", "m": "非洲", "de": ["African adj. 非洲人的；非洲的 n. 非洲人"]},{"w": "agency", "p": "ˈeɪdʒənsi", "m": "经销处；代理行，代理机构", "de": ["agent n. 代理人；代理商"]},{"w": "aggressive", "p": "əˈgresɪv", "m": "好争斗的，挑衅的；侵略性的；有干劲儿的，积极进取的"},{"w": "agile", "p": "ˈædʒəl", "m": "灵巧的；轻快的；机敏的"},{"w": "agriculture", "p": "ˈægrɪkʌltʃər", "m": "农业", "de": ["agricultural adj. 农业的"]},{"w": "album", "p": "ˈælbəm", "m": "唱片；粘贴薄，集邮簿；相册，影集"},{"w": "alcohol", "p": "ˈælkəhɔːl", "m": "酒精，酒", "de": ["alcoholic adj. 酒精的，含酒精的"]},{"w": "alert", "p": "əˈlɜːrt", "m": "警觉的，警惕的；注意的 vt. 使警觉；向…报警", "de": ["alertness n. 警觉性"]},{"w": "algae", "p": "ˈældʒiː", "m": "藻类；海藻"},{"w": "Algebra", "p": "ˈældʒɪbrə", "m": "代数学，代数"},{"w": "alien", "p": "ˈeɪliən", "m": "外国的 n. 外国人；外星人"},{"w": "allergy", "p": "ˈælərdʒi", "m": "（由食物、花粉、虫咬引起的）过敏症", "co": ["be allergic to... 对…过敏"], "de": ["allergic n. 过敏的"]},{"w": "alliance", "p": "əˈlaɪəns", "m": "（国家、政党等的）结盟，同盟，联盟；同盟条约；联姻", "de": ["ally n. 同盟国，同盟者；支持者；联盟vt.&vi. （使）联盟；（使）结盟"]},{"w": "allocate", "p": "ˈæləkeɪt", "m": "分配，分派；把…拨给"},{"w": "allow", "p": "əˈlaʊ", "m": "允许，许可", "co": ["allow sb. to do sth. 允许某人做某事"]},{"w": "allowance", "p": "əˈlaʊəns", "m": "允许；津贴，补助"},{"w": "alpha", "p": "ˈælfə", "m": "希腊字母表的第一个字母，即α"},{"w": "alphabet", "p": "ˈælfəbet", "m": "字母表"}],"2":[{"w": "alternative", "p": "ɔːlˈtɜːrnətɪv", "m": "两者择一；可供选择的事物；取舍 adj. 两者择一的"},{"w": "altitude", "p": "ˈæltɪtjuːd", "m": "高度，海拔"},{"w": "amateur", "p": "ˈæmətər", "m": "业余的，非职业的", "an": ["professional adj. 职业的，专业的"]},{"w": "amaze", "p": "əˈmeɪz", "m": "使大为吃惊，使惊奇", "co": ["be amazed at... 吃惊于…"], "de": ["amazement n. 吃惊，惊奇"]},{"w": "ambiguous", "p": "æmˈbɪgjuəs", "m": "引起歧义的，模棱两可的，含糊不清的"},{"w": "ambition", "p": "æmˈbɪʃn", "m": "抱负，雄心；野心", "de": ["ambitious adj. 有抱负的，有雄心的"]},{"w": "ambulance", "p": "ˈæmbjələns", "m": "救护车"},{"w": "amiable", "p": "ˈeɪmiəbl", "m": "和蔼可亲的；温和的"},{"w": "amount", "p": "əˈmaʊnt", "m": "量，数量，数额", "co": ["a large amount of = large amounts of大量的"]},{"w": "ample", "p": "ˈæmpəl", "m": "足够的；大量的，丰富的"},{"w": "amuse", "p": "əˈmjuːz", "m": "使人发笑，逗乐", "de": ["amusement n. 娱乐，乐趣"]},{"w": "analysis", "p": "əˈnæləsɪs", "m": "分析", "de": ["analyze vt. 分析"]},{"w": "ancestor", "p": "ˈænsestər", "m": "祖先，祖宗"},{"w": "anchor", "p": "ˈæŋkər", "m": "锚；锚状物；靠山；压阵队员"},{"w": "ancient", "p": "ˈeɪnʃənt", "m": "古代的，古老的；老式的；年老的"},{"w": "angle", "p": "ˈæŋgl", "m": "角，角度；观点"},{"w": "animated", "p": "ˈænɪmeɪtɪd", "m": "有生气的；活泼的；动画的"},{"w": "ankle", "p": "ˈæŋkl", "m": "踝，踝关节"},{"w": "anniversary", "p": "ˌænɪˈvɜːrsəri", "m": "周年纪念"},{"w": "announce", "p": "əˈnaʊns", "m": "宣布，宣告；通知，公布", "de": ["announcement n. 通告，布告，通知"]},{"w": "annoy", "p": "əˈnɔɪ", "m": "打扰，干扰；使烦恼，使恼怒", "de": ["annoyance n. 恼怒，烦恼，打扰"]},{"w": "annual", "p": "ˈænjuəl", "m": "每年的，年度的"},{"w": "anonymous", "p": "əˈnɑːnɪməs", "m": "无名的；假名的；匿名的；不记名的"},{"w": "ant", "p": "ænt", "m": "蚂蚁"},{"w": "Antarctic", "p": "ænˈtɑːrktɪk", "m": "南极的 n. 南极洲"},{"w": "antelope", "p": "ˈæntɪloʊp", "m": "羚羊；羚羊皮革"},{"w": "anthology", "p": "ænˈθɑːlədʒi", "m": "（诗、文等的）选集", "de": ["anthologist n. 选集的编者"]},{"w": "antique", "p": "ænˈtiːk", "m": "古董的；古时制造的 n. 古董；古玩"},{"w": "anxious", "p": "ˈæŋkʃəs", "m": "焦急的，忧虑的，担心的", "de": ["anxiety n. 焦虑，不安"]},{"w": "anymore", "p": "enɪˈmɔːr", "m": "再也不，不再"},{"w": "apartment", "p": "əˈpɑːrtmənt", "m": "一套房间，一户；公寓"},{"w": "apologize", "p": "əˈpɑːlədʒaɪz", "m": "道歉", "de": ["apology n. 道歉，认错"]},{"w": "apparent", "p": "əˈpærənt", "m": "显然的，明白的，清晰可见的"},{"w": "appeal", "p": "əˈpiːl", "m": "上诉；呼吁；有吸引力", "co": ["appeal to 对…有吸引力"]},{"w": "appear", "p": "əˈpɪr", "m": "出现，显现", "an": ["disappear vi. 不见，消失"], "de": ["appearance n. 出现，显露；外表，外貌"]},{"w": "appetite", "p": "ˈæpɪtaɪt", "m": "欲望；胃口，食欲", "de": ["appetizer n. 开胃品"]},{"w": "applaud", "p": "əˈplɔːd", "m": "鼓掌", "de": ["applause n. 热烈鼓掌；喝彩，欢呼"]},{"w": "appliance", "p": "əˈplaɪəns", "m": "器具，器械，装置"},{"w": "applicant", "p": "ˈæplɪkənt", "m": "申请人"},{"w": "apply", "p": "əˈplaɪ", "m": "应用；申请，请求", "co": ["apply for 申请"]},{"w": "appointment", "p": "əˈpɔɪntmənt", "m": "约会；约定；预约"},{"w": "appreciate", "p": "əˈpriːʃieɪt", "m": "感激，感谢；欣赏", "de": ["appreciation n. 欣赏；感谢"]},{"w": "approach", "p": "əˈproʊtʃ", "m": "接近，走近，靠近 n. 方式，方法"},{"w": "appropriate", "p": "əˈproʊpriət", "m": "适当的，恰当的"},{"w": "approve", "p": "əˈpruːv", "m": "赞成，同意vt. 批准，通过", "de": ["approval n. 赞成；批准，认可"]},{"w": "approximate", "p": "əˈprɑːksɪmət", "m": "近似的，大约的", "de": ["approximately adv. 大约，近似"]},{"w": "apron", "p": "ˈeɪprən", "m": "围裙"},{"w": "aquarium", "p": "əˈkweriəm", "m": "养鱼缸；水族馆"},{"w": "Arabic", "p": "ˈærəbɪk", "m": "阿拉伯语adj. 阿拉伯的；阿拉伯语的"},{"w": "arbitrary", "p": "ˈɑːrbətreri", "m": "随意的，主观的；独断的，专制的"},{"w": "arch", "p": "ɑːrtʃ", "m": "拱，拱门"},{"w": "archaeologist", "p": "ˌɑːrkɪˈɑːlədʒɪst", "m": "考古学家"},{"w": "architect", "p": "ˈɑːrkɪtekt", "m": "建筑师，设计师"},{"w": "architecture", "p": "ˈɑːrkɪtektʃər", "m": "建筑学；建筑风格"},{"w": "Arctic", "p": "ˈɑːrktɪk", "m": "北极的 n. 北极"},{"w": "arduous", "p": "ˈɑːrdʒuəs", "m": "努力的；艰巨的；难克服的"},{"w": "argue", "p": "ˈɑːrgjuː", "m": "争吵，辩论", "de": ["argument n. 争论，争吵，辩论"]},{"w": "arithmetic", "p": "əˈrɪθmətɪk", "m": "算术"},{"w": "arrange", "p": "əˈreɪndʒ", "m": "安排；准备", "de": ["arrangement n. 安排"]},{"w": "array", "p": "əˈreɪ", "m": "（排列整齐的）阵列；一系列"},{"w": "arrest", "p": "əˈrest", "m": "逮捕，拘捕"},{"w": "arrogant", "p": "ˈærəgənt", "m": "傲慢的，自大的", "de": ["arrogance n. 傲慢，自大，自负"]},{"w": "arrow", "p": "ˈæroʊ", "m": "箭，矢；箭状物"}],"3":[{"w": "article", "p": "ˈɑːrtɪkl", "m": "文章；物品，物件"},{"w": "artificial", "p": "ˌɑːrtɪˈfɪʃl", "m": "人造的，人工的，假的；虚假的，矫揉造作的"},{"w": "ascertain", "p": "ˌæsərˈteɪn", "m": "弄清，确定，查明"},{"w": "ash", "p": "æʃ", "m": "灰，灰烬；废墟"},{"w": "ashamed", "p": "əˈʃeɪmd", "m": "惭愧的，羞耻的"},{"w": "Asia", "p": "ˈeɪʃə", "m": "亚洲", "de": ["Asian n. 亚洲人 adj. 亚洲的；亚洲人的"]},{"w": "assault", "p": "əˈsɔːlt", "m": "攻击，进攻；袭击，殴打；侵犯人身vt. 袭击；殴打vi. 发起攻击；动武"},{"w": "assembly", "p": "əˈsembli", "m": "集会，大会；集合；集合的人们"},{"w": "assert", "p": "əˈsɜːrt", "m": "声称，断言；维护，坚持", "de": ["assertion n. 声称；主张；明确肯定"]},{"w": "assess", "p": "əˈses", "m": "估价；估计；评定", "de": ["assessment n. 评估，评定；评价，看法"]},{"w": "assign", "p": "əˈsaɪn", "m": "分配，交给；指派，选派", "de": ["assignment n. 工作，任务；作业"]},{"w": "assimilate", "p": "əˈsɪməleɪt", "m": "吸收，消化；透彻理解；同化"},{"w": "assistant", "p": "əˈsɪstənt", "m": "助手，助理", "de": ["assist vt.&vi. 帮助，协助"]},{"w": "associate", "p": "əˈsoʊʃieɪt", "m": "（使）发生联系；（使）联合；结交", "de": ["association n. 协会，社团"]},{"w": "assume", "p": "əˈsjuːm", "m": "假设；臆断；猜想", "de": ["assumption n. 假定，设想"]},{"w": "astonish", "p": "əˈstɑːnɪʃ", "m": "使惊讶，使大为吃惊", "de": ["astonished adj. 感到惊讶的"]},{"w": "astronaut", "p": "ˈæstrənɔːt", "m": "宇航员，航天员；太空旅行者"},{"w": "Astronomy", "p": "əˈstrɑːnəmi", "m": "天文学", "de": ["astronomer n. 天文学家"]},{"w": "athlete", "p": "ˈæθliːt", "m": "运动员", "de": ["athletic adj. 运动员的；运动的"]},{"w": "Atlantic", "p": "ætˈlæntɪk", "m": "大西洋的；近大西洋的 n. （the Atlantic）大西洋"},{"w": "atmosphere", "p": "ˈætməsfɪə", "m": "气氛；大气，空气"},{"w": "atom", "p": "ˈætəm", "m": "原子", "de": ["atomic adj. 原子的"]},{"w": "attach", "p": "əˈtætʃ", "m": "贴；系；附上"},{"w": "attack", "p": "əˈtæk", "m": "攻击, 进攻，袭击；抨击，辱骂"},{"w": "attempt", "p": "əˈtempt", "m": "试图，尝试", "co": ["in an attempt to 试图，力图"]},{"w": "attitude", "p": "ˈætɪtjuːd", "m": "态度，看法"},{"w": "attorney", "p": "əˈtɜːrni", "m": "代理人；律师"},{"w": "attract", "p": "əˈtrækt", "m": "吸引，引起…的注意", "de": ["attractive adj. 有吸引力的，吸引的；诱人的"]},{"w": "audience", "p": "ˈɔːdiəns", "m": "观众，听众"},{"w": "authentic", "p": "ɔːˈθentɪk", "m": "真的，真正的；可靠的，可信的"},{"w": "author", "p": "ˈɔːθər", "m": "作者；创始人"},{"w": "authority", "p": "əˈθɔːrəti", "m": "权力，职权；官方，当局"},{"w": "automatic", "p": "ɔːtəˈmætɪk", "m": "自动的"},{"w": "available", "p": "əˈveɪləbəl", "m": "可用的，可得到的；可会见的，可与之交谈的，有空的", "de": ["avail vt.&vi. 有用于，有益于，有助于"]},{"w": "avenue", "p": "ˈævənjuː", "m": "林荫大道"},{"w": "average", "p": "ˈævərɪdʒ", "m": "平均的；平常的，普通的"},{"w": "avoid", "p": "əˈvɔɪd", "m": "避开；避免，预防"},{"w": "award", "p": "əˈwɔːrd", "m": "奖；奖品，奖金 vt. 授予，奖给"},{"w": "aware", "p": "əˈwer", "m": "意识到的", "co": ["be aware of 意识到"], "de": ["awareness n. 察觉；意识；觉悟"]},{"w": "awesome", "p": "ˈɔːsəm", "m": "可怕的；令人敬畏的"},{"w": "awkward", "p": "ˈɔːkwərd", "m": "难对付的，棘手的；笨拙的，不灵活的；不优美的；尴尬的"},{"w": "azure", "p": "ˈæʒər", "m": "蔚蓝色（的），天蓝色（的）"},{"w": "babble", "p": "ˈbæbl", "m": "喋喋不休；牙牙学语vt. 含糊不清地说；泄露（秘密）n. 胡言乱语；含糊不清的话"},{"w": "bachelor", "p": "ˈbætʃələr", "m": "单身男子，单身汉；学士，学士学位"},{"w": "background", "p": "ˈbækgraʊnd", "m": "背景"},{"w": "backpack", "p": "ˈbækpæk", "m": "（指登山者、步行者使用或背小孩时使用的）背包；（有轻金属框的）箱形背包"},{"w": "backward", "p": "ˈbækwərd", "m": "向后的/地；相反的/地"},{"w": "backyard", "p": "ˈbækjɑːrd", "m": "后院；后花园"},{"w": "baggage", "p": "ˈbægɪdʒ", "m": "行李", "de": ["luggage n. 行李"]},{"w": "bake", "p": "beɪk", "m": "烤，烘焙", "de": ["baker n. 面包师"]},{"w": "balance", "p": "ˈbæləns", "m": "平衡；均衡；结余，余额", "co": ["keep one's balance 保持平衡"]},{"w": "balcony", "p": "ˈbælkəni", "m": "阳台"},{"w": "ballet", "p": "bæˈleɪ", "m": "芭蕾舞"},{"w": "balloon", "p": "bəˈluːn", "m": "气球 vt.&vi. 乘气球；（使）膨胀，（使）胀大", "de": ["ballooning n. 乘气球；气球操控"]},{"w": "ballpoint", "p": "ˈbɔːlpɔɪnt", "m": "圆珠笔"},{"w": "ban", "p": "bæn", "m": "取缔，查封；禁止"},{"w": "banal", "p": "bəˈnæl", "m": "陈腐的；平庸的"},{"w": "band", "p": "bænd", "m": "乐队，乐团；一群，一伙儿", "co": ["a band of thieves 一群盗贼"]},{"w": "bandage", "p": "ˈbændɪdʒ", "m": "绷带 vt. 用绷带绑扎"},{"w": "bang", "p": "bæŋ", "m": "猛击，猛撞"},{"w": "barbecue", "p": "ˈbɑːrbɪkjuː", "m": "（常用于室外的）金属烤架；烧烤野餐vt. （通常在户外）在烤架上烧烤 vi. 烧烤，烤肉"}],"4":[{"w": "barber", "p": "ˈbɑːrbər", "m": "理发师"},{"w": "bare", "p": "ber", "m": "光秃秃的；赤裸的"},{"w": "barely", "p": "ˈberli", "m": "仅仅，只不过；几乎不；刚刚"},{"w": "bargain", "p": "ˈbɑːrgɪn", "m": "讨价还价 n. 交易；便宜货，减价品"},{"w": "barn", "p": "bɑːrn", "m": "谷仓，粮仓；牲口棚；（公共汽车、卡车等的）车库；一种特别大且空荡的房屋"},{"w": "barrier", "p": "ˈbæriər", "m": "栅栏；障碍，隔阂"},{"w": "base", "p": "beɪs", "m": "基础；基地，根据地vt. 把…建立在，以…为基础"},{"w": "baseball", "p": "ˈbeɪsbɔːl", "m": "棒球运动；棒球"},{"w": "basement", "p": "ˈbeɪsmənt", "m": "地下室；地窖；底层", "de": ["base n. 底部；基层"]},{"w": "basic", "p": "ˈbeɪsɪk", "m": "基本的，基础的", "de": ["basis n. 基础，根据"]},{"w": "bask", "p": "bæsk", "m": "晒太阳，取暖", "co": ["basking shark 姥鲛，姥鲨"]},{"w": "bat", "p": "bæt", "m": "球拍；蝙蝠", "co": ["table tennis bat 乒乓球拍"]},{"w": "bathe", "p": "beɪð", "m": "（给…）洗澡；冲洗 n. 游泳，洗海水澡", "co": ["go for a bathe 洗海水浴"]},{"w": "bathrobe", "p": "ˈbæθroʊb", "m": "浴衣，浴袍"},{"w": "bathtub", "p": "ˈbæθtʌb", "m": "浴缸；浴盆"},{"w": "battle", "p": "ˈbætl", "m": "战斗，战役 vt.&vi. 与…作战，争斗", "co": ["battle with 与…一起作战ǁbattle against 与…作斗争"], "de": ["battleground n. 战场"]},{"w": "bay", "p": "beɪ", "m": "湾 vi. （尤指猎犬等）低沉地吠叫"},{"w": "beam", "p": "biːm", "m": "梁，横梁；束，柱 vi. 发出光与热；面露喜色"},{"w": "beancurd", "p": "ˈbiːnkɜːrd", "m": "豆腐"},{"w": "beard", "p": "bɪrd", "m": "胡须"},{"w": "beast", "p": "biːst", "m": "兽"},{"w": "beat", "p": "biːt", "m": "（心脏等）跳动 vt. 打败n. 敲打，敲打声", "de": ["heartbeat n. 心跳"]},{"w": "bedclothes", "p": "ˈbedkloʊðz", "m": "铺盖，床单被褥类"},{"w": "beddings", "p": "ˈbedɪŋz", "m": "卧具，寝具，床上用品", "sy": ["bedclothes （见上）"]},{"w": "beehive", "p": "ˈbiːhaɪv", "m": "蜂窝，蜂巢", "sy": ["comb n. 蜂巢"]},{"w": "beetle", "p": "ˈbiːtl", "m": "甲虫"},{"w": "beg", "p": "beg", "m": "v. 乞讨，乞求；请求，恳求", "de": ["beggar n. 乞丐"]},{"w": "behave", "p": "bɪˈheɪv", "m": "行为，举止，表现", "co": ["on behalf of 代表"], "de": ["behavior n. 行为，举止"]},{"w": "belly", "p": "ˈbeli", "m": "肚子，腹部"},{"w": "belong", "p": "bɪˈlɔːŋ", "m": "属于", "co": ["belong to 属于"]},{"w": "belt", "p": "belt", "m": "腰带；带子"},{"w": "bench", "p": "bentʃ", "m": "长凳，长椅"},{"w": "bend", "p": "bend", "m": "（bent, bent）vt. 使弯曲 vi. 弯曲；屈身"},{"w": "beneath", "p": "bɪˈniːθ", "m": "在…的下方"},{"w": "benefit", "p": "ˈbenɪfɪt", "m": "有益于vi. 得益，收益n. 益处，好处", "de": ["beneficial adj. 有益的，有利的"]},{"w": "beret", "p": "bəˈreɪ", "m": "贝雷帽"},{"w": "berry", "p": "ˈberi", "m": "浆果；干种子，干果仁；子，卵"},{"w": "beside", "p": "bɪˈsaɪd", "m": "（表示位置）在…旁边"},{"w": "best-seller", "p": "ˈbestˈselər", "m": "畅销书；畅销唱片"},{"w": "betray", "p": "bɪˈtreɪ", "m": "背叛；泄露，表明"},{"w": "beyond", "p": "bɪˈjɑːnd", "m": "（表示位置）在或往…另一边；（表示范围）超出；非…所能及"},{"w": "biased", "p": "ˈbaɪəst", "m": "有偏见的；结果有偏倚的", "de": ["bias n. 偏见；偏爱，爱好 vt. 使倾向于；使有偏见；影响"]},{"w": "bid", "p": "bɪd", "m": "n . 企图，努力（for/to do）vt. & vi. & n. （bid，bid）出价，投标"},{"w": "bike", "p": "baɪk", "m": "自行车，脚踏车 vi. 骑自行车"},{"w": "bill", "p": "bɪl", "m": "账单"},{"w": "billion", "p": "ˈbɪljən", "m": "十亿"},{"w": "bingo", "p": "ˈbɪŋgoʊ", "m": "宾戈游戏（一种靠碰运气取胜的赌博游戏）"},{"w": "biochemistry", "p": "ˌbaɪoʊˈkemɪstri", "m": "生物化学"},{"w": "biography", "p": "baɪˈɑːgrəfi", "m": "传记", "de": ["autobiography n. 自传"]},{"w": "biology", "p": "baɪˈɑːlədʒi", "m": "生物学"},{"w": "biometric", "p": "ˌbaɪoʊˈmetrɪk", "m": "生物计量的 n. 计量生物学"},{"w": "bite", "p": "baɪt", "m": "咬，叮"},{"w": "bitter", "p": "ˈbɪtər", "m": "有苦味的；严寒的，刺骨的", "de": ["bitterly adv.（形容痛苦）极其，非常"]},{"w": "bizarre", "p": "bɪˈzɑːr", "m": "（指态度、容貌、着装等）奇异的"},{"w": "blame", "p": "bleɪm", "m": "责备；归咎于 n. 责备；责任；过失"},{"w": "blank", "p": "blæŋk", "m": "空白的 n. 空白；空白处；空白表格"},{"w": "blanket", "p": "ˈblæŋkɪt", "m": "毛毯，毯子；毯状物；覆盖层 vt. 覆盖，掩盖；用毯覆盖"},{"w": "bleach", "p": "ˈbliːtʃ", "m": "漂白；漂白剂 vt. 漂白；使褪色"},{"w": "blend", "p": "blend", "m": "混合；把…掺在一起；使调和vi. 掺杂；结合n. 混合；混合色；混合物；合成语"},{"w": "bless", "p": "bles", "m": "求神赐福于"},{"w": "blind", "p": "blaɪnd", "m": "失明的；供盲人用的；盲目的，轻率的；隐蔽的vt. 弄瞎，使失明；蒙蔽，欺瞒"},{"w": "block", "p": "blɑːk", "m": "堵塞，阻塞 n. 街区，街段（两条平行街道之间的一段）；大块，方块", "co": ["a block of wood 一块木头"]},{"w": "blog", "p": "blɑːg", "m": "博客，网络日志"},{"w": "bloom", "p": "bluːm", "m": "（常指供观赏的）花；开花期；繁盛期vi. 开花；植物繁盛；大量出现", "co": ["the sweet fragrance of the white blooms白色花朵的芳香"]}],"5":[{"w": "blow", "p": "bloʊ", "m": "吹；吹气；刮（风）n. 一击，打击"},{"w": "board", "p": "bɔːrd", "m": "板", "co": ["bulletin board 公告板"], "de": ["blackboard n. 黑板"]},{"w": "boil", "p": "bɔɪl", "m": "使沸腾；用开水煮 vi. 沸腾"},{"w": "bond", "p": "bɑːnd", "m": "联系，关系"},{"w": "bookcase", "p": "ˈbʊkkeɪs", "m": "书橱，书架"},{"w": "booklet", "p": "ˈbʊklət", "m": "小册子"},{"w": "bookmark", "p": "ˈbʊkmɑːrk", "m": "书签"},{"w": "boom", "p": "buːm", "m": "激增，猛涨；（经济等）繁荣，迅速发展；发出隆隆声"},{"w": "booth", "p": "buːθ", "m": "售货棚，摊位；小房间（如电话亭）", "co": ["Telephone Booth 电话亭"]},{"w": "bore", "p": "bɔːr", "m": "使厌烦，使无趣；烦扰"},{"w": "boring", "p": "ˈbɔːrɪŋ", "m": "无聊的；令人厌烦的"},{"w": "botany", "p": "ˈbɑːtəni", "m": "植物学", "de": ["botanical adj. 植物学的"]},{"w": "bottom", "p": "ˈbɑːtəm", "m": "底部，基部"},{"w": "bough", "p": "baʊ", "m": "大树枝"},{"w": "boulder", "p": "ˈbəʊldər", "m": "卵石，大圆石；巨砾"},{"w": "bounce", "p": "baʊns", "m": "（使）弹起，（使）弹跳"},{"w": "bound", "p": "baʊnd", "m": "给…划界；限制；一定的，必定的", "co": ["be bound to 一定，必定"], "de": ["boundary n. 分界线；界线，范围"]},{"w": "bowl", "p": "boʊl", "m": "碗；钵"},{"w": "bowling", "p": "ˈboʊlɪŋ", "m": "保龄球运动"},{"w": "boxing", "p": "ˈbɑːksɪŋ", "m": "拳击；拳术"},{"w": "boycott", "p": "ˈbɔɪkɑːt", "m": "联合抵制；拒绝参加"},{"w": "brake", "p": "breɪk", "m": "刹车"},{"w": "branch", "p": "bræntʃ", "m": "树枝，枝条；分支；分科，分系"},{"w": "brand", "p": "brænd", "m": "商标，牌子"},{"w": "brave", "p": "breɪv", "m": "勇敢的，大胆的", "de": ["bravely adv. 勇敢地，大胆地"]},{"w": "break", "p": "breɪk", "m": "打破，折断；破坏，违反"},{"w": "breakthrough", "p": "ˈbreɪkθruː", "m": "突破点，突破性进展"},{"w": "breast", "p": "brest", "m": "乳房；胸部，胸膛"},{"w": "breathe", "p": "briːð", "m": "呼吸", "co": ["out of breath 喘不过气来"], "de": ["breath n. 呼吸"]},{"w": "breed", "p": "briːd", "m": "品种vt.&vi. 生育；繁殖vt. 饲养；培养"},{"w": "breeze", "p": "briːz", "m": "微风 vi. 轻松过关，轻易通过（比赛或测试）"},{"w": "bribe", "p": "braɪb", "m": "贿赂，行贿n. 贿赂；诱惑物"},{"w": "bride", "p": "braɪd", "m": "新娘"},{"w": "bridegroom", "p": "ˈbraɪdgruːm", "m": "新郎"},{"w": "brief", "p": "briːf", "m": "短暂的，短时间的；简洁的，简短的"},{"w": "brilliant", "p": "ˈbrɪliənt", "m": "闪光的，明亮的；辉煌的；聪颖的"},{"w": "broadcast", "p": "ˈbrɔːdkæst", "m": "广播；播放 vi. 播放节目；参加电台、电视节目的演出n. 广播节目；电视节目adj. 广播"},{"w": "broaden", "p": "ˈbrɔːdn", "m": "使扩大；使变宽 vi. 扩大，变阔；变宽，加宽"},{"w": "broccoli", "p": "ˈbrɑːkəli", "m": "花椰菜，西兰花"},{"w": "brochure", "p": "broʊˈʃʊr", "m": "小册子"},{"w": "broom", "p": "bruːm", "m": "扫帚"},{"w": "browse", "p": "braʊz", "m": "吃草；（在商店）随便看；浏览，翻阅 n. 浏览；吃草"},{"w": "bruise", "p": "bruːz", "m": "瘀伤，伤痕"},{"w": "brunch", "p": "brʌntʃ", "m": "早午餐"},{"w": "brush", "p": "brʌʃ", "m": "擦，刷n. 刷子；画笔", "de": ["toothbrush n. 牙刷"]},{"w": "bubble", "p": "ˈbʌbl", "m": "气泡，泡沫；泡状物 vi. 沸腾，冒泡；发出气泡声 vt. 使冒泡；滔滔不绝地说"},{"w": "bucket", "p": "ˈbʌkɪt", "m": "水桶"},{"w": "buckle", "p": "ˈbʌkl", "m": "用搭扣扣紧；（使）变形，（使）弯曲n. 搭扣，扣环"},{"w": "Buddhism", "p": "ˈbudɪzəm", "m": "佛教"},{"w": "budget", "p": "ˈbʌdʒɪt", "m": "预算"},{"w": "bug", "p": "bʌg", "m": "虫子"},{"w": "bulb", "p": "bʌlb", "m": "n . 电灯泡；鳞茎；球状物 vi. 生球茎；膨胀成球状"},{"w": "bulge", "p": "bʌldʒ", "m": "膨胀；凸出；急增 n. 膨胀；凸出部分；暴涨，突增"},{"w": "bump", "p": "bʌmp", "m": "碰撞，冲撞"},{"w": "bunch", "p": "bʌntʃ", "m": "束，串，捆"},{"w": "burden", "p": "ˈbɜːrdn", "m": "重负，负担 vt. 加重担于；使烦恼"},{"w": "bureaucratic", "p": "ˌbjuəroʊˈkrætɪk", "m": "官僚的，官僚主义的", "de": ["bureaucracy n. 官僚主义；官僚机构"]},{"w": "burglar", "p": "ˈbɜːrglər", "m": "盗贼，破门盗窃者"},{"w": "bury", "p": "ˈberi", "m": "埋葬，掩埋", "de": ["burial n. 埋葬，掩埋；葬礼"]},{"w": "businessman", "p": "ˈbɪznɪsmæn", "m": "商人", "de": ["business n. 交易，生意；商业"]},{"w": "butcher", "p": "ˈbʊtʃər", "m": "屠夫；刽子手 vt. 屠宰；屠杀"},{"w": "butterfly", "p": "ˈbʌtərflaɪ", "m": "蝴蝶"},{"w": "button", "p": "ˈbʌtn", "m": "纽扣"}],"6":[{"w": "cab", "p": "kæb", "m": "< 美> 出租车"},{"w": "cabbage", "p": "ˈkæbɪdʒ", "m": "洋白菜， 卷心菜"},{"w": "cabin", "p": "ˈkæbɪn", "m": "< 美> 小木屋；（飞机）客舱；（轮船上工作或生活的）隔间"},{"w": "cabinet", "p": "ˈkæbɪnət", "m": ""},{"w": "n.", "p": "C-", "m": ""},{"w": "cable", "p": "ˈkeɪbl", "m": "（船只、桥梁等上的）钢索；电缆"},{"w": "cafe", "p": "kæˈfeɪ", "m": "咖啡厅"},{"w": "cafeteria", "p": "ˌkæfəˈtɪrɪə", "m": "（常设在商店、工厂、学校中的）自助餐厅或食堂"},{"w": "caffeine", "p": "ˈkæfɪːn", "m": "咖啡因，咖啡碱", "sy": ["的极限。"]},{"w": "cage", "p": "kedʒ", "m": "笼子 vt. 把…关入笼中"},{"w": "Cairo", "p": "ˈkaɪroʊ", "m": "开罗（埃及的首都）"},{"w": "calculate", "p": "ˈkælkjəleɪt", "m": "计算， 估计", "de": ["calculation n. 计算，估算"]},{"w": "calligraphy", "p": "kəˈlɪgrəfɪ", "m": "美术字体；书法；笔迹"},{"w": "calm", "p": "kɑːm", "m": "（水面）平静的；（天气）无风的；镇定的，沉着的"},{"w": "calorie", "p": "ˈkælərɪ", "m": "卡，卡路里（热量单位）"},{"w": "camel", "p": "ˈkæml", "m": "骆驼"},{"w": "camera", "p": "ˈkæmərə", "m": "照相机"},{"w": "camp", "p": "kæmp", "m": "营地；阵营；兵营"},{"w": "campaign", "p": "kæmˈpeɪn", "m": "运动；战役"},{"w": "campsite", "p": "ˈkæmpsaɪt", "m": "野营地"},{"w": "canal", "p": "kəˈnæl", "m": "运河"},{"w": "cancel", "p": "ˈkænsl", "m": "取消，废除"},{"w": "cancer", "p": "ˈkænsər", "m": "癌症"},{"w": "candidate", "p": "ˈkændɪdeɪt", "m": "候选人；申请人；求职者"},{"w": "candle", "p": "ˈkændl", "m": "蜡烛"},{"w": "candy", "p": "ˈkændɪ", "m": "糖果"},{"w": "cane", "p": "keɪn", "m": "手杖；藤条；细长的茎 vt. 以杖击；用藤编制"},{"w": "canteen", "p": "kænˈtɪːn", "m": "（工厂、学校等的）食堂"},{"w": "canvas", "p": "ˈkænvəs", "m": "帆布；油画布"},{"w": "cap", "p": "kæp", "m": "帽子"},{"w": "capital", "p": "ˈkæpɪtl", "m": "首都，首府；资金，资本；大写字母 adj. 死刑的"},{"w": "capoeira", "p": "ˌkæpʊˈeɪrə", "m": "卡泼卫勒舞（源于非洲，把民间舞蹈和自卫动作结合在一起的巴西舞蹈）"},{"w": "capsule", "p": "ˈkæpsjuːl", "m": "胶囊"},{"w": "captain", "p": "ˈkæptɪn", "m": "船长；机长；上尉，上校；队长"},{"w": "caption", "p": "ˈkæpʃn", "m": "标题；说明文字；（电影的）字幕"},{"w": "captivity", "p": "kæpˈtɪvɪtɪ", "m": "被俘（的状态）；拘禁，囚禁；束缚"},{"w": "caravan", "p": "ˈkærəvæn", "m": "大篷车；旅行队，商队"},{"w": "carbon", "p": "ˈkɑːrbn", "m": "碳"},{"w": "carcass", "p": "ˈkɑːrkəs", "m": "动物尸体"},{"w": "cardboard", "p": "ˈkɑːrdbɔːrd", "m": "硬纸板"},{"w": "career", "p": "kəˈrɪr", "m": "职业；事业"},{"w": "carnival", "p": "ˈkɑːrnɪvl", "m": "狂欢节，嘉年华；节日，联欢"},{"w": "carnivore", "p": "ˈkɑːrnɪvɔːr", "m": "食肉动物；食虫植物"},{"w": "carpenter", "p": "ˈkɑːrpəntər", "m": "木工，木匠", "de": ["carpentry n. 木工工艺"]},{"w": "carpet", "p": "ˈkɑːrpɪt", "m": "地毯"},{"w": "carriage", "p": "ˈkærɪdʒ", "m": "四轮马车"},{"w": "carrier", "p": "ˈkærɪər", "m": "搬运人；送信人；运输工具；带菌者"},{"w": "carrot", "p": "ˈkærət", "m": "胡萝卜", "co": ["the carrot and the stick 胡萝卜加大棒，软硬兼施"]},{"w": "cartoon", "p": "kɑːrˈtuːn", "m": "漫画；动画片，卡通片"},{"w": "carve", "p": "kɑːrv", "m": "切，切片；雕刻"},{"w": "case", "p": "keɪs", "m": "事例，实例；情况；病例"},{"w": "cash", "p": "kæʃ", "m": "钱，现金"},{"w": "cassette", "p": "kəˈset", "m": "盒式录音带，盒式录相带"},{"w": "cast", "p": "kæst", "m": "投，掷，扔；分配…扮演角色"},{"w": "castle", "p": "ˈkæsl", "m": "城堡，堡垒"},{"w": "casual", "p": "ˈkæʒuəl", "m": "碰巧的，偶然的；随便的，非正式的"},{"w": "catalogue", "p": "ˈkætəlɔːg", "m": "（图书、商品等的）目录，一览表"},{"w": "catastrophe", "p": "kəˈtæstrəfɪ", "m": "灾祸，灾难"},{"w": "category", "p": "ˈkætɪgɔːrɪ", "m": "种类，类别"},{"w": "cater", "p": "ˈkeɪtər", "m": "（为…）提供饮食及服务；迎合，满足需要", "co": ["cater for 迎合…；为…提供饮食及服务", "catering industry 饮食行业ǁcatering company 餐饮公司"], "de": ["catering n. 餐饮"]},{"w": "cathedral", "p": "kəˈθɪːdrəl", "m": "总教堂，大教堂"},{"w": "catholic", "p": "ˈkæθəlɪk", "m": "普遍的，广泛的；包容一切的"},{"w": "cattle", "p": "ˈkætl", "m": "< 总称> 牛"}],"7":[{"w": "caution", "p": "ˈkɔːʃn", "m": "小心，谨慎，慎重", "co": ["be cautious of 留意，谨防"], "de": ["cautious adj. 小心的，谨慎的"]},{"w": "cave", "p": "keɪv", "m": "洞穴 vt. 挖洞；使凹陷 vi. 塌陷；倒塌"},{"w": "cavern", "p": "ˈkævərn", "m": "洞穴；凹处 vt. 挖空；置…于洞穴中"},{"w": "ceiling", "p": "ˈsɪːlɪŋ", "m": "天花板"},{"w": "celebrate", "p": "ˈselɪbreɪt", "m": "庆祝", "de": ["celebration n. 庆祝"]},{"w": "cell", "p": "sel", "m": "细胞；小牢房，单人小室；电池"},{"w": "cellar", "p": "ˈselər", "m": "地下室，地窖"},{"w": "cello", "p": "ˈtʃeloʊ", "m": "大提琴"},{"w": "centigrade", "p": "ˈsentɪgreɪd", "m": "摄氏"},{"w": "centimeter", "p": "ˈsentɪmɪːtər", "m": "厘米"},{"w": "central", "p": "ˈsentrəl", "m": "中心的，中央的", "de": ["centre n. 中心；中央"]},{"w": "ceremony", "p": "ˈserəmoʊnɪ", "m": "典礼，仪式"},{"w": "certificate", "p": "sɜːrˈtɪfɪkət", "m": "证书，执照", "co": ["certificate of authority 许可证"]},{"w": "chain", "p": "tʃeɪn", "m": "链，锁链；连锁店"},{"w": "chalk", "p": "tʃɔːk", "m": "粉笔 vt. 用粉笔写、画、做记号"},{"w": "challenge", "p": "ˈtʃæləndʒ", "m": "挑战"},{"w": "chamber", "p": "ˈtʃeɪmbər", "m": "（身体或器官内的）室，腔；房间；会议室 adj. 室内的；私人的，秘密的 vt. 把…关在"},{"w": "champion", "p": "ˈtʃæmpɪən", "m": "冠军；捍卫者，拥护者", "de": ["championship n. 锦标赛，冠军赛"]},{"w": "chance", "p": "tʃæns", "m": "机会，时机；可能性"},{"w": "changeable", "p": "ˈtʃendʒəbl", "m": "常变化的，易变的"},{"w": "chant", "p": "tʃænt", "m": "吟颂，咏唱；反复有节奏地喊叫"},{"w": "chaos", "p": "ˈkeɪɑːs", "m": "混乱，紊乱", "de": ["chaotic adj. 混乱的"]},{"w": "chapter", "p": "ˈtʃæptər", "m": "章，回，篇"},{"w": "character", "p": "ˈkærəktər", "m": "性格；品质，特性；人物，角色；书写符号，（汉）字"},{"w": "characteristic", "p": "kærəktəˈrɪstɪk", "m": "典型的，特有的 n. 特征，特性"},{"w": "charge", "p": "tʃɑːrdʒ", "m": "命令；委托；控告；给…充电；收费，要价 n. 掌管，照管；指控；费用", "co": ["be in charge of 负责"]},{"w": "chart", "p": "tʃɑːrt", "m": "图表", "co": ["a naval/weather/sales chart 航海/天气/销售图"]},{"w": "chat", "p": "tʃæt", "m": ". 聊天，闲谈"},{"w": "cheat", "p": "tʃɪːt", "m": "欺骗，哄骗 vi. 欺诈，作弊 n. 骗子；欺骗行为"},{"w": "cheek", "p": "tʃɪːk", "m": "脸颊，脸蛋"},{"w": "cheer", "p": "tʃɪr", "m": "（为…）欢呼，（向…）喝彩"},{"w": "chef", "p": "ʃef", "m": "（餐馆等的）主厨，大师傅"},{"w": "chemical", "p": "ˈkemɪkl", "m": "化学的 n. 化学药品"},{"w": "cherry", "p": "ˈtʃerɪ", "m": "樱桃；樱桃树；樱桃色"},{"w": "chess", "p": "tʃes", "m": "棋，国际象棋"},{"w": "chew", "p": "tʃuː", "m": "咀嚼；咬"},{"w": "chief", "p": "tʃɪːf", "m": "主要的，最重要的n. 族长，酋长；首领"},{"w": "childish", "p": "ˈtʃaɪldɪʃ", "m": "幼稚的；孩子气的"},{"w": "chill", "p": "tʃɪl", "m": "（使）变冷；（使）冷冻，（使）冷藏；（使）失望；（使）扫兴n. 寒冷；寒心，", "de": ["chilly adj. 寒冷的；冷淡的，疏远的"]},{"w": "chimney", "p": "ˈtʃɪmnɪ", "m": "烟囱，烟筒"},{"w": "chimpanzee", "p": "ˌtʃɪmpænˈzɪː", "m": "黑猩猩"},{"w": "choir", "p": "kwaɪr", "m": "唱诗队，唱诗班；合唱团"},{"w": "choke", "p": "tʃoʊk", "m": "（使）堵塞；（使）窒息，（使）哽住"},{"w": "chopsticks", "p": "ˈtʃɑːpstɪks", "m": "筷子"},{"w": "chore", "p": "tʃɔːr", "m": "家庭杂务；日常的零星事务；讨厌的或累人的工作"},{"w": "chorus", "p": "ˈkɔːrəs", "m": "（歌曲的）副歌；合唱；合唱队"},{"w": "chromosome", "p": "ˈkrəʊməsəʊm", "m": ""},{"w": "n.", "p": "生", "m": ""},{"w": "cigar", "p": "sɪˈgɑːr", "m": "雪茄"},{"w": "cigarette", "p": "sɪgəˈret", "m": "纸烟，香烟"},{"w": "circle", "p": "ˈsɜːrkl", "m": "圆，圆周；圈，环状物vt. 圈出vt.&vi. 环绕，围绕；盘旋"},{"w": "circuit", "p": "ˈsɜːrkɪt", "m": "电路，线路；巡回；环形，环形道"},{"w": "circulate", "p": "ˈsɜːrkjəleɪt", "m": "（使）循环；（使）流通；（使）传播，（使）流传", "co": ["blood circulation 血液循环"], "de": ["circulation n. 循环；流通"]},{"w": "circumstance", "p": "ˈsɜːrkəmstæns", "m": "条件，情况；境遇，经济状况", "co": ["in no circumstances = under no circumstances 在任何情况下都不ǁin/under the"]},{"w": "circus", "p": "ˈsɜːrkəs", "m": "马戏，马戏团"},{"w": "citizen", "p": "ˈsɪtɪzn", "m": "公民，国民；平民；市民"},{"w": "citronella", "p": "sɪtrəˈnelə", "m": "香茅，枫茅"},{"w": "civilization", "p": "ˌsɪvələˈzeɪʃn", "m": "文明，文化"},{"w": "clank", "p": "klæŋk", "m": "低沉的金属声，叮当声vt.&vi. （使）发出叮当声"},{"w": "clap", "p": "klæp", "m": "拍手，鼓掌"},{"w": "clarify", "p": "ˈklærəfaɪ", "m": "（使）清楚；澄清", "de": ["clear adj. 清楚的"]},{"w": "clash", "p": "klæʃ", "m": "使发出撞击声vi. 发出撞击声；争论，不合；交战，交锋n. 冲突；不协调；撞击声"},{"w": "classic", "p": "ˈklæsɪk", "m": "（著作等）最优秀的，经典的"},{"w": "classical", "p": "ˈklæsɪkl", "m": "经典的，古典的"}],"8":[{"w": "classify", "p": "ˈklæsɪfaɪ", "m": "分类，归类"},{"w": "claw", "p": "klɔː", "m": "抓，撕，挠 n. （动物的）爪"},{"w": "clay", "p": "kleɪ", "m": "黏土，泥土"},{"w": "clerk", "p": "klɜːrk", "m": "办事员；职员；店员"},{"w": "click", "p": "klɪk", "m": "卡嗒声，咔嚓声 vt.&vi. （使）发卡塔声；点击"},{"w": "cliff", "p": "klɪf", "m": "悬崖，峭壁"},{"w": "climate", "p": "ˈklaɪmɪt", "m": "气候；有某种天气状况的地区", "co": ["a warmer climate 气候较温暖的地区"]},{"w": "clinic", "p": "ˈklɪnɪk", "m": "诊所"},{"w": "clue", "p": "kluː", "m": "线索；（故事等的）情节 vt. 为…提供线索；为…提供情况"},{"w": "clumsy", "p": "ˈklʌmzɪ", "m": "笨拙的，笨重的"},{"w": "coach", "p": "koʊtʃ", "m": "教练"},{"w": "coal", "p": "koʊl", "m": "煤炭"},{"w": "coast", "p": "koʊst", "m": "海岸"},{"w": "code", "p": "koʊd", "m": "密码；编码", "co": ["break a code 解译密码"]},{"w": "coffin", "p": "ˈkɔːfɪn", "m": "棺材"},{"w": "coincidence", "p": "koʊˈɪnsɪdəns", "m": "巧合"},{"w": "collar", "p": "ˈkɑːlər", "m": "衣领，领子", "co": ["blue collar 蓝领ǁwhite collar 白领"]},{"w": "colleague", "p": "ˈkɑːlɪːg", "m": "同事，同僚"},{"w": "collect", "p": "kəˈlekt", "m": "收集，采集；征收；募集"},{"w": "college", "p": "ˈkɑːlɪdʒ", "m": "大学，学院；高等专科学校"},{"w": "collision", "p": "kəˈlɪʒn", "m": "碰撞；冲突；抵触", "de": ["collide vi. 相撞，碰撞"]},{"w": "column", "p": "ˈkɑːləm", "m": "柱，圆柱；列，栏；（报纸的）专栏"},{"w": "comb", "p": "koʊm", "m": "梳理 n. 梳子"},{"w": "combine", "p": "kəmˈbaɪn", "m": "（使）联合"},{"w": "comedy", "p": "ˈkɑːmədɪ", "m": "喜剧", "an": ["tragedy n. 悲剧"]},{"w": "comet", "p": "ˈkɑːmət", "m": ""},{"w": "n.", "p": "天", "m": ""},{"w": "comfortable", "p": "ˈkʌmfətəbl", "m": "安逸的，舒服的", "de": ["comfort vt. 安慰；使舒适n. 舒适"]},{"w": "comma", "p": "ˈkɑːmə", "m": "逗号"},{"w": "command", "p": "kəˈmænd", "m": "命令；指挥，控制", "de": ["commander n. 指挥官"]},{"w": "commence", "p": "kəˈmens", "m": "开始；着手；获得学位"},{"w": "commencement", "p": "kəˈmensmənt", "m": "开始；开端；毕业典礼，学位授予典礼"},{"w": "comment", "p": "ˈkɑːment", "m": "评论，意见"},{"w": "commercial", "p": "kəˈmɜːrʃəl", "m": "商业的，商务的 n. 商业广告"},{"w": "commit", "p": "kəˈmɪt", "m": "犯（罪）；做（错）；承诺", "co": ["make commitment to 承诺；献身于"], "de": ["commitment n. 承诺，保证；献身"]},{"w": "committee", "p": "kəˈmɪtɪ", "m": "委员会；全体委员"},{"w": "communism", "p": "ˈkɑːmjunɪzəm", "m": "共产主义", "de": ["communist n. 共产主义者"]},{"w": "companion", "p": "kəmˈpænɪən", "m": "同伴，伙伴"},{"w": "company", "p": "ˈkʌmpənɪ", "m": "公司；伴随，陪伴"},{"w": "compare", "p": "kəmˈper", "m": "比较，对照", "de": ["comparison n. 比较"]},{"w": "compass", "p": "ˈkʌmpəs", "m": "罗盘，指南针"},{"w": "compensate", "p": "ˈkɑmpənseɪt", "m": "补偿，弥补"},{"w": "compete", "p": "kəmˈpɪːt", "m": "竞赛；竞争", "co": ["compete with/against 与…竞争"], "de": ["competition n. 竞赛；竞争"]},{"w": "competence", "p": "ˈkɑːmpɪtəns", "m": "能力，技能，竞争力"},{"w": "complain", "p": "kəmˈpleɪn", "m": "抱怨，诉苦", "de": ["complaint n. 抱怨，诉苦"]},{"w": "complete", "p": "kəmˈplɪːt", "m": "完整的，完全的 vt. 完成，使结束"},{"w": "complex", "p": "kəmˈpleks", "m": "复杂的，综合的", "sy": ["complicated adj. 复杂的"]},{"w": "component", "p": "kəmˈpoʊnənt", "m": "组成成分；部件，元件"},{"w": "composition", "p": "ˌkɑːmpəˈzɪʃn", "m": "创作，作曲", "de": ["composer n. 作曲家"]},{"w": "comprehension", "p": "kɑːmprɪˈhenʃn", "m": "理解，理解力"},{"w": "compromise", "p": "ˈkɑːmprəmaɪz", "m": "妥协，折中解决（方法）"},{"w": "compulsion", "p": "kəmˈpʌlʃn", "m": "强迫；强制；冲动"},{"w": "compulsory", "p": "kəmˈpʌlsərɪ", "m": "强制性的，义务的；必修的"},{"w": "comrade", "p": "ˈkɑːmræd", "m": "同志；亲密的伙伴"},{"w": "concentrate", "p": "ˈkɑːnsəntreɪt", "m": "专心于；注意"},{"w": "concept", "p": "ˈkɑːnsept", "m": ""},{"w": "n.", "p": "哲", "m": "例 He comes up with a better concept . 他提出了一个更好的想法。"},{"w": "concern", "p": "kənˈsɜːrn", "m": "关系到，涉及；使担忧，使烦恼", "co": ["be concerned about 关心；担忧，挂念"], "de": ["concerned adj. 关心的，担心的"]},{"w": "concert", "p": "ˈkɑːnsɜːrt", "m": "音乐会"},{"w": "conclude", "p": "kənˈkluːd", "m": "得出…结论；推断", "de": ["conclusion n. 结论"]},{"w": "concrete", "p": "ˈkɑŋkrɪːt", "m": "具体的，明确的"},{"w": "concur", "p": "kənˈkɜːr", "m": "同意，一致；同时发生；共同作用"},{"w": "condemn", "p": "kənˈdem", "m": "谴责，责备"},{"w": "condition", "p": "kənˈdɪʃn", "m": "情况，状况；条件"}],"9":[{"w": "conduct", "p": "kənˈdʌkt", "m": "引导，带领；实施；经营，管理", "de": ["conductor n. （乐队）指挥；售票员"]},{"w": "cone", "p": "koʊn", "m": "圆锥体；圆锥形物体；球果"},{"w": "conference", "p": "ˈkɑːnfərəns", "m": "会议"},{"w": "confident", "p": "ˈkɑːnfɪdənt", "m": "有信心的", "de": ["confidence n. 信心；信任"]},{"w": "confidential", "p": "kɑnfɪˈdenʃl", "m": "机密的，秘密的", "de": ["confidence n. 秘密"]},{"w": "confine", "p": "kənˈfaɪn", "m": "限制；使局限于；将…关禁闭；管制", "de": ["confinement n. 限制；监禁，拘留"]},{"w": "confirm", "p": "kənˈfɜːrm", "m": "证实，证明"},{"w": "conflict", "p": "ˈkɑːnflɪkt", "m": "冲突，抵触；争论"},{"w": "confused", "p": "kənˈfjuːzd", "m": "糊涂的，困惑的"},{"w": "congratulate", "p": "kənˈgrætʃuleɪt", "m": "祝贺", "de": ["congratulation n. 祝贺"]},{"w": "connect", "p": "kəˈnekt", "m": "连接，联结；把…联想在一起"},{"w": "conscience", "p": "ˈkɑnʃəns", "m": "良心"},{"w": "consensus", "p": "kənˈsensəs", "m": "（意见等）一致，同意"},{"w": "consequence", "p": "ˈkɑːnsəkwens", "m": "结果，后果", "de": ["consequent adj. 随之发生的"]},{"w": "conserve", "p": "kənˈsɜːrv", "m": "保护；保存", "de": ["conservation n. 保护"]},{"w": "consider", "p": "kənˈsɪdər", "m": "考虑", "de": ["consideration n. 考虑"]},{"w": "considerate", "p": "kənˈsɪdərət", "m": "体贴的，体谅的"},{"w": "consist", "p": "kənˈsɪst", "m": "组成，构成"},{"w": "consistent", "p": "kənˈsɪstnt", "m": "前后一致的，始终如一的"},{"w": "console", "p": "kənˈsoʊl", "m": "安慰，慰问n. （电子或机械装置的）控制台，操纵台", "de": ["consolation n. 安慰， 慰问；起安慰作用的人或事物"]},{"w": "constitution", "p": "ˌkɑːnstəˈtjuːʃn", "m": "宪法；法规"},{"w": "construction", "p": "kənˈstrʌkʃn", "m": "建造，建筑"},{"w": "consult", "p": "kənˈsʌlt", "m": "商议，商量；咨询", "de": ["consultant n. 顾问"]},{"w": "consume", "p": "kənˈsjuːm", "m": "消耗，消费", "de": ["consumer n. 消费者"]},{"w": "contact", "p": "ˈkɑːntækt", "m": "联系，联络"},{"w": "contaminate", "p": "kənˈtæmɪneɪt", "m": "弄脏，污染；损害，毒害", "de": ["contaminated adj. 被污染的；被损害的"]},{"w": "contemporary", "p": "kənˈtempərerɪ", "m": "当代的；同时代的"},{"w": "contest", "p": "ˈkɑːntest", "m": "比赛，竞赛"},{"w": "continent", "p": "ˈkɑːntɪnənt", "m": "洲，大陆", "de": ["continental adj. 大陆的"]},{"w": "continue", "p": "kənˈtɪnjuː", "m": "继续", "co": ["continue to do sth. / continue doing sth. 继续做某事"]},{"w": "contradict", "p": "ˌkɑːntrəˈdɪkt", "m": "与…发生矛盾，与…抵触", "de": ["contradiction n. 矛盾"]},{"w": "contrary", "p": "ˈkɑːntrerɪ", "m": "相反的 n. 相反；反面，对立面"},{"w": "contribute", "p": "kənˈtrɪbjuːt", "m": "捐献，贡献", "de": ["contribution n. 贡献"]},{"w": "control", "p": "kənˈtroʊl", "m": "& n. 控制，支配；管理", "co": ["out of control 失去控制ǁunder control 受控制"]},{"w": "controversial", "p": "kɑntrəˈvɜːrʃl", "m": "有争议的，引起争议的", "de": ["controversy n. 争论，争议"]},{"w": "convenient", "p": "kənˈvɪːnɪənt", "m": "方便的，便利的", "co": ["convenience store 便利店"], "de": ["convenience n. 便利，方便"]},{"w": "convention", "p": "kənˈvenʃn", "m": "大会；习俗，惯例", "de": ["conventional adj. 依照惯例的，约定俗成的"]},{"w": "convey", "p": "kənˈveɪ", "m": "表达, 转达"},{"w": "convince", "p": "kənˈvɪns", "m": "使相信；说服"},{"w": "cookbook", "p": "ˈkʊkbʊk", "m": "食谱，菜谱，烹饪书"},{"w": "coordinate", "p": "koʊˈɔːrdneɪt", "m": "使协调；使调和", "de": ["coordination n. 协调"]},{"w": "copper", "p": "ˈkɑːpər", "m": "铜；铜币adj. 铜制的vt. 镀铜于"},{"w": "copy", "p": "ˈkɑːpɪ", "m": "复制；复印；抄袭 n. 副本；一册"},{"w": "coral", "p": "ˈkɔːrəl", "m": "珊瑚"},{"w": "cordless", "p": "ˈkɔːrdləs", "m": "（电话或电动工具）不用电线与电源相连的，无电线的，无绳的"},{"w": "corn", "p": "kɔːrn", "m": "谷物；玉米"},{"w": "corporation", "p": "kɔːpəˈreɪʃn", "m": "公司"},{"w": "correspond", "p": "kɔːrɪˈspɑːnd", "m": "相符合，相一致；通信"},{"w": "corrupt", "p": "kəˈrʌpt", "m": "堕落的，腐败的", "de": ["corruption n. 腐败，堕落"]},{"w": "costume", "p": "ˈkɑːstjuːm", "m": "服装，装束；戏装，剧装 vt. 给…穿上服装"},{"w": "cosy", "p": "ˈkoʊzɪ", "m": "温暖舒适的"},{"w": "cottage", "p": "ˈkɑːtɪdʒ", "m": "小屋，村舍"},{"w": "cotton", "p": "ˈkɑːtn", "m": "棉，棉花", "co": ["sth. made of cotton 棉制品"]},{"w": "cough", "p": "kɔːf", "m": "咳嗽"},{"w": "count", "p": "kaʊnt", "m": "点…的数目；计算", "co": ["count on （=depend on, rely on） 依靠，依赖"]},{"w": "counter", "p": "ˈkaʊntər", "m": "柜台"},{"w": "couple", "p": "ˈkʌpl", "m": "一对，一双；夫妻"},{"w": "couplet", "p": "ˈkʌplɪt", "m": "相连并押韵的两行诗，对句"},{"w": "course", "p": "kɔːrs", "m": "课程；过程；一道菜"},{"w": "court", "p": "kɔːrt", "m": "庭院，院子；法庭，法院"},{"w": "courtesy", "p": "ˈkɜːrtɪsɪ", "m": "谦恭有礼，礼貌；有礼貌的举止和言辞", "de": ["courteous adj. 有礼貌的；谦恭的；殷勤的"]}],"10":[{"w": "cousin", "p": "ˈkʌzn", "m": "堂（或表）兄弟；堂（或表） 姐妹"},{"w": "cowboy", "p": "ˈkaʊbɔɪ", "m": "牧牛工，牛仔", "co": ["a cowboy movie of the American West 美国西部的牛仔影片"]},{"w": "crab", "p": "kræb", "m": "蟹"},{"w": "cram", "p": "kræm", "m": "填鸭式学习的 vi. 狼吞虎咽地吃东西；死记硬背功课 vt. 填满，塞满；猛吃；死记硬背"},{"w": "crash", "p": "kræʃ", "m": "（使）猛撞，（使）撞毁 vi. 发出巨响"},{"w": "crawl", "p": "krɔːl", "m": "爬，爬行"},{"w": "crayon", "p": "ˈkreɪən", "m": "彩色蜡笔或粉笔 vt.&vi. 用彩色蜡笔或粉笔画"},{"w": "create", "p": "krɪˈeɪt", "m": "创造，创作", "de": ["creation n. 创造"]},{"w": "creature", "p": "ˈkrɪːtʃər", "m": "生物；动物"},{"w": "credit", "p": "ˈkredɪt", "m": "信任，信用；学分"},{"w": "crew", "p": "kruː", "m": "全体船员；全体乘务员；一群，一帮"},{"w": "cricket", "p": "ˈkrɪkɪt", "m": "蟋蟀"},{"w": "crime", "p": "kraɪm", "m": "引 criminal n. 罪犯", "de": ["criminal n. 罪犯"]},{"w": "criterion", "p": "kraɪˈtɪrɪən", "m": "（复数criteria ） n. 标准；准则", "co": ["criterion for …的标准"]},{"w": "critic", "p": "ˈkrɪtɪk", "m": "批评者；评论家", "de": ["critical adj. 批评的"]},{"w": "critical", "p": "ˈkrɪtɪkl", "m": "批评的，爱挑剔的；决定性的，关键性的", "de": ["critically adv. 极其地，危急地"]},{"w": "critique", "p": "krɪˈtɪːk", "m": "评论文章，评论；批评，批判vt. 评论；批判"},{"w": "crop", "p": "krɑːp", "m": "庄稼，农作物"},{"w": "cross", "p": "krɔːs", "m": "十字架 vt.&vi. 交叉；横渡", "sy": ["intersection n. 十字路口"], "de": ["crossing n. 十字路口"]},{"w": "crowd", "p": "kraʊd", "m": "挤满n. 人群", "de": ["crowded adj. 拥挤的，塞满的"]},{"w": "crucial", "p": "ˈkruːʃl", "m": "决定性的；重要的", "co": ["at the crucial moment 在紧要关头"]},{"w": "cruel", "p": "ˈkruəl", "m": "残酷的，残忍的", "de": ["cruelty n. 残酷，残忍"]},{"w": "crystal", "p": "ˈkrɪstl", "m": "结晶，晶体；水晶；水晶饰品 adj. 水晶的；透明的，清澈的"},{"w": "cube", "p": "kjuːb", "m": "立方；立方体", "de": ["cubic adj. 立方体的；立方的"]},{"w": "cue", "p": "kjuː", "m": "提示，暗示（尤指戏剧等舞台演出中对演员起提示作用的指令、道白或动作等）"},{"w": "cuisine", "p": "kwɪˈzɪːn", "m": "烹饪，烹调法"},{"w": "culture", "p": "ˈkʌltʃər", "m": "文化，文明；修养，教养", "de": ["cultivate vt. 培养"]},{"w": "curd", "p": "kɜːrd", "m": "凝乳（牛奶发酵形成的稠而软的物质， 可制奶酪）"},{"w": "cure", "p": "kjʊr", "m": "治愈，治疗", "de": ["curable adj. 可治愈的"]},{"w": "curious", "p": "ˈkjʊrɪəs", "m": "好奇的，有求知欲的"},{"w": "currency", "p": "ˈkɜːrənsɪ", "m": "货币", "de": ["current adj. 通用的，流通的"]},{"w": "current", "p": "ˈkɜːrənt", "m": "当前的，现在的；流通的，通用的"},{"w": "curriculum", "p": "kəˈrɪkjələm", "m": "（学校或专业的）全部课程"},{"w": "curse", "p": "kɜːrs", "m": "诅咒，咒骂；使苦恼，使困苦 n. 诅咒，咒语；祸害，祸因"},{"w": "curtain", "p": "ˈkɜːrtn", "m": "窗帘；（舞台上的）幕"},{"w": "curve", "p": "kɜːrv", "m": "弧线，曲线；曲线状物，弯曲物vt. 使成曲线，使成弧形vi. 弯曲；弯成曲线，弯成弧", "co": ["the curve of his lips他嘴唇的曲线ǁa curve in the road道路的转弯处"]},{"w": "cushion", "p": "ˈkʊʃn", "m": "垫子"},{"w": "custom", "p": "ˈkʌstəm", "m": "习惯；风俗 adj. 定制的，定做的"},{"w": "cycle", "p": "ˈsaɪkl", "m": "循环；周期；（bicycle, moto cycle, etc. ）自行车、摩托车等", "de": ["cyclist n. 骑自行车的人"]},{"w": "cylinder", "p": "ˈsɪləndər", "m": "圆筒；圆柱"},{"w": "daisy", "p": "ˈdeɪzɪ", "m": "雏菊；菊科植物"},{"w": "dam", "p": "dæm", "m": "水坝"},{"w": "damage", "p": "ˈdæmɪdʒ", "m": "损害；损毁"},{"w": "damp", "p": "dæmp", "m": "潮湿的 n. 潮湿，湿气", "co": ["damp, cold air 潮湿、阴冷的空气"]},{"w": "dare", "p": "der", "m": "敢，敢做 aux. v. 敢，竟敢"},{"w": "dash", "p": "dæʃ", "m": "猛冲，冲"},{"w": "data", "p": "ˈdeɪtə", "m": "资料，材料；（计算机）数据"},{"w": "database", "p": "ˈdeɪtəbeɪs", "m": "资料库"},{"w": "date", "p": "deɪt", "m": "日期；约会的对象 vt.&vi. （与…）约会，（与…）相约", "co": ["out of date 过时的，陈旧的"]},{"w": "dawn", "p": "dɔːn", "m": "黎明，拂晓", "an": ["dark n. 黄昏，傍晚"]},{"w": "deadline", "p": "ˈdedlaɪn", "m": "最后期限"},{"w": "deaf", "p": "def", "m": "聋的", "de": ["deafness n. 聋"]},{"w": "deafening", "p": "ˈdefnɪŋ", "m": "震耳欲聋的；极喧闹的"},{"w": "deal", "p": "dɪːl", "m": "交易，协议vi. 处理", "co": ["deal with 处理"]},{"w": "debatable", "p": "dɪˈbeɪtəbl", "m": "有问题的；可争论的；未决定的"},{"w": "debate", "p": "dɪˈbeɪt", "m": "讨论，辩论 vt.&vi. 辩论，争论"},{"w": "debt", "p": "det", "m": "债务", "co": ["get/run/be in debt 负债ǁbe out of debt 不欠债"]},{"w": "decade", "p": "ˈdekeɪd", "m": "十年"},{"w": "deceive", "p": "dɪˈsɪːv", "m": "欺诈；误导", "de": ["deceit n. 欺骗，欺诈"]},{"w": "decide", "p": "dɪˈsaɪd", "m": "决定", "de": ["decision n. 决定"]},{"w": "decipher", "p": "dɪˈsaɪfər", "m": "破译（密码）；辨认（潦草字迹）"},{"w": "declare", "p": "dɪˈkler", "m": "宣布，宣告；声明"},{"w": "decline", "p": "dɪˈklaɪn", "m": "下降，减少；衰退 vt.&vi. 谢绝（邀请等） ；变弱，变小"}],"11":[{"w": "decorate", "p": "ˈdekəreɪt", "m": "装饰", "an": ["increase vt.&vi.&n. （使）增加；（使）增大"], "de": ["decoration n. 装饰"]},{"w": "decree", "p": "dɪˈkrɪː", "m": "法令；命令 vt. 命令；颁布…为法令；裁决vi. 发布命令；颁布法令"},{"w": "deduce", "p": "dɪˈdjuːs", "m": "推论，推断；演绎"},{"w": "deed", "p": "dɪːd", "m": "行为，行动"},{"w": "defeat", "p": "dɪˈfɪːt", "m": "击败，战胜"},{"w": "defect", "p": "ˈdɪːfekt", "m": "瑕疵，毛病；欠缺，缺点"},{"w": "defend", "p": "dɪˈfend", "m": "保护，保卫；辩护，辩解", "de": ["defense n. 防卫，防卫物"]},{"w": "degree", "p": "dɪˈgrɪː", "m": "度，度数；程度；学位"},{"w": "delay", "p": "dɪˈleɪ", "m": "（使） 耽搁，（使）延误"},{"w": "delete", "p": "dɪˈlɪːt", "m": "删除", "de": ["deletion n. 删除"]},{"w": "delicacy", "p": "ˈdelɪkəsɪ", "m": "美味佳肴"},{"w": "delicate", "p": "ˈdelɪkət", "m": "娇柔的，脆弱的；易碎的；精美的，雅致的"},{"w": "delight", "p": "dɪˈlaɪt", "m": "快乐，高兴 vt. 使高兴，使欣喜", "de": ["delighted adj. 高兴的"]},{"w": "deliver", "p": "dɪˈlɪvər", "m": "递送 vt. 授（课）；讲（话）", "co": ["express delivery 快递"], "de": ["delivery n. 递送"]},{"w": "deluge", "p": "ˈdeljuːdʒ", "m": "洪水；倾盆大雨"},{"w": "demand", "p": "dɪˈmænd", "m": "要求；需要"},{"w": "demonstrate", "p": "ˈdemənstreɪt", "m": "说明，演示；论证，证明", "de": ["demonstration n. 证明；示范"]},{"w": "dense", "p": "dens", "m": "密集的，稠密的；浓密的，浓厚的", "de": ["density n. 密度，浓度；稠密，浓厚"]},{"w": "dentist", "p": "ˈdentɪst", "m": "牙科医生", "de": ["dental adj. 牙科的；牙齿的"]},{"w": "department", "p": "dɪˈpɑːrtmənt", "m": "部门；系"},{"w": "departure", "p": "dɪˈpɑːrtʃər", "m": "离开，离去"},{"w": "depend", "p": "dɪˈpend", "m": "依靠，依赖", "co": ["depend on 依靠，依赖"], "de": ["dependable adj. 可以依靠的，可信赖的"]},{"w": "depict", "p": "dɪˈpɪkt", "m": "描绘；描述", "sy": ["describe vt. 描述，形容"], "de": ["depiction n. 描写；叙述"]},{"w": "deposit", "p": "dɪˈpɑːzɪt", "m": "存放；交与…保管", "an": ["withdraw vt. 取出，收回"]},{"w": "depress", "p": "dɪˈpres", "m": "压下，压低；使沮丧", "de": ["depressed adj. 情绪低落的，沮丧的；萧条的"]},{"w": "derive", "p": "dɪˈraɪv", "m": "源于，来自；推导，得出"},{"w": "deserve", "p": "dɪˈzɜːrv", "m": "应受，应得"},{"w": "design", "p": "dɪˈzaɪn", "m": "设计，绘制"},{"w": "desire", "p": "dɪˈzaɪər", "m": "希望，渴望"},{"w": "desperate", "p": "ˈdespərət", "m": "不顾一切的，拼命的；绝望的"},{"w": "despite", "p": "dɪˈspaɪt", "m": "尽管，不管 n. 轻视；憎恨；侮辱"},{"w": "dessert", "p": "dɪˈzɜːrt", "m": "（餐后） 甜食，甜点"},{"w": "destination", "p": "ˌdestɪˈneɪʃn", "m": "目的地，终点"},{"w": "destroy", "p": "dɪˈstrɔɪ", "m": "破坏，破灭", "de": ["destructive adj. 破坏性的，毁灭性的"]},{"w": "detail", "p": "ˈdɪːteɪl", "m": "细节，详情"},{"w": "detective", "p": "dɪˈtektɪv", "m": "侦探", "de": ["detect vt. 侦察，发现"]},{"w": "deter", "p": "dɪˈtɜːr", "m": "阻止，制止；使不敢；使踌躇vi. 阻止，威慑"},{"w": "detergent", "p": "dɪˈtɜːrdʒənt", "m": "洗涤剂，去污剂"},{"w": "deteriorate", "p": "dɪˈtɪrɪəreɪt", "m": "恶化，变坏"},{"w": "determine", "p": "dɪˈtɜːrmɪn", "m": "决心，决定；确定"},{"w": "detest", "p": "dɪˈtest", "m": "憎恶，痛恨", "de": ["detestable adj. 令人憎恶的"]},{"w": "devote", "p": "dɪˈvoʊt", "m": "把…奉献给", "co": ["devote...to... 把…奉献给…"]},{"w": "diagnose", "p": "ˌdaɪəgˈnoʊs", "m": "诊断；判断vi. 做出诊断", "de": ["diagnosis n. 诊断；诊断结论"]},{"w": "dial", "p": "ˈdaɪəl", "m": "打电话给；拨（电话号码）"},{"w": "diameter", "p": "daɪˈæmɪtər", "m": "直径"},{"w": "diamond", "p": "ˈdaɪəmənd", "m": "钻石"},{"w": "dice", "p": "daɪs", "m": "骰子 vi. 玩骰子vt. 掷骰子赌（输赢）"},{"w": "dictation", "p": "dɪkˈteɪʃn", "m": "口授；听写", "de": ["dictate vt. 口授；听写"]},{"w": "diet", "p": "ˈdaɪət", "m": "日常饮食 vt.&vi. （使）节制饮食"},{"w": "differ", "p": "ˈdɪfər", "m": "不同，相异；有分歧"},{"w": "dig", "p": "dɪg", "m": "（dug, dug） vt. 挖（洞、沟等）", "co": ["dig a tunnel 挖隧道"]},{"w": "digest", "p": "daɪˈdʒest", "m": "消化", "de": ["digestion n. 消化"]},{"w": "digital", "p": "ˈdɪdʒɪtl", "m": "数字式的，数码的"},{"w": "dignity", "p": "ˈdɪgnətɪ", "m": "庄严；尊严；高贵", "de": ["dignified adj. 有尊严的"]},{"w": "dilemma", "p": "dɪˈlemə", "m": "左右为难", "co": ["be in a dilemma 陷入进退两难的困境"]},{"w": "dim", "p": "dɪm", "m": "暗淡的，昏暗的"},{"w": "dimension", "p": "daɪˈmenʃn", "m": "尺寸，量度"},{"w": "dine", "p": "daɪn", "m": "吃饭，进餐", "co": ["dining hall/room 餐厅"]},{"w": "dinosaur", "p": "ˈdaɪnəsɔːr", "m": "恐龙"},{"w": "dioxide", "p": "daɪˈɑːksaɪd", "m": "二氧化物", "co": ["carbon dioxide 二氧化碳"]},{"w": "dip", "p": "dɪp", "m": "浸，蘸"}],"12":[{"w": "diploma", "p": "dɪˈploʊmə", "m": "毕业文凭，学位证书"},{"w": "diplomacy", "p": "dɪˈploʊməsɪ", "m": "外交；外交手腕，交际手段", "de": ["diplomat n. 外交官"]},{"w": "direction", "p": "dəˈrekʃn", "m": "方向", "de": ["director n. 主管；负责人；主任；导演"]},{"w": "disability", "p": "ˌdɪsəˈbɪlətɪ", "m": "无能力；丧失能力；伤残", "de": ["disabled adj. 有残疾的"]},{"w": "disadvantage", "p": "ˌdɪsədˈvæntɪdʒ", "m": "不利，劣势", "an": ["advantage n. 有利，优势"]},{"w": "disappear", "p": "ˌdɪsəˈpɪr", "m": "不见，消失", "de": ["appear vi. 出现"]},{"w": "disappointed", "p": "ˌdɪsəˈpɔɪntɪd", "m": "失望的", "de": ["disappointment n. 失望，沮丧"]},{"w": "disaster", "p": "dɪˈzæstər", "m": "灾难，灾祸", "co": ["disaster area 灾区"]},{"w": "disclosure", "p": "dɪsˈkloʊʒər", "m": "公开；透露", "de": ["disclose vt. 公开；透露"]},{"w": "discover", "p": "dɪˈskʌvər", "m": "发现", "de": ["discovery n. 发现"]},{"w": "discrimination", "p": "dɪˌskrɪmɪˈneɪʃn", "m": "歧视；辨别力，识别力", "de": ["discriminate vt.&vi. 辨别，区分；歧视"]},{"w": "disease", "p": "dɪˈzɪːz", "m": "疾病"},{"w": "disguise", "p": "dɪsˈgaɪz", "m": "隐瞒，掩饰；伪装，假装；化装n. 伪装；伪装物"},{"w": "disgusting", "p": "dɪsˈgʌstɪŋ", "m": "令人作呕的，令人厌恶的", "de": ["disgust vt. 使厌恶，使反感"]},{"w": "dismiss", "p": "dɪsˈmɪs", "m": "解雇；撤职"},{"w": "disobey", "p": "ˌdɪsəˈbeɪ", "m": "不服从，不顺从"},{"w": "display", "p": "dɪˈspleɪ", "m": "陈列，展览"},{"w": "distance", "p": "ˈdɪstəns", "m": "距离，间距；远处，远方", "co": ["in the distance 在远方"], "de": ["distant adj. 遥远的，（时间或空间）远隔的"]},{"w": "distinct", "p": "dɪˈstɪŋkt", "m": "不同的；清晰的，明显的", "de": ["distinction n. 区别，明显差别；卓越，优秀"]},{"w": "distinguish", "p": "dɪˈstɪŋgwɪʃ", "m": "辨别，区别", "de": ["distinguishable adj. 可区别的，可辨别的", "distinguished adj. 卓越的，著名的"]},{"w": "distort", "p": "dɪˈstɔːrt", "m": "歪曲，扭曲；曲解；使变形vi. 扭曲；变形", "de": ["distortion n. 歪曲，扭曲"]},{"w": "distribute", "p": "dɪˈstrɪbjuːt", "m": "分配，分给"},{"w": "district", "p": "ˈdɪstrɪkt", "m": "地区，区域"},{"w": "disturb", "p": "dɪˈstɜːrb", "m": "打扰，妨碍"},{"w": "dive", "p": "daɪv", "m": "跳水，潜水", "de": ["diver n. 潜水员；跳水员"]},{"w": "diverse", "p": "daɪˈvɜːrs", "m": "不同的，多种多样的", "de": ["diversity n. 多样性"]},{"w": "divide", "p": "dɪˈvaɪd", "m": "划分，分", "de": ["division n. 部门"]},{"w": "divorce", "p": "dɪˈvɔːrs", "m": "离婚 vt. 与…离婚"},{"w": "dizzy", "p": "ˈdɪzɪ", "m": "头昏眼花的，眩晕的"},{"w": "document", "p": "ˈdɑːkjumənt", "m": "文件，公文；文献", "sy": ["file n. 文件"]},{"w": "dolphin", "p": "ˈdɑːlfɪn", "m": "海豚"},{"w": "dome", "p": "doʊm", "m": "穹顶，圆屋顶"},{"w": "domestic", "p": "dəˈmestɪk", "m": "本国的，国内的；家庭的，家用的；驯养的"},{"w": "dominant", "p": "ˈdɑːmɪnənt", "m": ""},{"w": "adj.", "p": "生", "m": "例 Every ten years or so, a new dominant platform emerges to elevate computing to another"},{"w": "dominate", "p": "ˈdɑːmɪneɪt", "m": "控制；（在…中）占首要地位"},{"w": "donate", "p": "ˈdoʊneɪt", "m": "捐赠；捐献"},{"w": "dormitory", "p": "ˈdɔːrmətɔːrɪ", "m": "（=dorm ）宿舍"},{"w": "doubt", "p": "daʊt", "m": "怀疑，疑虑"},{"w": "downhill", "p": "ˌdaʊnˈhɪl", "m": "向山下；在山下"},{"w": "download", "p": "ˌdaʊnˈloʊd", "m": "下载"},{"w": "downside", "p": "ˈdaʊnsaɪd", "m": "下降趋势；负面，消极面，缺点"},{"w": "downstairs", "p": "ˌdaʊnˈsterz", "m": "在楼下", "an": ["upstairs adv. 在楼上"]},{"w": "downtown", "p": "ˌdaʊnˈtaʊn", "m": "商业区的；闹市区的 adv. 在商业区"},{"w": "dozen", "p": "ˈdʌzn", "m": "一打，十二个"},{"w": "draft", "p": "dræft", "m": "草稿；草图"},{"w": "drag", "p": "dræg", "m": "拖，拉，拽"},{"w": "dragonfly", "p": "ˈdrægənflaɪ", "m": "蜻蜓"},{"w": "drama", "p": "ˈdrɑːmə", "m": "戏剧，戏剧艺术；剧本；戏剧性事件"},{"w": "drawback", "p": "ˈdrɔːbæk", "m": "缺点；不利条件", "sy": ["disadvantage n. 不利条件"]},{"w": "drawer", "p": "drɔːr", "m": "抽屉"},{"w": "drill", "p": "drɪl", "m": "钻头；操练，训练", "co": ["regular drill 有规律的训练"]},{"w": "drought", "p": "draʊt", "m": "干旱；缺乏"},{"w": "drug", "p": "drʌg", "m": "药物，药剂；毒品"},{"w": "drum", "p": "drʌm", "m": "鼓 vi. 打鼓"},{"w": "due", "p": "duː", "m": "到期的；应付的；由…引起的", "co": ["due to 由于；应归于"]},{"w": "dull", "p": "dʌl", "m": "迟钝的，呆滞的；枯燥无味的", "co": ["a dull pupil 迟钝的学生"]},{"w": "dusk", "p": "dʌsk", "m": "黄昏，傍晚", "co": ["at dusk 在黄昏时刻"]},{"w": "dustbin", "p": "ˈdʌstbɪn", "m": "垃圾箱，垃圾桶"},{"w": "dynamic", "p": "daɪˈnæmɪk", "m": "动力的；有活力的，精力充沛的", "de": ["dynamics n. 动力学"]},{"w": "dynasty", "p": "ˈdaɪnəstɪ", "m": "王朝，朝代", "co": ["during the Ming dynasty 在明朝时期"]},{"w": "eager", "p": "ˈɪːgər", "m": "热切的，渴望的", "co": ["be eager to do sth. 渴望做某事"]}],"13":[{"w": "eagle", "p": "ˈɪːgl", "m": "鹰"},{"w": "earn", "p": "ɜːrn", "m": "赚得；挣（钱）；获得", "de": ["earning n. 所赚的钱，收入"]},{"w": "earthquake", "p": "ˈɜːrθkweɪk", "m": "地震"},{"w": "ease", "p": "ɪːz", "m": "容易；舒适，安逸 vt.&vi. （使）安心，（使）宽慰"},{"w": "Easter", "p": "ˈɪːstər", "m": "复活节"},{"w": "easy-going", "p": "ˈɪːzɪ ˈgoʊɪŋ", "m": "随和的，温和的，容易相处的"},{"w": "ecological", "p": "ˌɪːkəˈlɑːdʒɪkl", "m": "生态的，生态学的", "de": ["ecology n. 生态，生态学"]},{"w": "economy", "p": "ɪˈkɑːnəmɪ", "m": "节约，节省；经济"},{"w": "edge", "p": "edʒ", "m": "边，边缘", "co": ["on the edge of 在…的边缘"]},{"w": "edition", "p": "ɪˈdɪʃn", "m": "版本", "de": ["edit vt.&vi. 编辑，校订"]},{"w": "education", "p": "ˌedʒuˈkeɪʃn", "m": "教育", "de": ["educational adj. 教育的"]},{"w": "effect", "p": "ɪˈfekt", "m": "结果，效果；影响", "de": ["efficiency n. 效率，效能"]},{"w": "effort", "p": "ˈefərt", "m": "努力，尽力", "co": ["make one's effort to do sth. 努力做某事"]},{"w": "eggplant", "p": "ˈegplænt", "m": "茄子"},{"w": "Egypt", "p": "ˈɪːdʒɪpt", "m": "埃及", "de": ["Egyptian adj. 埃及的；埃及人的 n. 埃及人"]},{"w": "elect", "p": "ɪˈlekt", "m": "选举，推举"},{"w": "electric", "p": "ɪˈlektrɪk", "m": "电动的，电的", "co": ["an electric cooker 电炉"]},{"w": "electronic", "p": "ɪˌlekˈtrɑːnɪk", "m": "电子的"},{"w": "elegant", "p": "ˈelɪgənt", "m": "优美的，文雅的，讲究的", "de": ["elegance n. 高雅，优雅"]},{"w": "eliminate", "p": "ɪˈlɪmɪneɪt", "m": "消除，剔除；消灭"},{"w": "else", "p": "els", "m": "别的，其他的 adv. 其他；另外"},{"w": "embarrass", "p": "ɪmˈbærəs", "m": "（使） 尴尬；（使）窘迫；（使）局促不安", "de": ["embarrassed adj. 感到窘迫的"]},{"w": "embassy", "p": "ˈembəsɪ", "m": "大使馆"},{"w": "emergency", "p": "ɪˈmɜːrdʒənsɪ", "m": "紧急情况", "de": ["emergent adj. 紧急的"]},{"w": "emotion", "p": "ɪˈmoʊʃn", "m": "情感；情绪"},{"w": "emperor", "p": "ˈempərər", "m": "皇帝，君主"},{"w": "emphasize", "p": "ˈemfəsaɪz", "m": "强调，使突出", "de": ["emphasis n. 强调，重点"]},{"w": "empire", "p": "ˈempaɪər", "m": "帝国"},{"w": "employ", "p": "ɪmˈplɔɪ", "m": "雇用", "de": ["employee n. 雇工，雇员"]},{"w": "empty", "p": "ˈemptɪ", "m": "空的；空虚的；无意义的；无知的；徒劳的 vt. 使成为空的 vi. 变空 n. 空的东西"},{"w": "encourage", "p": "ɪnˈkɜːrɪdʒ", "m": "鼓励，激励", "de": ["encouragement n. 鼓励"]},{"w": "encounter", "p": "ɪnˈkaʊntər", "m": "遇到，遭遇；偶然碰到，邂逅"},{"w": "end", "p": "end", "m": "结束；尽头；末端；死亡；目标 vt.&vi. 结束，终止，终结"},{"w": "endanger", "p": "ɪnˈdeɪndʒər", "m": "危及，使遭到危险", "de": ["endangered adj. 危险的；濒危的"]},{"w": "endeavor", "p": "ɪnˈdevər", "m": "尝试，试图；尽力，竭力n. 努力，尽力", "co": ["endeavor to do sth. 努力做某事"]},{"w": "ending", "p": "ˈendɪŋ", "m": "结局", "de": ["endless adj. 无止境的，没完没了的"]},{"w": "enemy", "p": "ˈenəmɪ", "m": "仇敌，敌人"},{"w": "energetic", "p": "ˌenərˈdʒetɪk", "m": "精力充沛的，充满活力的", "de": ["energy n. 能量；活力，干劲"]},{"w": "energize", "p": "ˈenərdʒaɪz", "m": "激励；使活跃；供给…能量"},{"w": "engage", "p": "ɪnˈgeɪdʒ", "m": "使从事（某种工作、事业等）；使参与；与…交战；使订婚 vi. 从事"},{"w": "engine", "p": "ˈendʒɪn", "m": "发动机，引擎"},{"w": "engineering", "p": "ˌendʒɪˈnɪrɪŋ", "m": "工程，工程学", "de": ["engineer n. 工程师"]},{"w": "enlarge", "p": "ɪnˈlɑːrdʒ", "m": "扩大，扩充"},{"w": "enquiry", "p": "ˈɪnkwərɪ", "m": "（= inquiry ） n. 询问", "de": ["enquire(= inquire) vt. 询问"]},{"w": "enterprise", "p": "ˈentərpraɪz", "m": "企业，公司"},{"w": "entertain", "p": "ˌentərˈteɪn", "m": "款待，招待；使欢乐，使愉快", "de": ["entertainment n. 娱乐"]},{"w": "enthusiastic", "p": "ɪnˌθuːzɪˈæstɪk", "m": "满腔热情的；热心的", "de": ["enthusiasm n. 热情"]},{"w": "entire", "p": "ɪnˈtaɪər", "m": "全部的，整体的", "de": ["entirely adv. 完全地"]},{"w": "entry", "p": "ˈentrɪ", "m": "进入；进入权；入口", "de": ["enter vt. 进入， 进去"]},{"w": "envelope", "p": "ˈenvəloʊp", "m": "信封"},{"w": "environment", "p": "ɪnˈvaɪrənmənt", "m": "环境", "de": ["environmental adj. 环境的，有关环境的"]},{"w": "envy", "p": "ˈenvɪ", "m": "妒忌；羡慕"},{"w": "ephemeral", "p": "ɪˈfemərəl", "m": "短暂的，瞬息的", "co": ["ephemeral pleasures 短暂的欢乐"]},{"w": "epic", "p": "ˈepɪk", "m": "叙事诗；史诗；史诗般的作品adj. 史诗般的；叙事诗的；宏大的，壮丽的"},{"w": "equal", "p": "ˈɪːkwəl", "m": "相等的，平等的 vt. 与…相等或相同", "de": ["equality n. 平等，同等"]},{"w": "equipment", "p": "ɪˈkwɪpmənt", "m": "设备，装备", "de": ["equip vt. 给…配装备；使有能力，使胜任"]},{"w": "erase", "p": "ɪˈreɪs", "m": "抹去；擦除；消除"},{"w": "erosion", "p": "ɪˈroʊʒn", "m": "腐蚀，侵蚀；磨损"},{"w": "error", "p": "ˈerər", "m": "错误", "sy": ["mistake n. 错误，差错"]},{"w": "erupt", "p": "ɪˈrʌpt", "m": "爆发，喷发"},{"w": "eruption", "p": "ɪˈrʌpʃn", "m": "（火山）爆发，喷发；出疹"},{"w": "escape", "p": "ɪˈskeɪp", "m": "逃脱，逃跑", "sy": ["flee vt.&vi. 逃离；逃走，逃跑"]}],"14":[{"w": "especially", "p": "ɪˈspeʃəlɪ", "m": "尤其，特别", "de": ["especial adj. 特别的，特殊的"]},{"w": "essay", "p": "ˈeseɪ", "m": "散文，随笔"},{"w": "essence", "p": "ˈesns", "m": "本质，实质；精华；香精"},{"w": "establish", "p": "ɪˈstæblɪʃ", "m": "建立，成立"},{"w": "ethnicity", "p": "eθˈnɪsətɪ", "m": "种族；种族特点"},{"w": "eucalyptus", "p": "ˌjuːkəˈlɪptəs", "m": "桉树"},{"w": "evaluate", "p": "ɪˈvæljueɪt", "m": "评价，估计", "de": ["evaluation n. 估计，评价"]},{"w": "even", "p": "ˈɪːvn", "m": "甚至", "co": ["even if 即使，虽然"]},{"w": "event", "p": "ɪˈvent", "m": "事件，大事"},{"w": "eventually", "p": "ɪˈventʃuəlɪ", "m": "终于，最后", "sy": ["finally adv. 最后"]},{"w": "everyone", "p": "ˈevrɪwʌn", "m": "每个人；人人"},{"w": "everything", "p": "ˈevrɪθɪŋ", "m": "每件事物；一切事物"},{"w": "everywhere", "p": "ˈevrɪwer", "m": "到处，四处"},{"w": "evidence", "p": "ˈevɪdəns", "m": "证据", "de": ["evident adj. 明显的；明白的"]},{"w": "evil", "p": "ˈɪːvl", "m": "邪恶的；有害的 n. 罪恶，邪恶"},{"w": "evolution", "p": "ˌɪːvəˈluːʃn", "m": "演变；进化，发展", "de": ["evolve vt.&vi. 演变；进化"]},{"w": "exactly", "p": "ɪgˈzæktlɪ", "m": "精确地，准确地", "de": ["exact adj. 精确的，确切的"]},{"w": "exaggerate", "p": "ɪgˈzædʒəreɪt", "m": "使扩大；使增加；夸大，夸张"},{"w": "examine", "p": "ɪgˈzæmɪn", "m": "仔细检查，对…进行考核", "de": ["examination n. 考试，考核"]},{"w": "excavate", "p": "ˈekskəveɪt", "m": "挖掘；开凿；发掘；细查"},{"w": "excellent", "p": "ˈeksələnt", "m": "优秀的，卓越的", "de": ["excellence n. 优秀，杰出"]},{"w": "except", "p": "ɪkˈsept", "m": "把…除外"},{"w": "excerpt", "p": "ˈeksɜːrpt", "m": "摘录；引用；摘要；节录"},{"w": "excessive", "p": "ɪkˈsesɪv", "m": "过度的，极度的；过分的；过多的"},{"w": "exchange", "p": "ɪksˈtʃeɪndʒ", "m": "交换，互换；兑换"},{"w": "excited", "p": "ɪkˈsaɪtɪd", "m": "兴奋的；激动的；活跃的"},{"w": "exciting", "p": "ɪkˈsaɪtɪŋ", "m": "令人兴奋的；使人激动的"},{"w": "exclusive", "p": "ɪkˈskluːsɪv", "m": "专用的；高级的；排外的；单独的n. 独家新闻；专有物；独家经营的产品（或项目、"},{"w": "exercise", "p": "ˈeksərsaɪz", "m": "运动；锻炼，训练；练习"},{"w": "exhaust", "p": "ɪgˈzɔːst", "m": "用尽，耗尽；使精疲力尽", "de": ["exhausted adj. 耗尽的；用完的；精疲力竭的"]},{"w": "exhibit", "p": "ɪgˈzɪbɪt", "m": "陈列，展览", "de": ["exhibition n. 展览，展览会"]},{"w": "exhilarated", "p": "ɪgˈzɪləreɪtɪd", "m": "振奋的；高兴的"},{"w": "exile", "p": "ˈeksaɪl", "m": "例 He is now living in exile in Egypt. 他目前正在埃及流亡。"},{"w": "exist", "p": "ɪgˈzɪst", "m": "存在；生存", "de": ["existence n. 存在"]},{"w": "expand", "p": "ɪkˈspænd", "m": "使变大；扩张，扩大", "de": ["expansion n. 扩大，扩张"]},{"w": "expect", "p": "ɪkˈspekt", "m": "预料，预期", "de": ["expectation n. 预料，期望"]},{"w": "expense", "p": "ɪkˈspens", "m": "消耗，花费", "de": ["expend vt. 花费，花销"]},{"w": "expensive", "p": "ɪkˈspensɪv", "m": "昂贵的；奢华的"},{"w": "experience", "p": "ɪkˈspɪrɪəns", "m": "经验，体验；经历"},{"w": "experiment", "p": "ɪkˈsperɪmənt", "m": "实验，试验"},{"w": "expert", "p": "ˈekspɜːrt", "m": "专家，能手", "de": ["expertise n. 专门的知识或技能"]},{"w": "expire", "p": "ɪkˈspaɪər", "m": "期满；文件、协议等（因到期而）失效"},{"w": "explain", "p": "ɪkˈspleɪn", "m": "讲解；解释", "de": ["explanation n. 解释，说明"]},{"w": "explicit", "p": "ɪkˈsplɪsɪt", "m": "详述的；明确的，明晰的"},{"w": "explode", "p": "ɪkˈsploʊd", "m": "（使）爆炸", "de": ["explosion n. 爆炸，爆发"]},{"w": "explore", "p": "ɪkˈsplɔːr", "m": "勘查，探测；探索，探究", "de": ["explorer n. 勘探者；探险家"]},{"w": "export", "p": "ɪkˈspɔːrt", "m": "出口，输出", "an": ["import vt.&vi. 进口"]},{"w": "expose", "p": "ɪkˈspoʊz", "m": "暴露，显露", "co": ["be exposed to 接触；暴露于；使受到"]},{"w": "express", "p": "ɪkˈspres", "m": "表达，表示", "sy": ["convey vt. 表达，传达"], "de": ["expression n. 表示，表达"]},{"w": "extend", "p": "ɪkˈstend", "m": "延伸，延续；扩展", "de": ["extension n. 延伸，扩展"]},{"w": "extra", "p": "ˈekstrə", "m": "额外的，外加的", "co": ["extra pay for extra work 额外工作的额外报酬"]},{"w": "extraordinary", "p": "ɪkˈstrɔːrdənerɪ", "m": "非同寻常的，特别的"},{"w": "extravagant", "p": "ɪkˈstrævəgənt", "m": "过度的，过分的；奢侈的，浪费的"},{"w": "extremely", "p": "ɪkˈstrɪːmlɪ", "m": "极端，极其", "co": ["go to the extreme走极端"], "de": ["extreme n. 极端 adj. 极度的，极端的"]},{"w": "extrovert", "p": "ˈekstrəvɜːrt", "m": "性格外向者；活跃、爱交际的人"},{"w": "extroverted", "p": "ˈekstrəvɜːrtɪd", "m": "性格外向的；喜社交的"},{"w": "eyesight", "p": "ˈaɪsaɪt", "m": "视力"},{"w": "eyewitness", "p": "ˈaɪwɪtnəs", "m": "目击者，证人", "sy": ["witness n. 目击者，证人"]},{"w": "fabric", "p": "ˈfæbrɪk", "m": "织物，织品"},{"w": "fabulous", "p": "ˈfæbjələs", "m": "难以置信的，令人震惊的；极为美好的"}],"15":[{"w": "facial", "p": "ˈfeɪʃl", "m": "面孔的；用于面部的", "co": ["a facial expression 面部表情"]},{"w": "fact", "p": "fækt", "m": "事实；实际；真相"},{"w": "factor", "p": "ˈfæktər", "m": "因素；要素"},{"w": "factual", "p": "ˈfæktʃuəl", "m": "事实的；真实的"},{"w": "fade", "p": "feɪd", "m": "（使）褪去；（使）变弱；（使）枯萎"},{"w": "fair", "p": "fer", "m": "公平的，公正的", "de": ["fairly adv. 公平地；相当地"]},{"w": "faith", "p": "feɪθ", "m": "信任；信仰", "de": ["faithful adj. 忠实的，守信的"]},{"w": "fake", "p": "feɪk", "m": "假的，伪造的 n. 假货；骗子 vt. 伪造；假装"},{"w": "fall", "p": "fɔːl", "m": "落下；摔倒；变成；来临；减弱 n. 下降；秋天；瀑布"},{"w": "familiar", "p": "fəˈmɪlɪər", "m": "熟悉的；常见的；亲近的 n. 常客；密友"},{"w": "family", "p": "ˈfæməlɪ", "m": "家庭；家族；家属；子女；亲属 adj. 家庭的；家族的"},{"w": "famous", "p": "ˈfeɪməs", "m": "著名的，知名的"},{"w": "fan", "p": "fæn", "m": "扇子；狂热爱好者，迷"},{"w": "fancy", "p": "ˈfænsɪ", "m": "想象，设想"},{"w": "fantastic", "p": "fænˈtæstɪk", "m": "奇异的，怪诞的；极好的，极妙的"},{"w": "fantasy", "p": "ˈfæntəsɪ", "m": "幻想，想象；白日梦；奇幻故事", "de": ["fantasize vt. 想象，幻想"]},{"w": "far", "p": "fɑːr", "m": "（指空间）遥远地；（指时间）久远地；到很远的距离 adj. 远的；久远的"},{"w": "fare", "p": "fer", "m": "车费，运费", "sy": ["charge n. 费用"]},{"w": "farm", "p": "fɑːrm", "m": "农场；农家；畜牧场 vt.&vi. 养殖；耕种"},{"w": "fashion", "p": "ˈfæʃn", "m": "时尚；时装；方式，方法 vt. 设计，制作"},{"w": "fast", "p": "fæst", "m": "快速的，迅速的；紧的，稳固的 adv. 迅速地；牢固地 vi. 禁食，斋戒"},{"w": "fasten", "p": "ˈfæsn", "m": "系牢；拴住；固定"},{"w": "fat", "p": "fæt", "m": "（肉）肥的；肥胖的 n. 脂肪；肥肉"},{"w": "fault", "p": "fɔːlt", "m": "缺点，缺陷；过失，过错", "de": ["faulty adj. 有错的，有缺点的"]},{"w": "favor", "p": "ˈfeɪvər", "m": "赞同，赞成", "co": ["be in favor of 赞成 ǁdo sb. a favor帮某人忙ǁask sb. a favor请求某人帮忙"]},{"w": "favorite", "p": "ˈfeɪvərɪt", "m": "幸运儿；特别喜欢的人或事物 adj. 最喜欢的；中意的；宠爱的"},{"w": "fax", "p": "fæks", "m": "给…发传真 n. 传真"},{"w": "fear", "p": "fɪr", "m": "惧怕，害怕", "sy": ["dread vt.&vi.&n. 畏惧，惧怕"]},{"w": "fearless", "p": "ˈfɪrləs", "m": "无畏的；大胆的", "de": ["fearlessness n. 无畏，不害怕"]},{"w": "feast", "p": "fɪːst", "m": "宴请 vi. 参加宴会 n. 盛宴，宴会"},{"w": "feather", "p": "ˈfeðər", "m": "羽毛"},{"w": "feature", "p": "ˈfɪːtʃər", "m": "特征，特色"},{"w": "federal", "p": "ˈfedərəl", "m": "联邦的；同盟的"},{"w": "feed", "p": "fɪːd", "m": "喂养，饲养 vi. 靠…为生，以…作为食物"},{"w": "female", "p": "ˈfɪːmeɪl", "m": "女性的；雌性的", "an": ["male adj. 男性的；雄性的"]},{"w": "fence", "p": "fens", "m": "栅栏"},{"w": "ferry", "p": "ˈferɪ", "m": "渡船；摆渡"},{"w": "fertile", "p": "ˈfɜːrtl", "m": "肥沃的；可繁殖的；丰富的", "co": ["fertile plains 肥沃的平原"]},{"w": "festival", "p": "ˈfestɪvl", "m": "节日"},{"w": "fiction", "p": "ˈfɪkʃn", "m": "小说；虚构的事", "de": ["fictional adj. 小说的；虚构的"]},{"w": "field", "p": "fɪːld", "m": "领域；牧场；旷野；战场；运动场"},{"w": "fierce", "p": "fɪrs", "m": "凶猛的；猛烈的"},{"w": "fight", "p": "faɪt", "m": "（与…）打架；（与…）打仗，（与…）斗争；反对 n. 打架；战斗"},{"w": "fighter", "p": "ˈfaɪtər", "m": "战士，斗争者；斗士，奋斗者；好战者"},{"w": "figure", "p": "ˈfɪgjər", "m": "数字；人物 vi. 计算；理解", "co": ["figure out 计算；理解"]},{"w": "file", "p": "faɪl", "m": "文件；档案", "sy": ["document n. 文件"]},{"w": "filling", "p": "ˈfɪlɪŋ", "m": "装满，填满；填充物；（糕点内的）馅", "de": ["fill vt. 装满，填满"]},{"w": "film", "p": "fɪlm", "m": "电影；薄膜；胶卷 vt. 在…上覆以薄膜；把…拍成电影"},{"w": "filmmaker", "p": "ˈfɪlmmeɪkər", "m": "电影摄制者"},{"w": "filter", "p": "ˈfɪltər", "m": "过滤n. 过滤器"},{"w": "final", "p": "ˈfaɪnl", "m": "最终的；决定性的；不可更改的 n. 决赛；期末考试"},{"w": "finally", "p": "ˈfaɪnəlɪ", "m": "最后；终于；决定性地"},{"w": "finance", "p": "ˈfaɪnæns", "m": "财政；金融", "de": ["financial adj. 金融的；财政的"]},{"w": "find", "p": "faɪnd", "m": "找到，发现；认为，感到 n. 发现"},{"w": "finger", "p": "ˈfɪŋgər", "m": "手指；指针 vt. 伸出；用手指拨弄"},{"w": "fire", "p": "ˈfaɪər", "m": "火；火灾；炮火；炉火；热情，激情 vt. 点燃；解雇，开除；激励"},{"w": "firefighter", "p": "ˈfaɪərfaɪtər", "m": "消防队员"},{"w": "fireplace", "p": "ˈfaɪərpleɪs", "m": "壁炉", "de": ["firewood n. 柴火；木柴"]},{"w": "firm", "p": "fɜːrm", "m": "坚定的；牢固的 n. 公司", "sy": ["steady adj. 稳固的"]},{"w": "first", "p": "fɜːrst", "m": "第一；首先；优先 adj. 第一的；基本的；最早的 num. 第一"},{"w": "fish", "p": "fɪʃ", "m": "捕鱼，钓鱼 vt. 用钩捞取 n. 鱼，鱼类"},{"w": "fishing", "p": "ˈfɪʃɪŋ", "m": "捕鱼，钓鱼；渔业；捕鱼术"},{"w": "fist", "p": "fɪst", "m": "拳头"}],"16":[{"w": "fit", "p": "fɪt", "m": "安装；使合身 adj. 健康的；合适的", "co": ["fitness center 健身中心ǁfitting room试衣间"], "de": ["fitness n. 健康；适合性"]},{"w": "fix", "p": "fɪks", "m": "使固定；修理；安装"},{"w": "flag", "p": "flæg", "m": "旗帜"},{"w": "flame", "p": "fleɪm", "m": "火焰 vi. 燃烧", "de": ["flaming adj. 燃烧的"]},{"w": "flamenco", "p": "fləˈmeŋkoʊ", "m": "弗拉曼柯民歌；弗拉曼柯舞（西班牙的吉卜赛舞蹈）"},{"w": "flash", "p": "flæʃ", "m": "使闪光 n. 闪光，闪现", "de": ["flashlight n. 手电筒；闪光灯"]},{"w": "flashcard", "p": "ˈflæʃkɑːrd", "m": "教学用的抽认卡"},{"w": "flat", "p": "flæt", "m": "平坦的 n. 公寓", "de": ["apartment n. 公寓"]},{"w": "flatter", "p": "ˈflætər", "m": "奉承，恭维；使满意，使高兴", "de": ["flattery n. 奉承（话）"]},{"w": "flavor", "p": "ˈfleɪvər", "m": "风味，味道"},{"w": "flee", "p": "flɪː", "m": "逃走，逃跑vt. 逃避，避开", "sy": ["escape vi. 逃跑 vt. 逃避"]},{"w": "flesh", "p": "fleʃ", "m": "肉，肉体"},{"w": "flexible", "p": "ˈfleksəbl", "m": "灵活的；柔韧的", "co": ["flexible plans 灵活的计划"]},{"w": "flight", "p": "flaɪt", "m": "航班，班机；飞行"},{"w": "flip", "p": "flɪp", "m": "抛，掷；快速地翻转", "co": ["flip the pages over 很快地翻看书页"]},{"w": "float", "p": "floʊt", "m": "使漂浮 vi. 浮动，漂流"},{"w": "flood", "p": "flʌd", "m": "洪水vt.&vi. 淹没，涌入"},{"w": "floor", "p": "flɔːr", "m": "地板，地面；楼层；（海洋等的）基底；议员席 vt. 铺（地板）；打倒，击倒"},{"w": "flour", "p": "ˈflaʊər", "m": "面粉"},{"w": "flow", "p": "floʊ", "m": "流动 n. 涌流", "co": ["flow in/into 不断涌入"]},{"w": "flower", "p": "ˈflaʊər", "m": "花；开花植物；精华 vi. 成熟，发育；开花；繁荣，旺盛"},{"w": "flu", "p": "fluː", "m": "（influenza 的简写）流感"},{"w": "fluency", "p": "ˈfluːənsɪ", "m": "流畅，流利", "de": ["fluent adj. 流畅的，流利的"]},{"w": "flunk", "p": "flʌŋk", "m": "失败；放弃；考试不及格 vt. 使（考试）不及格"},{"w": "fly", "p": "flaɪ", "m": "飞；驾驶飞机；飘扬 vt. 驾驶（飞机）；飞越；使飘扬 n. 飞行；苍蝇，两翼昆虫"},{"w": "focus", "p": "ˈfoʊkəs", "m": "焦点，中心 vt. 使集中；使聚焦", "co": ["focus on 集中于"]},{"w": "fog", "p": "fɑːg", "m": "雾；烟雾", "de": ["foggy adj. 有雾的"]},{"w": "fold", "p": "foʊld", "m": "折叠；合拢", "de": ["folder n. 文件夹"]},{"w": "folk", "p": "foʊk", "m": "民族；某一国家或地区的人们；[-s] 亲属，亲戚 adj. 民间的"},{"w": "follow", "p": "ˈfɑːloʊ", "m": "跟随；遵循；追求；密切注意 vi. 跟随；接着"},{"w": "fond", "p": "fɑːnd", "m": "喜欢的", "co": ["be fond of 喜爱"]},{"w": "food", "p": "fuːd", "m": "食物；养料"},{"w": "forbid", "p": "fərˈbɪd", "m": "禁止；妨碍，阻止", "co": ["forbid sb. to do sth. 禁止某人做某事"]},{"w": "force", "p": "fɔːrs", "m": "强制，逼迫 n. 力量，力气；武力，暴力", "co": ["force sb. to do sth. 强迫某人做某事"]},{"w": "forecast", "p": "ˈfɔːrkæst", "m": "预言；预报"},{"w": "forehead", "p": "ˈfɔːrhed", "m": "前额"},{"w": "foresee", "p": "fɔːrˈsɪː", "m": "预知，预见"},{"w": "forever", "p": "fərˈevər", "m": "永远"},{"w": "forgive", "p": "fərˈgɪv", "m": "（forgave，forgiven） vt.&vi. 原谅；饶恕"},{"w": "fork", "p": "fɔːrk", "m": "餐叉"},{"w": "form", "p": "fɔːrm", "m": "组成，结构；形式；表格"},{"w": "format", "p": "ˈfɔːrmæt", "m": "格式，样式；版式"},{"w": "former", "p": "ˈfɔːrmər", "m": "过去的，以前的"},{"w": "fortnight", "p": "ˈfɔːrtnaɪt", "m": "两星期，14 天"},{"w": "fortunate", "p": "ˈfɔːrtʃənət", "m": "交好运的，带来好运的", "de": ["fortune n. 机会，运气"]},{"w": "found", "p": "faʊnd", "m": "创办，成立，建立"},{"w": "fountain", "p": "ˈfaʊntn", "m": "喷水，喷泉；来源，根源"},{"w": "fox", "p": "fɑːks", "m": "狐狸"},{"w": "fragile", "p": "ˈfrædʒl", "m": "易碎的，脆的；虚弱的"},{"w": "fragrant", "p": "ˈfreɪgrənt", "m": "芳香的，香的", "de": ["fragrance n. 芳香，香味"]},{"w": "frail", "p": "freɪl", "m": "脆弱的，虚弱的；意志薄弱的，不坚定的；易损坏的，易碎的"},{"w": "framework", "p": "ˈfreɪmwɜːrk", "m": "框架；结构"},{"w": "franc", "p": "fræŋk", "m": "（法国、比利时等国以前使用的货币单位）法郎"},{"w": "freeze", "p": "frɪːz", "m": "（froze，frozen） vt.&vi. （使）结冰", "de": ["freezing adj. 严寒的，冰冻的；极冷的，使人打寒战的"]},{"w": "frequent", "p": "ˈfrɪːkwənt", "m": "时常发生的，常见的", "de": ["frequency n. 频繁"]},{"w": "friction", "p": "ˈfrɪkʃn", "m": "摩擦，摩擦力；冲突，不和"},{"w": "fridge", "p": "frɪdʒ", "m": "（refrigerator 的简写） n. 冰箱"},{"w": "frighten", "p": "ˈfraɪtn", "m": "使惊恐；吓唬 vi. 害怕", "de": ["frightened adj. 害怕的"]},{"w": "frog", "p": "frɔːg", "m": "蛙，青蛙"},{"w": "frontier", "p": "frʌnˈtɪr", "m": "边界，边境"},{"w": "frost", "p": "frɔːst", "m": "（使）结冰霜 n. 霜冻", "de": ["frost-bitten adj. 被冻伤的"]},{"w": "frown", "p": "fraʊn", "m": "皱眉，蹙额；不同意 n. 皱眉，蹙额"},{"w": "frustrate", "p": "ˈfrʌstreɪt", "m": "挫败；阻挠；使感到灰心"}],"17":[{"w": "fry", "p": "fraɪ", "m": "油炸，油煎", "co": ["fried chicken 炸鸡"]},{"w": "fuel", "p": "ˈfjuːəl", "m": "燃料vt. 给…加燃料"},{"w": "fulfill", "p": "fʊlˈfɪl", "m": "履行（诺言等）；执行（命令等）；达到（目的）"},{"w": "function", "p": "ˈfʌŋkʃn", "m": "功能；作用；职责 vi. 起作用"},{"w": "fundamental", "p": "ˌfʌndəˈmentl", "m": "基本的；重要的，必要的"},{"w": "funeral", "p": "ˈfjuːnərəl", "m": "葬礼，丧礼"},{"w": "funny", "p": "ˈfʌnɪ", "m": "有趣的；滑稽的；奇异的 n. 滑稽人物"},{"w": "fur", "p": "fɜːr", "m": "毛皮；毛皮制成的衣物"},{"w": "furniture", "p": "ˈfɜːrnɪtʃər", "m": "家具"},{"w": "future", "p": "ˈfjuːtʃər", "m": "将来，未来 adj. 将来的，未来的"},{"w": "futuristic", "p": "ˌfjuːtʃəˈrɪstɪk", "m": "未来的；未来派的；未来主义的"},{"w": "gain", "p": "geɪn", "m": "获得，赢得", "sy": ["obtain vt. 取得，获得"]},{"w": "galaxy", "p": "ˈgæləksɪ", "m": ""},{"w": "n.", "p": "the G-", "m": "同 the Milky Way 银河系", "sy": ["the Milky Way 银河系"]},{"w": "gale", "p": "geɪl", "m": "大风"},{"w": "gallery", "p": "ˈgælərɪ", "m": "画廊，美术馆"},{"w": "gang", "p": "gæŋ", "m": "帮派，团体；（盗贼等的）一帮"},{"w": "garage", "p": "gəˈrɑːʒ", "m": "车库"},{"w": "garbage", "p": "ˈgɑːrbɪdʒ", "m": "垃圾，废物", "sy": ["rubbish n. 垃圾，废物"]},{"w": "gardening", "p": "ˈgɑːrdnɪŋ", "m": "园艺", "de": ["garden n. 花园"]},{"w": "garlic", "p": "ˈgɑːrlɪk", "m": "大蒜"},{"w": "garment", "p": "ˈgɑːrmənt", "m": "（一件）衣服"},{"w": "gather", "p": "ˈgæðər", "m": "（使）聚集；（使）集合"},{"w": "gay", "p": "geɪ", "m": "快乐的，欢快的 n. 同性恋"},{"w": "gem", "p": "dʒem", "m": "宝石，珍宝；精华；受人重视者 vt. 点缀；用宝石装饰"},{"w": "general", "p": "ˈdʒenrəl", "m": "普遍的；总体的，整体的；总的，首席的", "co": ["general manager 总经理"]},{"w": "generation", "p": "ˌdʒenəˈreɪʃn", "m": "同时代的人；一代人，一代", "co": ["generation gap 代沟"]},{"w": "generous", "p": "ˈdʒenərəs", "m": "慷慨的，大方的"},{"w": "genius", "p": "ˈdʒɪːnɪəs", "m": "天才人物；天赋；（特别的）才能"},{"w": "gentle", "p": "ˈdʒentl", "m": "和蔼的；温和的，柔和的"},{"w": "genuine", "p": "ˈdʒenjuɪn", "m": "真正的；坦率的，真诚的", "co": ["genuine leather真皮"]},{"w": "geography", "p": "dʒɪˈɑːgrəfɪ", "m": "地理，地理学", "de": ["geographical adj. 地理的，地理学的"]},{"w": "geology", "p": "dʒɪˈɑːlədʒɪ", "m": "地质学；地质情况"},{"w": "geometry", "p": "dʒɪˈɑːmətrɪ", "m": "几何，几何学", "de": ["geometric adj. 几何的，几何学的"]},{"w": "gesture", "p": "ˈdʒestʃər", "m": "手势，姿势"},{"w": "giant", "p": "ˈdʒaɪənt", "m": "巨人 adj. 巨大的，特大的", "sy": ["gigantic adj. 巨大的，庞大的"]},{"w": "giraffe", "p": "dʒəˈræf", "m": "长颈鹿"},{"w": "glacier", "p": "ˈgleɪʃər", "m": "冰河，冰川"},{"w": "glance", "p": "glæns", "m": "瞥一眼，扫视"},{"w": "glare", "p": "gler", "m": "怒目而视；发出强光 n. 怒视；强光"},{"w": "globe", "p": "gloʊb", "m": "地球；世界"},{"w": "glory", "p": "ˈglɔːrɪ", "m": "光荣，荣誉", "de": ["glorious adj. 荣誉的，光荣的"]},{"w": "glove", "p": "glʌv", "m": "手套"},{"w": "glue", "p": "gluː", "m": "用胶水粘合 n. 胶水"},{"w": "goal", "p": "goʊl", "m": "目标；球门；得分"},{"w": "goat", "p": "goʊt", "m": "山羊"},{"w": "goods", "p": "gʊdz", "m": "商品，货物", "sy": ["item n. （一件）商品或物品"]},{"w": "goose", "p": "guːs", "m": "鹅"},{"w": "gorgeous", "p": "ˈgɔːrdʒəs", "m": "华丽的，灿烂的；极好的"},{"w": "govern", "p": "ˈgʌvərn", "m": "统治；管理", "de": ["government n. 政府"]},{"w": "gown", "p": "gaʊn", "m": "女长服，晚礼服"},{"w": "graceful", "p": "ˈgreɪsfl", "m": "优美的，优雅的；雅致的，美好的"},{"w": "grade", "p": "greɪd", "m": "年级；等级；成绩；阶段 vt. 评分；把…分等级"},{"w": "gradually", "p": "ˈgrædʒuəlɪ", "m": "逐渐地，渐渐地", "de": ["gradual adj. 逐渐的"]},{"w": "grain", "p": "greɪn", "m": "谷物，谷类"},{"w": "grammar", "p": "ˈgræmər", "m": "语法，语法学；语法书"},{"w": "grand", "p": "grænd", "m": "壮丽的，宏伟的", "sy": ["magnificent adj. 壮丽的"]},{"w": "grandchild", "p": "ˈgræntʃaɪld", "m": "孙子；孙女；外孙；外孙女"},{"w": "grandfather", "p": "ˈgrænfɑːðər", "m": "祖父；外祖父"},{"w": "grandmother", "p": "ˈgrænmʌðər", "m": "祖母；外祖母"},{"w": "graph", "p": "græf", "m": "图表，曲线图", "de": ["graphic adj. 绘画的；文字的；图表的; 生动的，形象的"]},{"w": "grasp", "p": "græsp", "m": "抓住，抓紧；理解，领会"}],"18":[{"w": "grasshopper", "p": "ˈgræshɑːpər", "m": "蚱蜢；蝗虫；蚂蚱"},{"w": "grateful", "p": "ˈgreɪtfl", "m": "感激的，感谢的"},{"w": "gravity", "p": "ˈgrævətɪ", "m": "万有引力，重力；严肃，庄严"},{"w": "gray", "p": "greɪ", "m": "灰色的，灰白的；阴沉的"},{"w": "Greece", "p": "grɪːs", "m": "希腊", "de": ["Greek n. 希腊人；希腊语"]},{"w": "greed", "p": "grɪːd", "m": "贪婪，贪心"},{"w": "greedy", "p": "ˈgrɪːdɪ", "m": "贪婪的，贪心的"},{"w": "greet", "p": "grɪːt", "m": "引 greeting n. 打招呼，问候", "de": ["greeting n. 打招呼，问候"]},{"w": "grill", "p": "grɪl", "m": "烧烤"},{"w": "grin", "p": "grɪn", "m": "露齿而笑vt. 露齿笑着表示n. 咧嘴笑，露齿而笑"},{"w": "grip", "p": "grɪp", "m": "紧握；把手，柄 vt. 紧握；抓住"},{"w": "grow", "p": "groʊ", "m": "发展；生长；增加，增长；渐渐变得 vt. 使生长；种植"},{"w": "growth", "p": "groʊθ", "m": "增长，增加；发展；生长"},{"w": "gruel", "p": "ˈgruːəl", "m": "粥，稀饭", "sy": ["porridge n. 粥"]},{"w": "guarantee", "p": "ˌgærənˈtɪː", "m": "保证；担保"},{"w": "guard", "p": "gɑːrd", "m": "守卫；警戒；护卫队；防护装置；（篮球）后卫 vi. 警惕 vt. 保卫"},{"w": "guess", "p": "ges", "m": "猜测，推测；猜中，猜出；认为 vi. 猜测 n. 猜测，推测"},{"w": "guide", "p": "gaɪd", "m": "指南；入门书；向导，导游 vt. 引导；带领；指导，影响"},{"w": "guilty", "p": "ˈgɪltɪ", "m": "有罪的", "de": ["guilt n. 有罪，罪状"]},{"w": "guinea pig", "p": "ˈgɪnɪpɪg", "m": "豚鼠，天竺鼠"},{"w": "guitar", "p": "gɪˈtɑːr", "m": "吉他；六弦琴"},{"w": "gun", "p": "gʌn", "m": "枪，炮；枪状物；持枪歹徒 vi. 向…开枪；加大油门快速前进 vt. 用枪射击"},{"w": "guy", "p": "gaɪ", "m": "男人；家伙 vt. 嘲弄，取笑"},{"w": "gym", "p": "dʒɪm", "m": "健身房，体育馆", "de": ["gymnastics n. 体操"]},{"w": "habitat", "p": "ˈhæbɪtæt", "m": "（动物的）栖息地，住处"},{"w": "habitation", "p": "ˌhæbɪˈteɪʃn", "m": "居住；住所"},{"w": "hair", "p": "her", "m": "头发；毛发；些微 vt. 除去…的毛发", "de": ["hairy adj. 毛发的；多毛的"]},{"w": "hairstyle", "p": "ˈherstaɪl", "m": "发型"},{"w": "half", "p": "hæf", "m": "一半；（体育比赛、音乐会等的）半场 adv. 一半地；部分地 adj. 一半的；不完全的"},{"w": "hall", "p": "hɔːl", "m": "门厅；会堂，大厅", "de": ["hallway n. 走廊；过道"]},{"w": "Halloween", "p": "ˌhæloʊˈɪːn", "m": "万圣节前夕（指10 月31 日夜晚）"},{"w": "ham", "p": "hæm", "m": "火腿", "de": ["hamburger n. 汉堡包"]},{"w": "hammer", "p": "ˈhæmər", "m": "锤，铁榔头 vt.&vi. 捶打", "de": ["hammering n. 捶打"]},{"w": "hand", "p": "hænd", "m": "手；手艺；指针；从事体力劳动的劳工 vt. 传递，交给"},{"w": "handful", "p": "ˈhændfʊl", "m": "一把；少数"},{"w": "handkerchief", "p": "ˈhæŋkərtʃɪf", "m": "手帕；纸巾"},{"w": "handle", "p": "ˈhændl", "m": "手柄，把手 vt. 应付，处理，对待"},{"w": "handy", "p": "ˈhændɪ", "m": "方便的；手边的，附近的"},{"w": "hang", "p": "hæŋ", "m": "（hung, hung） vt.&vi. 悬，挂，（使）垂下；（hanged, hanged） （被）绞死，（被）吊"},{"w": "happen", "p": "ˈhæpən", "m": "发生；碰巧；偶然遇到"},{"w": "happy", "p": "ˈhæpɪ", "m": "幸福的；高兴的"},{"w": "hard", "p": "hɑːrd", "m": "努力的；硬的；困难的；辛苦的；严厉的；猛烈的；冷酷无情的 adv. 努力地；困难"},{"w": "hardly", "p": "ˈhɑːrdlɪ", "m": "几乎不，几乎没有"},{"w": "hardship", "p": "ˈhɑːrdʃɪp", "m": "艰难，困苦"},{"w": "harmony", "p": "ˈhɑːrmənɪ", "m": "和睦，融洽，一致", "de": ["harmonious adj. 和谐的，和睦的"]},{"w": "harvest", "p": "ˈhɑːrvɪst", "m": "收割，收获"},{"w": "hatch", "p": "hætʃ", "m": "孵化，孵出"},{"w": "hatred", "p": "ˈheɪtrɪd", "m": "仇恨，憎恶"},{"w": "have", "p": "hæv", "m": "拥有，具有；体验；经受；让；从事"},{"w": "hawk", "p": "hɔːk", "m": "鹰"},{"w": "hay", "p": "heɪ", "m": "干草"},{"w": "headline", "p": "ˈhedlaɪn", "m": "大字标题"},{"w": "health", "p": "helθ", "m": "健康；卫生；保健", "de": ["healthy adj. 健康的"]},{"w": "heap", "p": "hɪːp", "m": "（一）堆"},{"w": "hear", "p": "hɪr", "m": "听到，听；听说；审理"},{"w": "hearing", "p": "ˈhɪrɪŋ", "m": "听力；审讯，听讯"},{"w": "heat", "p": "hɪːt", "m": "高温；热度；热烈，强烈的感情 vt. 使激动；把…加热"},{"w": "heaven", "p": "ˈhevn", "m": "天堂，天国", "an": ["hell n. 地狱"]},{"w": "heavy", "p": "ˈhevɪ", "m": "沉重的；繁重的；（天空）阴沉的；严肃的，认真的 n. 重物；（电影、戏剧等的）"}],"19":[{"w": "heed", "p": "hɪːd", "m": "听从（劝告等）"},{"w": "heel", "p": "hɪːl", "m": "足跟，脚后跟"},{"w": "helicopter", "p": "ˈhelɪkɑːptər", "m": "直升机"},{"w": "helmet", "p": "ˈhelmɪt", "m": "头盔"},{"w": "help", "p": "help", "m": "帮助；促进；补救 vi. 有帮助；有用 n. 帮助；补救办法；帮忙者；有益的东西"},{"w": "helpful", "p": "ˈhelpfl", "m": "有帮助的；有益的"},{"w": "herb", "p": "hɜːrb", "m": "草本植物"},{"w": "herd", "p": "hɜːrd", "m": "兽群，牧群"},{"w": "hero", "p": "ˈhɪroʊ", "m": "英雄；男主角，男主人公"},{"w": "hesitate", "p": "ˈhezɪteɪt", "m": "犹豫，踌躇；不情愿；停顿vt. 对…犹豫；不情愿做"},{"w": "hexagon", "p": "ˈheksəgɑːn", "m": "六边形"},{"w": "hibernate", "p": "ˈhaɪbərneɪt", "m": "冬眠，蛰伏", "de": ["hibernation n. 冬眠，过冬"]},{"w": "hide", "p": "haɪd", "m": "隐藏", "co": ["hide-and-seek 藏猫猫"]},{"w": "hike", "p": "haɪk", "m": "（在乡间）徒步旅行"},{"w": "hill", "p": "hɪl", "m": "小山；丘陵；斜坡"},{"w": "hind", "p": "haɪnd", "m": "（常指动物腿）后面的，在后的"},{"w": "hint", "p": "hɪnt", "m": "线索，迹象；提示，暗示；微量vt. 暗示，提示"},{"w": "hippo", "p": "ˈhɪpoʊ", "m": "（hippopotamus 的简写形式） n. 河马"},{"w": "hire", "p": "ˈhaɪər", "m": "雇用，租用", "sy": ["employ vt. 雇用，使用"]},{"w": "hive", "p": "haɪv", "m": "蜂巢，蜂窝", "sy": ["comb n. 蜂巢"]},{"w": "hobby", "p": "ˈhɑːbɪ", "m": "嗜好；业余爱好"},{"w": "hold", "p": "hoʊld", "m": "抓住，持有；拥有；保存；拘留；约束，控制 vi. 支持；持续 n. 拿，抓；控制；保留"},{"w": "hole", "p": "hoʊl", "m": "洞，洞穴；孔眼 vt. 在…上打洞或穿孔"},{"w": "holiday", "p": "ˈhɑːlədeɪ", "m": "假日；节日；休息日 vi. 外出度假"},{"w": "holy", "p": "ˈhoʊlɪ", "m": "神圣的，圣洁的", "de": ["holiness n. 神圣"]},{"w": "home", "p": "hoʊm", "m": "家，住宅；产地；家乡 adv. 在家；回家 adj. 国内的；家庭的"},{"w": "honest", "p": "ˈɑːnɪst", "m": "诚实的，真诚的；可靠的；坦率的"},{"w": "honey", "p": "ˈhʌnɪ", "m": "蜂蜜；宝贝；甜蜜 vt. 奉承；对…说甜言蜜语"},{"w": "honor", "p": "ˈɑnər", "m": "尊敬；荣誉，光荣 vt. 尊敬；给以荣誉"},{"w": "hook", "p": "hʊk", "m": "挂钩；鱼钩 vt.&vi. 钩住，吊住，挂住"},{"w": "hope", "p": "hoʊp", "m": "希望；期望；信心 vt.&vi. 希望；期望"},{"w": "horrible", "p": "ˈhɔːrəbl", "m": "可怕的，令人恐惧的", "de": ["horror n. 恐怖"]},{"w": "host", "p": "hoʊst", "m": "主人；主持人；许多 vt. 主持；作为主人招待"},{"w": "hostile", "p": "ˈhɑːstl", "m": "敌人的；敌对的；怀有敌意的；不利的n. 敌对者；敌对物；敌方", "de": ["hostility n. 敌意，敌对状态"]},{"w": "hotel", "p": "hoʊˈtel", "m": "旅馆；饭店；客栈 vt. 使在饭店下榻"},{"w": "hour", "p": "ˈaʊər", "m": "小时；钟点；…点钟"},{"w": "house", "p": "haʊs", "m": "房子；住宅；议院 vt. 给…房子住；把…储藏在房内"},{"w": "how", "p": "haʊ", "m": "如何；多么 n. 方法；方式 conj. 如何"},{"w": "however", "p": "haʊˈevər", "m": "无论如何；不管怎样 conj. 然而；可是"},{"w": "hug", "p": "hʌg", "m": "紧抱，热烈拥抱"},{"w": "huge", "p": "hjuːdʒ", "m": "巨大的，庞大的", "sy": ["enormous adj. 巨大的，庞大的"]},{"w": "hula hoop", "p": "ˈhuːlə huːp", "m": "呼拉圈"},{"w": "humorous", "p": "ˈhjuːmərəs", "m": "富有幽默感的，滑稽的", "de": ["humor n. 幽默"]},{"w": "hunt", "p": "hʌnt", "m": "打猎；寻找"},{"w": "hurricane", "p": "ˈhɜːrəkən", "m": "飓风；（尤指西印度群岛的）旋风"},{"w": "hybrid", "p": "ˈhaɪbrɪd", "m": "杂种；杂交生成的生物体；混合物；混合词adj. 混合的；杂种的"},{"w": "hydrogen", "p": "ˈhaɪdrədʒən", "m": ""},{"w": "n.", "p": "化", "m": "搭 hydrogen bomb 氢弹", "co": ["hydrogen bomb 氢弹"]},{"w": "hysterical", "p": "hɪˈsterɪkl", "m": "情绪异常激动的；歇斯底里般的"},{"w": "identify", "p": "aɪˈdentɪfaɪ", "m": "认出，识别", "de": ["identity n. 身份"]},{"w": "idiom", "p": "ˈɪdɪəm", "m": "习语，成语"},{"w": "idiot", "p": "ˈɪdɪət", "m": "傻瓜，笨蛋，白痴"},{"w": "idle", "p": "ˈaɪdl", "m": "无意义的，无价值的；空闲的；懒散的vi. 虚度（时光）；闲荡"},{"w": "ignorance", "p": "ˈɪgnərəns", "m": "无知；愚昧"},{"w": "ignore", "p": "ɪgˈnɔːr", "m": "不顾，不理；忽视"},{"w": "illegal", "p": "ɪˈlɪːgl", "m": "不合法的，违法的", "an": ["legal adj. 合法的"]},{"w": "illiterate", "p": "ɪˈlɪtərət", "m": "文盲的，不识字的；教育程度低的 n. 文盲"},{"w": "illustrate", "p": "ˈɪləstreɪt", "m": "给…加插图；说明，阐释"},{"w": "image", "p": "ˈɪmɪdʒ", "m": "图像，肖像；形象，声誉；映像，影像"},{"w": "imagine", "p": "ɪˈmædʒɪn", "m": "想象，设想", "de": ["imagination n. 想象"]},{"w": "imitate", "p": "ˈɪmɪteɪt", "m": "模仿"},{"w": "immediate", "p": "ɪˈmɪːdɪət", "m": "立即的，即刻的", "de": ["immediately adj. 立刻，马上"]},{"w": "immigration", "p": "ˌɪmɪˈgreɪʃn", "m": "移民；（机场、港口等）移民局检查站", "de": ["immigrate vi. 移民，移入"]}],"20":[{"w": "impasse", "p": "ˈɪmpæs", "m": "绝境；僵局；死路，死胡同"},{"w": "imply", "p": "ɪmˈplaɪ", "m": "暗示，暗指", "an": ["export vt. & n. 出口（货），输出"]},{"w": "impress", "p": "ɪmˈpres", "m": "给…留下深刻印象，使铭记", "de": ["impression n. 印象"]},{"w": "improve", "p": "ɪmˈpruːv", "m": "改善，改进，提高", "de": ["improvement n. 改进，提高"]},{"w": "inch", "p": "ɪntʃ", "m": "英寸"},{"w": "incident", "p": "ˈɪnsɪdənt", "m": "发生的事；小插曲"},{"w": "incline", "p": "ɪnˈklaɪn", "m": "（使）倾斜；（使）偏向，（使）倾向于；（使）认为"},{"w": "include", "p": "ɪnˈkluːd", "m": "包括，包含"},{"w": "income", "p": "ˈɪnkʌm", "m": "收入，所得，收益", "sy": ["earning n. 收入"]},{"w": "incorporate", "p": "ɪnˈkɔːrpəreɪt", "m": "包含；合并，使并入"},{"w": "increase", "p": "ɪnˈkrɪːs", "m": "（使）增加，（使）增长，（使）增强", "an": ["decrease vt.&vi. （使）减少"]},{"w": "incredible", "p": "ɪnˈkredəbl", "m": "不可思议的；惊人的；难以置信的"},{"w": "indeed", "p": "ɪnˈdɪːd", "m": "的确，确实"},{"w": "independence", "p": "ˌɪndɪˈpendəns", "m": "独立，自主"},{"w": "India", "p": "ˈɪndɪə", "m": "印度", "de": ["Indian adj. 印度的 n. 印度人"]},{"w": "indicate", "p": "ˈɪndɪkeɪt", "m": "标示，指出；表明，暗示", "sy": ["imply vt. 暗示，暗指"]},{"w": "industry", "p": "ˈɪndəstrɪ", "m": "工业；制造业，产业；勤劳，勤奋", "de": ["industrial adj. 工业的，产业的"]},{"w": "infer", "p": "ɪnˈfɜːr", "m": "推断，推知"},{"w": "infinity", "p": "ɪnˈfɪnətɪ", "m": ""},{"w": "n.", "p": "数", "m": "例 There is always an infinity of numbers between any two numbers. 任何两个数之间都存在"},{"w": "influence", "p": "ˈɪnfluəns", "m": "影响"},{"w": "influential", "p": "ˌɪnfluˈenʃl", "m": "有影响力的；有权势的n. 有影响力的人物"},{"w": "inform", "p": "ɪnˈfɔːrm", "m": "告诉，通知", "co": ["inform sb. of sth. 通知某人某事"]},{"w": "ingredient", "p": "ɪnˈgrɪːdɪənt", "m": "（烹调用的）原料，材料，成分"},{"w": "inherit", "p": "ɪnˈherɪt", "m": "继承（遗产、头衔等）；遗传（品质、身体特征等）；继任"},{"w": "initial", "p": "ɪˈnɪʃl", "m": "最初的，开头的", "co": ["in the initial stages 在初始阶段"]},{"w": "injure", "p": "ˈɪndʒər", "m": "伤害，损害", "de": ["injury n. 伤害，损害"]},{"w": "ink", "p": "ɪŋk", "m": "墨水，油墨"},{"w": "inland", "p": "ɪnˈlænd", "m": "[ˈɪnlænd] adj. 内地的，内陆的"},{"w": "inn", "p": "ɪn", "m": "小旅馆，客栈；小酒馆"},{"w": "innocent", "p": "ˈɪnəsnt", "m": "清白的，无罪的，无辜的"},{"w": "innovative", "p": "ˈɪnəveɪtɪv", "m": "新发明的，革新的", "de": ["innovation n. 改革，革新"]},{"w": "insane", "p": "ɪnˈseɪn", "m": "疯狂的；精神失常的"},{"w": "insect", "p": "ˈɪnsekt", "m": "昆虫"},{"w": "insert", "p": "ɪnˈsɜːrt", "m": "插入，嵌入"},{"w": "insight", "p": "ˈɪnsaɪt", "m": "洞察力；深刻的了解；直觉，眼光"},{"w": "insist", "p": "ɪnˈsɪst", "m": "坚持认为；坚持要求"},{"w": "inspire", "p": "ɪnˈspaɪər", "m": "鼓舞，激励", "co": ["inspire sb. to do. sth. 鼓舞某人做某事"], "de": ["inspiration n. 灵感；鼓舞人心的人或事物"]},{"w": "install", "p": "ɪnˈstɔːl", "m": "安装"},{"w": "instant", "p": "ˈɪnstənt", "m": "片刻，顷刻 adj. 立刻的；即食的", "co": ["instant coffee 速溶咖啡ǁinstant noodles 方便面ǁin an instant 立刻，马上"]},{"w": "institute", "p": "ˈɪnstɪtjuːt", "m": "建立；制定", "de": ["institution n. （大学、银行等规模较大的）机构"]},{"w": "instruct", "p": "ɪnˈstrʌkt", "m": "命令，指示；指导"},{"w": "instrument", "p": "ˈɪnstrəmənt", "m": "器具，仪器"},{"w": "insurance", "p": "ɪnˈʃʊrəns", "m": "保险，保险业"},{"w": "insure", "p": "ɪnˈʃʊr", "m": "保证，确保"},{"w": "intangible", "p": "ɪnˈtændʒəbl", "m": "触不到的；难以理解的；无法确定的；【商】（指企业资产）无形的"},{"w": "intelligence", "p": "ɪnˈtelɪdʒəns", "m": "智力，智慧", "de": ["intelligent adj. 聪明的，有才智的"]},{"w": "intend", "p": "ɪnˈtend", "m": "打算，意欲", "co": ["intend to do sth. 打算做某事"], "de": ["intention n. 打算，意图"]},{"w": "interpreter", "p": "ɪnˈtɜːrprɪtər", "m": "口译员", "de": ["interpret vt. 解释，说明；口译，翻译"]},{"w": "interrupt", "p": "ˌɪntəˈrʌpt", "m": "打断，打扰", "de": ["interruption n. 打断，打扰"]},{"w": "interval", "p": "ˈɪntərvl", "m": "（时间或空间）间隔"},{"w": "interview", "p": "ˈɪntərvjuː", "m": "面谈，面试", "de": ["interviewee n. 接受面谈者；被接见者"]},{"w": "introvert", "p": "ˈɪntrəvɜːrt", "m": "内向的人", "de": ["introverted adj. 内向的"]},{"w": "invade", "p": "ɪnˈveɪd", "m": "侵入，侵略，侵犯；蜂拥而入；（疾病、声音等）袭来"},{"w": "invent", "p": "ɪnˈvent", "m": "发明，创造", "de": ["invention n. 发明"]},{"w": "invite", "p": "ɪnˈvaɪt", "m": "邀请", "de": ["invitation n. 邀请"]},{"w": "involve", "p": "ɪnˈvɑːlv", "m": "使参与，牵涉", "de": ["involvement n. 参与，插手"]},{"w": "Ireland", "p": "ˈaɪərlənd", "m": "爱尔兰（岛）", "de": ["Irish n. 爱尔兰人；爱尔兰语"]},{"w": "iron", "p": "ˈaɪərn", "m": "铁；熨斗 vt.&vi. 熨平"},{"w": "ironic", "p": "aɪˈrɑːnɪk", "m": "用反语的；具有讽刺意味的；冷嘲热讽的"},{"w": "irrigate", "p": "ˈɪrɪgeɪt", "m": "灌溉", "de": ["irrigation n. 灌溉"]},{"w": "issue", "p": "ˈɪʃuː", "m": "问题，议题；争论点 vt. 发表，发布"},{"w": "item", "p": "ˈaɪtəm", "m": "条款，项目；（新闻等）一则，一条"}],"21":[{"w": "Italian", "p": "ɪˈtælɪən", "m": "意大利人；意大利语 adj. 意大利的", "de": ["Italy n. 意大利"]},{"w": "ivory", "p": "ˈaɪvərɪ", "m": "象牙；象牙制品；象牙色 adj. 用象牙制作的；象牙色的"},{"w": "jaguar", "p": "ˈdʒæguər", "m": "美洲虎"},{"w": "jail", "p": "dʒeɪl", "m": "监狱；拘留所vt. 监禁；拘留"},{"w": "jam", "p": "dʒæm", "m": "果酱；堵塞"},{"w": "janitor", "p": "ˈdʒænɪtər", "m": "看门人；看管房屋的人"},{"w": "jar", "p": "dʒɑːr", "m": "罐子，广口瓶"},{"w": "jaw", "p": "dʒɔː", "m": "下巴；狭窄入口；唠叨 vt.&vi. 教训；唠叨"},{"w": "jeans", "p": "dʒɪːnz", "m": "牛仔裤"},{"w": "journal", "p": "ˈdʒɜːrnl", "m": "杂志，期刊；日志，日记"},{"w": "judge", "p": "dʒʌdʒ", "m": "法官 vt.&vi. 审判；评判"},{"w": "jungle", "p": "ˈdʒʌŋgl", "m": "（热带）丛林，密林"},{"w": "juror", "p": "ˈdʒʊrər", "m": "陪审员；评判员", "de": ["jury n. 陪审团；（展览会、竞赛等的）全体评委"]},{"w": "justice", "p": "ˈdʒʌstɪs", "m": "正义；公正，合理", "de": ["just adj. 公正的，公平的"]},{"w": "kaleidoscope", "p": "kəˈlaɪdəskoʊp", "m": "万花筒"},{"w": "kangaroo", "p": "ˌkæŋgəˈruː", "m": ""},{"w": "n.", "p": "动", "m": ""},{"w": "karaoke", "p": "ˌkærɪˈoʊkɪ", "m": "卡拉OK ；卡拉OK 录音，自动伴奏录音"},{"w": "karate", "p": "kəˈrɑːtɪ", "m": "空手道（日本的一种徒手武术）"},{"w": "kayak", "p": "ˈkaɪæk", "m": "皮船；爱斯基摩小艇"},{"w": "keen", "p": "kɪːn", "m": "锋利的；敏锐的，锐利的；热心的", "co": ["be keen on 对…热衷"]},{"w": "keep", "p": "kɪːp", "m": "保持；继续；经营；遵守；饲养"},{"w": "key", "p": "kɪː", "m": "钥匙；键；答案"},{"w": "kick", "p": "kɪk", "m": "踢"},{"w": "kid", "p": "kɪd", "m": "小孩；小山羊 vt. &vi. 欺骗；取笑；戏弄"},{"w": "kind", "p": "kaɪnd", "m": "种类；性质 adj. 和蔼的；宽容的"},{"w": "kindergarten", "p": "ˈkɪndərgɑːrtn", "m": "幼儿园"},{"w": "kingdom", "p": "ˈkɪŋdəm", "m": "王国"},{"w": "kitten", "p": "ˈkɪtn", "m": "小猫 vi. 产小猫"},{"w": "kiwi", "p": "ˈkɪːwɪː", "m": "猕猴桃；几维（一种新西兰产的无翼鸟）；[k-]新西兰人（尤指士兵或国家运动员）"},{"w": "knee", "p": "nɪː", "m": "膝，膝盖，膝部"},{"w": "knock", "p": "nɑːk", "m": "敲，击，打"},{"w": "knowledgeable", "p": "ˈnɑːlɪdʒəbl", "m": "知识渊博的，有见识的", "de": ["knowledge n. 知识"]},{"w": "lab", "p": "læb", "m": "（=laboratory） n. 实验室"},{"w": "lack", "p": "læk", "m": "缺乏，缺少"},{"w": "ladder", "p": "ˈlædər", "m": "梯子；阶梯；途径", "sy": ["escalator n. 自动扶梯"]},{"w": "lamb", "p": "læm", "m": "羔羊；小羊"},{"w": "lamp", "p": "læmp", "m": "灯"},{"w": "lap", "p": "læp", "m": "舔；舔食n. 跑道的一圈"},{"w": "laser", "p": "ˈleɪzər", "m": "激光"},{"w": "lately", "p": "ˈleɪtlɪ", "m": "近来，最近", "sy": ["recently adv. 最近"]},{"w": "latter", "p": "ˈlætər", "m": "后者的", "an": ["former adj. 前者的"]},{"w": "lawn", "p": "lɔːn", "m": "草地；草坪", "de": ["leading adj. 主要的"]},{"w": "leafy", "p": "ˈlɪːfɪ", "m": "多叶的，叶茂的；多树木的", "de": ["leaf n. 叶，叶子"]},{"w": "league", "p": "lɪːg", "m": "联盟，同盟"},{"w": "leather", "p": "ˈleðər", "m": "皮，皮革"},{"w": "lecture", "p": "ˈlektʃər", "m": "演讲，讲座"},{"w": "lemonade", "p": "ˌleməˈneɪd", "m": "柠檬汽水", "de": ["lemon n. 柠檬"]},{"w": "lemongrass", "p": "ˈlemənˌgræs", "m": "柠檬香草"},{"w": "lens", "p": "lenz", "m": "透镜；镜片；眼睛中的水晶体；隐形眼镜"},{"w": "lettuce", "p": "ˈletɪs", "m": "莴苣，生菜"},{"w": "lexicon", "p": "ˈleksɪkən", "m": "词典；专门词汇"},{"w": "liberate", "p": "ˈlɪbəreɪt", "m": "解放，释放", "de": ["liberation n. 解放"]},{"w": "librarian", "p": "laɪˈbrerɪən", "m": "图书馆管理员", "de": ["library n. 图书馆"]},{"w": "lid", "p": "lɪd", "m": "盖，盖子"},{"w": "lightning", "p": "ˈlaɪtnɪŋ", "m": "闪电"},{"w": "likely", "p": "ˈlaɪklɪ", "m": "可能的", "co": ["be likely to do sth. 有可能做某事"]},{"w": "limb", "p": "lɪm", "m": "肢"},{"w": "lime", "p": "laɪm", "m": "石灰"},{"w": "limit", "p": "ˈlɪmɪt", "m": "限制；限定", "de": ["limited adj. 有限的"]},{"w": "liquid", "p": "ˈlɪkwɪd", "m": "液体 adj. 液体的，液态的"},{"w": "liter", "p": "ˈlɪːtər", "m": "（容量单位）公升"}],"22":[{"w": "literature", "p": "ˈlɪtrətʃər", "m": "文学，文学作品；文献"},{"w": "livestock", "p": "ˈlaɪvstɑːk", "m": "家畜，牲畜"},{"w": "living", "p": "ˈlɪvɪŋ", "m": "活的，活着的 n. 生计，生存之道"},{"w": "loaf", "p": "loʊf", "m": "一条面包"},{"w": "loathe", "p": "loʊð", "m": "憎恨，厌恶"},{"w": "lobby", "p": "ˈlɑːbɪ", "m": "前厅，厅堂"},{"w": "local", "p": "ˈloʊkl", "m": "地方性的；当地的，本地的"},{"w": "locate", "p": "loʊˈkeɪt", "m": "找出（人或事物的）地点或位置"},{"w": "logo", "p": "ˈloʊgoʊ", "m": "专用标志；商标"},{"w": "lonely", "p": "ˈloʊnlɪ", "m": "孤独的，寂寞的"},{"w": "loose", "p": "luːs", "m": "松的，宽松的；不牢固的 vt. 释放（动物等）"},{"w": "lorry", "p": "ˈlɔːrɪ", "m": "运货汽车，卡车"},{"w": "lunar", "p": "ˈluːnər", "m": "月亮的；月球的；阴历的"},{"w": "lung", "p": "lʌŋ", "m": "肺"},{"w": "magic", "p": "ˈmædʒɪk", "m": "魔法，法术；巫术 adj. 魔法的"},{"w": "maid", "p": "meɪd", "m": "女仆，女佣"},{"w": "main", "p": "meɪn", "m": "主要的，最重要的", "de": ["mainly adv. 主要地"]},{"w": "maintenance", "p": "ˈmeɪntənəns", "m": "维持，维护；保养，维修"},{"w": "major", "p": "ˈmeɪdʒər", "m": "较大的；多数的；主要的 n. 专业", "an": ["minor adj. 较小的；少数的；次要的"], "de": ["majority n. 多数，大多数"]},{"w": "male", "p": "meɪl", "m": "男性的；雄的", "an": ["female adj. 女性的；雌的"]},{"w": "manage", "p": "ˈmænɪdʒ", "m": "经营，管理；控制，操纵", "de": ["management n. 管理"]},{"w": "maneuverable", "p": "məˈnuːvərəbl", "m": "容易操作的，有机动性的", "de": ["maneuverability n. 可操作性，机动性"]},{"w": "mankind", "p": "mænˈkaɪnd", "m": "人类", "sy": ["human beings 人类"]},{"w": "manner", "p": "ˈmænər", "m": "方式，方法；态度；礼貌"},{"w": "mansion", "p": "ˈmænʃn", "m": "大厦；宅第，公馆"},{"w": "manufacture", "p": "ˌmænjuˈfæktʃər", "m": "制造，生产；加工", "de": ["manufacturer n. 制造商，制造厂"]},{"w": "maple", "p": "ˈmeɪpl", "m": "枫树"},{"w": "marathon", "p": "ˈmærəθɑːn", "m": "马拉松赛跑"},{"w": "marble", "p": "ˈmɑːrbl", "m": "大理石"},{"w": "mark", "p": "mɑːrk", "m": "痕迹，污点"},{"w": "marine", "p": "məˈrɪːn", "m": "海的；海产的；海军的；海事的"},{"w": "mask", "p": "mæsk", "m": "面具，面罩"},{"w": "mass", "p": "mæs", "m": "团，块，堆；大量，大批，众多"},{"w": "master", "p": "ˈmæstər", "m": "主人；大师 vt. 熟练；精通"},{"w": "mat", "p": "mæt", "m": "席子，垫子"},{"w": "match", "p": "mætʃ", "m": "比赛，竞赛 vt.&vi. （使）相配，（使）相称"},{"w": "material", "p": "məˈtɪrɪəl", "m": "材料，原料 adj. 物质的", "co": ["the material world 物质世界"]},{"w": "mature", "p": "məˈtʃʊr", "m": "成熟的；成年人的"},{"w": "maximum", "p": "ˈmæksɪməm", "m": "最大值的，最大量的n. 最大的数量、体积、强度等", "an": ["minimum adj. 最小值的 n. 最低限度；最小量"]},{"w": "means", "p": "mɪːnz", "m": "方法, 手段", "sy": ["way n. 道路；方式"]},{"w": "meanwhile", "p": "ˈmɪːnwaɪl", "m": "同时；期间"},{"w": "measure", "p": "ˈmeʒər", "m": "量 n. 措施，办法"},{"w": "mechanics", "p": "məˈkænɪks", "m": "力学；机械学", "de": ["mechanical adj. 机械的"]},{"w": "medal", "p": "ˈmedl", "m": "奖章，奖牌"},{"w": "medieval", "p": "ˌmedɪˈɪːvl", "m": "中古的，中世纪的", "co": ["medieval times（=middle ages） 中世纪"]},{"w": "melody", "p": "ˈmelədɪ", "m": "旋律，曲调"},{"w": "memorial", "p": "məˈmɔːrɪəl", "m": "纪念碑；纪念堂；纪念仪式"},{"w": "mental", "p": "ˈmentl", "m": "精神的，心理的；智力的"},{"w": "mercy", "p": "ˈmɜːrsɪ", "m": "宽容，怜悯，仁慈", "co": ["have mercy on/upon 对…有怜悯心"]},{"w": "merely", "p": "ˈmɪrlɪ", "m": "仅仅, 只不过", "sy": ["only adv. 仅仅，只是"]},{"w": "mess", "p": "mes", "m": "弄脏，弄乱 n. 杂乱，脏乱", "de": ["messy adj. 脏乱的"]},{"w": "method", "p": "ˈmeθəd", "m": "方法，办法", "sy": ["way n. 道路；方法"]},{"w": "microscope", "p": "ˈmaɪkrəskoʊp", "m": "显微镜", "de": ["telescope n. 望远镜"]},{"w": "mild", "p": "maɪld", "m": "温柔的，和善的；温和的"},{"w": "mineral", "p": "ˈmɪnərəl", "m": "矿物质", "co": ["mineral water 矿泉水"]},{"w": "minister", "p": "ˈmɪnɪstər", "m": "大臣，部长；公使，外交使节；牧师", "sy": ["priest n. 牧师"]},{"w": "ministry", "p": "ˈmɪnɪstrɪ", "m": "（政府的）部", "co": ["the Ministry of Defence国防部"]},{"w": "mirror", "p": "ˈmɪrər", "m": "镜子"},{"w": "misery", "p": "ˈmɪzərɪ", "m": "痛苦；不幸；穷困；悲惨的境遇"},{"w": "mislead", "p": "ˌmɪsˈlɪːd", "m": "给…带错路；把…引入歧途；误导，欺骗"},{"w": "missile", "p": "ˈmɪsl", "m": "导弹"},{"w": "mist", "p": "mɪst", "m": "薄雾"},{"w": "modest", "p": "ˈmɑːdɪst", "m": "谦虚的，谦恭的", "an": ["arrogant adj. 傲慢的，自大的"]}],"23":[{"w": "moist", "p": "mɔɪst", "m": "潮湿的，湿润的"},{"w": "molecule", "p": "ˈmɑːlɪkjuːl", "m": "分子；微小颗粒"},{"w": "monarch", "p": "ˈmɑːnərk", "m": "君主，帝王；最高统治者", "de": ["monarchy n. 君主政体；君主政治；君主国"]},{"w": "monitor", "p": "ˈmɑːnɪtər", "m": "监视器，监听器；（学校）班长 vt. 监听，监视"},{"w": "monument", "p": "ˈmɑːnjumənt", "m": "纪念碑；纪念馆；纪念物", "de": ["monumental adj. 纪念物的；作纪念的"]},{"w": "mop", "p": "mɑːp", "m": "拖把 vt. 用拖把拖"},{"w": "moral", "p": "ˈmɔːrəl", "m": "道德上的，有道德的", "de": ["morality n. 道德；德行"]},{"w": "mortal", "p": "ˈmɔːrtl", "m": "致命的；终有一死的 n. 凡人，人类", "de": ["immortal adj. 不死的；永恒的，不朽的；神的；流芳百世的n. 神仙；流芳百世的人"]},{"w": "mosquito", "p": "məˈskɪːtoʊ", "m": "（复数mosquitoes ） n. 蚊子"},{"w": "motto", "p": "ˈmɑːtoʊ", "m": "箴言，格言；座右铭"},{"w": "mourn", "p": "mɔːrn", "m": "为…哀痛；向…致哀vi. 哀悼"},{"w": "movement", "p": "ˈmuːvmənt", "m": "移动；运动；活动", "de": ["move vt.&vi. 移动；活动"]},{"w": "mud", "p": "mʌd", "m": "泥，烂泥", "de": ["muddy adj. 泥泞的"]},{"w": "multiply", "p": "ˈmʌltɪplaɪ", "m": "乘，（使）相乘"},{"w": "murder", "p": "ˈmɜːrdər", "m": "谋杀"},{"w": "mushroom", "p": "ˈmʌʃrʊm", "m": "蘑菇"},{"w": "musician", "p": "mjuˈzɪʃn", "m": "音乐家", "de": ["music n. 音乐"]},{"w": "mustard", "p": "ˈmʌstərd", "m": "芥；芥末；芥菜酱"},{"w": "mutton", "p": "ˈmʌtn", "m": "羊肉"},{"w": "naive", "p": "naɪˈɪːv", "m": "幼稚的；天真的", "co": ["naive idealists 天真的理想主义者"]},{"w": "nap", "p": "næp", "m": "小睡，打盹 vi. 打瞌睡", "co": ["have/take a nap 小睡片刻"]},{"w": "narrow", "p": "ˈnæroʊ", "m": "狭窄的；狭隘的", "an": ["wide adj. 宽阔的"]},{"w": "narwhal", "p": "ˈnɑːrwɑːl", "m": "角鲸，独角鲸"},{"w": "native", "p": "ˈneɪtɪv", "m": "本土的，本地的", "co": ["native language/tongue 母语"]},{"w": "natural", "p": "ˈnætʃrəl", "m": "自然的，天然的", "de": ["nature n. 自然"]},{"w": "neat", "p": "nɪːt", "m": "整洁的；爱整洁的", "de": ["neatly adv. 整洁地"]},{"w": "necklace", "p": "ˈnekləs", "m": "项链"},{"w": "needle", "p": "ˈnɪːdl", "m": "（缝衣）针；针状物"},{"w": "negative", "p": "ˈnegətɪv", "m": "否定的，否认的；反面的，消极的", "an": ["positive adj. 肯定的；正面的，积极的"]},{"w": "negotiate", "p": "nɪˈgoʊʃɪeɪt", "m": "谈判；协商；议定", "co": ["negotiate with与…协商"], "de": ["negotiation n. 谈判，协商"]},{"w": "neighborhood", "p": "ˈnebərhʊd", "m": "邻近地区；近邻，街坊"},{"w": "nephew", "p": "ˈnefjuː", "m": "侄子，外甥"},{"w": "nest", "p": "nest", "m": "（鸟）窝，巢"},{"w": "neutral", "p": "ˈnjuːtrəl", "m": "中立的；【化】 中性的"},{"w": "niece", "p": "nɪːs", "m": "侄女，外甥女"},{"w": "noble", "p": "ˈnoʊbl", "m": "高尚的；贵族的，显贵的"},{"w": "Norway", "p": "ˈnɔːrweɪ", "m": "挪威"},{"w": "noticeable", "p": "ˈnoʊtɪsəbl", "m": "显而易见的，明显的", "de": ["noticeably adv. 显著地，显然"]},{"w": "nursery", "p": "ˈnɜːrsərɪ", "m": "托儿所；育儿室", "de": ["nurse n. 保姆；奶妈"]},{"w": "nut", "p": "nʌt", "m": "干果，坚果", "de": ["nuts adj. 发疯的；热爱的，迷恋的"]},{"w": "nutrition", "p": "nuˈtrɪʃn", "m": "营养", "de": ["nutritious adj. 有营养的，滋养的"]},{"w": "obese", "p": "oʊˈbɪːs", "m": "极为肥胖的，肥大的", "de": ["obesity n. 肥胖，过胖"]},{"w": "obey", "p": "əˈbeɪ", "m": "服从，听从；遵守，遵循", "co": ["object to反对"]},{"w": "observe", "p": "əbˈzɜːrv", "m": "观察，研究 vt. 看到，注意到", "de": ["observation n. 注意；观察"]},{"w": "obtain", "p": "əbˈteɪn", "m": "获得，得到", "sy": ["gain vt. 得到，赢得"]},{"w": "obvious", "p": "ˈɑːbvɪəs", "m": "明显的，显而易见的", "de": ["obviously adv. 明显地"]},{"w": "occupation", "p": "ˌɑːkjuˈpeɪʃn", "m": "工作；职业", "sy": ["profession n. 职业"]},{"w": "ocean", "p": "ˈoʊʃn", "m": "洋, 海洋", "de": ["Oceania n. 大洋洲"]},{"w": "odor", "p": "ˈoʊdə", "m": "气味；名声", "sy": ["smell n. 气味"]},{"w": "offence", "p": "əˈfens", "m": "犯规；违法行为，罪行", "de": ["offensive adj. 讨厌的；令人不快的"]},{"w": "offend", "p": "əˈfend", "m": "触怒；得罪，冒犯；使反感 vi. 犯规 vt. 触犯"},{"w": "offer", "p": "ˈɔːfər", "m": "主动提供"},{"w": "official", "p": "əˈfɪʃl", "m": "官方的，正式的；官方认可的n. 行政官员"},{"w": "olive", "p": "ˈɑːlɪv", "m": "橄榄；橄榄树；橄榄色"},{"w": "Olympics", "p": "əʊˈlɪmpɪks", "m": "（=Olympic games ）奥林匹克运动会", "de": ["Olympic adj. 奥林匹克的"]},{"w": "omega", "p": "oʊˈmegə", "m": "欧米加（希腊字母的最后一个字母）；最后，结局", "sy": ["end n. 结束，结局"]},{"w": "operate", "p": "ˈɑːpəreɪt", "m": "使运转；操作 vi. 运转；做手术", "co": ["perform an operation=operate on （sb.） 做手术"], "de": ["operation n. 操作；运转；手术"]},{"w": "opponent", "p": "əˈpoʊnənt", "m": "对手；敌手；反对者adj. 对立的；敌对的"},{"w": "opportunity", "p": "ˌɑːpərˈtjuːnətɪ", "m": "机会，时机", "sy": ["chance n. 机会；可能性"]},{"w": "oppose", "p": "əˈpoʊz", "m": "反对；反抗；使相对", "sy": ["be against 反对"]},{"w": "opposite", "p": "ˈɑːpəzət", "m": "（表示位置）在…对面 adj. 对面的；相反的，对立的"},{"w": "option", "p": "ˈɑːpʃn", "m": "选择", "de": ["optional adj. 可选择的，非强制的"]},{"w": "oral", "p": "ˈɔːrəl", "m": "口头的；口述的"},{"w": "orbit", "p": "ˈɔːrbɪt", "m": "轨道", "co": ["the Earth's orbit wound the Sun 地球绕行太阳的轨道"]}],"24":[{"w": "ordinary", "p": "ˈɔːrdnerɪ", "m": "普通的，平常的"},{"w": "organ", "p": "ˈɔːrgən", "m": "器官"},{"w": "origin", "p": "ˈɔːrɪdʒɪn", "m": "起点，开端；来源，起源"},{"w": "otherwise", "p": "ˈʌðərwaɪz", "m": "不同地；在其他方面，除此以外 conj. 否则；要不然"},{"w": "outcome", "p": "ˈaʊtkʌm", "m": "结果；效果", "sy": ["result n. 结果"]},{"w": "outgoing", "p": "ˈaʊtgoʊɪŋ", "m": "对人友好的；外向的，开朗的"},{"w": "outing", "p": "ˈaʊtɪŋ", "m": "远足，郊游，短途旅行"},{"w": "outline", "p": "ˈaʊtlaɪn", "m": "列提纲；概述 n. 提纲；要点，概要"},{"w": "output", "p": "ˈaʊtpʊt", "m": "产量；输出"},{"w": "outspoken", "p": "aʊtˈspoʊkən", "m": "直言的；坦率的", "de": ["outspokenly adv. 直言不讳地"]},{"w": "outstanding", "p": "aʊtˈstændɪŋ", "m": "突出的；杰出的", "sy": ["excellent adj. 优秀的，卓越的"]},{"w": "oval", "p": "ˈoʊvl", "m": "椭圆形 adj. 椭圆的"},{"w": "overcoat", "p": "ˈoʊvərkoʊt", "m": "大衣"},{"w": "overcome", "p": "ˌoʊvərˈkʌm", "m": "战胜，获胜；克服"},{"w": "overlook", "p": "ˌoʊvərˈlʊk", "m": "忽视", "sy": ["ignore vt. 不顾，不理"]},{"w": "overweight", "p": "ˌoʊvərˈweɪt", "m": "超重的"},{"w": "owe", "p": "oʊ", "m": "欠（债）；（应把…）归功于", "co": ["owe to 归功于"]},{"w": "ownership", "p": "ˈoʊnərʃɪp", "m": "物主的身份；所有权，所有制", "de": ["owner n. 物主，所有者"]},{"w": "ox", "p": "ɑːks", "m": "牛"},{"w": "oxygen", "p": "ˈɑːksɪdʒən", "m": ""},{"w": "n.", "p": "化", "m": ""},{"w": "pace", "p": "peɪs", "m": "踱步，走动 n. 步子，一步"},{"w": "pack", "p": "pæk", "m": "包裹；背包 vt.&vi. （把…）打包，收拾（行李）", "sy": ["package n. 包裹；（产品的）包装 vt. 打包；包装"]},{"w": "pajamas", "p": "pəˈdʒɑːməs", "m": "睡衣裤"},{"w": "palace", "p": "ˈpælɪs", "m": "宫，宫殿"},{"w": "panic", "p": "ˈpænɪk", "m": "恐慌，惊慌， 慌乱 vt.&vi. （使）恐慌"},{"w": "parallel", "p": "ˈpærəlel", "m": "（指至少两条线）平行的"},{"w": "parcel", "p": "ˈpɑːrsl", "m": "包裹", "sy": ["pack n. 包裹"]},{"w": "participate", "p": "pɑːrˈtɪsɪpeɪt", "m": "参加，参与"},{"w": "particular", "p": "pərˈtɪkjələr", "m": "特定的；特殊的，特别的"},{"w": "passer-by", "p": "ˌpæsərˈbaɪ", "m": "过路人，经过者", "de": ["pass vt.&vi. 穿行，通过"]},{"w": "passive", "p": "ˈpæsɪv", "m": "被动的；消极的", "an": ["active adj. 主动的；积极的"]},{"w": "passport", "p": "ˈpæspɔːrt", "m": "护照"},{"w": "paste", "p": "peɪst", "m": "粘贴"},{"w": "pastry", "p": "ˈpeɪstrɪ", "m": "糕点，油酥糕点"},{"w": "pasture", "p": "ˈpæstʃər", "m": "牧草地，牧场"},{"w": "patent", "p": "ˈpætnt", "m": "专利，专利权"},{"w": "pathetic", "p": "pəˈθetɪk", "m": "令人同情的，可怜的"},{"w": "patient", "p": "ˈpeɪʃnt", "m": "忍耐的，有耐心的 n. 病人", "co": ["be patient with 对…有耐心"], "de": ["patience n. 耐性，忍耐力，耐心"]},{"w": "peace", "p": "pɪːs", "m": "和平，和平时期", "de": ["peaceful adj. 和平的"]},{"w": "peacock", "p": "ˈpɪːkɑːk", "m": "（雄）孔雀"},{"w": "peasant", "p": "ˈpeznt", "m": "农民，农夫", "sy": ["farmer n. 农民"]},{"w": "pedestrian", "p": "pəˈdestrɪən", "m": "步行者，行人"},{"w": "pension", "p": "ˈpenʃn", "m": "退休金，养老金"},{"w": "perch", "p": "pɜːrtʃ", "m": "栖息处 vi. （鸟）飞落，暂栖，停留"},{"w": "perform", "p": "pərˈfɔːrm", "m": "执行；履行", "de": ["performance n. 演出，表演"]},{"w": "perfume", "p": "pərˈfjuːm", "m": "香水"},{"w": "perhaps", "p": "pərˈhæps", "m": "或许，大概，可能", "sy": ["probably adv. 很可能"]},{"w": "permanent", "p": "ˈpɜːrmənənt", "m": "永久（性）的，固定的"},{"w": "permit", "p": "pərˈmɪt", "m": "允许，许可", "co": ["ask for permission请求许可ǁwithout permission未经许可"], "de": ["permission n. 允许，许可"]},{"w": "personnel", "p": "ˌpɜːrsəˈnel", "m": "< 总称> 人员，员工", "co": ["Personnel Department人事部门"]},{"w": "perspective", "p": "pərˈspektɪv", "m": "远景，全景；前途，希望；观点，想法"},{"w": "persuade", "p": "pərˈsweɪd", "m": "说服，劝告", "de": ["persuasion n. 劝说，说服（力）"]},{"w": "pest", "p": "pest", "m": "害虫，害鸟，有害的动物；有害的人或物，令人讨厌的人或物"},{"w": "pharmacist", "p": "ˑfɑːrməsɪst", "m": "药剂师", "de": ["pharmacy n. 药房；配药学，药学"]},{"w": "phenomenon", "p": "fəˈnɑːmɪnən", "m": "（复数形式phenomena） n. 现象"},{"w": "philosophy", "p": "fəˈlɑːsəfɪ", "m": "哲学，哲理；哲学体系；世界观，人生观", "de": ["philosopher n. 哲学家，哲人；思想家，学者"]},{"w": "photograph", "p": "ˈfoʊtəgræf", "m": "（=photo） n. 相片", "de": ["photographer n. 摄影师"]},{"w": "physical", "p": "ˈfɪzɪkl", "m": "身体的；肉体的", "an": ["mental adj. 精神的，心理的"]},{"w": "physician", "p": "fɪˈzɪʃn", "m": "医生，（尤指）内科医生"},{"w": "physicist", "p": "ˈfɪzɪsɪst", "m": "物理学家"},{"w": "physics", "p": "ˈfɪzɪks", "m": "物理学"}],"25":[{"w": "picky", "p": "ˈpɪkɪ", "m": "吹毛求疵的，挑剔的；过分讲究的", "de": ["pick vt. 挑选，选择"]},{"w": "pile", "p": "paɪl", "m": "（一）堆，（一）叠"},{"w": "pilot", "p": "ˈpaɪlət", "m": "飞行员，宇航员 vt. 驾驶"},{"w": "pious", "p": "ˈpaɪəs", "m": "笃信宗教的；虔诚的"},{"w": "pipe", "p": "paɪp", "m": "管子", "de": ["pipeline n. 管道"]},{"w": "pirate", "p": "ˈpaɪrət", "m": "海盗，强盗；侵害版权者，盗版者vt. 抢劫（海上船只）；剽窃，非法复制 adj. 盗版的"},{"w": "pitch", "p": "pɪtʃ", "m": "投；掷"},{"w": "pity", "p": "ˈpɪtɪ", "m": "怜悯；同情", "co": ["have/take pity on 同情，怜悯"]},{"w": "plastic", "p": "ˈplæstɪk", "m": "塑料的；可塑的 n. 塑料制品"},{"w": "plug", "p": "plʌg", "m": "插入；塞住；将…接电源 n. 插头；塞子", "co": ["plug in 用插头将（某物）与电源连接"]},{"w": "plum", "p": "plʌm", "m": "李子；李树"},{"w": "plumber", "p": "ˈplʌmər", "m": "管子工，水暖工"},{"w": "poem", "p": "ˈpoʊəm", "m": "诗", "de": ["poetry n. <总称>诗"]},{"w": "poison", "p": "ˈpɔɪzn", "m": "毒药；有毒物质", "de": ["poisonous adj. 有毒的；恶毒的"]},{"w": "polish", "p": "ˈpɑːlɪʃ", "m": "磨光，使发亮"},{"w": "politics", "p": "ˈpɑːlətɪks", "m": "政治；政治学", "de": ["political adj. 政治的"]},{"w": "pollution", "p": "pəˈluːʃn", "m": "污染", "de": ["pollute vt. 污染，玷污"]},{"w": "pompous", "p": "ˈpɑːmpəs", "m": "浮华的，华而不实的；高傲的，自大的"},{"w": "pond", "p": "pɑːnd", "m": "池塘"},{"w": "popcorn", "p": "ˈpɑːpkɔːrn", "m": "爆米花", "de": ["corn n. 谷物；<美>玉米"]},{"w": "portable", "p": "ˈpɔːrtəbl", "m": "手提的，便携式的；轻便的", "co": ["portable computer 笔记本电脑"]},{"w": "porter", "p": "ˈpɔːrtər", "m": "行李搬运工；守门人"},{"w": "portion", "p": "ˈpɔːrʃn", "m": "部分；一份 vt. 按份儿分配给"},{"w": "position", "p": "pəˈzɪʃn", "m": "位置，地点"},{"w": "positive", "p": "ˈpɑːzɪtɪv", "m": "积极的；确实的，肯定的"},{"w": "possess", "p": "pəˈzes", "m": "占有", "sy": ["estate n. 个人财产"], "co": ["take possession of 占有，占领"], "de": ["possession n. 拥有；财产"]},{"w": "post", "p": "poʊst", "m": "信件，包裹；柱子；岗位，职位vt. 邮寄；张贴", "de": ["postage n. 邮资，邮费"]},{"w": "poster", "p": "ˈpoʊstər", "m": "海报；广告", "de": ["post vt. 张贴"]},{"w": "postpone", "p": "poʊˈspoʊn", "m": "使延期，延缓，延迟"},{"w": "potential", "p": "pəˈtenʃl", "m": "潜能，潜力adj. 潜在的；可能的"},{"w": "pour", "p": "pɔːr", "m": "倾泻；流出 vt. 倾倒；灌注", "co": ["pour coffee into the cup 将咖啡倒入杯中"]},{"w": "powder", "p": "ˈpaʊdər", "m": "粉，粉末 vt. 擦粉于"},{"w": "practical", "p": "ˈpræktɪkl", "m": "实际的；实用性的"},{"w": "prairie", "p": "ˈprerɪ", "m": "（尤指北美洲的）大草原；牧场"},{"w": "praise", "p": "preɪz", "m": "赞扬，称赞"},{"w": "precious", "p": "ˈpreʃəs", "m": "宝贵的，珍贵的", "sy": ["valued adj. 有价值的"]},{"w": "precise", "p": "prɪˈsaɪs", "m": "精确的；明确的", "sy": ["accurate adj. 准确的"]},{"w": "predator", "p": "ˈpredətər", "m": "捕食者"},{"w": "predict", "p": "prɪˈdɪkt", "m": "预言；预料；预报", "de": ["prediction n. 预测，预言"]},{"w": "preference", "p": "ˈprefrəns", "m": "喜欢，偏爱；偏爱的人或事物", "de": ["prefer vt. 更喜欢"]},{"w": "pregnant", "p": "ˈpregnənt", "m": "怀孕的"},{"w": "prehistoric", "p": "ˌprɪːhɪˈstɔːrɪk", "m": "史前的", "de": ["history n. 历史"]},{"w": "prejudice", "p": "ˈpredʒudɪs", "m": "偏见"},{"w": "premier", "p": "prɪˈmɪr", "m": "第一的，首位的；最初的", "co": ["Premier Minister 总理，首相"]},{"w": "preparation", "p": "prepəˈreɪʃn", "m": "准备，预备", "de": ["prepare vi.&vt. 准备"]},{"w": "prescription", "p": "prɪˈskrɪpʃn", "m": "药方，处方", "co": ["prescription medicine 处方药（相对的表达：OTC（over-the-counter） medicine非处方"], "de": ["prescribe vi.&v t. 开（处方），开（药方）"]},{"w": "preserve", "p": "prɪˈzɜːrv", "m": "保存；保护", "de": ["preservation n. 保护区"]},{"w": "pressure", "p": "ˈpreʃər", "m": "压力，压强；心理上的压力", "sy": ["stress n. 压力"], "co": ["blood pressure 高血压"]},{"w": "pretend", "p": "prɪˈtend", "m": "假装，假扮"},{"w": "prevent", "p": "prɪˈvent", "m": "预防，防止，阻止", "co": ["prevent sb. from doing sth. 阻止某人做某事"]},{"w": "preview", "p": "ˈprɪːvjuː", "m": "预览；（电影、戏剧等）试映，预演；事先查看；预习"},{"w": "previous", "p": "ˈprɪːvɪəs", "m": "以前的；早先的"},{"w": "primary", "p": "ˈpraɪmerɪ", "m": "主要的；初级的，基本的", "sy": ["elementary adj. 初级的，基本的"]},{"w": "primitive", "p": "ˈprɪmətɪv", "m": "原始的，远古的"},{"w": "principal", "p": "ˈprɪnsəpl", "m": "校长；委托人，当事人 adj. 首要的，最重要的", "sy": ["president n. 校长；总统；主席"]},{"w": "private", "p": "ˈpraɪvət", "m": "私人的，私有的", "de": ["privacy n. 隐私；秘密"]},{"w": "procedure", "p": "prəˈsɪːdʒər", "m": "程序，步骤；手续"},{"w": "process", "p": "ˈprɑːses", "m": "过程；步骤；程序vt. 处理；加工"},{"w": "procure", "p": "prəˑkjʊr", "m": "取得，获得；实现，完成"},{"w": "professional", "p": "prəˈfeʃənl", "m": "专业的；职业的 n. 专业人员", "an": ["amateur adj. 业余的；外行的"], "de": ["profession n. 职业，专业"]},{"w": "profit", "p": "ˈprɑːfɪt", "m": "利润，利益 vt.&vi. 获利，有益于", "co": ["make a profit 获利，赚钱"]},{"w": "prohibit", "p": "proʊˈhɪbɪt", "m": "（法令、规定等）禁止，阻止", "co": ["prohibit sb. from doing sth. 禁止某人做某事"]}],"26":[{"w": "promise", "p": "ˈprɑːmɪs", "m": "允诺，许诺", "sy": ["样的错误了。"], "co": ["make a promise 做出承诺"]},{"w": "promote", "p": "prəˈmoʊt", "m": "促进；提升；推销", "de": ["promotion n. 促销；提升"]},{"w": "proper", "p": "ˈprɑːpər", "m": "恰当的，适当的"},{"w": "propose", "p": "prəˈpoʊz", "m": "提议，建议，提出；求婚", "de": ["proposal n. 提出；提议；求婚"]},{"w": "protect", "p": "prəˈtekt", "m": "保护，防护", "de": ["protection n. 保护"]},{"w": "protractor", "p": "prəˈtræktər", "m": "量角器，分度规"},{"w": "proud", "p": "praʊd", "m": "骄傲的，自豪的", "co": ["be proud ofǁbe proud thatǁbe proud to do 因…而感到自豪"]},{"w": "prove", "p": "pruːv", "m": "证明，证实 vi. 表现，显示", "co": ["prove that证明ǁprove to be结果是，被发现是"], "de": ["proof n. 证据；证明"]},{"w": "provide", "p": "prəˈvaɪd", "m": "提供", "co": ["provide sth. for sb. 提供某物给某人"]},{"w": "providence", "p": "ˈprɑːvɪdəns", "m": "天意，天佑"},{"w": "province", "p": "ˈprɑːvɪns", "m": "省；领域"},{"w": "prudent", "p": "ˈpruːdnt", "m": "小心的，慎重的；考虑周到的，稳健的；精明的"},{"w": "prune", "p": "pruːn", "m": "修剪（树木等）；删除；削减"},{"w": "psychology", "p": "saɪˈkɑːlədʒɪ", "m": "心理学；心理，心理特点", "de": ["psychological adj. 心理的；心理学的"]},{"w": "public", "p": "ˈpʌblɪk", "m": "公众的；公共的，公用的"},{"w": "publish", "p": "ˈpʌblɪʃ", "m": "出版；发行"},{"w": "puffy", "p": "ˈpʌfɪ", "m": "膨胀的，肿胀的"},{"w": "pull", "p": "pʊl", "m": "拉，拖，牵，拽", "an": ["push vt. 推"]},{"w": "pumpkin", "p": "ˈpʌmpkɪn", "m": "南瓜"},{"w": "punctual", "p": "ˈpʌŋktʃuəl", "m": "严守时刻的，准时的"},{"w": "punctuate", "p": "ˈpʌŋktʃueɪt", "m": "强调；给…加标点 vi. 加标点", "sy": ["stress vt. 强调；重读"], "de": ["punctuation n. 标点法；标点"]},{"w": "punish", "p": "ˈpʌnɪʃ", "m": "惩罚", "de": ["punishment n. 惩罚"]},{"w": "pupil", "p": "ˈpjuːpl", "m": "学生，（尤指）小学生"},{"w": "purchase", "p": "ˈpɜːrtʃəs", "m": "购买；赢得"},{"w": "purpose", "p": "ˈpɜːrpəs", "m": "目的；用途", "sy": ["goal n. 目标"]},{"w": "purse", "p": "pɜːrs", "m": "（女式）钱包；（女用）手提包"},{"w": "pursue", "p": "pərˈsjuː", "m": "继续从事，进行；追求；追赶，追捕"},{"w": "pyramid", "p": "ˈpɪrəmɪd", "m": "（古埃及建造的）金字塔"},{"w": "quake", "p": "kweɪk", "m": "颤抖，哆嗦"},{"w": "qualification", "p": "kwɑːlɪfɪˈkeɪʃn", "m": "资格；条件"},{"w": "quality", "p": "ˈkwɑːlətɪ", "m": "品质，质量"},{"w": "quantity", "p": "ˈkwɑːntətɪ", "m": "数量", "co": ["a large quantity of 许多，大量"]},{"w": "quarrel", "p": "ˈkwɔːrəl", "m": "争吵", "co": ["quarrel with sb. 和某人吵架ǁquarrel about/over sth.因某事而争吵"]},{"w": "queen", "p": "kwɪːn", "m": "女王"},{"w": "questionnaire", "p": "ˌkwestʃəˈner", "m": "调查表，调查问卷", "de": ["question n. 问题"]},{"w": "queue", "p": "kjuː", "m": "行列，长队", "co": ["be/wait in a queue 排队"]},{"w": "quilt", "p": "kwɪlt", "m": "被子；褥子；被褥"},{"w": "quiver", "p": "ˈkwɪvər", "m": "微颤，颤抖 n. 抖动；颤音"},{"w": "quiz", "p": "kwɪz", "m": "小测验"},{"w": "racial", "p": "ˈreɪʃl", "m": "人种的，种族的", "de": ["race n. 种族"]},{"w": "radiation", "p": "ˌreɪdɪˈeɪʃn", "m": "辐射；放射；放射物", "de": ["radioactive adj. 放射性的；辐射的"]},{"w": "rag", "p": "ræg", "m": "愚弄，取笑"},{"w": "rage", "p": "reɪdʒ", "m": "愤怒，狂怒；激烈，猛烈；疯狂 vi. 大发脾气，动怒"},{"w": "rainfall", "p": "ˈreɪnfɔːl", "m": "降雨，降雨量", "de": ["rain n. 雨，雨季 vi. 下雨"]},{"w": "raise", "p": "reɪz", "m": "提高，增加；养育，栽培；筹集，募集"},{"w": "random", "p": "ˈrændəm", "m": "任意的 n. 随意，任意", "co": ["at random 随便地，无目标地"]},{"w": "range", "p": "reɪndʒ", "m": "在…范围内变化 n. 范围；界限"},{"w": "rank", "p": "ræŋk", "m": "将…分类；将…分等级 vi. 位列；名列 n. 等级；社会地位", "co": ["people of all ranks 各阶层的人们"]},{"w": "rapid", "p": "ˈræpɪd", "m": "快的，迅速的", "sy": ["quick adj. 快的，迅速的"], "de": ["rapidity n. 快，迅速"]},{"w": "rare", "p": "rer", "m": "罕见的；珍奇的", "sy": ["scarce adj. 稀少的"], "de": ["rarely adv. 难得，很少"]},{"w": "raw", "p": "rɔː", "m": "生的；天然的，未经过加工的", "co": ["raw material原材料"]},{"w": "ray", "p": "reɪ", "m": "光线，光束；一线（希望）", "co": ["the sun's ray太阳光"]},{"w": "razor", "p": "ˈreɪzər", "m": "剃刀，剃须刀"},{"w": "reality", "p": "rɪˈælətɪ", "m": "真实，现实"},{"w": "realize", "p": "ˈrɪəlaɪz", "m": "意识到，领悟", "de": ["realization n. 认识，领会"]},{"w": "reasonable", "p": "ˈrɪːznəbl", "m": "合理的；懂道理的，通情达理的"},{"w": "receive", "p": "rɪˈsɪːv", "m": "接收，收到", "de": ["receipt n. 收据，收条"]},{"w": "reception", "p": "rɪˈsepʃn", "m": "接待", "de": ["receptionist n. 接待员"]},{"w": "recipe", "p": "ˈresəpɪ", "m": "食谱；烹饪法"},{"w": "recite", "p": "rɪˈsaɪt", "m": "背诵"},{"w": "reckless", "p": "ˈrekləs", "m": "鲁莽的，不顾危险的；轻率的；满不在乎的"},{"w": "recognize", "p": "ˈrekəgnaɪz", "m": "识别，认出", "de": ["recognizable adj. 可被认出的，可辨认的"]},{"w": "recommend", "p": "rekəˈmend", "m": "推荐，推举", "de": ["recommendation n. 推荐"]}],"27":[{"w": "recover", "p": "rɪˈkʌvər", "m": "恢复（健康、能力等）；收回，取回vi. 恢复到正常状态", "de": ["recovery n. 恢复"]},{"w": "recreation", "p": "ˌrekrɪˈeɪʃn", "m": "消遣，娱乐"},{"w": "rectangle", "p": "ˈrektæŋgl", "m": "矩形，长方形", "de": ["rectangular adj. 矩形的，长方形的"]},{"w": "rectify", "p": "ˈrektɪfaɪ", "m": "改正，校正"},{"w": "recycle", "p": "ˌrɪːˈsaɪkl", "m": "使再循环；再利用"},{"w": "redirect", "p": "ˌrɪːdəˈrekt", "m": "使改变方向", "de": ["direct vt. 指引（方向）"]},{"w": "reduce", "p": "rɪˈdjuːs", "m": "减小；缩小；降低", "sy": ["decrease vt.&vi. 减小；减少"], "de": ["reduction n. 减少；缩小；降低"]},{"w": "redundant", "p": "rɪˈdʌndnt", "m": "多余的，累赘的；（因人员过剩）被解雇的，失业的"},{"w": "refer", "p": "rɪˈfɜːr", "m": "涉及，提到", "co": ["refer to指的是"], "de": ["reference n. 提及，涉及"]},{"w": "referee", "p": "refəˈrɪː", "m": "裁判员"},{"w": "reflect", "p": "rɪˈflekt", "m": "反射，映现；反映", "de": ["reflection n. 反射"]},{"w": "reform", "p": "rɪˈfɔ:rm", "m": "改革；改良；改善", "de": ["reformation n. 改善；改革"]},{"w": "refresh", "p": "rɪˈfreʃ", "m": "（使）消除疲劳；（使）恢复精神", "de": ["refreshment n. 心旷神怡；食物和饮料"]},{"w": "refrigerator", "p": "rɪˈfrɪdʒəreɪtər", "m": "（=fridge） n. 冰箱"},{"w": "refuse", "p": "rɪˈfjuːz", "m": "拒绝，不接受", "co": ["refuse to do sth. 拒绝做某事"], "de": ["refusal n. 拒绝"]},{"w": "region", "p": "ˈrɪːdʒən", "m": "地区；地域", "de": ["regional adj. 地区性的；地域性的"]},{"w": "register", "p": "ˈredʒɪstər", "m": "记录；登记"},{"w": "regret", "p": "rɪˈgret", "m": "悔恨；痛惜 vt.&vi. （对…感到）遗憾，惋惜，抱歉", "de": ["regretful adj. 遗憾的，抱歉的"]},{"w": "reject", "p": "rɪˈdʒekt", "m": "拒绝，不接受", "sy": ["decline vt.&vi. 谢绝"], "de": ["rejection n. 拒绝"]},{"w": "rejoice", "p": "rɪˈdʒɔɪs", "m": "高兴，喜悦vt. 为…高兴", "co": ["rejoice in/at/over 为…感到高兴ǁbe rejoiced to hear 听到…而高兴"]},{"w": "relate", "p": "rɪˈleɪt", "m": "和…有关；把…联系起来", "co": ["relate to/with和…有关"], "de": ["relationship n. 关系，联系"]},{"w": "release", "p": "rɪˑlɪːs", "m": "释放，放开；使自由移动；发布，发行n. 释放， 解除；释放令；公映的新影片；发布"},{"w": "relevant", "p": "ˈreləvənt", "m": "有关的，相关的", "co": ["be relevant to与…有关"]},{"w": "reliable", "p": "rɪˈlaɪəbl", "m": "可信赖的，可靠的", "sy": ["dependable adj. 可依靠的"], "co": ["rely on 依靠，依赖"], "de": ["rely vi. 依靠，依赖"]},{"w": "relief", "p": "rɪˈlɪːf", "m": "轻松，宽慰", "de": ["relieve vt. 减少；减轻"]},{"w": "religion", "p": "rɪˈlɪdʒən", "m": "宗教，宗教信仰", "de": ["religious adj. 宗教的"]},{"w": "reluctant", "p": "rɪˈlʌktənt", "m": "不情愿的，勉强的；顽抗的", "de": ["reluctance n. 不情愿"]},{"w": "remain", "p": "rɪˈmeɪn", "m": "依然是；剩下，遗留"},{"w": "remark", "p": "rɪˈmɑːrk", "m": "评论，谈论", "co": ["remark on/upon评论，谈论"]},{"w": "remind", "p": "rɪˈmaɪnd", "m": "提醒；使想起", "co": ["remind sb. of sth. 使某人想起某事"]},{"w": "remote", "p": "rɪˈmoʊt", "m": "遥远的；偏僻的"},{"w": "remove", "p": "rɪˈmuːv", "m": "移动，搬开"},{"w": "Renaissance", "p": "ˈrenəsɑːns", "m": "文艺复兴"},{"w": "renounce", "p": "rɪˈnaʊns", "m": "放弃，抛弃；拒绝，否认；宣布与…决裂，与…断绝关系vi. 放弃"},{"w": "repellent", "p": "rɪˈpelənt", "m": "驱虫剂 adj. 驱除的；令人厌恶的"},{"w": "replace", "p": "rɪˈpleɪs", "m": "取代，代替", "de": ["replacement n. 代替"]},{"w": "replica", "p": "ˈreplɪkə", "m": "复制品", "de": ["replicate vt. 复制"]},{"w": "represent", "p": "reprɪˈzent", "m": "代表", "de": ["representative n. 代表"]},{"w": "reptile", "p": "ˈreptaɪl", "m": "爬行动物"},{"w": "reputation", "p": "ˌrepjuˈteɪʃn", "m": "名气，名声；信誉；荣誉，名望"},{"w": "request", "p": "rɪˈkwest", "m": "要求，请求"},{"w": "require", "p": "rɪˈkwaɪr", "m": "需要；要求", "de": ["requirement n. 需要；要求"]},{"w": "reschedule", "p": "ˌrɪːˈskedʒuːl", "m": "重新安排…时间", "de": ["schedule n. 时刻表，进度表 vt. 安排"]},{"w": "rescue", "p": "ˈreskjuː", "m": "援救，营救"},{"w": "resemble", "p": "rɪˈzembl", "m": "与…相似"},{"w": "resent", "p": "rɪˈzent", "m": "对…感到愤怒；怨恨；厌恶"},{"w": "reserve", "p": "rɪˈzɜːrv", "m": "预约，预订", "de": ["reservation n. 预订"]},{"w": "reservoir", "p": "ˈrezərvwɑːr", "m": "蓄水池"},{"w": "resident", "p": "ˈrezɪdənt", "m": "居民，住户", "de": ["residence n. 住宅，住处"]},{"w": "residual", "p": "rɪˈzɪdʒuəl", "m": "残余的，残留的n. 剩余；残渣"},{"w": "resign", "p": "rɪˈzaɪn", "m": "辞职；放弃"},{"w": "respect", "p": "rɪˈspekt", "m": "尊敬", "de": ["respectful adj. 尊重的；表示敬意的"]},{"w": "respond", "p": "rɪˈspɑːnd", "m": "回答"},{"w": "restrict", "p": "rɪˈstrɪkt", "m": "限制，限定", "co": ["resume traffic恢复交通ǁresume one's spirit重新振作精神"], "de": ["restriction n. 限制，限定"]},{"w": "retailer", "p": "ˈrɪːteɪlər", "m": "零售商，零售店"},{"w": "retire", "p": "rɪˈtaɪr", "m": "隐居，隐退；退休", "de": ["retirement n. 退休"]},{"w": "retreat", "p": "rɪˈtrɪːt", "m": "撤退，后退；撤销，作罢"},{"w": "reverse", "p": "rɪˈvɜːrs", "m": "相反的；颠倒的"},{"w": "review", "p": "rɪˈvjuː", "m": "再检查；重新探讨；复习", "sy": ["go over 复习"]},{"w": "revision", "p": "rɪˈvɪʒn", "m": "修正；修订；修订本；复习", "de": ["revise vt. 修订；校订；复习"]},{"w": "revolution", "p": "ˌrevəˈluːʃn", "m": "革命"},{"w": "reward", "p": "rɪˈwɔːrd", "m": "酬谢，酬劳"}],"28":[{"w": "rhyme", "p": "raɪm", "m": "（常与with 连用） （使）押韵 n. 韵，韵脚；押韵的诗，韵文"},{"w": "rhythm", "p": "ˈrɪðəm", "m": "节奏，韵律"},{"w": "riddle", "p": "ˈrɪdl", "m": "谜，谜语；谜团，费解的事"},{"w": "ridiculous", "p": "rɪˈdɪkjələs", "m": "荒唐的，可笑的", "de": ["ridicule vt. 嘲笑，嘲弄"]},{"w": "rigid", "p": "ˈrɪdʒɪd", "m": "严格的；僵硬的，死板的"},{"w": "ripe", "p": "raɪp", "m": "成熟的", "de": ["ripen vt. 使成熟"]},{"w": "risk", "p": "rɪsk", "m": "风险，危险 vt. 冒…危险", "sy": ["venture n. 风险投资 vt.&vi. 冒险"]},{"w": "roast", "p": "roʊst", "m": "烤，烘，焙"},{"w": "rob", "p": "rɑːb", "m": "抢劫", "co": ["rob sb. of sth. 抢劫某人某物"], "de": ["robber n. 强盗，盗贼"]},{"w": "robot", "p": "ˈroʊbɑːt", "m": "机器人"},{"w": "rooster", "p": "ˈruːstər", "m": "公鸡；狂妄自负的人"},{"w": "rot", "p": "rɑːt", "m": "（使）腐烂，（使）腐败"},{"w": "rough", "p": "rʌf", "m": "粗糙的；未经加工的；艰苦的"},{"w": "route", "p": "ruːt", "m": "路线"},{"w": "routine", "p": "ruːˈtɪːn", "m": "例行的，常规的"},{"w": "royal", "p": "ˈrɔɪəl", "m": "王室成员 adj. 王室的，皇家的"},{"w": "rubber", "p": "ˈrʌbər", "m": "橡胶；橡皮擦"},{"w": "rubbish", "p": "ˈrʌbɪʃ", "m": "废物，垃圾", "sy": ["trash n. 垃圾"]},{"w": "rude", "p": "ruːd", "m": "粗鲁的，无礼的", "de": ["rudeness n. 粗鲁，无礼"]},{"w": "ruin", "p": "ˈruɪn", "m": "毁坏，毁灭", "sy": ["destroy vt. 破坏，毁坏"]},{"w": "rumbling", "p": "ˈrʌmblɪŋ", "m": "隆隆声", "de": ["rumble vi. 发隆隆声"]},{"w": "rush", "p": "rʌʃ", "m": "猛冲，快速前进；匆忙，仓促"},{"w": "ruthless", "p": "ˑruːθləs", "m": "无情的，冷酷的；残忍的", "sy": ["cruel adj. 残忍的"]},{"w": "sacred", "p": "ˈseɪkrɪd", "m": "神圣的；宗教的；庄严的"},{"w": "sacrifice", "p": "ˈsækrəfaɪs", "m": "牺牲"},{"w": "salute", "p": "səˈluːt", "m": "向…行礼，向…致敬 vi. 行礼，致敬", "de": ["salutation n. 致意"]},{"w": "sample", "p": "ˈsæmpl", "m": "样品，样本"},{"w": "sauce", "p": "sɔːs", "m": "调味汁，酱汁"},{"w": "sausage", "p": "ˈsɔːsɪdʒ", "m": "香肠，腊肠"},{"w": "savage", "p": "ˈsævɪdʒ", "m": "野性的，凶猛的"},{"w": "scale", "p": "skeɪl", "m": "规模；程度，范围；比例；鱼鳞；级别vt. 刮去…鳞片"},{"w": "scalpel", "p": "ˈskælpəl", "m": "外科手术刀"},{"w": "scan", "p": "skæn", "m": "粗略地看，浏览"},{"w": "scar", "p": "skɑːr", "m": "伤痕，伤疤"},{"w": "scare", "p": "sker", "m": "惊吓，使恐惧"},{"w": "scarf", "p": "skɑːrf", "m": "围巾；披巾"},{"w": "scatter", "p": "ˈskætər", "m": "使散开，驱散；撒开vi. 分散"},{"w": "scene", "p": "sɪːn", "m": "景色，景象", "de": ["scenery n. 景色"]},{"w": "scent", "p": "sent", "m": "气味，（尤指）香味；香水"},{"w": "sceptical", "p": "ˈskeptɪkl", "m": "（=skeptical ） 怀疑的，多疑的"},{"w": "scissors", "p": "ˈsɪzərz", "m": "剪刀"},{"w": "scold", "p": "skoʊld", "m": "责骂"},{"w": "scratch", "p": "skrætʃ", "m": "抓，挠"},{"w": "scream", "p": "skrɪːm", "m": "尖叫"},{"w": "screen", "p": "skrɪːn", "m": "屏幕"},{"w": "screw", "p": "skruː", "m": "用螺丝钉固定；拧紧n. 螺丝钉", "co": ["screw up拧紧；<口>把事情搞糟"]},{"w": "screwdriver", "p": "ˈskruːdraɪvər", "m": "螺丝刀，螺丝起子"},{"w": "script", "p": "skrɪpt", "m": "脚本，讲稿；（戏剧、广播、电影等）剧本"},{"w": "sculpture", "p": "ˈskʌlptʃər", "m": "雕刻品，雕塑品"},{"w": "seagull", "p": "ˈsɪːgʌl", "m": "海鸥"},{"w": "seal", "p": "sɪːl", "m": "印章，图章"},{"w": "seashore", "p": "ˈsɪːʃɔːr", "m": "海岸，海滨"},{"w": "secure", "p": "sɪˈkjʊr", "m": "安全的，无危险的", "sy": ["safe adj. 安全的"], "de": ["security n. 安全"]},{"w": "seed", "p": "sɪːd", "m": "种子", "co": ["sow the seed 撒种"]},{"w": "seedling", "p": "ˈsɪːdlɪŋ", "m": "幼苗"},{"w": "seek", "p": "sɪːk", "m": "寻找，追求"},{"w": "see-saw", "p": "ˈsɪːsɔː", "m": "跷跷板"},{"w": "segment", "p": "ˈsegmənt", "m": "部分；（文章）段落，节"},{"w": "seize", "p": "sɪːz", "m": "抓住"},{"w": "seldom", "p": "ˈseldəm", "m": "很少"},{"w": "select", "p": "sɪˈlekt", "m": "选择", "de": ["selective adj. 有选择性的"]},{"w": "selfish", "p": "ˈselfɪʃ", "m": "自私的", "de": ["selfishness n. 自私"]},{"w": "sensitive", "p": "ˈsensətɪv", "m": "敏感的；神经过敏的；感情细腻的", "de": ["sensibility n. 敏感性"]}],"29":[{"w": "settle", "p": "ˈsetl", "m": "安顿，安放"},{"w": "severe", "p": "səˈvɪr", "m": "严峻的；严重的；严厉的，苛刻的"},{"w": "sew", "p": "soʊ", "m": "缝合；缝制"},{"w": "shabby", "p": "ˈʃæbɪ", "m": "破烂的，破旧的"},{"w": "shade", "p": "ʃeɪd", "m": "阴凉处；遮光物"},{"w": "shark", "p": "ʃɑːrk", "m": "鲨鱼"},{"w": "shave", "p": "ʃeɪv", "m": "剃…毛发", "de": ["shaver n. 理发师；刮胡须的用具"]},{"w": "shelter", "p": "ˈʃeltər", "m": "避难所；躲避处"},{"w": "shepherd", "p": "ˈʃepərd", "m": "牧羊人，羊倌"},{"w": "shoddy", "p": "ˈʃɑːdɪ", "m": "劣质的，假冒的"},{"w": "shortcoming", "p": "ˈʃɔːrtkʌmɪŋ", "m": "缺点，短处", "sy": ["disadvantage n. 劣势，不利之处"], "an": ["advantage n. 优点，有利之处"]},{"w": "shoulder", "p": "ˈʃoʊldər", "m": "肩负 n. 肩部", "co": ["shoulder the responsibility of 肩负…的责任"]},{"w": "shrewd", "p": "ʃruːd", "m": "精明的，敏锐的，有眼光的；精于盘算的；奸诈的，狡猾的"},{"w": "shrimp", "p": "ʃrɪmp", "m": "虾"},{"w": "shrink", "p": "ʃrɪŋk", "m": "（使）缩小，（使）萎缩"},{"w": "shrub", "p": "ʃrʌb", "m": "灌木"},{"w": "sibling", "p": "ˈsɪblɪŋ", "m": "兄弟，姐妹"},{"w": "sidewalk", "p": "ˈsaɪdwɔːk", "m": "人行道", "sy": ["pavement n. 人行道"]},{"w": "sightseeing", "p": "ˈsaɪtsɪːɪŋ", "m": "观光，游览", "co": ["a sightseeing tour 观光旅行"]},{"w": "signal", "p": "ˈsɪgnəl", "m": "发信号 n. 信号"},{"w": "signature", "p": "ˈsɪgnətʃər", "m": "签名", "de": ["sign vi. 签名"]},{"w": "significant", "p": "sɪgˈnɪfɪkənt", "m": "重要的", "de": ["significance n. 重要性"]},{"w": "simply", "p": "ˈsɪmplɪ", "m": "简单地，容易地；仅仅，只是；简直", "de": ["simplify vt. 使简易，简化"]},{"w": "sincere", "p": "sɪnˈsɪr", "m": "真诚的，诚挚的", "de": ["sincerity n. 真诚，诚挚"]},{"w": "siren", "p": "ˈsaɪrən", "m": "汽笛；警报器"},{"w": "situation", "p": "ˌsɪtʃuˈeɪʃn", "m": "形势；状况", "co": ["under the situation of 在…的情况下"]},{"w": "skeleton", "p": "ˈskelɪtn", "m": "（建筑物等的）框架；（人体）骨骼；梗概", "co": ["a human skeleton人体骨骼ǁa skeleton of policy guidelines政策纲领的概要"]},{"w": "sketch", "p": "sketʃ", "m": "草图；素描；梗概vt. 草拟；速写；简述"},{"w": "skill", "p": "skɪl", "m": "技巧，技能", "de": ["skillful adj. 有技巧的；熟练的"]},{"w": "skyscraper", "p": "ˈskaɪskreɪpər", "m": "摩天大楼"},{"w": "slave", "p": "sleɪv", "m": "奴隶", "de": ["slavery n. 奴隶制；奴隶身份"]},{"w": "sleeve", "p": "slɪːv", "m": "袖子"},{"w": "slender", "p": "ˈslendər", "m": "苗条的", "sy": ["slim adj. 苗条的，纤瘦的"]},{"w": "slide", "p": "slaɪd", "m": "滑，滑动"},{"w": "slight", "p": "slaɪt", "m": "轻微的，微小的", "de": ["slightly adv. 轻微地"]},{"w": "slim", "p": "slɪm", "m": "苗条的；纤细的"},{"w": "slipper", "p": "ˈslɪpər", "m": "拖鞋，（室内）便鞋"},{"w": "smooth", "p": "smuːð", "m": "平滑的；平稳的；（事情）进行顺利的"},{"w": "snack", "p": "snæk", "m": "零食，点心"},{"w": "snake", "p": "sneɪk", "m": "蛇"},{"w": "snatch", "p": "snætʃ", "m": "攫取，抢，夺取（常与away, from 连用）"},{"w": "sneak", "p": "snɪːk", "m": "潜行；偷偷溜走vt. 偷偷地做（某事）；偷偷地拿走（某物）", "de": ["sneaky adj. 鬼鬼祟祟的，偷偷摸摸的"]},{"w": "sneaker", "p": "ˈsnɪːkər", "m": "运动鞋"},{"w": "sneeze", "p": "snɪːz", "m": "打喷嚏"},{"w": "snowflake", "p": "ˈsnoʊfleɪk", "m": "雪花，雪片"},{"w": "sob", "p": "sɑːb", "m": "抽泣"},{"w": "solar", "p": "ˈsoʊlər", "m": "太阳的", "co": ["solar calendar 阳历（与之相对的是，lunar calendar 阴历）"]},{"w": "solid", "p": "ˈsɑːlɪd", "m": "固体"},{"w": "solve", "p": "sɑːlv", "m": "解决"},{"w": "sonnet", "p": "ˈsɑːnɪt", "m": "十四行诗"},{"w": "soothe", "p": "suːð", "m": "安慰；缓和；使平静；减轻…痛苦", "de": ["soothing adj. 慰藉的；使人宽心的；镇静的"]},{"w": "sophisticate", "p": "səˈfɪstɪkeɪt", "m": "老于世故的人；见多识广的人", "de": ["sophisticated adj. 富有经验的；复杂的"]},{"w": "sort", "p": "sɔːrt", "m": "整理，分类"},{"w": "soup", "p": "suːp", "m": "汤"},{"w": "sour", "p": "saʊr", "m": "酸的，有酸味的"},{"w": "source", "p": "sɔːrs", "m": "出处，来源", "sy": ["origin n. 起源，来源"]},{"w": "souvenir", "p": "ˌsuːvəˈnɪr", "m": "纪念品，纪念物"},{"w": "sow", "p": "soʊ", "m": "播（种）"},{"w": "spade", "p": "speɪd", "m": "铲，锹 vt. 用锹掘"},{"w": "spaghetti", "p": "spəˈgetɪ", "m": "意大利面"},{"w": "span", "p": "spæn", "m": "跨过，跨越；持续 n. 跨度"},{"w": "spare", "p": "sper", "m": "腾出（时间） adj. 空闲的"},{"w": "sparrow", "p": "ˈspæroʊ", "m": "麻雀"}],"30":[{"w": "spear", "p": "spɪr", "m": "矛，鱼叉"},{"w": "specify", "p": "ˈspesəfaɪ", "m": "具体指定；详细说明", "de": ["specific adj. 明确的；具体的"]},{"w": "spectator", "p": "ˈspekteɪtər", "m": "观众；旁观者"},{"w": "spirit", "p": "ˈspɪrɪt", "m": "精神，心灵", "de": ["spiritual adj. 精神上的，心灵的"]},{"w": "spit", "p": "spɪt", "m": "口水，唾液 vt.&vi. 吐（口水）"},{"w": "splendid", "p": "ˈsplendɪd", "m": "堂皇的，辉煌的；壮丽的"},{"w": "split", "p": "splɪt", "m": "裂口，裂缝 vt.&vi. 裂开，劈开，撕开"},{"w": "spoil", "p": "spɔɪl", "m": "损坏，糟蹋；溺爱，宠坏（孩子等） vi. （食物等）变质，腐败"},{"w": "sponsor", "p": "ˈspɑːnsər", "m": "发起者，主办者vt. 赞助"},{"w": "spray", "p": "spreɪ", "m": "喷雾；喷雾状物 vt.&vi. （使）喷洒，（使）溅散"},{"w": "spread", "p": "spred", "m": "使伸展，使延伸；散布，传播"},{"w": "spy", "p": "spaɪ", "m": "间谍"},{"w": "squeeze", "p": "skwɪːz", "m": "榨，挤"},{"w": "squid", "p": "skwɪd", "m": "乌贼；鱿鱼"},{"w": "squirrel", "p": "ˈskwɜːrəl", "m": "松鼠"},{"w": "stable", "p": "ˈsteɪbl", "m": "稳定的，牢固的，平稳的"},{"w": "staff", "p": "stæf", "m": "（全体）职员，（全体）工作人员"},{"w": "stain", "p": "steɪn", "m": "沾污，污染 n. 污点，污迹", "co": ["stainless steel 不锈钢"], "de": ["stainless adj. 未被玷污的；不锈的"]},{"w": "standard", "p": "ˈstændərd", "m": "标准", "sy": ["criteria n. 标准，准则"]},{"w": "stare", "p": "ster", "m": "盯，凝视", "co": ["stare at 盯着看"]},{"w": "starvation", "p": "stɑːrˈveɪʃn", "m": "饥饿，挨饿", "de": ["starve vi. 挨饿，饿死"]},{"w": "statue", "p": "ˈstætʃuː", "m": "雕像，塑像"},{"w": "status", "p": "ˈsteɪtəs", "m": "地位，身份；情形，状况", "co": ["status symbol 地位、身份的象征"]},{"w": "steady", "p": "ˈstedɪ", "m": "稳固的，平稳的", "de": ["steadiness n. 平稳"]},{"w": "steak", "p": "steɪk", "m": "牛排"},{"w": "steep", "p": "stɪːp", "m": "陡峭的"},{"w": "steward", "p": "ˈstuːərd", "m": "（飞机、轮船或火车上的）男服务员", "de": ["stewardess n. （飞机、轮船或火车上的）女服务员"]},{"w": "stick", "p": "stɪk", "m": "粘，粘贴；张贴", "co": ["stick to（=persist in, insist on） 坚持"]},{"w": "stout", "p": "staʊt", "m": "矮胖的，粗壮的；勇敢的，大胆的"},{"w": "straight", "p": "streɪt", "m": "笔直的，挺直的", "de": ["straightforward adj. 一直向前的；径直的；正直的，坦率的"]},{"w": "strait", "p": "streɪt", "m": "海峡"},{"w": "strategy", "p": "ˈstrætədʒɪ", "m": "策略，战略", "de": ["strategic adj. 战略的，战略性的；有战略意义的；至关重要的"]},{"w": "straw", "p": "strɔː", "m": "稻草"},{"w": "strawberry", "p": "ˈstrɔːberɪ", "m": "草莓"},{"w": "stress", "p": "stres", "m": "压力 vt. 强调，着重", "sy": ["pressure n. 压力"]},{"w": "strict", "p": "strɪkt", "m": "严格的，严厉的", "co": ["be strict with 对…严格"]},{"w": "strike", "p": "straɪk", "m": "打，击；攻击n. 罢工"},{"w": "structure", "p": "ˈstrʌktʃər", "m": "构造，结构"},{"w": "struggle", "p": "ˈstrʌgl", "m": "奋斗，斗争", "co": ["struggle for 为…斗争ǁstruggle against/with 与…斗争"]},{"w": "stubborn", "p": "ˈstʌbərn", "m": "倔强的，顽固的"},{"w": "studio", "p": "ˈstjuːdɪoʊ", "m": "工作室；画室；雕塑室", "co": ["be subject to 容易遭受；受…管制"], "de": ["subjective adj . 主观的，主观上的"]},{"w": "submit", "p": "səbˈmɪt", "m": "服从，顺从；提交", "sy": ["hand in = turn in 提交"]},{"w": "subscribe", "p": "səbˈskraɪb", "m": "订阅，订购（书刊等）", "de": ["subscription n. 订阅"]},{"w": "substance", "p": "ˈsʌbstəns", "m": "物质"},{"w": "substitute", "p": "ˈsʌbstɪtjuːt", "m": "代替的人或物 vt. 用…代替", "de": ["substitution n. 代替"]},{"w": "subtle", "p": "ˈsʌtl", "m": "微妙的；敏感的"},{"w": "subtraction", "p": "səbˈtrækʃn", "m": "减，减去；减法"},{"w": "sufficient", "p": "səˈfɪʃnt", "m": "足够的，充足的"},{"w": "suite", "p": "swɪːt", "m": "套间，套房"},{"w": "summarize", "p": "ˈsʌməraɪz", "m": "总结，概述，概括", "de": ["summary n. 总结，概括"]},{"w": "superior", "p": "sjuːˈpɪrɪər", "m": "地位或级别较高的，上级的；优良的，优等的；（比某人或某物）强的，好的"},{"w": "supervisor", "p": "ˈsjupərvaɪzər", "m": "监督人；管理人；（论文）导师", "de": ["supervise vt. 监督；管理"]},{"w": "supply", "p": "səˈplaɪ", "m": "供给，供应", "co": ["supply sb. with sth. 供应给某人某物"]},{"w": "support", "p": "səˈpɔːrt", "m": "支持，拥护"},{"w": "suppose", "p": "səˈpoʊz", "m": "猜想，以为；认为应该"},{"w": "supreme", "p": "sʊˈprɪ:m", "m": "最高的，至上的"},{"w": "surface", "p": "ˈsɜːrfɪs", "m": "表面"},{"w": "surgeon", "p": "ˈsɜːrdʒən", "m": "外科医生"},{"w": "surplus", "p": "ˈsɜːrpləs", "m": "过剩，剩余"},{"w": "surrender", "p": "səˈrendər", "m": "投降；屈服；自首vt. 使投降；放弃，交出"},{"w": "survive", "p": "sərˈvaɪv", "m": "活下来，幸存", "de": ["survival n. 幸存"]}],"31":[{"w": "suspend", "p": "səˈspend", "m": "悬挂", "co": ["suspension bridge 吊桥"], "de": ["suspension n. 悬挂，悬吊"]},{"w": "suspicion", "p": "səˈspɪʃn", "m": "怀疑；嫌疑"},{"w": "swallow", "p": "ˈswɑːloʊ", "m": "吞下，咽下n. 燕子"},{"w": "swamp", "p": "swɑːmp", "m": "沼泽（地）；湿地"},{"w": "swap", "p": "swɑːp", "m": "交换，交易"},{"w": "sway", "p": "sweɪ", "m": "摇摆；歪斜，倾斜vt. 使前后或左后摇摆；使倾斜n. 摇摆，摇晃"},{"w": "swear", "p": "swer", "m": "发誓，宣誓"},{"w": "sweat", "p": "swet", "m": "汗水"},{"w": "sweep", "p": "swɪːp", "m": "打扫"},{"w": "swell", "p": "swel", "m": "肿胀，肿起"},{"w": "swift", "p": "swɪft", "m": "快速的，快捷的", "sy": ["quick adj. 快的，迅速的"]},{"w": "switch", "p": "swɪtʃ", "m": "开关 vt. 转换，改变"},{"w": "sword", "p": "sɔːrd", "m": "剑"},{"w": "symmetry", "p": "ˈsɪmɪtrɪ", "m": "对称，匀称"},{"w": "sympathy", "p": "ˈsɪmpəθɪ", "m": "同情；同情心", "de": ["sympathize vi. 同情，怜悯", "sympathetic adj. 同情的"]},{"w": "symphony", "p": "ˈsɪmfənɪ", "m": "交响乐"},{"w": "symptom", "p": "ˈsɪmptəm", "m": "症状"},{"w": "tablet", "p": "ˈtæblɪt", "m": "药片，药丸", "sy": ["pill n. 药丸"]},{"w": "talent", "p": "ˈtælənt", "m": "天资，天赋；才能", "de": ["talented adj. 有才能的"]},{"w": "tally", "p": "ˈtælɪ", "m": "计分，记数；标签"},{"w": "tango", "p": "ˈtæŋgoʊ", "m": "探戈舞，探戈舞曲"},{"w": "tap", "p": "tæp", "m": "轻敲，轻拍，轻叩n. 水龙头；阀门"},{"w": "target", "p": "ˈtɑːrgɪt", "m": "把…作为目标n. 靶子；目标", "sy": ["aim n. 目的；瞄准"]},{"w": "tattoo", "p": "tæˈtuː", "m": "纹身"},{"w": "tease", "p": "tɪːz", "m": "取笑；嘲弄"},{"w": "technique", "p": "tekˈnɪːk", "m": "技术，技巧"},{"w": "technology", "p": "tekˈnɑːlədʒɪ", "m": "工艺学；工艺；技术"},{"w": "tedious", "p": "ˈtɪːdɪəs", "m": "单调沉闷的；冗长乏味的"},{"w": "temple", "p": "ˈtempl", "m": "寺院，寺庙"},{"w": "temporary", "p": "ˈtempərerɪ", "m": "临时的，暂时的"},{"w": "temptation", "p": "tempˈteɪʃn", "m": "引诱，诱惑", "de": ["tempt vt. 引诱，诱惑"]},{"w": "tend", "p": "tend", "m": "倾向，趋向", "co": ["tend to倾向"], "de": ["tendency n. 倾向；潮流"]},{"w": "tense", "p": "tens", "m": "拉紧的，绷紧的；紧张的", "de": ["tension n. 拉紧，绷紧；紧张"]},{"w": "tentative", "p": "ˈtentətɪv", "m": "试验性的，尝试的"},{"w": "terminal", "p": "ˈtɜːrmɪnl", "m": "末端的；终点的"},{"w": "terrestrial", "p": "təˈrestrɪəl", "m": "陆地的；陆栖的"},{"w": "terrify", "p": "ˈterɪfaɪ", "m": "使害怕，使惊恐", "de": ["terror n. 恐怖，惊骇"]},{"w": "territory", "p": "ˈterətɔːrɪ", "m": "领土，领地"},{"w": "theft", "p": "θeft", "m": "偷盗，盗窃"},{"w": "theme", "p": "θɪːm", "m": "主题，主题思想"},{"w": "theoretical", "p": "θɪəˈretɪkl", "m": "理论的，理论上的", "de": ["theory n. 理论"]},{"w": "therefore", "p": "ˈðerfɔːr", "m": "因此，因而", "sy": ["thus adv. 这样，因此"]},{"w": "thermos", "p": "ˈθəːrməs", "m": "热水瓶，保温瓶"},{"w": "thread", "p": "θred", "m": "线；线状物"},{"w": "threaten", "p": "ˈθretn", "m": "威胁，恐吓", "de": ["threatened adj. 受到威胁的"]},{"w": "thrift", "p": "θrɪft", "m": "节俭，节约", "de": ["thrifty adj. 节俭的，节约的"]},{"w": "thrill", "p": "θrɪl", "m": "使兴奋，使激动", "de": ["thriller n. 使人毛骨悚然的人或事物；惊悚片"]},{"w": "thrive", "p": "θraɪv", "m": "兴盛，繁荣；茁壮成长"},{"w": "throat", "p": "θroʊt", "m": "喉咙"},{"w": "throughout", "p": "θruːˈaʊt", "m": "遍及，遍布；贯穿"},{"w": "thorough", "p": "ˈθɜːroʊ", "m": "彻底的；完全的"},{"w": "tight", "p": "taɪt", "m": "（捆、绑、贴）紧的；不松动的；紧密的"},{"w": "timid", "p": "ˈtɪmɪd", "m": "胆小的；羞怯的"},{"w": "tiptoe", "p": "ˈtɪptoʊ", "m": "脚尖vi. 踮着脚走"},{"w": "tiresome", "p": "ˈtaɪrsəm", "m": "使人疲劳的；令人厌倦的", "sy": ["boring adj. 令人厌烦的"]},{"w": "tissue", "p": "ˈtɪsjuː", "m": "纸巾，面纸；（动植物的）组织"},{"w": "toast", "p": "toʊst", "m": "烤面包，吐司；祝酒辞 vt. 烤（面包）；向…祝酒"},{"w": "tolerate", "p": "ˈtɑːləreɪt", "m": "忍受，容忍", "sy": ["bear vt. 忍受"], "de": ["tolerance n. 宽容，宽大；忍耐"]},{"w": "tomb", "p": "tuːm", "m": "墓地，坟地", "sy": ["grave n. 坟墓"]},{"w": "tornado", "p": "tɔːrˈneɪdoʊ", "m": "龙卷风"},{"w": "tortoise", "p": "ˈtɔːrtəs", "m": "乌龟"},{"w": "tough", "p": "tʌf", "m": "坚韧的，牢固的；不屈不挠的；强壮的，结实的"},{"w": "tourist", "p": "ˈtʊrɪst", "m": "旅游者；观光者", "de": ["tour n. 旅行"]}],"32":[{"w": "tournament", "p": "ˈtʊrnəmənt", "m": "比赛，竞赛", "sy": ["contest n. 竞赛"]},{"w": "towel", "p": "ˈtaʊəl", "m": "毛巾"},{"w": "trademark", "p": "ˈtreɪdmɑːrk", "m": "商标；标记，特征"},{"w": "trader", "p": "ˈtreɪdər", "m": "商人；商船", "de": ["trade n. 交易；贸易"]},{"w": "tradition", "p": "trəˈdɪʃn", "m": "传统", "de": ["traditional adj. 传统的"]},{"w": "tragedy", "p": "ˈtrædʒədɪ", "m": "悲剧，惨剧"},{"w": "transparent", "p": "trænsˈperənt", "m": "透明的；显而易见的，显然的", "de": ["transparency n. 透明度"]},{"w": "transportatio n", "p": "ˌtrænspɔːrˈteɪʃn", "m": "交通；运输", "de": ["transport vt. 运送，运输"]},{"w": "trap", "p": "træp", "m": "陷阱；诡计，阴谋"},{"w": "trash", "p": "træʃ", "m": "废物，垃圾", "sy": ["rubbish n. 垃圾"]},{"w": "treasure", "p": "ˈtreʒər", "m": "财富 vt. 珍爱，珍视"},{"w": "treat", "p": "trɪːt", "m": "对待，看待；医治，治疗；款待n. 请客", "de": ["treatment n. 对待；治疗"]},{"w": "tremble", "p": "ˈtrembl", "m": "发抖，哆嗦，打颤", "sy": ["quake vi. 颤抖，哆嗦；震动"]},{"w": "trend", "p": "ˈtrend", "m": "趋势，趋向", "sy": ["current n. 趋势，趋向"]},{"w": "trial", "p": "ˈtraɪəl", "m": "审讯，审判"},{"w": "triangle", "p": "ˈtraɪæŋgl", "m": "三角形"},{"w": "trick", "p": "trɪk", "m": "诡计；骗局；恶作剧"},{"w": "triumph", "p": "ˈtraɪəmf", "m": "胜利"},{"w": "trunk", "p": "trʌŋk", "m": "树干；象鼻；（旅行用的）大皮箱；汽车车尾的行李箱"},{"w": "tug", "p": "tʌg", "m": "用力拉或拖 n. 猛拉", "co": ["tug of war 拔河；拉锯战"]},{"w": "tuna", "p": "ˈtunə", "m": "金枪鱼"},{"w": "tunnel", "p": "ˈtʌnəl", "m": "隧道；地道"},{"w": "turtle", "p": "ˈtɜːrtl", "m": "龟，海龟"},{"w": "tutor", "p": "ˈtjuːtər", "m": "家庭教师；辅导教师"},{"w": "typhoon", "p": "taɪˈfuːn", "m": "台风", "de": ["hurricane n. 飓风"]},{"w": "typical", "p": "ˈtɪpɪkl", "m": "典型的，有代表性的"},{"w": "tyrant", "p": "ˈtaɪrənt", "m": "专制统治者，暴君"},{"w": "umbrella", "p": "ʌmˈbrelə", "m": "伞"},{"w": "underground", "p": "ˈʌndərgraʊnd", "m": "地下的"},{"w": "underline", "p": "ˈʌndərlaɪn", "m": "在…下面画线"},{"w": "undertake", "p": "ˌʌndərˈteɪk", "m": "承担"},{"w": "underwear", "p": "ˈʌndərwer", "m": "内衣"},{"w": "unicorn", "p": "ˈjuːnɪkɔːrn", "m": "独角兽"},{"w": "uniform", "p": "ˈjuːnɪfɔːrm", "m": "相同的，一致的 n. 制服"},{"w": "unique", "p": "juˈnɪːk", "m": "唯一的，独一无二的", "de": ["uniqueness n. 独一无二"]},{"w": "universal", "p": "ˌjuːnɪˈvɜːrsl", "m": "全体的；普遍的；宇宙的；全世界的", "de": ["universe n. 宇宙；世界"]},{"w": "unless", "p": "ʌnˈles", "m": "除非；如果不"},{"w": "upcoming", "p": "ˈʌpkʌmɪŋ", "m": "即将来临的"},{"w": "upset", "p": "ʌpˈset", "m": "使不安；扰乱 adj. 心烦意乱的"},{"w": "urge", "p": "ɜːrdʒ", "m": "催促，驱策", "de": ["urgent adj. 紧急的"]},{"w": "vacant", "p": "ˈveɪkənt", "m": "（房子、房间、座位等）空的，空闲的"},{"w": "vacation", "p": "veɪˈkeɪʃn", "m": "假期，休假", "sy": ["holiday n. 假期"]},{"w": "vague", "p": "veɪg", "m": "模糊的，不清楚的", "de": ["vagueness n. 模糊"]},{"w": "vain", "p": "veɪn", "m": "无用的，无结果的；自负的，虚荣的"},{"w": "valid", "p": "ˈvælɪd", "m": "（法律上）有效的，正当的", "de": ["validity n. 有效；正当"]},{"w": "valley", "p": "ˈvælɪ", "m": "山谷，溪谷，峡谷"},{"w": "vanilla", "p": "vəˈnɪlə", "m": "香草"},{"w": "vary", "p": "ˈverɪ", "m": "改变，变化", "de": ["various adj. 各种各样的"]},{"w": "vase", "p": "veɪs", "m": "花瓶"},{"w": "vast", "p": "væst", "m": "巨大的", "sy": ["huge adj. 巨大的"]},{"w": "veal", "p": "vɪːl", "m": "小牛", "de": ["vealer n. 肉用小牛"]},{"w": "vegetarian", "p": "ˌvedʒɪˈterɪən", "m": "素食者；食草动物adj. 素食者的；素菜的", "de": ["vegetable n. 蔬菜"]},{"w": "velvet", "p": "ˈvelvɪt", "m": "天鹅绒，丝绒 adj. 天鹅绒的"},{"w": "verdict", "p": "ˈvɜːrdɪkt", "m": "（陪审团的）裁决，裁定；（经过试验、检验或体验发表的）决定，意见"},{"w": "versatile", "p": "ˈvɜːrsətəl", "m": "（指工具、机器等）多用途的，多功能的；多才多艺的，有多种学识和技能的"},{"w": "version", "p": "ˈvɜːrʒn", "m": "版本"},{"w": "vertical", "p": "ˈvɜːrtɪkl", "m": "垂直的，直立的"},{"w": "vest", "p": "vest", "m": "马甲，背心"},{"w": "via", "p": "ˈvaɪə", "m": "通过，经过，凭借（某种手段）"},{"w": "vice", "p": "vaɪs", "m": "副的", "sy": ["associate adj. 副的"], "co": ["vice President副总统ǁdeputy manager副经理ǁassociate professor副教授"]},{"w": "victim", "p": "ˈvɪktɪm", "m": "牺牲者，受害者", "co": ["become the victim of 成为…的牺牲品"]},{"w": "victory", "p": "ˈvɪktərɪ", "m": "胜利，成功", "sy": ["conquest n. 征服，击败"], "co": ["gain/have/obtain/win the victory over... 战胜…，击败…"]},{"w": "vinegar", "p": "ˈvɪnɪgər", "m": "醋"}],"33":[{"w": "violate", "p": "ˈvaɪəleɪt", "m": "违反，违背", "de": ["violation n. 侵害，违反"]},{"w": "violence", "p": "ˈvaɪələns", "m": "暴力，暴行；狂暴，猛烈", "de": ["violent adj. 暴力引起的，粗暴的；猛烈的"]},{"w": "virtue", "p": "ˈvɜːrtʃuː", "m": "美德，德行"},{"w": "virus", "p": "ˈvaɪrəs", "m": "病毒"},{"w": "visa", "p": "ˈvɪːzə", "m": "签证"},{"w": "visible", "p": "ˈvɪzəbl", "m": "看得见的，可见的", "an": ["invisible adj. 隐形的，看不见的"]},{"w": "visual", "p": "ˈvɪʒuəl", "m": "视觉的；看得见的"},{"w": "vital", "p": "ˈvaɪtl", "m": "极重要的，必不可少的", "sy": ["significant adj. 重要的，意义重大的"]},{"w": "vivid", "p": "ˈvɪvɪd", "m": "生动的，栩栩如生的"},{"w": "volcano", "p": "vɑːlˈkeɪnoʊ", "m": "火山", "co": ["active volcano活火山ǁinactive volcano死火山ǁdormant volcano休眠火山"]},{"w": "volunteer", "p": "vɑːlənˈtɪr", "m": "自愿去做，义务服务 n. 志愿者", "de": ["voluntary adj. 自愿的"]},{"w": "vote", "p": "voʊt", "m": "投票；表决"},{"w": "voyage", "p": "ˈvɔɪɪdʒ", "m": "航海，航行"},{"w": "vulnerable", "p": "ˈvʌlnərəbl", "m": "易受攻击的；易受伤的"},{"w": "wag", "p": "wæg", "m": "摇摆，摇动"},{"w": "wallet", "p": "ˈwɑːlɪt", "m": "皮夹，钱夹"},{"w": "waist", "p": "weɪst", "m": "腰部"},{"w": "wander", "p": "ˈwɑːndər", "m": "漫步，散步"},{"w": "warehouse", "p": "ˈwerhaʊs", "m": "仓库"},{"w": "warn", "p": "wɔːrn", "m": "警告；提醒", "co": ["ware sb. of/against sth. 提醒某人某事"]},{"w": "wax", "p": "wæks", "m": "蜂蜡；石蜡"},{"w": "wealthy", "p": "ˈwelθɪ", "m": "富有的", "de": ["wealth n. 财富"]},{"w": "weary", "p": "ˈwɪrɪ", "m": "疲倦的；困乏的vt.&vi. （使）疲乏，（使）厌烦"},{"w": "wedding", "p": "ˈwedɪŋ", "m": "婚礼", "co": ["wedding anniversary 结婚纪念日"]},{"w": "wedge", "p": "weɪdʒ", "m": "楔；楔形物"},{"w": "weed", "p": "wɪːd", "m": "杂草"},{"w": "weep", "p": "wɪːp", "m": "流泪，哭泣vt. 流出（眼泪）"},{"w": "weight", "p": "weɪt", "m": "重量", "de": ["weigh vt. 对…称重"]},{"w": "weird", "p": "wɪrd", "m": "怪诞的；奇怪的，奇异的"},{"w": "welfare", "p": "ˈwelfer", "m": "福利；健康"},{"w": "whale", "p": "weɪl", "m": "鲸"},{"w": "wheat", "p": "wɪːt", "m": "小麦"},{"w": "whereas", "p": "werˈæz", "m": "但是，相反", "an": ["。"]},{"w": "wherever", "p": "werˈevər", "m": "无论哪里，无论什么地方"},{"w": "whisper", "p": "ˈwɪspər", "m": "低语；耳语 vi.&vt. 低声说"},{"w": "whistle", "p": "ˈwɪsl", "m": "吹哨 vt. 用口哨吹出（…曲调） n. 哨子"},{"w": "widespread", "p": "ˈwaɪdspred", "m": "流传甚广的；分布广的"},{"w": "wild", "p": "waɪld", "m": "野蛮的，未开化的；野生的", "co": ["wild animals 野生动物ǁwild plants 野生植物"]},{"w": "will", "p": "wɪl", "m": "遗嘱"},{"w": "willing", "p": "ˈwɪlɪŋ", "m": "乐于的，自愿的", "co": ["be willing to do sth. 乐于做某事"]},{"w": "willow", "p": "ˈwɪloʊ", "m": "柳树"},{"w": "wisdom", "p": "ˈwɪzdəm", "m": "智慧，才智", "de": ["wise adj. 聪慧的"]},{"w": "withdraw", "p": "wɪðˈdrɔː", "m": "取出，取回；撤退"},{"w": "witness", "p": "ˈwɪtnɪs", "m": "目击者；证人"},{"w": "wonder", "p": "ˈwʌndər", "m": "想知道 n. 惊奇，惊叹；奇观，奇迹"},{"w": "worldwide", "p": "ˈwɜːrldwaɪd", "m": "世界范围的，遍及全球的"},{"w": "worn", "p": "wɔːrn", "m": "用旧的，磨坏的；筋疲力尽的", "co": ["be worn out 精疲力尽的，憔悴的"]},{"w": "worthwhile", "p": "ˌwɜːrθˈwaɪl", "m": "值得做的"},{"w": "wound", "p": "wuːnd", "m": "伤口vt. 使受伤，伤害", "sy": ["injure vt. 伤害，使受伤"]},{"w": "wrestle", "p": "ˈresəl", "m": "摔跤vt. 将…摔倒在地", "de": ["wrestling n. 摔跤"]},{"w": "wrinkle", "p": "ˈrɪŋkl", "m": "皱纹"},{"w": "wrist", "p": "rɪst", "m": "腕，腕关节"},{"w": "yard", "p": "jɑːrd", "m": "码（1 yard=3 inches ）；院子", "de": ["backyard n. 后院"]},{"w": "yawn", "p": "jɔːn", "m": "打哈欠 n. 哈欠"},{"w": "yearn", "p": "jɜːrn", "m": "渴望，切盼，向往"},{"w": "yogurt", "p": "ˈjoʊgərt", "m": "酸奶"},{"w": "zebra", "p": "ˈzɪːbrə", "m": "斑马"},{"w": "zip", "p": "zɪp", "m": "拉链"},{"w": "zookeeper", "p": "ˈzuːkɪːpər", "m": "动物园管理员"},{"w": "zoom", "p": "zuːm", "m": "（指飞行器或汽车）急速移动，飞驰"}]};
 
 // ============================================================
-// SUPABASE CONFIG
-// 填入你的 Supabase Project URL 和 anon key
+// FIREBASE CONFIG
 // ============================================================
-const SUPABASE_URL = 'https://qgkxcmknhodyzrapimhc.supabase.co';
-const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFna3hjbWtuaG9keXpyYXBpbWhjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAxMzE3MjIsImV4cCI6MjA5NTcwNzcyMn0.e4AGa4s-EmJ1CArwANq5SDxpD7yWyGfQCTZH6Ecw-IU';
+const FB_CONFIG = {
+  apiKey:            "AIzaSyBLzTRz_MBWPcq0s0J17g3kLL4hHLXqDzI",
+  authDomain:        "vocab-app-4c3ed.firebaseapp.com",
+  projectId:         "vocab-app-4c3ed",
+  storageBucket:     "vocab-app-4c3ed.firebasestorage.app",
+  messagingSenderId: "627142106486",
+  appId:             "1:627142106486:web:5baf2912e859df767d6e57"
+};
 
-// ============================================================
-// STORAGE MODE: 'cloud' = Supabase, 'local' = localStorage fallback
-// ============================================================
-let STORAGE_MODE = 'cloud';
+// Firebase via CDN (ES modules)
+let db = null;
+let STORAGE_MODE = 'local';
 
-function sbHeaders(extra) {
-  return {
-    'apikey': SUPABASE_KEY,
-    'Authorization': `Bearer ${SUPABASE_KEY}`,
-    'Content-Type': 'application/json',
-    ...extra
-  };
-}
-
-async function sbGet(table, filters = '') {
-  const res = await fetch(`${SUPABASE_URL}/rest/v1/${table}${filters}`, {
-    headers: sbHeaders()
-  });
-  if (!res.ok) {
-    const body = await res.text();
-    throw new Error(`${res.status}: ${body}`);
+async function initFirebase() {
+  try {
+    const { initializeApp } = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js');
+    const { getFirestore, doc, getDoc, setDoc, collection, getDocs, deleteDoc }
+      = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js');
+    const app = initializeApp(FB_CONFIG);
+    db = getFirestore(app);
+    db._doc = (p) => doc(db, p);
+    db._col = (p) => collection(db, p);
+    db._getDoc = getDoc; db._setDoc = setDoc;
+    db._getDocs = getDocs; db._deleteDoc = deleteDoc;
+    STORAGE_MODE = 'cloud';
+    console.log('✅ Firebase connected');
+  } catch(err) {
+    console.log('📱 Local mode:', err.message);
+    STORAGE_MODE = 'local';
   }
-  return res.json();
 }
-async function sbInsert(table, data) {
-  const res = await fetch(`${SUPABASE_URL}/rest/v1/${table}`, {
-    method: 'POST',
-    headers: sbHeaders({'Prefer': 'return=representation'}),
-    body: JSON.stringify(data)
-  });
-  if (!res.ok) throw new Error(`${res.status}: ${await res.text()}`);
-  return res.json();
-}
-async function sbUpdate(table, filters, data) {
-  const res = await fetch(`${SUPABASE_URL}/rest/v1/${table}${filters}`, {
-    method: 'PATCH',
-    headers: sbHeaders({'Prefer': 'return=representation'}),
-    body: JSON.stringify(data)
-  });
-  if (!res.ok) throw new Error(`${res.status}: ${await res.text()}`);
-  return res.json();
-}
-async function sbDelete(table, filters) {
-  const res = await fetch(`${SUPABASE_URL}/rest/v1/${table}${filters}`, {
-    method: 'DELETE',
-    headers: sbHeaders()
-  });
-  if (!res.ok) throw new Error(`${res.status}: ${await res.text()}`);
-}
+initFirebase();
 
 // ============================================================
 // LOCAL STORAGE FALLBACK
 // ============================================================
 const LS_KEY = 'wiz_students_local';
-function lsLoad() { try { return JSON.parse(localStorage.getItem(LS_KEY)||'{}'); } catch(e) { return {}; } }
-function lsSave(data) { localStorage.setItem(LS_KEY, JSON.stringify(data)); }
+function lsLoad(){ try{return JSON.parse(localStorage.getItem(LS_KEY)||'{}')}catch(e){return{}} }
+function lsSave(d){ localStorage.setItem(LS_KEY, JSON.stringify(d)); }
 
-// Unified API — tries cloud first, falls back to local
-async function getStudent(account) {
-  if (STORAGE_MODE === 'cloud') {
-    try {
-      const rows = await sbGet('students', `?account=eq.${encodeURIComponent(account)}&select=*`);
-      return rows && rows.length ? rows[0] : null;
-    } catch(err) {
-      console.warn('Cloud unavailable, using local:', err.message);
-      STORAGE_MODE = 'local';
-      toast('⚠️ 云端暂时不可用，使用本地模式', 'warn');
-    }
+async function getStudent(account){
+  if(db && STORAGE_MODE==='cloud'){
+    try{
+      const snap = await db._getDoc(db._doc(`students/${account}`));
+      return snap.exists() ? snap.data() : null;
+    }catch(err){ STORAGE_MODE='local'; }
   }
-  // local fallback
-  const data = lsLoad();
-  return data[account] || null;
+  return lsLoad()[account]||null;
 }
-
-async function saveStudent(account, studentObj) {
-  if (STORAGE_MODE === 'cloud') {
-    try {
-      const existing = await sbGet('students', `?account=eq.${encodeURIComponent(account)}`);
-      if (existing && existing.length) {
-        await sbUpdate('students', `?account=eq.${encodeURIComponent(account)}`, studentObj);
-      } else {
-        await sbInsert('students', {...studentObj, account});
-      }
-      return;
-    } catch(err) {
-      console.warn('Cloud save failed, using local:', err.message);
-      STORAGE_MODE = 'local';
-    }
+async function saveStudent(account, data){
+  if(db && STORAGE_MODE==='cloud'){
+    try{ await db._setDoc(db._doc(`students/${account}`), data); return; }
+    catch(err){ STORAGE_MODE='local'; }
   }
-  const data = lsLoad(); data[account] = studentObj; lsSave(data);
+  const d=lsLoad(); d[account]=data; lsSave(d);
 }
-
-async function getAllStudents() {
-  if (STORAGE_MODE === 'cloud') {
-    try {
-      return await sbGet('students', '?order=created_at.asc');
-    } catch(err) {
-      console.warn('Cloud unavailable:', err.message);
-      STORAGE_MODE = 'local';
-    }
+async function getAllStudents(){
+  if(db && STORAGE_MODE==='cloud'){
+    try{
+      const snap = await db._getDocs(db._col('students'));
+      return snap.docs.map(d=>({account:d.id,...d.data()}));
+    }catch(err){ STORAGE_MODE='local'; }
   }
-  return Object.values(lsLoad());
+  return Object.entries(lsLoad()).map(([account,d])=>({account,...d}));
 }
-
-async function deleteStudentDB(account) {
-  if (STORAGE_MODE === 'cloud') {
-    await sbDelete('students', `?account=eq.${encodeURIComponent(account)}`);
-    return;
+async function deleteStudentDB(account){
+  if(db && STORAGE_MODE==='cloud'){
+    await db._deleteDoc(db._doc(`students/${account}`)); return;
   }
-  const data = lsLoad(); delete data[account]; lsSave(data);
+  const d=lsLoad(); delete d[account]; lsSave(d);
 }
-
-// Check cloud connectivity on startup
-async function checkCloudConnection() {
-  try {
-    const res = await fetch(`${SUPABASE_URL}/rest/v1/students?limit=1`, {
-      headers: sbHeaders()
-    });
-    if (res.ok || res.status === 406) {
-      STORAGE_MODE = 'cloud';
-      console.log('✅ Cloud connected');
-    } else {
-      const body = await res.text();
-      throw new Error(`${res.status}: ${body}`);
-    }
-  } catch(err) {
-    console.warn('Cloud check failed:', err.message);
-    STORAGE_MODE = 'local';
-    console.log('📱 Using local storage mode');
-  }
-}
-checkCloudConnection();
 
 // ============================================================
 // BOOKS CONFIG
 // ============================================================
 const BOOKS_CONFIG = [
-  {
-    section: '📚 单元词书',
-    books: [
-      {id:'toefl_junior',icon:'🏆',title:'小托福核心词汇',desc:'TOEFL Junior 2057个核心词汇，共33单元',badge:'可用',badgeCls:'avail',units:33,wordData:WORD_DATA},
-      {id:'nce1_upper',icon:'📗',title:'新概念一（上）',desc:'新概念英语第一册上半部分',badge:'陆续上线',badgeCls:'soon',units:0,locked:true},
-      {id:'nce1_lower',icon:'📘',title:'新概念一（下）',desc:'新概念英语第一册下半部分',badge:'陆续上线',badgeCls:'soon',units:0,locked:true},
-      {id:'nce2_upper',icon:'📙',title:'新概念二（上）',desc:'新概念英语第二册上半部分',badge:'陆续上线',badgeCls:'soon',units:0,locked:true},
-      {id:'nce2_lower',icon:'📕',title:'新概念二（下）',desc:'新概念英语第二册下半部分',badge:'陆续上线',badgeCls:'soon',units:0,locked:true},
-    ]
-  },
-  {
-    section: '⭐ 趣味专题',
-    sectionSub: '梁老师独家研发 · 主题式趣味记忆',
-    books: [
-      {id:'fun_basketball',icon:'🏀',title:'篮球主题词汇',desc:'NBA球星、规则、技术动作相关英语词汇',badge:'即将上线',badgeCls:'fun',units:0,locked:true,fun:true},
-      {id:'fun_football',icon:'⚽',title:'足球主题词汇',desc:'世界杯、足球场景、运动员词汇',badge:'即将上线',badgeCls:'fun',units:0,locked:true,fun:true},
-      {id:'fun_food',icon:'🍜',title:'美食主题词汇',desc:'中西美食、餐厅场景、烹饪词汇',badge:'即将上线',badgeCls:'fun',units:0,locked:true,fun:true},
-    ]
-  }
+  { section:'📚 单元词书', books:[
+    {id:'toefl_junior',icon:'🏆',title:'小托福核心词汇',desc:'TOEFL Junior 2057个核心词汇，共33单元',badge:'可用',badgeCls:'avail',units:33,wordData:WORD_DATA},
+    {id:'nce1_upper',icon:'📗',title:'新概念一（上）',desc:'新概念英语第一册上半部分',badge:'陆续上线',badgeCls:'soon',units:0,locked:true},
+    {id:'nce1_lower',icon:'📘',title:'新概念一（下）',desc:'新概念英语第一册下半部分',badge:'陆续上线',badgeCls:'soon',units:0,locked:true},
+    {id:'nce2_upper',icon:'📙',title:'新概念二（上）',desc:'新概念英语第二册上半部分',badge:'陆续上线',badgeCls:'soon',units:0,locked:true},
+    {id:'nce2_lower',icon:'📕',title:'新概念二（下）',desc:'新概念英语第二册下半部分',badge:'陆续上线',badgeCls:'soon',units:0,locked:true},
+  ]},
+  { section:'⭐ 趣味专题', sectionSub:'梁老师独家研发 · 主题式趣味记忆', books:[
+    {id:'fun_basketball',icon:'🏀',title:'篮球主题词汇',desc:'NBA球星、规则、技术动作相关英语词汇',badge:'即将上线',badgeCls:'fun',units:0,locked:true,fun:true},
+    {id:'fun_football',icon:'⚽',title:'足球主题词汇',desc:'世界杯、足球场景、运动员词汇',badge:'即将上线',badgeCls:'fun',units:0,locked:true,fun:true},
+    {id:'fun_food',icon:'🍜',title:'美食主题词汇',desc:'中西美食、餐厅场景、烹饪词汇',badge:'即将上线',badgeCls:'fun',units:0,locked:true,fun:true},
+  ]}
 ];
-
 const UNIT_META={1:62,2:63,3:61,4:64,5:63,6:63,7:64,8:64,9:61,10:63,11:61,12:62,13:62,14:60,15:63,16:63,17:62,18:59,19:63,20:63,21:62,22:63,23:64,24:62,25:62,26:63,27:62,28:63,29:63,30:61,31:63,32:63,33:60};
+const DEFAULT_ADMIN_PWD='Liang@2024';
 
 // ============================================================
-// ADMIN PASSWORD (stored in Supabase settings table)
+// STATE
 // ============================================================
-const DEFAULT_ADMIN_PWD = 'Liang@2024';
-let _adminPwd = DEFAULT_ADMIN_PWD;
-
-// ============================================================
-// GLOBAL STATE
-// ============================================================
-let G = {
-  user: null, account: null, book: null,
-  quiz: {unitNum:0,words:[],questions:[],qIdx:0,correct:0,wrong:0,wrongWords:[],answered:false,isReview:false,streak:0}
-};
+let G={user:null,account:null,book:null,quiz:{unitNum:0,words:[],questions:[],qIdx:0,correct:0,wrong:0,wrongWords:[],answered:false,isReview:false,streak:0}};
 
 // ============================================================
 // UI HELPERS
 // ============================================================
-function scr(id) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  window.scrollTo(0, 0);
-}
-function showLoading(msg) {
-  let el = document.getElementById('loading-overlay');
-  if (!el) {
-    el = document.createElement('div');
-    el.id = 'loading-overlay';
-    el.style.cssText = 'position:fixed;inset:0;background:rgba(15,12,41,0.75);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:200;backdrop-filter:blur(4px)';
-    el.innerHTML = '<div style="width:44px;height:44px;border:3px solid rgba(255,255,255,0.2);border-top-color:white;border-radius:50%;animation:spin 0.8s linear infinite;margin-bottom:1rem"></div><div style="color:white;font-size:0.9rem;font-weight:500">'+msg+'</div>';
-    if (!document.querySelector('#spin-style')) {
-      const st = document.createElement('style');
-      st.id = 'spin-style';
-      st.textContent = '@keyframes spin{to{transform:rotate(360deg)}}';
-      document.head.appendChild(st);
-    }
-    document.body.appendChild(el);
-  } else {
-    el.querySelector('div:last-child').textContent = msg;
-    el.style.display = 'flex';
-  }
-}
-function hideLoading() {
-  const el = document.getElementById('loading-overlay');
-  if (el) el.style.display = 'none';
-}
-function toast(msg, type='ok') {
-  const t = document.createElement('div');
-  const bg = type==='ok'?'#16a34a':type==='err'?'#dc2626':type==='warn'?'#d97706':'#4f46e5';
-  t.style.cssText = `position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);background:${bg};color:white;padding:0.65rem 1.25rem;border-radius:10px;font-size:0.88rem;font-weight:600;z-index:300;box-shadow:0 4px 16px rgba(0,0,0,0.25);transition:opacity 0.4s`;
-  t.textContent = msg;
-  document.body.appendChild(t);
-  setTimeout(() => { t.style.opacity='0'; setTimeout(()=>t.remove(),400); }, 2200);
-}
+function scr(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0);}
+function showLoading(msg){let el=document.getElementById('loading-overlay');if(!el){el=document.createElement('div');el.id='loading-overlay';el.style.cssText='position:fixed;inset:0;background:rgba(15,12,41,0.75);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:200;backdrop-filter:blur(4px)';el.innerHTML='<div style="width:44px;height:44px;border:3px solid rgba(255,255,255,0.2);border-top-color:white;border-radius:50%;animation:spin 0.8s linear infinite;margin-bottom:1rem"></div><div style="color:white;font-size:0.9rem;font-weight:500">'+msg+'</div>';if(!document.querySelector('#spin-style')){const st=document.createElement('style');st.id='spin-style';st.textContent='@keyframes spin{to{transform:rotate(360deg)}}';document.head.appendChild(st);}document.body.appendChild(el);}else{el.querySelector('div:last-child').textContent=msg;el.style.display='flex';}}
+function hideLoading(){const el=document.getElementById('loading-overlay');if(el)el.style.display='none';}
+function toast(msg,type='ok'){const t=document.createElement('div');const bg=type==='ok'?'#16a34a':type==='err'?'#dc2626':type==='warn'?'#d97706':'#4f46e5';t.style.cssText=`position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);background:${bg};color:white;padding:0.65rem 1.25rem;border-radius:10px;font-size:0.88rem;font-weight:600;z-index:300;box-shadow:0 4px 16px rgba(0,0,0,0.25);transition:opacity 0.4s;white-space:nowrap`;t.textContent=msg;document.body.appendChild(t);setTimeout(()=>{t.style.opacity='0';setTimeout(()=>t.remove(),400);},2200);}
 
-// ============================================================
-// TYPING TITLE
-// ============================================================
-(function() {
-  const el = document.getElementById('brand-title');
-  const text = '我是单词小天才';
-  let i = 0; el.textContent = '';
-  function tick() { if (i < text.length) { el.textContent += text[i++]; setTimeout(tick, 110); } }
-  setTimeout(tick, 500);
-})();
+// Typing title
+(function(){const el=document.getElementById('brand-title');const text='我是单词小天才';let i=0;el.textContent='';function tick(){if(i<text.length){el.textContent+=text[i++];setTimeout(tick,110);}}setTimeout(tick,500);})();
 
 // ============================================================
 // LOGIN
 // ============================================================
-async function doLogin(e) {
+async function doLogin(e){
   e.preventDefault();
-  const acc = document.getElementById('inp-name').value.trim();
-  const pwd = document.getElementById('inp-pwd').value.trim();
-  if (!acc || !pwd) return;
+  const acc=document.getElementById('inp-name').value.trim();
+  const pwd=document.getElementById('inp-pwd').value.trim();
+  if(!acc||!pwd)return;
   showLoading('正在登录…');
-  try {
-    const s = await getStudent(acc);
-    if (!s) {
-      hideLoading(); flashInput('inp-name', '账号不存在，请联系梁老师'); return;
-    }
-    if (s.pwd !== pwd) {
-      hideLoading(); flashInput('inp-pwd', '密码错误，请重新输入'); return;
-    }
-    G.user = s; G.account = acc;
-    // Update last_seen (best effort)
-    try { await saveStudent(acc, {...s, last_seen: new Date().toISOString()}); } catch(e) {}
-    hideLoading(); setNav(); showBooks();
-  } catch (err) {
-    hideLoading(); toast('网络错误，请检查连接', 'err'); console.error(err);
-  }
+  try{
+    const s=await getStudent(acc);
+    if(!s){hideLoading();flashInput('inp-name','账号不存在，请联系梁老师');return;}
+    if(s.pwd!==pwd){hideLoading();flashInput('inp-pwd','密码错误，请重新输入');return;}
+    G.user=s;G.account=acc;
+    try{await saveStudent(acc,{...s,last_seen:new Date().toISOString()});}catch(e){}
+    hideLoading();setNav();showBooks();
+  }catch(err){hideLoading();toast('登录失败，请重试','err');console.error(err);}
 }
-function flashInput(id, msg) {
-  const el = document.getElementById(id);
-  el.style.borderColor = 'rgba(220,38,38,0.8)';
-  el.style.boxShadow = '0 0 0 3px rgba(220,38,38,0.25)';
-  toast(msg, 'err');
-  setTimeout(() => { el.style.borderColor=''; el.style.boxShadow=''; }, 1500);
-}
-function doLogout() { G.user=null; G.account=null; G.book=null; scr('s-login'); }
-function setNav() {
-  if (!G.user) return;
-  ['nav-av','nav-av2','nav-av3'].forEach(id => document.getElementById(id).textContent = G.user.name[0]);
-  ['nav-nm','nav-nm2','nav-nm3'].forEach(id => document.getElementById(id).textContent = G.user.name);
-  ['nav-cl','nav-cl2'].forEach(id => document.getElementById(id).textContent = G.user.cls);
-}
-
-// ============================================================
-// SAVE PROGRESS (Supabase)
-// ============================================================
-async function saveProg() {
-  if (!G.user || !G.account) return;
-  try {
-    await saveStudent(G.account, {
-      ...G.user,
-      progress: G.user.progress || {},
-      wrong_bank: G.user.wrong_bank || {},
-      trophies: G.user.trophies || 0,
-      last_seen: new Date().toISOString()
-    });
-  } catch (err) { console.error('Save error:', err); }
-}
+function flashInput(id,msg){const el=document.getElementById(id);el.style.borderColor='rgba(220,38,38,0.8)';el.style.boxShadow='0 0 0 3px rgba(220,38,38,0.25)';toast(msg,'err');setTimeout(()=>{el.style.borderColor='';el.style.boxShadow='';},1500);}
+function doLogout(){G.user=null;G.account=null;G.book=null;scr('s-login');}
+function setNav(){if(!G.user)return;['nav-av','nav-av2','nav-av3'].forEach(id=>document.getElementById(id).textContent=G.user.name[0]);['nav-nm','nav-nm2','nav-nm3'].forEach(id=>document.getElementById(id).textContent=G.user.name);['nav-cl','nav-cl2'].forEach(id=>document.getElementById(id).textContent=G.user.cls);}
 
 // ============================================================
 // BOOKS
 // ============================================================
-function showBooks() { renderBooks(); scr('s-books'); }
-function renderBooks() {
-  const wrap = document.getElementById('book-grid-wrap'); wrap.innerHTML = '';
-  BOOKS_CONFIG.forEach(section => {
-    const lbl = document.createElement('div');
-    lbl.className = 'book-section-label';
-    lbl.innerHTML = section.section + (section.sectionSub ? ` <span style="font-size:0.68rem;font-weight:400;color:var(--g400);text-transform:none;letter-spacing:0">${section.sectionSub}</span>` : '');
+function showBooks(){renderBooks();scr('s-books');}
+function renderBooks(){
+  const wrap=document.getElementById('book-grid-wrap');wrap.innerHTML='';
+  BOOKS_CONFIG.forEach(section=>{
+    const lbl=document.createElement('div');lbl.className='book-section-label';
+    lbl.innerHTML=section.section+(section.sectionSub?` <span style="font-size:0.68rem;font-weight:400;color:var(--g400);text-transform:none;letter-spacing:0">${section.sectionSub}</span>`:'');
     wrap.appendChild(lbl);
-    const grid = document.createElement('div'); grid.className = 'book-grid';
-    section.books.forEach(book => {
-      const p = getBkProg(book);
-      const pct = p.total > 0 ? Math.round(p.done / p.total * 100) : 0;
-      const card = document.createElement('div');
-      card.className = 'book-card' + (book.locked?' locked':'') + (book.fun?' fun':'');
-      if (!book.locked) card.onclick = () => selectBook(book);
-      card.innerHTML = `
-        ${!book.locked ? '<div class="bk-ribbon">推荐</div>' : ''}
-        <div class="book-icon">${book.icon}</div>
-        <div class="book-title">${book.title}</div>
-        <div class="book-desc">${book.desc}</div>
-        <div class="book-meta">
-          <span class="bk-badge ${book.badgeCls}">${book.badge}</span>
-          <span class="bk-pct">${book.locked ? '' : pct+'%'}</span>
-        </div>
-        ${!book.locked ? `<div class="bk-bar"><div class="bk-fill" style="width:${pct}%"></div></div>` : ''}
-      `;
+    const grid=document.createElement('div');grid.className='book-grid';
+    section.books.forEach(book=>{
+      const p=getBkProg(book);const pct=p.total>0?Math.round(p.done/p.total*100):0;
+      const card=document.createElement('div');
+      card.className='book-card'+(book.locked?' locked':'')+(book.fun?' fun':'');
+      if(!book.locked)card.onclick=()=>selectBook(book);
+      card.innerHTML=`${!book.locked?'<div class="bk-ribbon">推荐</div>':''}<div class="book-icon">${book.icon}</div><div class="book-title">${book.title}</div><div class="book-desc">${book.desc}</div><div class="book-meta"><span class="bk-badge ${book.badgeCls}">${book.badge}</span><span class="bk-pct">${book.locked?'':pct+'%'}</span></div>${!book.locked?`<div class="bk-bar"><div class="bk-fill" style="width:${pct}%"></div></div>`:''}`;
       grid.appendChild(card);
     });
     wrap.appendChild(grid);
   });
 }
-function getBkProg(book) {
-  if (!G.user || book.locked) return {done:0, total:0};
-  const bp = (G.user.progress || {})[book.id] || {};
-  return {done: Object.values(bp).filter(v=>v.done).length, total: book.units};
-}
-function selectBook(book) { G.book = book; showUnits(); }
+function getBkProg(book){if(!G.user||book.locked)return{done:0,total:0};const bp=(G.user.progress||{})[book.id]||{};return{done:Object.values(bp).filter(v=>v.done).length,total:book.units};}
+function selectBook(book){G.book=book;showUnits();}
 
 // ============================================================
 // UNITS
 // ============================================================
-function showUnits() { setNav(); renderUnits(); updateOvProg(); scr('s-units'); }
-function getUP(u) { return ((G.user.progress||{})[G.book.id]||{})[u] || {done:false, pct:0}; }
-function renderUnits() {
-  document.getElementById('book-disp-title').textContent = G.book.title;
-  const grid = document.getElementById('unit-grid'); grid.innerHTML = '';
-  for (let u = 1; u <= G.book.units; u++) {
-    const p = getUP(u); const wc = UNIT_META[u] || 60;
-    const card = document.createElement('div');
-    card.className = 'unit-card' + (p.done?' done':p.pct>0?' wip':'');
-    card.onclick = () => startUnit(u);
-    let st = '';
-    if (p.done) st = '<div class="uc-status done">✅ 完成</div>';
-    else if (p.pct > 0) st = `<div class="uc-status wip">📖 ${p.pct}%</div>`;
-    card.innerHTML = `<div class="uc-num">Unit ${u}</div><div class="uc-name">第${u}单元</div><div class="uc-count">${wc}个词</div><div class="uc-bar"><div class="uc-fill" style="width:${p.pct||0}%"></div></div>${st}`;
+function showUnits(){setNav();renderUnits();updateOvProg();scr('s-units');}
+function getUP(u){return((G.user.progress||{})[G.book.id]||{})[u]||{done:false,pct:0};}
+function renderUnits(){
+  document.getElementById('book-disp-title').textContent=G.book.title;
+  const grid=document.getElementById('unit-grid');grid.innerHTML='';
+  for(let u=1;u<=G.book.units;u++){
+    const p=getUP(u);const wc=UNIT_META[u]||60;
+    const card=document.createElement('div');
+    card.className='unit-card'+(p.done?' done':p.pct>0?' wip':'');
+    card.onclick=()=>startUnit(u);
+    let st='';if(p.done)st='<div class="uc-status done">✅ 完成</div>';else if(p.pct>0)st=`<div class="uc-status wip">📖 ${p.pct}%</div>`;
+    card.innerHTML=`<div class="uc-num">Unit ${u}</div><div class="uc-name">第${u}单元</div><div class="uc-count">${wc}个词</div><div class="uc-bar"><div class="uc-fill" style="width:${p.pct||0}%"></div></div>${st}`;
     grid.appendChild(card);
   }
 }
-function updateOvProg() {
-  const total = G.book.units || 33;
-  const done = Object.values((G.user.progress||{})[G.book.id]||{}).filter(v=>v.done).length;
-  const pct = Math.round(done / total * 100);
-  document.getElementById('prog-ring').style.strokeDashoffset = 150.8 * (1 - pct/100);
-  document.getElementById('prog-pct').textContent = pct + '%';
-  document.getElementById('prog-desc').textContent = `已完成 ${done}/${total} 单元`;
-  const wb = Object.keys(G.user.wrong_bank || {}).length;
-  const rb = document.getElementById('btn-review');
-  rb.style.display = wb > 0 ? 'block' : 'none';
-  rb.textContent = `🔁 错词(${wb})`;
+function updateOvProg(){
+  const total=G.book.units||33;
+  const done=Object.values((G.user.progress||{})[G.book.id]||{}).filter(v=>v.done).length;
+  const pct=Math.round(done/total*100);
+  document.getElementById('prog-ring').style.strokeDashoffset=150.8*(1-pct/100);
+  document.getElementById('prog-pct').textContent=pct+'%';
+  document.getElementById('prog-desc').textContent=`已完成 ${done}/${total} 单元`;
+  const wb=Object.keys(G.user.wrong_bank||{}).length;
+  const rb=document.getElementById('btn-review');
+  rb.style.display=wb>0?'block':'none';rb.textContent=`🔁 错词(${wb})`;
 }
 
 // ============================================================
 // QUIZ
 // ============================================================
-function getWords(u) { return (G.book.wordData||{})[String(u)] || []; }
-function startUnit(u) {
-  const words = getWords(u);
-  if (!words.length) { toast('该单元暂无数据', 'err'); return; }
-  G.quiz = {unitNum:u, words, questions:buildQs(words), qIdx:0, correct:0, wrong:0, wrongWords:[], answered:false, isReview:false, streak:0};
-  document.getElementById('qnav-title').textContent = `Word List ${u}`;
-  renderQ(); scr('s-quiz');
+function getWords(u){return(G.book.wordData||{})[String(u)]||[];}
+function startUnit(u){
+  const words=getWords(u);if(!words.length){toast('该单元暂无数据','err');return;}
+  G.quiz={unitNum:u,words,questions:buildQs(words),qIdx:0,correct:0,wrong:0,wrongWords:[],answered:false,isReview:false,streak:0};
+  document.getElementById('qnav-title').textContent=`Word List ${u}`;
+  renderQ();scr('s-quiz');
 }
-function startReview() {
-  const wb = G.user.wrong_bank || {};
-  const sorted = Object.entries(wb).sort((a,b)=>b[1]-a[1]).map(([w])=>w);
-  if (!sorted.length) { toast('暂无错词，继续加油！', 'ok'); return; }
-  const all = []; for (let u=1; u<=33; u++) all.push(...getWords(u));
-  const list = sorted.map(w => all.find(x => x.w === w)).filter(Boolean);
-  G.quiz = {unitNum:0, words:list, questions:buildQs(list,all), qIdx:0, correct:0, wrong:0, wrongWords:[], answered:false, isReview:true, streak:0};
-  document.getElementById('qnav-title').textContent = '🔁 错词复习';
-  renderQ(); scr('s-quiz');
+function startReview(){
+  const wb=G.user.wrong_bank||{};
+  const sorted=Object.entries(wb).sort((a,b)=>b[1]-a[1]).map(([w])=>w);
+  if(!sorted.length){toast('暂无错词！','ok');return;}
+  const all=[];for(let u=1;u<=33;u++)all.push(...getWords(u));
+  const list=sorted.map(w=>all.find(x=>x.w===w)).filter(Boolean);
+  G.quiz={unitNum:0,words:list,questions:buildQs(list,all),qIdx:0,correct:0,wrong:0,wrongWords:[],answered:false,isReview:true,streak:0};
+  document.getElementById('qnav-title').textContent='🔁 错词复习';
+  renderQ();scr('s-quiz');
+}
+async function saveProg(){
+  if(!G.user||!G.account)return;
+  try{await saveStudent(G.account,{...G.user,progress:G.user.progress||{},wrong_bank:G.user.wrong_bank||{},trophies:G.user.trophies||0,last_seen:new Date().toISOString()});}
+  catch(err){console.error('Save:',err);}
 }
 
-// Q builders
 function sh(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b;}
 function dM(c,p,n){return sh(p.filter(w=>w.m!==c)).slice(0,n).map(w=>w.m);}
 function qE2C(w,p){return{type:'en2cn',display:w.w,phonetic:w.p||'',hint:'▸ 选出正确的中文释义',answer:w.m,options:sh([w.m,...dM(w.m,p,3)]),word:w};}
 function qAnt(w,p){if(!w.an||!w.an.length)return qE2C(w,p);const ans=w.an[0];const d=sh(p.filter(x=>x.m&&x.m!==ans).map(x=>x.m)).slice(0,3);return{type:'antonym',display:w.w,phonetic:w.p||'',hint:'▸ 选出它的反义词',answer:ans,options:sh([ans,...d]),word:w};}
 function qDer(w,p){if(!w.de||!w.de.length)return qE2C(w,p);const ans=w.de[0];const d=sh(p.filter(x=>x.de&&x.de[0]&&x.de[0]!==ans).map(x=>x.de[0])).slice(0,3);if(d.length<3)return qE2C(w,p);return{type:'derivative',display:w.w,phonetic:w.p||'',hint:'▸ 选出它的派生词',answer:ans,options:sh([ans,...d]),word:w};}
 function qCol(w,p){if(!w.co||!w.co.length)return qE2C(w,p);const ans=w.co[0];const d=sh(p.filter(x=>x.co&&x.co[0]&&x.co[0]!==ans).map(x=>x.co[0])).slice(0,3);if(d.length<3)return qE2C(w,p);return{type:'colloc',display:w.w,phonetic:w.p||'',hint:'▸ 选出正确的搭配',answer:ans,options:sh([ans,...d]),word:w};}
-function buildQs(words, pool) {
-  const p = pool || words;
-  return words.map(w => {
-    const ms = [qE2C];
-    if (w.an&&w.an.length) ms.push(qAnt);
-    if (w.de&&w.de.length) ms.push(qDer);
-    if (w.co&&w.co.length) ms.push(qCol);
-    const r = Math.random();
-    return (ms.length>1&&r>0.55 ? ms[1+Math.floor(Math.random()*(ms.length-1))] : qE2C)(w, p);
+function buildQs(words,pool){
+  const p=pool||words;
+  return words.map(w=>{
+    const ms=[qE2C];
+    if(w.an&&w.an.length)ms.push(qAnt);
+    if(w.de&&w.de.length)ms.push(qDer);
+    if(w.co&&w.co.length)ms.push(qCol);
+    const r=Math.random();
+    return(ms.length>1&&r>0.55?ms[1+Math.floor(Math.random()*(ms.length-1))]:qE2C)(w,p);
   });
 }
+const TLABELS={en2cn:'英文 → 中文',antonym:'反义词辨析',derivative:'词族派生',colloc:'搭配用法'};
 
-const TLABELS = {en2cn:'英文 → 中文', antonym:'反义词辨析', derivative:'词族派生', colloc:'搭配用法'};
-
-function renderQ() {
-  const {questions, qIdx} = G.quiz; const q = questions[qIdx]; const total = questions.length;
-  document.getElementById('quiz-pbar-fill').style.width = (qIdx/total*100) + '%';
-  document.getElementById('qnav-prog').textContent = `${qIdx+1}/${total}`;
-  const str = G.quiz.streak || 0;
-  document.getElementById('streak-n').textContent = str;
-  document.getElementById('streak-badge').style.display = str >= 3 ? 'flex' : 'none';
-  document.getElementById('qtype-pill').textContent = TLABELS[q.type] || '英文 → 中文';
-  document.getElementById('qc-word').innerHTML = q.display + '<span class="qc-cursor">_</span>';
-  document.getElementById('qc-phonetic').textContent = q.phonetic ? `[ ${q.phonetic} ]` : '';
-  document.getElementById('qc-hint').textContent = q.hint || '';
-  document.getElementById('feedback').className = 'feedback';
-  const wrap = document.getElementById('options'); wrap.innerHTML = '';
-  const letters = ['A','B','C','D'];
-  q.options.forEach((opt, i) => {
-    const btn = document.createElement('button');
-    btn.className = 'opt'; btn.dataset.opt = opt;
-    btn.innerHTML = `<div class="opt-letter">${letters[i]}</div><div class="opt-text">${opt}</div>`;
-    btn.onclick = () => pick(opt, q, btn);
+function renderQ(){
+  const{questions,qIdx}=G.quiz;const q=questions[qIdx];const total=questions.length;
+  document.getElementById('quiz-pbar-fill').style.width=(qIdx/total*100)+'%';
+  document.getElementById('qnav-prog').textContent=`${qIdx+1}/${total}`;
+  const str=G.quiz.streak||0;
+  document.getElementById('streak-n').textContent=str;
+  document.getElementById('streak-badge').style.display=str>=3?'flex':'none';
+  document.getElementById('qtype-pill').textContent=TLABELS[q.type]||'英文 → 中文';
+  document.getElementById('qc-word').innerHTML=q.display+'<span class="qc-cursor">_</span>';
+  document.getElementById('qc-phonetic').textContent=q.phonetic?`[ ${q.phonetic} ]`:'';
+  document.getElementById('qc-hint').textContent=q.hint||'';
+  document.getElementById('feedback').className='feedback';
+  const wrap=document.getElementById('options');wrap.innerHTML='';
+  const letters=['A','B','C','D'];
+  q.options.forEach((opt,i)=>{
+    const btn=document.createElement('button');
+    btn.className='opt';btn.dataset.opt=opt;
+    btn.innerHTML=`<div class="opt-letter">${letters[i]}</div><div class="opt-text">${opt}</div>`;
+    btn.onclick=()=>pick(opt,q,btn);
     wrap.appendChild(btn);
   });
-  G.quiz.answered = false;
+  G.quiz.answered=false;
 }
-
-function pick(chosen, q, btn) {
-  const ok = chosen === q.answer;
-  if (ok) {
+function pick(chosen,q,btn){
+  const ok=chosen===q.answer;
+  if(ok){
     btn.classList.add('correct');
-    document.querySelectorAll('.opt').forEach(b => { if (b !== btn) b.style.pointerEvents = 'none'; });
-    G.quiz.correct++;
-    G.quiz.streak = (G.quiz.streak || 0) + 1;
-    const wb = G.user.wrong_bank || {};
-    if (wb[q.word.w]) { wb[q.word.w]--; if (wb[q.word.w] <= 0) delete wb[q.word.w]; }
-    G.user.wrong_bank = wb;
-    saveProg();
-    playSound('correct');
-    setTimeout(() => advanceQ(), 650);
-  } else {
-    btn.classList.add('wrong');
-    btn.style.pointerEvents = 'none';
-    G.quiz.streak = 0;
-    if (!G.quiz.wrongWords.includes(q.word.w)) G.quiz.wrongWords.push(q.word.w);
-    if (!G.user.wrong_bank) G.user.wrong_bank = {};
-    G.user.wrong_bank[q.word.w] = (G.user.wrong_bank[q.word.w] || 0) + 1;
-    const fb = document.getElementById('feedback');
-    fb.className = 'feedback wrong';
-    document.getElementById('fb-icon').textContent = '❌';
-    document.getElementById('fb-text').textContent = '再试一次！找出正确答案';
-    document.getElementById('fb-sub').textContent = '';
-    saveProg();
-    playSound('wrong');
+    document.querySelectorAll('.opt').forEach(b=>{if(b!==btn)b.style.pointerEvents='none';});
+    G.quiz.correct++;G.quiz.streak=(G.quiz.streak||0)+1;
+    const wb=G.user.wrong_bank||{};if(wb[q.word.w]){wb[q.word.w]--;if(wb[q.word.w]<=0)delete wb[q.word.w];}G.user.wrong_bank=wb;
+    saveProg();playSound('correct');setTimeout(()=>advanceQ(),650);
+  }else{
+    btn.classList.add('wrong');btn.style.pointerEvents='none';
+    G.quiz.streak=0;
+    if(!G.quiz.wrongWords.includes(q.word.w))G.quiz.wrongWords.push(q.word.w);
+    if(!G.user.wrong_bank)G.user.wrong_bank={};
+    G.user.wrong_bank[q.word.w]=(G.user.wrong_bank[q.word.w]||0)+1;
+    const fb=document.getElementById('feedback');fb.className='feedback wrong';
+    document.getElementById('fb-icon').textContent='❌';
+    document.getElementById('fb-text').textContent='再试一次！找出正确答案';
+    document.getElementById('fb-sub').textContent='';
+    saveProg();playSound('wrong');
   }
 }
-function advanceQ() {
-  G.quiz.qIdx++;
-  if (G.quiz.qIdx >= G.quiz.questions.length) showResult();
-  else renderQ();
-}
+function advanceQ(){G.quiz.qIdx++;if(G.quiz.qIdx>=G.quiz.questions.length)showResult();else renderQ();}
 
-// ============================================================
 // SOUND
-// ============================================================
-let _ctx = null;
-function getCtx() { if (!_ctx) try { _ctx = new (window.AudioContext||window.webkitAudioContext)(); } catch(e){} return _ctx; }
-function playSound(type) {
-  const ctx = getCtx(); if (!ctx) return;
-  try {
-    if (type === 'correct') {
-      const o=ctx.createOscillator(),g=ctx.createGain(),t=ctx.currentTime;
-      o.connect(g); g.connect(ctx.destination);
-      o.frequency.setValueAtTime(523,t); o.frequency.setValueAtTime(659,t+0.12);
-      g.gain.setValueAtTime(0.18,t); g.gain.exponentialRampToValueAtTime(0.001,t+0.35);
-      o.start(t); o.stop(t+0.35);
-    } else if (type === 'wrong') {
-      const o=ctx.createOscillator(),g=ctx.createGain(),t=ctx.currentTime;
-      o.connect(g); g.connect(ctx.destination); o.type='sawtooth';
-      o.frequency.setValueAtTime(220,t);
-      g.gain.setValueAtTime(0.1,t); g.gain.exponentialRampToValueAtTime(0.001,t+0.2);
-      o.start(t); o.stop(t+0.2);
-    } else if (type === 'finish') {
-      [523,659,784,1047].forEach((freq,i)=>{
-        const o=ctx.createOscillator(),g=ctx.createGain(),t=ctx.currentTime+i*0.12;
-        o.connect(g); g.connect(ctx.destination); o.frequency.value=freq;
-        g.gain.setValueAtTime(0.2,t); g.gain.exponentialRampToValueAtTime(0.001,t+0.25);
-        o.start(t); o.stop(t+0.25);
-      });
-    }
-  } catch(e) {}
+let _ctx=null;
+function getCtx(){if(!_ctx)try{_ctx=new(window.AudioContext||window.webkitAudioContext)();}catch(e){}return _ctx;}
+function playSound(type){
+  const ctx=getCtx();if(!ctx)return;
+  try{
+    if(type==='correct'){const o=ctx.createOscillator(),g=ctx.createGain(),t=ctx.currentTime;o.connect(g);g.connect(ctx.destination);o.frequency.setValueAtTime(523,t);o.frequency.setValueAtTime(659,t+0.12);g.gain.setValueAtTime(0.18,t);g.gain.exponentialRampToValueAtTime(0.001,t+0.35);o.start(t);o.stop(t+0.35);}
+    else if(type==='wrong'){const o=ctx.createOscillator(),g=ctx.createGain(),t=ctx.currentTime;o.connect(g);g.connect(ctx.destination);o.type='sawtooth';o.frequency.setValueAtTime(220,t);g.gain.setValueAtTime(0.1,t);g.gain.exponentialRampToValueAtTime(0.001,t+0.2);o.start(t);o.stop(t+0.2);}
+    else if(type==='finish'){[523,659,784,1047].forEach((freq,i)=>{const o=ctx.createOscillator(),g=ctx.createGain(),t=ctx.currentTime+i*0.12;o.connect(g);g.connect(ctx.destination);o.frequency.value=freq;g.gain.setValueAtTime(0.2,t);g.gain.exponentialRampToValueAtTime(0.001,t+0.25);o.start(t);o.stop(t+0.25);});}
+  }catch(e){}
 }
 
-// ============================================================
-// RESULT & CONFETTI
-// ============================================================
-async function showResult() {
-  const {correct, wrong, questions, unitNum, wrongWords, isReview} = G.quiz;
-  const total = questions.length; const acc = Math.round(correct/total*100);
-  if (!isReview && unitNum > 0 && G.book) {
-    if (!G.user.progress) G.user.progress = {};
-    if (!G.user.progress[G.book.id]) G.user.progress[G.book.id] = {};
-    const prev = (G.user.progress[G.book.id][unitNum]||{}).pct || 0;
-    const wasDone = (G.user.progress[G.book.id][unitNum]||{}).done;
-    G.user.progress[G.book.id][unitNum] = {done: wrong===0, pct: Math.max(acc, prev)};
-    if (wrong === 0 && !wasDone) {
-      G.user.trophies = (G.user.trophies || 0) + 1;
-      playSound('finish'); startConfetti();
-    } else { playSound('finish'); }
+// RESULT
+async function showResult(){
+  const{correct,wrong,questions,unitNum,wrongWords,isReview}=G.quiz;
+  const total=questions.length;const acc=Math.round(correct/total*100);
+  if(!isReview&&unitNum>0&&G.book){
+    if(!G.user.progress)G.user.progress={};
+    if(!G.user.progress[G.book.id])G.user.progress[G.book.id]={};
+    const prev=(G.user.progress[G.book.id][unitNum]||{}).pct||0;
+    const wasDone=(G.user.progress[G.book.id][unitNum]||{}).done;
+    G.user.progress[G.book.id][unitNum]={done:wrong===0,pct:Math.max(acc,prev)};
+    if(wrong===0&&!wasDone){G.user.trophies=(G.user.trophies||0)+1;playSound('finish');startConfetti();}
+    else{playSound('finish');}
     await saveProg();
-  } else { playSound('finish'); }
-  let emoji='💪', title='继续加油！';
-  if (acc>=95){emoji='🏆';title='完美！单词小天才！'}
+  }else{playSound('finish');}
+  let emoji='💪',title='继续加油！';
+  if(acc>=95){emoji='🏆';title='完美！单词小天才！'}
   else if(acc>=85){emoji='🌟';title='非常优秀！'}
   else if(acc>=70){emoji='👏';title='做得不错！'}
   else if(acc>=50){emoji='📚';title='加油，多复习！'}
-  document.getElementById('res-emoji').textContent = emoji;
-  document.getElementById('res-title').textContent = title;
-  document.getElementById('res-sub').textContent = isReview ? '错词复习完成' : `Word List ${unitNum} 学习完毕`;
-  document.getElementById('rs-c').textContent = correct;
-  document.getElementById('rs-w').textContent = wrong;
-  document.getElementById('rs-t').textContent = total;
-  document.getElementById('rs-a').textContent = acc + '%';
-  const ring = document.getElementById('score-ring');
-  ring.textContent = acc + '%';
-  ring.className = 'score-ring ' + (acc>=95?'s-perfect':acc>=70?'s-good':acc>=50?'s-fair':'s-poor');
-  const tc = G.user.trophies || 0;
-  const tr = document.getElementById('trophy-row');
-  if (tc > 0) {
-    const show = Math.min(tc, 10);
-    tr.innerHTML = '🏆'.repeat(show) + (tc>10?'<span style="font-size:.9rem">...</span>':'') + `<span class="trophy-count">已收集 ${tc} 个奖杯！</span>`;
-  } else { tr.innerHTML = ''; }
-  const unique = [...new Set(wrongWords)];
-  const ws = document.getElementById('wrong-section'); const rb = document.getElementById('btn-retry');
-  if (unique.length > 0) {
-    ws.style.display = 'block';
-    document.getElementById('ws-chips').innerHTML = unique.map(w=>`<span class="ws-chip">${w}</span>`).join('');
-    rb.style.display = 'block';
-  } else { ws.style.display='none'; rb.style.display='none'; }
-  document.getElementById('btn-nu').style.display = (unitNum>0&&unitNum<33) ? 'block' : 'none';
+  document.getElementById('res-emoji').textContent=emoji;
+  document.getElementById('res-title').textContent=title;
+  document.getElementById('res-sub').textContent=isReview?'错词复习完成':`Word List ${unitNum} 学习完毕`;
+  document.getElementById('rs-c').textContent=correct;document.getElementById('rs-w').textContent=wrong;
+  document.getElementById('rs-t').textContent=total;document.getElementById('rs-a').textContent=acc+'%';
+  const ring=document.getElementById('score-ring');ring.textContent=acc+'%';
+  ring.className='score-ring '+(acc>=95?'s-perfect':acc>=70?'s-good':acc>=50?'s-fair':'s-poor');
+  const tc=G.user.trophies||0;const tr=document.getElementById('trophy-row');
+  if(tc>0){const show=Math.min(tc,10);tr.innerHTML='🏆'.repeat(show)+(tc>10?'<span style="font-size:.9rem">...</span>':'')+`<span class="trophy-count">已收集 ${tc} 个奖杯！</span>`;}
+  else{tr.innerHTML='';}
+  const unique=[...new Set(wrongWords)];
+  const ws=document.getElementById('wrong-section');const rb=document.getElementById('btn-retry');
+  if(unique.length>0){ws.style.display='block';document.getElementById('ws-chips').innerHTML=unique.map(w=>`<span class="ws-chip">${w}</span>`).join('');rb.style.display='block';}
+  else{ws.style.display='none';rb.style.display='none';}
+  document.getElementById('btn-nu').style.display=(unitNum>0&&unitNum<33)?'block':'none';
   scr('s-result');
 }
-
-function startConfetti() {
-  const canvas = document.getElementById('confetti-canvas');
-  const W = window.innerWidth, H = window.innerHeight;
-  canvas.width = W; canvas.height = H;
-  const ctx = canvas.getContext('2d');
-  const colors = ['#4f46e5','#f59e0b','#10b981','#ef4444','#8b5cf6','#06b6d4','#f97316'];
-  const pieces = [];
-  for (let i=0; i<120; i++) {
-    pieces.push({x:Math.random()*W,y:-10-Math.random()*100,w:8+Math.random()*8,h:4+Math.random()*4,
-      color:colors[Math.floor(Math.random()*colors.length)],rot:Math.random()*360,rotV:3+Math.random()*5,
-      vx:(Math.random()-.5)*5,vy:3+Math.random()*4,alpha:1});
-  }
-  let frame = 0;
-  function animate() {
-    ctx.clearRect(0,0,W,H);
-    pieces.forEach(p => {
-      p.x+=p.vx; p.y+=p.vy; p.rot+=p.rotV;
-      if (frame>80) p.alpha = Math.max(0, p.alpha-0.015);
-      ctx.save(); ctx.globalAlpha=p.alpha;
-      ctx.translate(p.x+p.w/2, p.y+p.h/2); ctx.rotate(p.rot*Math.PI/180);
-      ctx.fillStyle=p.color; ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);
-      ctx.restore();
-    });
-    frame++;
-    if (frame < 140) requestAnimationFrame(animate); else ctx.clearRect(0,0,W,H);
-  }
+function startConfetti(){
+  const canvas=document.getElementById('confetti-canvas');
+  const W=window.innerWidth,H=window.innerHeight;canvas.width=W;canvas.height=H;
+  const ctx=canvas.getContext('2d');
+  const colors=['#4f46e5','#f59e0b','#10b981','#ef4444','#8b5cf6','#06b6d4','#f97316'];
+  const pieces=[];
+  for(let i=0;i<120;i++){pieces.push({x:Math.random()*W,y:-10-Math.random()*100,w:8+Math.random()*8,h:4+Math.random()*4,color:colors[Math.floor(Math.random()*colors.length)],rot:Math.random()*360,rotV:3+Math.random()*5,vx:(Math.random()-.5)*5,vy:3+Math.random()*4,alpha:1});}
+  let frame=0;
+  function animate(){ctx.clearRect(0,0,W,H);pieces.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.rot+=p.rotV;if(frame>80)p.alpha=Math.max(0,p.alpha-0.015);ctx.save();ctx.globalAlpha=p.alpha;ctx.translate(p.x+p.w/2,p.y+p.h/2);ctx.rotate(p.rot*Math.PI/180);ctx.fillStyle=p.color;ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);ctx.restore();});frame++;if(frame<140)requestAnimationFrame(animate);else ctx.clearRect(0,0,W,H);}
   animate();
 }
+function retryWrong(){const{wrongWords,words}=G.quiz;const u=[...new Set(wrongWords)];const list=u.map(w=>words.find(x=>x.w===w)).filter(Boolean);if(!list.length){showUnits();return;}G.quiz={...G.quiz,words:list,questions:buildQs(list,words),qIdx:0,correct:0,wrong:0,wrongWords:[],answered:false,streak:0};renderQ();scr('s-quiz');}
+function goNextUnit(){const n=G.quiz.unitNum+1;if(n<=33)startUnit(n);else showUnits();}
+function backFromQuiz(){showUnits();}
 
-function retryWrong() {
-  const {wrongWords, words} = G.quiz; const u = [...new Set(wrongWords)];
-  const list = u.map(w => words.find(x=>x.w===w)).filter(Boolean);
-  if (!list.length) { showUnits(); return; }
-  G.quiz = {...G.quiz, words:list, questions:buildQs(list,words), qIdx:0, correct:0, wrong:0, wrongWords:[], answered:false, streak:0};
-  renderQ(); scr('s-quiz');
-}
-function goNextUnit() { const n=G.quiz.unitNum+1; if(n<=33) startUnit(n); else showUnits(); }
-function backFromQuiz() { showUnits(); }
-
-// ============================================================
 // CHANGE PASSWORD
-// ============================================================
-function showProfile() {
-  ['p-old','p-new','p-confirm'].forEach(id => document.getElementById(id).value='');
-  document.getElementById('p-msg').textContent = '';
-  scr('s-profile');
+function showProfile(){['p-old','p-new','p-confirm'].forEach(id=>document.getElementById(id).value='');document.getElementById('p-msg').textContent='';scr('s-profile');}
+async function changePwd(){
+  const old=document.getElementById('p-old').value.trim();
+  const nw=document.getElementById('p-new').value.trim();
+  const cf=document.getElementById('p-confirm').value.trim();
+  const msg=document.getElementById('p-msg');
+  if(!old||!nw||!cf){showMsg(msg,'请填写所有字段','err');return;}
+  if(G.user.pwd!==old){showMsg(msg,'当前密码错误','err');return;}
+  if(nw.length<4){showMsg(msg,'新密码至少4位','err');return;}
+  if(nw!==cf){showMsg(msg,'两次输入不一致','err');return;}
+  try{G.user.pwd=nw;G.user.pwd_changed_at=new Date().toISOString();await saveStudent(G.account,G.user);showMsg(msg,'✓ 密码修改成功','');setTimeout(()=>showBooks(),1200);}
+  catch(err){showMsg(msg,'保存失败，请重试','err');}
 }
-async function changePwd() {
-  const old = document.getElementById('p-old').value.trim();
-  const nw  = document.getElementById('p-new').value.trim();
-  const cf  = document.getElementById('p-confirm').value.trim();
-  const msg = document.getElementById('p-msg');
-  if (!old||!nw||!cf) { showMsg(msg,'请填写所有字段','err'); return; }
-  if (G.user.pwd !== old) { showMsg(msg,'当前密码错误','err'); return; }
-  if (nw.length < 4) { showMsg(msg,'新密码至少4位','err'); return; }
-  if (nw !== cf) { showMsg(msg,'两次输入不一致','err'); return; }
-  try {
-    G.user.pwd = nw; G.user.pwd_changed_at = new Date().toISOString();
-    await saveStudent(G.account, G.user);
-    showMsg(msg, '✓ 密码修改成功', '');
-    setTimeout(() => showBooks(), 1200);
-  } catch(err) { showMsg(msg, '保存失败，请重试', 'err'); }
-}
-function showMsg(el, text, cls) { el.textContent=text; el.className='p-msg '+(cls||''); }
+function showMsg(el,text,cls){el.textContent=text;el.className='p-msg '+(cls||'');}
 
-// ============================================================
-// ADMIN — keyboard shortcut Ctrl+Shift+L only
-// ============================================================
-document.addEventListener('keydown', function(e) {
-  if (e.ctrlKey && e.shiftKey && e.key === 'L') {
-    document.getElementById('admin-modal').classList.remove('hidden');
-    setTimeout(() => document.getElementById('admin-pwd-inp').focus(), 100);
-  }
-});
-function closeAdminModal() {
-  document.getElementById('admin-modal').classList.add('hidden');
-  document.getElementById('admin-pwd-inp').value='';
-}
-function verifyAdmin() {
-  const pwd = document.getElementById('admin-pwd-inp').value.trim();
-  if (pwd === DEFAULT_ADMIN_PWD) {
-    closeAdminModal();
-    renderStudentTable(); renderDataTable();
-    scr('s-admin');
-  } else { toast('密码错误','err'); document.getElementById('admin-pwd-inp').value=''; }
-}
-function exitAdmin() { scr('s-login'); }
+// ADMIN — Ctrl+Shift+L only
+document.addEventListener('keydown',function(e){if(e.ctrlKey&&e.shiftKey&&e.key==='L'){document.getElementById('admin-modal').classList.remove('hidden');setTimeout(()=>document.getElementById('admin-pwd-inp').focus(),100);}});
+function closeAdminModal(){document.getElementById('admin-modal').classList.add('hidden');document.getElementById('admin-pwd-inp').value='';}
+function verifyAdmin(){const pwd=document.getElementById('admin-pwd-inp').value.trim();if(pwd===DEFAULT_ADMIN_PWD){closeAdminModal();renderStudentTable();renderDataTable();scr('s-admin');}else{toast('密码错误','err');document.getElementById('admin-pwd-inp').value='';}}
+function exitAdmin(){scr('s-login');}
+function adminTab(idx,btn){[0,1,2].forEach(i=>document.getElementById(`adm-tab-${i}`).classList.toggle('hidden',i!==idx));document.querySelectorAll('.admin-tab').forEach((b,i)=>b.classList.toggle('active',i===idx));}
 
-function adminTab(idx, btn) {
-  [0,1,2].forEach(i => document.getElementById(`adm-tab-${i}`).classList.toggle('hidden', i!==idx));
-  document.querySelectorAll('.admin-tab').forEach((b,i) => b.classList.toggle('active', i===idx));
-}
-
-async function addStudent() {
-  const name    = document.getElementById('adm-name').value.trim();
-  const cls     = document.getElementById('adm-class').value.trim();
-  const account = document.getElementById('adm-account').value.trim();
-  const pwd     = document.getElementById('adm-pwd').value.trim();
-  if (!name||!cls||!account||!pwd) { toast('请填写所有字段','err'); return; }
+async function addStudent(){
+  const name=document.getElementById('adm-name').value.trim();
+  const cls=document.getElementById('adm-class').value.trim();
+  const account=document.getElementById('adm-account').value.trim();
+  const pwd=document.getElementById('adm-pwd').value.trim();
+  if(!name||!cls||!account||!pwd){toast('请填写所有字段','err');return;}
   showLoading('创建中…');
-  try {
-    const existing = await getStudent(account);
-    if (existing) { hideLoading(); toast(`账号"${account}"已存在`,'err'); return; }
-    const newStudent = {
-      name, cls, account, pwd,
-      pwd_changed_at: null,
-      progress: {}, wrong_bank: {}, trophies: 0,
-      created_at: new Date().toISOString(), last_seen: null
-    };
-    await saveStudent(account, newStudent);
-    ['adm-name','adm-class','adm-account','adm-pwd'].forEach(id => document.getElementById(id).value='');
-    const msg = document.getElementById('adm-msg');
-    msg.textContent = `✓ "${account}" 创建成功`;
-    setTimeout(() => msg.textContent='', 2500);
-    hideLoading(); renderStudentTable();
-  } catch(err) { hideLoading(); toast('创建失败：'+err.message,'err'); }
+  try{
+    const existing=await getStudent(account);
+    if(existing){hideLoading();toast(`账号"${account}"已存在`,'err');return;}
+    await saveStudent(account,{name,cls,account,pwd,pwd_changed_at:null,progress:{},wrong_bank:{},trophies:0,created_at:new Date().toISOString(),last_seen:null});
+    ['adm-name','adm-class','adm-account','adm-pwd'].forEach(id=>document.getElementById(id).value='');
+    const msg=document.getElementById('adm-msg');msg.textContent=`✓ "${account}" 创建成功`;setTimeout(()=>msg.textContent='',2500);
+    hideLoading();renderStudentTable();
+  }catch(err){hideLoading();toast('创建失败：'+err.message,'err');}
 }
-
-async function deleteStudent(account) {
-  if (!confirm(`确定删除账号"${account}"？不可恢复。`)) return;
+async function deleteStudent(account){
+  if(!confirm(`确定删除账号"${account}"？不可恢复。`))return;
   showLoading('删除中…');
-  try {
-    await deleteStudentDB(account);
-    hideLoading(); renderStudentTable(); renderDataTable();
-  } catch(err) { hideLoading(); toast('删除失败','err'); }
+  try{await deleteStudentDB(account);hideLoading();renderStudentTable();renderDataTable();}
+  catch(err){hideLoading();toast('删除失败','err');}
 }
-
-async function renderStudentTable() {
-  const wrap = document.getElementById('student-table-wrap');
-  wrap.innerHTML = '<div class="empty-tip">加载中…</div>';
-  try {
-    const students = await getAllStudents();
-    if (!students || !students.length) { wrap.innerHTML='<div class="empty-tip">暂无学生</div>'; return; }
-    let rows = '';
-    students.forEach(s => {
-      const pwdTag = s.pwd_changed_at
-        ? '<span style="font-size:.68rem;color:var(--amber)">已修改</span>'
-        : '<span style="font-size:.68rem;color:var(--g400)">初始</span>';
-      rows += `<tr>
-        <td><strong>${s.name}</strong><br><span style="font-size:.7rem;color:var(--g400);font-family:monospace">${s.account}</span></td>
-        <td><span class="td-cls">${s.cls}</span></td>
-        <td style="font-family:monospace;font-size:.82rem">${s.pwd} ${pwdTag}</td>
-        <td>${s.trophies||0} 🏆</td>
-        <td><button class="btn-del" onclick="deleteStudent('${s.account}')">删除</button></td>
-      </tr>`;
+async function renderStudentTable(){
+  const wrap=document.getElementById('student-table-wrap');wrap.innerHTML='<div class="empty-tip">加载中…</div>';
+  try{
+    const students=await getAllStudents();
+    if(!students||!students.length){wrap.innerHTML='<div class="empty-tip">暂无学生</div>';return;}
+    let rows='';
+    students.forEach(s=>{
+      const pwdTag=s.pwd_changed_at?'<span style="font-size:.68rem;color:var(--amber)">已修改</span>':'<span style="font-size:.68rem;color:var(--g400)">初始</span>';
+      rows+=`<tr><td><strong>${s.name}</strong><br><span style="font-size:.7rem;color:var(--g400);font-family:monospace">${s.account}</span></td><td><span class="td-cls">${s.cls}</span></td><td style="font-family:monospace;font-size:.82rem">${s.pwd} ${pwdTag}</td><td>${s.trophies||0} 🏆</td><td><button class="btn-del" onclick="deleteStudent('${s.account}')">删除</button></td></tr>`;
     });
-    wrap.innerHTML = `<table class="user-table"><thead><tr><th>姓名/账号</th><th>班级</th><th>当前密码</th><th>奖杯</th><th>操作</th></tr></thead><tbody>${rows}</tbody></table>`;
-  } catch(err) { wrap.innerHTML=`<div class="empty-tip" style="color:var(--red)">加载失败：${err.message}</div>`; }
+    wrap.innerHTML=`<table class="user-table"><thead><tr><th>姓名/账号</th><th>班级</th><th>当前密码</th><th>奖杯</th><th>操作</th></tr></thead><tbody>${rows}</tbody></table>`;
+  }catch(err){wrap.innerHTML=`<div class="empty-tip" style="color:var(--red)">加载失败</div>`;}
 }
-
-async function renderDataTable() {
-  const wrap = document.getElementById('data-table-wrap');
-  wrap.innerHTML = '<div class="empty-tip">加载中…</div>';
-  try {
-    const students = await getAllStudents();
-    if (!students || !students.length) { wrap.innerHTML='<div class="empty-tip">暂无数据</div>'; return; }
-    let rows = '';
-    students.forEach(s => {
-      const progress = s.progress || {};
-      const wrongBank = s.wrong_bank || {};
-      const totalU = Object.values(progress).reduce((sum,bk)=>sum+Object.keys(bk).length, 0);
-      const doneU  = Object.values(progress).reduce((sum,bk)=>sum+Object.values(bk).filter(v=>v.done).length, 0);
-      const wrongC = Object.keys(wrongBank).length;
-      const lastSeen = s.last_seen ? new Date(s.last_seen).toLocaleDateString('zh-CN') : '—';
-      rows += `<tr>
-        <td><strong>${s.name}</strong><br><span style="font-size:.7rem;color:var(--g400)">${s.cls}</span></td>
-        <td style="font-weight:600;color:var(--green)">${doneU}</td>
-        <td>${totalU}</td>
-        <td style="color:${wrongC>15?'var(--red)':'var(--g600)'}">${wrongC}</td>
-        <td>${s.trophies||0} 🏆</td>
-        <td style="font-size:.8rem">${lastSeen}</td>
-      </tr>`;
+async function renderDataTable(){
+  const wrap=document.getElementById('data-table-wrap');wrap.innerHTML='<div class="empty-tip">加载中…</div>';
+  try{
+    const students=await getAllStudents();
+    if(!students||!students.length){wrap.innerHTML='<div class="empty-tip">暂无数据</div>';return;}
+    let rows='';
+    students.forEach(s=>{
+      const progress=s.progress||{};const wrongBank=s.wrong_bank||{};
+      const totalU=Object.values(progress).reduce((sum,bk)=>sum+Object.keys(bk).length,0);
+      const doneU=Object.values(progress).reduce((sum,bk)=>sum+Object.values(bk).filter(v=>v.done).length,0);
+      const wrongC=Object.keys(wrongBank).length;
+      const lastSeen=s.last_seen?new Date(s.last_seen).toLocaleDateString('zh-CN'):'—';
+      rows+=`<tr><td><strong>${s.name}</strong><br><span style="font-size:.7rem;color:var(--g400)">${s.cls}</span></td><td style="font-weight:600;color:var(--green)">${doneU}</td><td>${totalU}</td><td style="color:${wrongC>15?'var(--red)':'var(--g600)'}">${wrongC}</td><td>${s.trophies||0} 🏆</td><td style="font-size:.8rem">${lastSeen}</td></tr>`;
     });
-    wrap.innerHTML = `<table class="user-table"><thead><tr><th>学生</th><th>完成单元</th><th>学习过</th><th>错词数</th><th>奖杯</th><th>上次使用</th></tr></thead><tbody>${rows}</tbody></table>`;
-  } catch(err) { wrap.innerHTML=`<div class="empty-tip" style="color:var(--red)">加载失败</div>`; }
+    wrap.innerHTML=`<table class="user-table"><thead><tr><th>学生</th><th>完成单元</th><th>学习过</th><th>错词数</th><th>奖杯</th><th>上次使用</th></tr></thead><tbody>${rows}</tbody></table>`;
+  }catch(err){wrap.innerHTML=`<div class="empty-tip" style="color:var(--red)">加载失败</div>`;}
 }
-
 </script>
 </body>
 </html>
