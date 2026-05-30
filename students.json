@@ -22,5 +22,17 @@
     "trophies": 0,
     "created_at": "2026-05-30T15:24:11.908Z",
     "last_seen": null
+  },
+  "侯淇天": {
+    "name": "侯淇天",
+    "cls": "小托福A班",
+    "account": "侯淇天",
+    "pwd": "7777777",
+    "pwd_changed_at": null,
+    "progress": {},
+    "wrong_bank": {},
+    "trophies": 0,
+    "created_at": "2026-05-30T15:24:48.075Z",
+    "last_seen": null
   }
 }
