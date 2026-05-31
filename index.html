@@ -274,7 +274,8 @@ html,body{font-family:'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-se
   font-size:0.92rem;display:flex;align-items:flex-start;gap:0.75rem;
   transition:all 0.15s;box-shadow:0 1px 4px rgba(0,0,0,0.04)
 }
-.opt:hover:not(.correct):not(.wrong):not(.no-hover){border-color:var(--c1);background:#eef2ff}
+.opt:hover:not(.correct):not(.wrong):not(.no-hover):not(.dim):not(.fresh){border-color:var(--c1);background:#eef2ff}
+.opt.fresh{pointer-events:none}
 .opt.correct{border-color:var(--green);background:var(--green-light);pointer-events:none;cursor:default}
 .opt.wrong{border-color:var(--red);background:var(--red-light)}
 .opt-letter{width:26px;height:26px;border-radius:50%;background:var(--g100);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.75rem;flex-shrink:0;margin-top:1px;font-family:'Courier New',monospace}
@@ -452,7 +453,6 @@ html,body{font-family:'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-se
     <button class="btn-bk" onclick="backFromQuiz()">←</button>
     <div class="qnav-title" id="qnav-title">Word List 1</div>
     <div class="qnav-prog" id="qnav-prog">1/62</div>
-    <div class="streak-badge" id="streak-badge" style="display:none">🔥<span id="streak-n">0</span></div>
   </div>
   <div class="quiz-pbar-wrap">
     <div class="quiz-pbar"><div class="quiz-pbar-fill" id="quiz-pbar-fill" style="width:0%"></div></div>
@@ -460,9 +460,19 @@ html,body{font-family:'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-se
   <div class="quiz-body">
     <div class="qtype-pill" id="qtype-pill">英文 → 中文</div>
     <div class="question-card">
-      <div class="qc-word" id="qc-word">word<span class="qc-cursor">_</span></div>
+      <div style="display:flex;align-items:center;justify-content:center;gap:0.6rem;position:relative;z-index:1">
+        <div class="qc-word" id="qc-word">word<span class="qc-cursor">_</span></div>
+        <button id="speak-btn" onclick="speakWord()"
+          style="background:rgba(255,255,255,0.18);border:1.5px solid rgba(255,255,255,0.35);border-radius:50%;width:38px;height:38px;flex-shrink:0;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:background 0.2s">
+          🔊
+        </button>
+      </div>
       <div class="qc-phonetic" id="qc-phonetic"></div>
       <div class="qc-hint" id="qc-hint"></div>
+    </div>
+    <div id="streak-display" style="display:none;background:var(--amber-light);border:1.5px solid #fde68a;border-radius:var(--r12);padding:0.75rem 1.1rem;margin-bottom:0.85rem;align-items:center;gap:0.5rem;font-weight:700;color:var(--amber);font-size:0.95rem">
+      <span style="font-size:1.2rem">🔥</span>
+      <span id="streak-msg">连对 3 题！继续加油！</span>
     </div>
     <div class="feedback" id="feedback">
       <div class="fb-icon" id="fb-icon">✅</div>
@@ -779,7 +789,8 @@ function renderQ(){
   const{questions,qIdx}=G.quiz;const q=questions[qIdx];const total=questions.length;
   document.getElementById('quiz-pbar-fill').style.width=(qIdx/total*100)+'%';
   document.getElementById('qnav-prog').textContent=`${qIdx+1}/${total}`;
-  const str=G.quiz.streak||0;document.getElementById('streak-n').textContent=str;document.getElementById('streak-badge').style.display=str>=3?'flex':'none';
+  // Reset streak display on new question
+  document.getElementById('streak-display').style.display='none';
   document.getElementById('qtype-pill').textContent=TLABELS[q.type]||'英文 → 中文';
   document.getElementById('qc-word').innerHTML=q.display+'<span class="qc-cursor">_</span>';
   document.getElementById('qc-phonetic').textContent=q.phonetic?`[ ${q.phonetic} ]`:'';
@@ -795,10 +806,20 @@ function pick(chosen,q,btn){
   if(ok){
     btn.classList.add('correct');document.querySelectorAll('.opt').forEach(b=>{if(b!==btn)b.style.pointerEvents='none';});
     G.quiz.correct++;G.quiz.streak=(G.quiz.streak||0)+1;
+    var streak=G.quiz.streak;
     const wb=G.user.wrong_bank||{};if(wb[q.word.w]){wb[q.word.w]--;if(wb[q.word.w]<=0)delete wb[q.word.w];}G.user.wrong_bank=wb;
-    saveProg();playSound('correct');setTimeout(()=>advanceQ(),650);
+    saveProg();playSound('correct');
+    // Show streak milestone in feedback area
+    if(streak===3||streak===5||streak===10||(streak>10&&streak%5===0)){
+      var streakMsgs={3:'连对3题！继续加油！',5:'连对5题！太厉害了！',10:'连对10题！单词小天才！'};
+      var sm=streakMsgs[streak]||('连对'+streak+'题！无敌了！');
+      var sd=document.getElementById('streak-display');
+      if(sd){document.getElementById('streak-msg').textContent=sm;sd.style.display='flex';}
+      playSound('streak');
+    }
+    setTimeout(()=>advanceQ(),650);
   }else{
-    btn.classList.add('wrong');btn.style.pointerEvents='none';G.quiz.streak=0;
+    btn.classList.add('wrong');btn.style.pointerEvents='none';G.quiz.streak=0;var sd2=document.getElementById('streak-display');if(sd2)sd2.style.display='none';
     if(!G.quiz.wrongWords.includes(q.word.w))G.quiz.wrongWords.push(q.word.w);
     if(!G.user.wrong_bank)G.user.wrong_bank={};G.user.wrong_bank[q.word.w]=(G.user.wrong_bank[q.word.w]||0)+1;
     const fb=document.getElementById('feedback');fb.className='feedback wrong';
