@@ -3,11 +3,9 @@
     "name": "demo",
     "cls": "demo",
     "progress": {},
-    "wrong_bank": {
-      "agile": 1
-    },
+    "wrong_bank": {},
     "trophies": 0,
-    "last_seen": "2026-05-31T07:40:03.613Z",
-    "last_saved": "2026-05-31T07:40:04.055Z"
+    "last_seen": "2026-05-31T07:40:04.929Z",
+    "last_saved": "2026-05-31T07:40:05.262Z"
   }
 }
