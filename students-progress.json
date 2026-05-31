@@ -2,10 +2,17 @@
   "demo": {
     "name": "demo",
     "cls": "demo",
-    "progress": {},
+    "progress": {
+      "toefl_junior": {
+        "1": {
+          "done": true,
+          "pct": 100
+        }
+      }
+    },
     "wrong_bank": {},
-    "trophies": 0,
-    "last_seen": "2026-05-31T07:41:06.195Z",
-    "last_saved": "2026-05-31T07:41:06.638Z"
+    "trophies": 1,
+    "last_seen": "2026-05-31T08:55:38.754Z",
+    "last_saved": "2026-05-31T08:55:39.440Z"
   }
 }
