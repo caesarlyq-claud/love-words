@@ -219,24 +219,42 @@ function renderSL(data){
   document.getElementById('SL').innerHTML='<table><thead><tr><th>姓名/账号</th><th>班级</th><th>密码</th><th>奖杯</th><th>操作</th></tr></thead><tbody>'+rows+'</tbody></table>';
 }
 function renderDL(data){
-  // Also try to load cloud progress from Worker
   var dl = document.getElementById('DL');
-  dl.innerHTML = '<p style="color:#9ca3af;text-align:center;padding:1rem">正在加载云端数据...</p>';
-  
-  var WURL = 'https://vocab-progress.caesarlyq.workers.dev';
-  fetch(WURL + '/progress')
+  dl.innerHTML = '<p style="color:#9ca3af;text-align:center;padding:1rem">正在加载学习数据...</p>';
+  // Read cloud progress from GitHub directly
+  fetch('https://raw.githubusercontent.com/caesarlyq-claud/love-words/main/students-progress.json?t=' + Date.now())
     .then(function(r){ return r.ok ? r.json() : {}; })
     .then(function(cloudData){
-      // Merge: use cloud data if available, fallback to local
-      var merged = Object.assign({}, data || {});
+      // Merge students list with their cloud progress
+      var students = cache || {};
+      var merged = {};
+      Object.keys(students).forEach(function(acc){
+        merged[acc] = Object.assign({}, students[acc], cloudData[acc] || {}, {name: students[acc].name, cls: students[acc].cls});
+      });
+      // Also show students who have progress but aren't in account list
       Object.keys(cloudData).forEach(function(acc){
-        if(merged[acc]){
-          merged[acc] = Object.assign({}, merged[acc], cloudData[acc]);
-        }
+        if(!merged[acc]) merged[acc] = cloudData[acc];
       });
       showDL(merged);
     })
-    .catch(function(){ showDL(data || {}); });
+    .catch(function(e){ showDL(data || {}); });
+}
+
+function showDL(data){
+  var en=Object.entries(data||{});
+  if(!en.length){document.getElementById('DL').innerHTML='<p style="color:#9ca3af;text-align:center;padding:1rem">暂无数据</p>';return;}
+  var rows=en.map(function(e){
+    var s=e[1];var p=s.progress||{};var w=s.wrong_bank||{};
+    var tu=Object.values(p).reduce(function(sum,b){return sum+Object.keys(b).length;},0);
+    var du=Object.values(p).reduce(function(sum,b){return sum+Object.values(b).filter(function(v){return v.done;}).length;},0);
+    var wc=Object.keys(w).length;
+    var ls=s.last_seen?new Date(s.last_seen).toLocaleDateString('zh-CN'):'—';
+    return '<tr><td><strong>'+(s.name||e[0])+'</strong><br><span style="font-size:.7rem;color:#9ca3af">'+(s.cls||'')+'</span></td>'
+      +'<td style="font-weight:600;color:#16a34a">'+du+'</td><td>'+tu+'</td>'
+      +'<td style="color:'+(wc>15?'#dc2626':'#4b5563')+'">'+wc+'</td>'
+      +'<td>'+(s.trophies||0)+' 🏆</td><td style="font-size:.8rem">'+ls+'</td></tr>';
+  }).join('');
+  document.getElementById('DL').innerHTML='<table><thead><tr><th>学生</th><th>完成单元</th><th>学习过</th><th>错词数</th><th>奖杯</th><th>上次使用</th></tr></thead><tbody>'+rows+'</tbody></table>';
 }
 
 function showDL(data){
