@@ -980,34 +980,70 @@ function speakWord(){
   var q = G.quiz && G.quiz.questions && G.quiz.questions[G.quiz.qIdx];
   var word = q ? q.display : '';
   if(!word) return;
+  var btn = document.getElementById('speak-btn');
+  if(btn) btn.textContent = '🔉';
+
+  // Try Free Dictionary API first (real human pronunciation, clearest)
+  fetch('https://api.dictionaryapi.dev/api/v2/entries/en/' + encodeURIComponent(word))
+    .then(function(r){ return r.ok ? r.json() : null; })
+    .then(function(data){
+      if(data && data[0]){
+        // Find audio URL
+        var audioUrl = null;
+        var phonetics = data[0].phonetics || [];
+        for(var i=0; i<phonetics.length; i++){
+          if(phonetics[i].audio && phonetics[i].audio.includes('us')){
+            audioUrl = phonetics[i].audio; break;
+          }
+        }
+        if(!audioUrl){
+          for(var i=0; i<phonetics.length; i++){
+            if(phonetics[i].audio){ audioUrl = phonetics[i].audio; break; }
+          }
+        }
+        if(audioUrl){
+          // Add https if needed
+          if(audioUrl.startsWith('//')) audioUrl = 'https:' + audioUrl;
+          var audio = new Audio(audioUrl);
+          audio.playbackRate = 0.9;
+          audio.onended = function(){ if(btn) btn.textContent='🔊'; };
+          audio.onerror = function(){ speakFallback(word, btn); };
+          audio.play().catch(function(){ speakFallback(word, btn); });
+          return;
+        }
+      }
+      speakFallback(word, btn);
+    })
+    .catch(function(){ speakFallback(word, btn); });
+}
+
+// Fallback: Web Speech API with best voice for kids
+function speakFallback(word, btn){
   if(!('speechSynthesis' in window)){
-    toast('当前浏览器不支持朗读', 'warn');
+    if(btn) btn.textContent='🔊';
     return;
   }
-  var btn = document.getElementById('speak-btn');
-  try{
-    window.speechSynthesis.cancel();
-    var utter = new SpeechSynthesisUtterance(word);
-    utter.lang = 'en-US';
-    utter.rate = 0.8;
-    utter.pitch = 1.0;
-    utter.volume = 1.0;
-    if(_voices.length > 0){
-      var en = _voices.find(function(v){
-        return v.lang==='en-US' || v.lang==='en-GB' || v.lang.startsWith('en');
-      });
-      if(en) utter.voice = en;
-    }
-    if(btn){ btn.textContent='🔉'; }
-    utter.onend   = function(){ if(btn) btn.textContent='🔊'; };
-    utter.onerror = function(){ if(btn) btn.textContent='🔊'; };
-    window.speechSynthesis.speak(utter);
-    // Fallback reset after 3s
-    setTimeout(function(){ if(btn) btn.textContent='🔊'; }, 3000);
-  }catch(e){
-    if(btn) btn.textContent='🔊';
-    console.log('speak error:', e);
+  window.speechSynthesis.cancel();
+  var utter = new SpeechSynthesisUtterance(word);
+  utter.lang = 'en-US';
+  utter.rate = 0.75;
+  utter.pitch = 1.1;
+  utter.volume = 1.0;
+  // Pick best available voice
+  var voices = window.speechSynthesis.getVoices();
+  var preferred = ['Samantha','Karen','Daniel','Google US English','Microsoft Aria'];
+  var voice = null;
+  for(var p=0; p<preferred.length; p++){
+    voice = voices.find(function(v){ return v.name.includes(preferred[p]); });
+    if(voice) break;
   }
+  if(!voice) voice = voices.find(function(v){ return v.lang==='en-US'; });
+  if(!voice) voice = voices.find(function(v){ return v.lang.startsWith('en'); });
+  if(voice) utter.voice = voice;
+  utter.onend = function(){ if(btn) btn.textContent='🔊'; };
+  utter.onerror = function(){ if(btn) btn.textContent='🔊'; };
+  window.speechSynthesis.speak(utter);
+  setTimeout(function(){ if(btn) btn.textContent='🔊'; }, 3000);
 }
 
 // Login button + Enter key binding
