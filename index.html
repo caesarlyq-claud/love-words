@@ -772,8 +772,8 @@ function updateOvProg(){
 }
 
 function getWords(u){return(G.book.wordData||{})[String(u)]||[];}
-function startUnit(u){const words=getWords(u);if(!words.length){toast('该单元暂无数据','err');return;}G.quiz={unitNum:u,words,questions:buildQs(words),qIdx:0,correct:0,wrong:0,wrongWords:[],answered:false,isReview:false,streak:0};document.getElementById('qnav-title').textContent=`Word List ${u}`;renderQ();scr('s-quiz');}
-function startReview(){const wb=G.user.wrong_bank||{};const sorted=Object.entries(wb).sort((a,b)=>b[1]-a[1]).map(([w])=>w);if(!sorted.length){toast('暂无错词！','ok');return;}const all=[];for(let u=1;u<=33;u++)all.push(...getWords(u));const list=sorted.map(w=>all.find(x=>x.w===w)).filter(Boolean);G.quiz={unitNum:0,words:list,questions:buildQs(list,all),qIdx:0,correct:0,wrong:0,wrongWords:[],answered:false,isReview:true,streak:0};document.getElementById('qnav-title').textContent='🔁 错词复习';renderQ();scr('s-quiz');}
+function startUnit(u){const words=getWords(u);if(!words.length){toast('该单元暂无数据','err');return;}G.quiz={unitNum:u,words,questions:buildQs(words),qIdx:0,correct:0,wrong:0,wrongWords:[],firstWrong:{},answered:false,isReview:false,streak:0};document.getElementById('qnav-title').textContent=`Word List ${u}`;renderQ();scr('s-quiz');}
+function startReview(){const wb=G.user.wrong_bank||{};const sorted=Object.entries(wb).sort((a,b)=>b[1]-a[1]).map(([w])=>w);if(!sorted.length){toast('暂无错词！','ok');return;}const all=[];for(let u=1;u<=33;u++)all.push(...getWords(u));const list=sorted.map(w=>all.find(x=>x.w===w)).filter(Boolean);G.quiz={unitNum:0,words:list,questions:buildQs(list,all),qIdx:0,correct:0,wrong:0,wrongWords:[],firstWrong:{},answered:false,isReview:true,streak:0};document.getElementById('qnav-title').textContent='🔁 错词复习';renderQ();scr('s-quiz');}
 async function saveProg(){if(!G.user||!G.account)return;try{await saveStudent(G.account,{...G.user,progress:G.user.progress||{},wrong_bank:G.user.wrong_bank||{},trophies:G.user.trophies||0,last_seen:new Date().toISOString()});}catch(err){console.error('Save:',err);}}
 
 function sh(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b;}
@@ -820,7 +820,9 @@ function pick(chosen,q,btn){
     setTimeout(()=>advanceQ(),650);
   }else{
     btn.classList.add('wrong');btn.style.pointerEvents='none';G.quiz.streak=0;var sd2=document.getElementById('streak-display');if(sd2)sd2.style.display='none';
-    if(!G.quiz.wrongWords.includes(q.word.w))G.quiz.wrongWords.push(q.word.w);
+    if(!G.quiz.wrongWords.includes(q.word.w)) G.quiz.wrongWords.push(q.word.w);
+    if(!G.quiz.firstWrong) G.quiz.firstWrong={};
+    if(!G.quiz.firstWrong[q.word.w]) G.quiz.firstWrong[q.word.w]=true;
     if(!G.user.wrong_bank)G.user.wrong_bank={};G.user.wrong_bank[q.word.w]=(G.user.wrong_bank[q.word.w]||0)+1;
     const fb=document.getElementById('feedback');fb.className='feedback wrong';
     document.getElementById('fb-icon').textContent='❌';document.getElementById('fb-text').textContent='再试一次！找出正确答案';document.getElementById('fb-sub').textContent='';
@@ -846,7 +848,8 @@ async function showResult(){
   if(acc>=95){emoji='🏆';title='完美！单词小天才！'}else if(acc>=85){emoji='🌟';title='非常优秀！'}else if(acc>=70){emoji='👏';title='做得不错！'}else if(acc>=50){emoji='📚';title='加油，多复习！'}
   document.getElementById('res-emoji').textContent=emoji;document.getElementById('res-title').textContent=title;
   document.getElementById('res-sub').textContent=isReview?'错词复习完成':`Word List ${unitNum} 学习完毕`;
-  document.getElementById('rs-c').textContent=correct;document.getElementById('rs-w').textContent=wrong;document.getElementById('rs-t').textContent=total;document.getElementById('rs-a').textContent=acc+'%';
+  var fwCount=G.quiz.firstWrong?Object.keys(G.quiz.firstWrong).length:wrong;
+  document.getElementById('rs-c').textContent=correct;document.getElementById('rs-w').textContent=fwCount;document.getElementById('rs-t').textContent=total;document.getElementById('rs-a').textContent=acc+'%';
   const ring=document.getElementById('score-ring');ring.textContent=acc+'%';ring.className='score-ring '+(acc>=95?'s-perfect':acc>=70?'s-good':acc>=50?'s-fair':'s-poor');
   const tc=G.user.trophies||0;const tr=document.getElementById('trophy-row');
   if(tc>0){const show=Math.min(tc,10);tr.innerHTML='🏆'.repeat(show)+(tc>10?'<span style="font-size:.9rem">...</span>':'')+`<span class="trophy-count">已收集 ${tc} 个奖杯！</span>`;}else{tr.innerHTML='';}
@@ -958,6 +961,54 @@ window.addEventListener('load', function(){
     if(el){ el.addEventListener('keydown', function(e){ if(e.key==='Enter') doLogin(); }); }
   });
 });
+
+// ============================================================
+// SPEECH - Word pronunciation
+// ============================================================
+var _voices = [];
+function _loadVoices(){
+  if('speechSynthesis' in window){
+    _voices = window.speechSynthesis.getVoices();
+  }
+}
+if('speechSynthesis' in window){
+  _loadVoices();
+  window.speechSynthesis.onvoiceschanged = _loadVoices;
+}
+
+function speakWord(){
+  var q = G.quiz && G.quiz.questions && G.quiz.questions[G.quiz.qIdx];
+  var word = q ? q.display : '';
+  if(!word) return;
+  if(!('speechSynthesis' in window)){
+    toast('当前浏览器不支持朗读', 'warn');
+    return;
+  }
+  var btn = document.getElementById('speak-btn');
+  try{
+    window.speechSynthesis.cancel();
+    var utter = new SpeechSynthesisUtterance(word);
+    utter.lang = 'en-US';
+    utter.rate = 0.8;
+    utter.pitch = 1.0;
+    utter.volume = 1.0;
+    if(_voices.length > 0){
+      var en = _voices.find(function(v){
+        return v.lang==='en-US' || v.lang==='en-GB' || v.lang.startsWith('en');
+      });
+      if(en) utter.voice = en;
+    }
+    if(btn){ btn.textContent='🔉'; }
+    utter.onend   = function(){ if(btn) btn.textContent='🔊'; };
+    utter.onerror = function(){ if(btn) btn.textContent='🔊'; };
+    window.speechSynthesis.speak(utter);
+    // Fallback reset after 3s
+    setTimeout(function(){ if(btn) btn.textContent='🔊'; }, 3000);
+  }catch(e){
+    if(btn) btn.textContent='🔊';
+    console.log('speak error:', e);
+  }
+}
 
 // Login button + Enter key binding
 (function(){
