@@ -3,11 +3,9 @@
     "name": "demo",
     "cls": "demo",
     "progress": {},
-    "wrong_bank": {
-      "allowance": 1
-    },
+    "wrong_bank": {},
     "trophies": 0,
-    "last_seen": "2026-05-31T07:40:58.562Z",
-    "last_saved": "2026-05-31T07:40:58.888Z"
+    "last_seen": "2026-05-31T07:41:00.828Z",
+    "last_saved": "2026-05-31T07:41:01.257Z"
   }
 }
