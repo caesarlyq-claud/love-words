@@ -21,5 +21,8 @@
     "trophies": 3,
     "last_seen": "2026-06-01T09:00:00.000Z",
     "last_saved": "2026-06-01T09:00:00.000Z"
+  },
+  "__test__": {
+    "test": true
   }
 }
