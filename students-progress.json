@@ -1,25 +1,18 @@
 {
   "demo": {
-    "name": "演示学生",
-    "cls": "示例班",
+    "name": "demo",
+    "cls": "demo",
     "progress": {
       "toefl_junior": {
         "1": {
           "done": true,
           "pct": 100
-        },
-        "3": {
-          "done": false,
-          "pct": 75
         }
       }
     },
-    "wrong_bank": {
-      "abandon": 1,
-      "adapt": 2
-    },
-    "trophies": 3,
-    "last_seen": "2026-06-01T09:00:00.000Z",
-    "last_saved": "2026-06-01T09:00:00.000Z"
+    "wrong_bank": {},
+    "trophies": 1,
+    "last_seen": "2026-06-04T13:28:30.095Z",
+    "last_saved": "2026-06-04T13:28:33.071Z"
   }
 }
