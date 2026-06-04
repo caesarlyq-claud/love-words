@@ -613,56 +613,48 @@ const WORD_DATA={"1":[{"w": "abandon", "p": "əˈbændən", "m": "放弃；弃�
 // STUDENT DATA — embedded + cloud sync via Cloudflare Worker
 // ============================================================
 var EMBEDDED_STUDENTS = {"demo": {"name": "demo", "cls": "demo", "account": "demo", "pwd": "123456", "pwd_changed_at": null, "progress": {}, "wrong_bank": {}, "trophies": 0, "created_at": "2026-05-30T14:24:44.873Z", "last_seen": null}, "董浩诚": {"name": "董浩诚", "cls": "小托福A班", "account": "董浩诚", "pwd": "666666", "pwd_changed_at": null, "progress": {}, "wrong_bank": {}, "trophies": 0, "created_at": "2026-05-30T15:24:11.908Z", "last_seen": null}, "侯淇天": {"name": "侯淇天", "cls": "小托福A班", "account": "侯淇天", "pwd": "7777777", "pwd_changed_at": null, "progress": {}, "wrong_bank": {}, "trophies": 0, "created_at": "2026-05-30T15:24:48.075Z", "last_seen": null}, "王贺萱": {"name": "王贺萱", "cls": "小托福A班", "account": "王贺萱", "pwd": "88888888", "pwd_changed_at": null, "progress": {}, "wrong_bank": {}, "trophies": 0, "created_at": "2026-05-30T15:26:12.291Z", "last_seen": null}};
+
+// Progress sync via Cloudflare Worker (token stored server-side)
 var WORKER_URL = 'https://vocab-progress.caesarlyq.workers.dev';
-
-function getLocalProg(acc){ try{return JSON.parse(localStorage.getItem("wiz_p_"+acc)||"null");}catch(e){return null;} }
-function setLocalProg(acc,d){ try{localStorage.setItem("wiz_p_"+acc,JSON.stringify(d));}catch(e){} }
-
-async function getStudent(acc){
-  var s = EMBEDDED_STUDENTS[acc];
-  if(!s) return null;
-  var local = getLocalProg(acc);
-  if(local){
-    return Object.assign({}, s, {
-      progress:   local.progress   || {},
-      wrong_bank: local.wrong_bank || {},
-      trophies:   local.trophies   || 0,
-      last_seen:  local.last_seen  || null,
-      pwd:        local.pwd        || s.pwd
-    });
-  }
-  return Object.assign({}, s);
-}
-
-async function saveStudent(acc, data){
-  setLocalProg(acc, {
-    progress:   data.progress   || {},
-    wrong_bank: data.wrong_bank || {},
-    trophies:   data.trophies   || 0,
-    last_seen:  data.last_seen  || null,
-    pwd:        data.pwd        || (EMBEDDED_STUDENTS[acc] && EMBEDDED_STUDENTS[acc].pwd)
-  });
-  pushToCloud(acc, data);
-}
+var _progWriting = false;
+var _progQueue = null;
 
 function pushToCloud(acc, data){
-  var s = EMBEDDED_STUDENTS[acc] || {};
-  fetch(WORKER_URL + "/progress", {
-    method: "POST",
-    headers: {"Content-Type":"application/json"},
-    body: JSON.stringify({
-      account: acc,
-      data: {
-        name:       s.name || acc,
-        cls:        s.cls  || "",
-        progress:   data.progress   || {},
-        wrong_bank: data.wrong_bank || {},
-        trophies:   data.trophies   || 0,
-        last_seen:  new Date().toISOString()
-      }
-    })
-  }).catch(function(e){ console.log("Cloud sync:", e.message); });
+  _progQueue = {
+    acc: acc,
+    payload: {
+      name: (EMBEDDED_STUDENTS[acc]||{}).name || acc,
+      cls:  (EMBEDDED_STUDENTS[acc]||{}).cls  || '',
+      progress:   data.progress   || {},
+      wrong_bank: data.wrong_bank || {},
+      trophies:   data.trophies   || 0,
+      last_seen:  new Date().toISOString()
+    }
+  };
+  if(!_progWriting) _flushProgress();
 }
+
+function _flushProgress(){
+  if(!_progQueue) return;
+  var item = _progQueue;
+  _progQueue = null;
+  _progWriting = true;
+  fetch(WORKER_URL + '/progress', {
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({account: item.acc, data: item.payload})
+  })
+  .then(function(){ 
+    console.log('✅ Cloud sync ok');
+    _progWriting = false;
+    if(_progQueue) _flushProgress();
+  })
+  .catch(function(e){
+    console.log('Cloud sync failed:', e.message);
+    _progWriting = false;
+  });
+}
+
 
 async function getAllStudents(){
   return Object.keys(EMBEDDED_STUDENTS).map(function(acc){
