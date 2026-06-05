@@ -7,12 +7,20 @@
         "1": {
           "done": true,
           "pct": 100
+        },
+        "2": {
+          "done": false,
+          "pct": 80
         }
       }
     },
-    "wrong_bank": {},
-    "trophies": 1,
-    "last_seen": "2026-06-04T13:28:30.097Z",
-    "last_saved": "2026-06-04T13:28:34.671Z"
+    "wrong_bank": {
+      "abandon": 2,
+      "aggressive": 1,
+      "acknowledge": 3
+    },
+    "trophies": 2,
+    "last_seen": "2026-06-05T10:00:00.000Z",
+    "last_saved": "2026-06-05T10:00:00.000Z"
   }
 }
