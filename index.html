@@ -365,6 +365,42 @@ html,body{font-family:'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-se
   .unit-grid{grid-template-columns:repeat(3,1fr)}
   .form-row{grid-template-columns:1fr}
 }
+
+/* Spell letter boxes */
+.spell-box{
+  width:38px;height:50px;
+  border:none;border-bottom:3px solid #cbd5e1;
+  background:transparent;
+  text-align:center;font-size:1.6rem;font-weight:700;
+  font-family:'Courier New',monospace;
+  color:#1f2937;
+  outline:none;
+  text-transform:lowercase;
+  transition:all 0.15s;
+  caret-color:#4f46e5;
+  padding:0;
+}
+.spell-box:focus{ border-bottom-color:#4f46e5; border-bottom-width:4px; }
+.spell-box.filled{ border-bottom-color:#10b981; }
+.spell-box.wrong{
+  border-bottom-color:#dc2626;
+  color:#dc2626;
+  animation:shake 0.4s;
+  background:#fee2e2;
+  border-radius:8px 8px 0 0;
+}
+.spell-box.correct{ border-bottom-color:#10b981; color:#10b981; }
+.spell-box.hint{ color:#f59e0b; border-bottom-color:#f59e0b; }
+.spell-box.space{ border:none;width:14px;pointer-events:none; }
+@keyframes shake{
+  0%,100%{transform:translateX(0)}
+  25%{transform:translateX(-4px)}
+  75%{transform:translateX(4px)}
+}
+.spell-msg-correct{ color:#16a34a; }
+.spell-msg-wrong{ color:#dc2626; }
+.spell-msg-hint{ color:#f59e0b; }
+
 </style>
 </head>
 <body>
@@ -498,49 +534,32 @@ html,body{font-family:'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-se
   <div class="quiz-body">
     <div class="qtype-pill">📝 拼写记忆</div>
     
-    <!-- Word display - shows meaning + phonetic, hide word -->
+    <!-- Word display - shows meaning + phonetic + speak -->
     <div class="question-card">
-      <div class="qc-hint" id="spell-meaning" style="font-size:1.05rem;margin-bottom:0.5rem;color:rgba(255,255,255,0.9)">中文释义</div>
+      <div class="qc-hint" id="spell-meaning" style="font-size:1.1rem;margin-bottom:0.6rem;color:rgba(255,255,255,0.95);font-weight:600">中文释义</div>
       <div style="display:flex;align-items:center;justify-content:center;gap:0.6rem;position:relative;z-index:1">
-        <div class="qc-phonetic" id="spell-phonetic" style="font-size:1.2rem;color:rgba(255,255,255,0.85)">[ ... ]</div>
+        <div class="qc-phonetic" id="spell-phonetic" style="font-size:1.15rem;color:rgba(255,255,255,0.85)">[ ... ]</div>
         <button id="spell-speak-btn" onclick="speakSpellWord()"
           style="background:rgba(255,255,255,0.18);border:1.5px solid rgba(255,255,255,0.35);border-radius:50%;width:38px;height:38px;flex-shrink:0;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center">
           🔊
         </button>
       </div>
-      <div style="margin-top:0.6rem;font-size:0.85rem;color:rgba(255,255,255,0.7)" id="spell-letter-count">_ _ _ _ _</div>
     </div>
     
-    <!-- Streak display same as choice mode -->
+    <!-- Streak display -->
     <div id="spell-streak-display" style="display:none;background:#fef3c7;border:1.5px solid #fde68a;border-radius:12px;padding:0.75rem 1.1rem;margin-bottom:0.85rem;align-items:center;gap:0.5rem;font-weight:700;color:#d97706;font-size:0.95rem">
       <span style="font-size:1.2rem">🔥</span>
       <span id="spell-streak-msg">连对3题！</span>
     </div>
     
-    <!-- Feedback (correct/wrong) -->
-    <div class="feedback" id="spell-feedback">
-      <div class="fb-icon" id="spell-fb-icon">✅</div>
-      <div><div class="fb-text" id="spell-fb-text"></div><div class="fb-sub" id="spell-fb-sub"></div></div>
-    </div>
+    <!-- Letter boxes (dynamically generated) -->
+    <div id="spell-boxes" style="display:flex;flex-wrap:wrap;justify-content:center;gap:0.4rem;margin:1.5rem 0;padding:0 0.5rem;min-height:60px"></div>
     
-    <!-- Input -->
-    <div style="margin-bottom:1rem">
-      <input type="text" id="spell-input" placeholder="请输入英文单词" autocomplete="off" autocapitalize="off" spellcheck="false"
-        style="width:100%;padding:0.9rem 1.1rem;border:2px solid #e5e7eb;border-radius:12px;font-size:1.15rem;outline:none;font-family:'Courier New',monospace;text-align:center;letter-spacing:0.05em;background:white">
-      <div id="spell-hint" style="margin-top:0.5rem;font-size:0.82rem;color:#6b7280;text-align:center;min-height:1.2em"></div>
-    </div>
+    <!-- Feedback message -->
+    <div id="spell-msg" style="text-align:center;font-size:0.95rem;font-weight:600;min-height:1.5em;margin-bottom:1rem"></div>
     
-    <!-- Buttons -->
-    <div style="display:flex;gap:0.75rem">
-      <button id="spell-hint-btn" onclick="showSpellHint()"
-        style="flex:1;padding:0.85rem;background:#f3f4f6;color:#4b5563;border:none;border-radius:12px;font-size:0.95rem;font-weight:600;cursor:pointer">
-        💡 提示
-      </button>
-      <button id="spell-submit-btn" onclick="submitSpell()"
-        style="flex:2;padding:0.85rem;background:linear-gradient(135deg,#4f46e5,#6366f1);color:white;border:none;border-radius:12px;font-size:1rem;font-weight:700;cursor:pointer">
-        ✓ 提交答案
-      </button>
-    </div>
+    <!-- Keyboard hint -->
+    <div style="text-align:center;font-size:0.78rem;color:#9ca3af">点击字母格输入 · 全对自动进入下一题</div>
   </div>
 </div>
 
@@ -846,11 +865,17 @@ function getUP(u){return((G.user.progress||{})[G.book.id]||{})[u]||{done:false,p
 function renderUnits(){
   document.getElementById('book-disp-title').textContent=G.book.title;
   const grid=document.getElementById('unit-grid');grid.innerHTML='';
+  const isSpell = G.book.quizMode === 'spell';
   for(let u=1;u<=G.book.units;u++){
-    const p=getUP(u);const wc=UNIT_META[u]||60;
+    const p=getUP(u);
+    // Word count: use book wordData if available, else UNIT_META
+    const words = G.book.wordData && G.book.wordData[String(u)];
+    const wc = words ? words.length : (UNIT_META[u]||0);
     const card=document.createElement('div');card.className='unit-card'+(p.done?' done':p.pct>0?' wip':'');card.onclick=()=>startUnit(u);
     let st='';if(p.done)st='<div class="uc-status done">✅ 完成</div>';else if(p.pct>0)st=`<div class="uc-status wip">📖 ${p.pct}%</div>`;
-    card.innerHTML=`<div class="uc-num">Unit ${u}</div><div class="uc-name">第${u}单元</div><div class="uc-count">${wc}个词</div><div class="uc-bar"><div class="uc-fill" style="width:${p.pct||0}%"></div></div>${st}`;
+    const label = isSpell ? `Lesson ${u}` : `Unit ${u}`;
+    const subLabel = isSpell ? `第${u}课` : `第${u}单元`;
+    card.innerHTML=`<div class="uc-num">${label}</div><div class="uc-name">${subLabel}</div><div class="uc-count">${wc}个词</div><div class="uc-bar"><div class="uc-fill" style="width:${p.pct||0}%"></div></div>${st}`;
     grid.appendChild(card);
   }
 }
@@ -866,10 +891,9 @@ function getWords(u){return(G.book.wordData||{})[String(u)]||[];}
 function startUnit(u){
   const words=getWords(u);
   if(!words.length){toast('该单元暂无数据','err');return;}
-  // Dispatch based on quiz mode
   if(G.book && G.book.quizMode==='spell'){
-    G.quiz={unitNum:u,words:words.slice(),qIdx:0,correct:0,wrong:0,wrongWords:[],firstWrong:{},streak:0,isReview:false,isSpell:true};
-    document.getElementById('qnav-title').textContent=`Lesson ${u}`;
+    G.quiz={unitNum:u,words:words.slice(),qIdx:0,correct:0,wrong:0,wrongWords:[],firstWrong:{},streak:0,isReview:false,isSpell:true,attemptCount:0,hintRevealed:{}};
+    document.getElementById('spell-title').textContent=`Lesson ${u}`;
     renderSpellQ();
     scr('s-spell');
   } else {
@@ -1161,7 +1185,8 @@ function renderSpellQ(){
   if(!word){ showSpellResult(); return; }
   q.currentWord = word;
   q.attemptCount = 0;
-  q.hintShown = false;
+  q.hintRevealed = {};  // which positions have been hinted
+  q.currentBox = 0;  // current focus position
   
   var total = q.words.length;
   document.getElementById('spell-pbar').style.width = (q.qIdx/total*100) + '%';
@@ -1169,24 +1194,221 @@ function renderSpellQ(){
   document.getElementById('spell-meaning').textContent = word.m || '';
   document.getElementById('spell-phonetic').textContent = word.p ? '[ '+word.p.replace(/^\/|\/$/g,'')+' ]' : '';
   
-  // Show letter count placeholder
+  // Build letter boxes
+  var boxes = document.getElementById('spell-boxes');
+  boxes.innerHTML = '';
   var w = word.w || '';
-  var blanks = w.split('').map(function(c){ return c===' '?' ':'_'; }).join(' ');
-  document.getElementById('spell-letter-count').textContent = blanks + '  ('+w.length+' 个字母)';
+  for(var i=0; i<w.length; i++){
+    var ch = w[i];
+    if(ch === ' '){
+      var sp = document.createElement('span');
+      sp.className = 'spell-box space';
+      boxes.appendChild(sp);
+    } else if(/[^a-zA-Z]/.test(ch)){
+      // Non-letter char (like apostrophe, hyphen) - show as-is, not editable
+      var sp = document.createElement('span');
+      sp.className = 'spell-box';
+      sp.style.borderBottom = 'none';
+      sp.style.pointerEvents = 'none';
+      sp.textContent = ch;
+      boxes.appendChild(sp);
+    } else {
+      var inp = document.createElement('input');
+      inp.type = 'text';
+      inp.maxLength = 1;
+      inp.className = 'spell-box';
+      inp.dataset.idx = i;
+      inp.addEventListener('input', spellOnInput);
+      inp.addEventListener('keydown', spellOnKeydown);
+      inp.addEventListener('focus', function(e){ e.target.select(); });
+      boxes.appendChild(inp);
+    }
+  }
   
   // Reset UI
-  var input = document.getElementById('spell-input');
-  input.value = '';
-  input.disabled = false;
-  input.focus();
-  document.getElementById('spell-hint').textContent = '';
-  document.getElementById('spell-feedback').className = 'feedback';
+  document.getElementById('spell-msg').textContent = '';
+  document.getElementById('spell-msg').className = '';
   document.getElementById('spell-streak-display').style.display = 'none';
-  document.getElementById('spell-hint-btn').disabled = false;
-  document.getElementById('spell-submit-btn').disabled = false;
+  
+  // Focus first input
+  var firstInput = boxes.querySelector('input.spell-box');
+  if(firstInput) setTimeout(function(){ firstInput.focus(); }, 100);
   
   // Auto-speak word
   setTimeout(speakSpellWord, 300);
+}
+
+function spellOnInput(e){
+  var inp = e.target;
+  var idx = parseInt(inp.dataset.idx);
+  var val = (inp.value || '').toLowerCase().slice(-1);
+  inp.value = val;
+  
+  if(!val){ return; }
+  if(!/[a-z]/.test(val)){ inp.value = ''; return; }
+  
+  var word = G.quiz.currentWord.w.toLowerCase();
+  var correctChar = word[idx];
+  
+  if(val === correctChar){
+    inp.classList.remove('wrong');
+    inp.classList.add('filled');
+    // Move to next input
+    var boxes = document.getElementById('spell-boxes');
+    var inputs = boxes.querySelectorAll('input.spell-box');
+    var nextInp = null;
+    var foundCurrent = false;
+    for(var i=0; i<inputs.length; i++){
+      if(foundCurrent){ nextInp = inputs[i]; break; }
+      if(inputs[i] === inp){ foundCurrent = true; }
+    }
+    if(nextInp){
+      nextInp.focus();
+    } else {
+      // All filled - check completion
+      checkSpellComplete();
+    }
+  } else {
+    // Wrong letter
+    inp.classList.add('wrong');
+    inp.value = '';
+    G.quiz.attemptCount = (G.quiz.attemptCount||0) + 1;
+    
+    // Track first wrong
+    var w = G.quiz.currentWord.w;
+    if(!G.quiz.firstWrong[w]){
+      G.quiz.firstWrong[w] = true;
+      G.quiz.wrong++;
+    }
+    if(!G.quiz.wrongWords.includes(w)) G.quiz.wrongWords.push(w);
+    if(!G.user.wrong_bank) G.user.wrong_bank = {};
+    G.user.wrong_bank[w] = (G.user.wrong_bank[w]||0) + 1;
+    G.quiz.streak = 0;
+    document.getElementById('spell-streak-display').style.display = 'none';
+    saveProg();
+    playSound('wrong');
+    
+    // Show error message
+    var msg = document.getElementById('spell-msg');
+    msg.textContent = '❌ 这个字母不对，再想想';
+    msg.className = 'spell-msg-wrong';
+    
+    // After 2-3 wrong attempts, give hint
+    if(G.quiz.attemptCount === 2 || G.quiz.attemptCount === 3){
+      setTimeout(function(){ giveSpellHint(idx); }, 600);
+    }
+    
+    // Refocus same box after shake animation
+    setTimeout(function(){
+      inp.classList.remove('wrong');
+      inp.focus();
+    }, 450);
+  }
+}
+
+function spellOnKeydown(e){
+  var inp = e.target;
+  if(e.key === 'Backspace' && !inp.value){
+    // Move to previous input
+    var boxes = document.getElementById('spell-boxes');
+    var inputs = boxes.querySelectorAll('input.spell-box');
+    var prevInp = null;
+    for(var i=0; i<inputs.length; i++){
+      if(inputs[i] === inp) break;
+      prevInp = inputs[i];
+    }
+    if(prevInp){
+      prevInp.value = '';
+      prevInp.classList.remove('filled');
+      prevInp.focus();
+    }
+  }
+}
+
+function giveSpellHint(idx){
+  var word = G.quiz.currentWord.w.toLowerCase();
+  var boxes = document.getElementById('spell-boxes');
+  var inputs = boxes.querySelectorAll('input.spell-box');
+  // Find the input for this idx
+  for(var i=0; i<inputs.length; i++){
+    if(parseInt(inputs[i].dataset.idx) === idx){
+      inputs[i].value = word[idx];
+      inputs[i].classList.add('hint','filled');
+      inputs[i].disabled = true;
+      G.quiz.hintRevealed[idx] = true;
+      // Move to next input
+      if(i+1 < inputs.length){
+        inputs[i+1].focus();
+      } else {
+        checkSpellComplete();
+      }
+      var msg = document.getElementById('spell-msg');
+      msg.textContent = '💡 提示：这个字母是 "' + word[idx] + '"';
+      msg.className = 'spell-msg-hint';
+      break;
+    }
+  }
+}
+
+function checkSpellComplete(){
+  var word = G.quiz.currentWord.w.toLowerCase();
+  var boxes = document.getElementById('spell-boxes');
+  var inputs = boxes.querySelectorAll('input.spell-box');
+  var typed = '';
+  // Reconstruct full typed word including spaces and non-letters
+  var fullWord = G.quiz.currentWord.w;
+  var inputIdx = 0;
+  for(var i=0; i<fullWord.length; i++){
+    if(fullWord[i] === ' '){
+      typed += ' ';
+    } else if(/[^a-zA-Z]/.test(fullWord[i])){
+      typed += fullWord[i];
+    } else {
+      if(inputs[inputIdx]){
+        typed += (inputs[inputIdx].value || '').toLowerCase();
+        inputIdx++;
+      }
+    }
+  }
+  
+  if(typed === word){
+    // All correct!
+    inputs.forEach(function(inp){ inp.classList.add('correct'); inp.disabled = true; });
+    
+    var msg = document.getElementById('spell-msg');
+    msg.textContent = '✅ 太棒了！' + G.quiz.currentWord.w + ' - ' + G.quiz.currentWord.m;
+    msg.className = 'spell-msg-correct';
+    
+    // Score
+    var hadError = G.quiz.attemptCount > 0 || Object.keys(G.quiz.hintRevealed).length > 0;
+    if(!hadError){
+      G.quiz.correct++;
+      G.quiz.streak = (G.quiz.streak||0) + 1;
+    } else {
+      // Got through but with mistakes - already counted in wrong tracking
+      G.quiz.correct++;  // still counts as completed
+    }
+    
+    saveProg();
+    playSound('correct');
+    
+    // Streak milestone
+    var streak = G.quiz.streak;
+    if(!hadError && (streak===3 || streak===5 || streak===10 || (streak>10 && streak%5===0))){
+      var msgs = {3:'连对3题！继续加油！',5:'连对5题！太厉害了！',10:'连对10题！单词小天才！'};
+      var sm = msgs[streak] || ('连对'+streak+'题！无敌了！');
+      document.getElementById('spell-streak-msg').textContent = sm;
+      document.getElementById('spell-streak-display').style.display = 'flex';
+      playSound('streak');
+    }
+    
+    // Auto next after delay
+    setTimeout(function(){
+      G.quiz.qIdx++;
+      if(G.quiz.qIdx >= G.quiz.words.length) showSpellResult();
+      else renderSpellQ();
+    }, 1200);
+  }
 }
 
 function speakSpellWord(){
@@ -1197,7 +1419,6 @@ function speakSpellWord(){
   var btn = document.getElementById('spell-speak-btn');
   if(btn) btn.textContent = '🔉';
   
-  // Try Dictionary API first
   fetch('https://api.dictionaryapi.dev/api/v2/entries/en/' + encodeURIComponent(word))
     .then(function(r){ return r.ok ? r.json() : null; })
     .then(function(data){
@@ -1240,138 +1461,22 @@ function spellSpeakFallback(word, btn){
   setTimeout(function(){ if(btn) btn.textContent='🔊'; }, 3000);
 }
 
-function showSpellHint(){
-  var q = G.quiz;
-  if(!q.currentWord) return;
-  var word = q.currentWord.w;
-  q.hintShown = true;
-  // Show first letter + some letters
-  var revealed = word.length <= 3 
-    ? word[0] + word.slice(1).split('').map(function(){return '_';}).join('')
-    : word.slice(0, 2) + word.slice(2).split('').map(function(c){return c===' '?' ':'_';}).join('');
-  document.getElementById('spell-hint').textContent = '💡 提示：' + revealed.split('').join(' ');
-  document.getElementById('spell-hint-btn').disabled = true;
-}
-
-function submitSpell(){
-  var q = G.quiz;
-  if(!q.currentWord) return;
-  var input = document.getElementById('spell-input');
-  var answer = input.value.trim().toLowerCase();
-  var correct = (q.currentWord.w||'').toLowerCase();
-  if(!answer) return;
-  
-  q.attemptCount = (q.attemptCount||0) + 1;
-  
-  var fb = document.getElementById('spell-feedback');
-  
-  if(answer === correct){
-    // Correct
-    fb.className = 'feedback correct';
-    document.getElementById('spell-fb-icon').textContent = '✅';
-    document.getElementById('spell-fb-text').textContent = '太棒了！拼写正确';
-    document.getElementById('spell-fb-sub').textContent = q.currentWord.w + ' - ' + q.currentWord.m;
-    
-    input.disabled = true;
-    document.getElementById('spell-submit-btn').disabled = true;
-    document.getElementById('spell-hint-btn').disabled = true;
-    
-    // Count first-attempt success vs after retry/hint
-    if(q.attemptCount === 1 && !q.hintShown){
-      q.correct++;
-      q.streak = (q.streak||0) + 1;
-    } else {
-      q.streak = 0;
-      // Got it right but with help - mark as needing more practice  
-      if(!q.wrongWords.includes(q.currentWord.w)) q.wrongWords.push(q.currentWord.w);
-      if(!q.firstWrong[q.currentWord.w] && q.attemptCount > 1){
-        q.firstWrong[q.currentWord.w] = true;
-        q.wrong++;
-      }
-    }
-    
-    // Save to wrong_bank if attempted multiple times
-    if(q.attemptCount > 1){
-      if(!G.user.wrong_bank) G.user.wrong_bank = {};
-      G.user.wrong_bank[q.currentWord.w] = (G.user.wrong_bank[q.currentWord.w]||0) + 1;
-    } else {
-      // First-try correct → decrement wrong_bank
-      var wb = G.user.wrong_bank || {};
-      if(wb[q.currentWord.w]){ wb[q.currentWord.w]--; if(wb[q.currentWord.w]<=0) delete wb[q.currentWord.w]; }
-    }
-    saveProg();
-    playSound('correct');
-    
-    // Streak milestone
-    var streak = q.streak;
-    if(streak===3 || streak===5 || streak===10 || (streak>10 && streak%5===0)){
-      var msgs = {3:'连对3题！继续加油！',5:'连对5题！太厉害了！',10:'连对10题！单词小天才！'};
-      var sm = msgs[streak] || ('连对'+streak+'题！无敌了！');
-      document.getElementById('spell-streak-msg').textContent = sm;
-      document.getElementById('spell-streak-display').style.display = 'flex';
-      playSound('streak');
-    }
-    
-    // Move to next after 1.2s
-    setTimeout(function(){
-      q.qIdx++;
-      if(q.qIdx >= q.words.length) showSpellResult();
-      else renderSpellQ();
-    }, 1200);
-  } else {
-    // Wrong
-    fb.className = 'feedback wrong';
-    document.getElementById('spell-fb-icon').textContent = '❌';
-    
-    // First wrong - mark
-    if(!q.firstWrong[q.currentWord.w]){
-      q.firstWrong[q.currentWord.w] = true;
-      q.wrong++;
-    }
-    if(!q.wrongWords.includes(q.currentWord.w)) q.wrongWords.push(q.currentWord.w);
-    if(!G.user.wrong_bank) G.user.wrong_bank = {};
-    G.user.wrong_bank[q.currentWord.w] = (G.user.wrong_bank[q.currentWord.w]||0) + 1;
-    q.streak = 0;
-    document.getElementById('spell-streak-display').style.display = 'none';
-    saveProg();
-    playSound('wrong');
-    
-    if(q.attemptCount >= 3){
-      // Show answer after 3 wrong attempts
-      document.getElementById('spell-fb-text').textContent = '正确答案是：' + q.currentWord.w;
-      document.getElementById('spell-fb-sub').textContent = q.currentWord.m;
-      input.disabled = true;
-      document.getElementById('spell-submit-btn').disabled = true;
-      
-      setTimeout(function(){
-        q.qIdx++;
-        if(q.qIdx >= q.words.length) showSpellResult();
-        else renderSpellQ();
-      }, 2500);
-    } else {
-      document.getElementById('spell-fb-text').textContent = '再试一次！';
-      document.getElementById('spell-fb-sub').textContent = '提示：' + q.currentWord.w.length + ' 个字母，以 ' + q.currentWord.w[0] + ' 开头';
-      input.value = '';
-      input.focus();
-    }
-  }
-}
-
 function showSpellResult(){
-  // Reuse showResult but adapt for spell
   var q = G.quiz;
   if(!G.user.progress) G.user.progress = {};
   if(!G.user.progress[G.book.id]) G.user.progress[G.book.id] = {};
   var prev = (G.user.progress[G.book.id][q.unitNum]||{}).pct || 0;
   var wasDone = (G.user.progress[G.book.id][q.unitNum]||{}).done;
   var total = q.words.length;
-  var acc = Math.round(q.correct/total*100);
-  G.user.progress[G.book.id][q.unitNum] = {done: q.wrong===0, pct: Math.max(acc,prev)};
-  if(q.wrong===0 && !wasDone){ G.user.trophies = (G.user.trophies||0) + 1; playSound('finish'); startConfetti(); }
+  var fwCount = q.firstWrong ? Object.keys(q.firstWrong).length : q.wrong;
+  var perfect = (fwCount === 0);
+  var correctCount = total - fwCount;
+  var acc = Math.round(correctCount/total*100);
+  G.user.progress[G.book.id][q.unitNum] = {done: perfect, pct: Math.max(acc,prev)};
+  if(perfect && !wasDone){ G.user.trophies = (G.user.trophies||0) + 1; playSound('finish'); startConfetti(); }
   else { playSound('finish'); }
   saveProg();
   
-  // Show in result screen (reuse)
   var emoji='💪',title='继续加油！';
   if(acc>=95){emoji='🏆';title='完美！单词小天才！';}
   else if(acc>=85){emoji='🌟';title='非常优秀！';}
@@ -1380,8 +1485,7 @@ function showSpellResult(){
   document.getElementById('res-emoji').textContent=emoji;
   document.getElementById('res-title').textContent=title;
   document.getElementById('res-sub').textContent='Lesson '+q.unitNum+' 拼写完毕';
-  var fwCount = q.firstWrong ? Object.keys(q.firstWrong).length : q.wrong;
-  document.getElementById('rs-c').textContent=q.correct;
+  document.getElementById('rs-c').textContent=correctCount;
   document.getElementById('rs-w').textContent=fwCount;
   document.getElementById('rs-t').textContent=total;
   document.getElementById('rs-a').textContent=acc+'%';
