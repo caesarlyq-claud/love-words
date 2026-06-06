@@ -11,14 +11,14 @@
       }
     },
     "wrong_bank": {
-      "London": 2,
+      "London": 3,
       "appointment": 1,
       "urgent": 1,
       "shopping": 2,
       "vegetable": 4
     },
     "trophies": 0,
-    "last_seen": "2026-06-06T15:09:47.113Z",
-    "last_saved": "2026-06-06T15:09:47.591Z"
+    "last_seen": "2026-06-06T15:09:49.644Z",
+    "last_saved": "2026-06-06T15:09:50.011Z"
   }
 }
