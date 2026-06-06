@@ -402,6 +402,8 @@ html,body{font-family:'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-se
 .spell-msg-correct{ color:#16a34a; }
 .spell-msg-wrong{ color:#dc2626; }
 .spell-msg-hint{ color:#f59e0b; }
+.spell-box.upper-req{ border-bottom-color:#f59e0b; }
+.spell-box.upper-req.filled{ border-bottom-color:#10b981; color:#059669; font-weight:800; }
 
 
 /* Teacher praise popup */
@@ -595,7 +597,7 @@ html,body{font-family:'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-se
       style="position:fixed;top:-100px;left:0;width:1px;height:1px;opacity:0;border:none;outline:none;z-index:9999">
     
     <!-- Keyboard hint -->
-    <div style="text-align:center;font-size:0.78rem;color:#9ca3af">点击字母格开始输入 · 全对自动进入下一题</div>
+    <div style="text-align:center;font-size:0.78rem;color:#9ca3af">点击字母格开始输入 · 全对自动进入下一题 · <span style="color:#f59e0b">橙色 = 需大写</span></div>
   </div>
 </div>
 
@@ -1228,13 +1230,15 @@ function speakFallback(word, btn){
   utter.volume = 1.0;
   // Pick best available voice
   var voices = window.speechSynthesis.getVoices();
-  var preferred = ['Samantha','Karen','Daniel','Google US English','Microsoft Aria'];
+  var femaleVoices = ['Samantha','Karen','Moira','Fiona','Victoria',
+    'Microsoft Aria','Microsoft Zira','Google US English','Google UK English Female'];
   var voice = null;
-  for(var p=0; p<preferred.length; p++){
-    voice = voices.find(function(v){ return v.name.includes(preferred[p]); });
+  for(var fvi=0; fvi<femaleVoices.length; fvi++){
+    voice = voices.find(function(v){ return v.name.indexOf(femaleVoices[fvi]) >= 0; });
     if(voice) break;
   }
-  if(!voice) voice = voices.find(function(v){ return v.lang==='en-US'; });
+  if(!voice) voice = voices.find(function(v){ return v.name.toLowerCase().indexOf('female') >= 0 && v.lang.startsWith('en'); });
+  if(!voice) voice = voices.find(function(v){ return v.lang === 'en-US'; });
   if(!voice) voice = voices.find(function(v){ return v.lang.startsWith('en'); });
   if(voice) utter.voice = voice;
   utter.onend = function(){ if(btn) btn.textContent='🔊'; };
@@ -1278,9 +1282,11 @@ function renderSpellQ(){
       box.style.color = '#374151';
       box.style.pointerEvents = 'none';
     } else {
-      box.className = 'spell-box';
+      var isUpper = /[A-Z]/.test(ch);
+      box.className = 'spell-box' + (isUpper ? ' upper-req' : '');
       box.dataset.idx = i;
-      box.onclick = function(){ 
+      box.dataset.upper = isUpper ? '1' : '0';
+      box.onclick = function(){
         document.getElementById('spell-hidden-input').focus();
       };
     }
@@ -1337,22 +1343,20 @@ function spellHandleKey(key, e){
   if(!G.quiz || !G.quiz.currentWord) return;
   var word = G.quiz.currentWord.w;
   var li = G.quiz.currentLetterIdx || 0;
-  
-  // Find next non-static letter position
+
+  // Skip spaces and non-letter chars
   while(li < word.length && (word[li] === ' ' || /[^a-zA-Z]/.test(word[li]))){
     li++;
   }
   if(li >= word.length) return;
-  
+
   if(key === 'Backspace'){
     if(e) e.preventDefault();
-    // Go back one letter
     if(li > 0){
       var prevLi = li - 1;
       while(prevLi > 0 && (word[prevLi] === ' ' || /[^a-zA-Z]/.test(word[prevLi]))){
         prevLi--;
       }
-      // Only allow backspace on non-hinted boxes
       var boxes = document.getElementById('spell-boxes');
       var box = boxes.querySelector('[data-idx="'+prevLi+'"]');
       if(box && !box.classList.contains('hint') && !box.classList.contains('correct')){
@@ -1363,36 +1367,47 @@ function spellHandleKey(key, e){
     }
     return;
   }
-  
-  // Only accept letters
+
   if(!/^[a-zA-Z]$/.test(key)) return;
   if(e) e.preventDefault();
-  
-  var typed = key.toLowerCase();
-  var correct = word[li].toLowerCase();
+
+  // Uppercase check: does this position require a capital letter?
+  var correctChar = word[li];
+  var isUpperRequired = /[A-Z]/.test(correctChar);
+
+  // What the student typed (preserve case for comparison)
+  var typed = key;
+  // What we need (exact char from word)
+  var correct = correctChar;
+
+  // Accept both cases for lowercase positions, require exact for uppercase
+  var isCorrect = isUpperRequired
+    ? (typed === correct)                        // must match exactly
+    : (typed.toLowerCase() === correct.toLowerCase()); // case-insensitive
+
+  var displayChar = isUpperRequired ? typed.toUpperCase() : typed.toLowerCase();
+
   var boxes = document.getElementById('spell-boxes');
   var box = boxes.querySelector('[data-idx="'+li+'"]');
   if(!box) return;
-  
-  if(typed === correct){
-    // Correct
-    box.textContent = typed;
+
+  if(isCorrect){
+    // ✅ Correct
+    box.textContent = isUpperRequired ? correct : correct.toLowerCase();
     box.classList.remove('wrong');
     box.classList.add('filled');
     var msg = document.getElementById('spell-msg');
     if(msg && msg.className === 'spell-msg-wrong'){ msg.textContent=''; msg.className=''; }
-    
+
     // Move to next letter
     G.quiz.currentLetterIdx = li + 1;
-    
-    // Check if complete
     checkSpellComplete();
   } else {
-    // Wrong
-    box.textContent = typed;
+    // ❌ Wrong
+    box.textContent = displayChar;
     box.classList.add('wrong');
     G.quiz.attemptCount = (G.quiz.attemptCount||0) + 1;
-    
+
     var w = G.quiz.currentWord.w;
     if(!G.quiz.firstWrong[w]){ G.quiz.firstWrong[w]=true; G.quiz.wrong++; }
     if(!G.quiz.wrongWords.includes(w)) G.quiz.wrongWords.push(w);
@@ -1402,28 +1417,26 @@ function spellHandleKey(key, e){
     document.getElementById('spell-streak-display').style.display='none';
     saveProg();
     playSound('wrong');
-    
+
     // Show message after 2nd wrong
     if(G.quiz.attemptCount >= 2){
       var msg2 = document.getElementById('spell-msg');
-      msg2.textContent = '❌ 这个字母不对，再想想';
+      var hint = isUpperRequired ? '（需要大写字母）' : '';
+      msg2.textContent = '❌ 这个字母不对，再想想' + hint;
       msg2.className = 'spell-msg-wrong';
     }
-    
+
     // Hint after 3rd wrong
     if(G.quiz.attemptCount >= 3){
       setTimeout(function(){ giveSpellHint(li); }, 400);
     }
-    
+
     // Flash red then clear - stay on same position
-    // Clear hidden input immediately to prevent double-processing
     var hiddenInp = document.getElementById('spell-hidden-input');
     if(hiddenInp) hiddenInp.value = '';
-    
     setTimeout(function(){
       box.classList.remove('wrong');
       box.textContent = '';
-      // currentLetterIdx stays at li - student retypes same position
       var hi = document.getElementById('spell-hidden-input');
       if(hi){ hi.value=''; hi.focus(); }
     }, 350);
@@ -1558,7 +1571,15 @@ function spellSpeakFallback(word, btn){
   var u = new SpeechSynthesisUtterance(word);
   u.lang='en-US'; u.rate=0.75; u.pitch=1.1;
   var voices = window.speechSynthesis.getVoices();
-  var v = voices.find(function(x){ return x.lang.startsWith('en'); });
+  var femaleV = ['Samantha','Karen','Moira','Microsoft Aria','Microsoft Zira','Google US English'];
+  var v = null;
+  for(var fi=0; fi<femaleV.length; fi++){
+    v = voices.find(function(x){ return x.name.indexOf(femaleV[fi]) >= 0; });
+    if(v) break;
+  }
+  if(!v) v = voices.find(function(x){ return x.name.toLowerCase().indexOf('female') >= 0 && x.lang.startsWith('en'); });
+  if(!v) v = voices.find(function(x){ return x.lang === 'en-US'; });
+  if(!v) v = voices.find(function(x){ return x.lang.startsWith('en'); });
   if(v) u.voice = v;
   u.onend = function(){ if(btn) btn.textContent='🔊'; };
   window.speechSynthesis.speak(u);
@@ -1718,12 +1739,14 @@ function speakPraise(text, rate, pitch, vol){
   u.pitch = pitch;
   u.volume = vol;
   var voices = window.speechSynthesis.getVoices();
-  var preferred = ["Samantha","Karen","Google US English","Microsoft Aria","Alex"];
+  var femaleVoicesP = ["Samantha","Karen","Moira","Fiona",
+    "Microsoft Aria","Microsoft Zira","Google US English","Google UK English Female"];
   var voice = null;
-  for(var p=0;p<preferred.length;p++){
-    voice = voices.find(function(v){return v.name.indexOf(preferred[p])>=0;});
+  for(var fvp=0;fvp<femaleVoicesP.length;fvp++){
+    voice = voices.find(function(v){return v.name.indexOf(femaleVoicesP[fvp])>=0;});
     if(voice) break;
   }
+  if(!voice) voice = voices.find(function(v){return v.name.toLowerCase().indexOf("female")>=0 && v.lang.startsWith("en");});
   if(!voice) voice = voices.find(function(v){return v.lang==="en-US";});
   if(!voice) voice = voices.find(function(v){return v.lang.startsWith("en");});
   if(voice) u.voice = voice;
