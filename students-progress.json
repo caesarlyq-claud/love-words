@@ -13,10 +13,11 @@
     "wrong_bank": {
       "London": 1,
       "week": 1,
-      "bus stop": 2
+      "bus stop": 2,
+      "pleasantly": 1
     },
     "trophies": 1,
-    "last_seen": "2026-06-06T03:46:54.384Z",
-    "last_saved": "2026-06-06T03:46:55.987Z"
+    "last_seen": "2026-06-06T03:47:49.112Z",
+    "last_saved": "2026-06-06T03:47:49.778Z"
   }
 }
