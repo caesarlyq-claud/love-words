@@ -2,28 +2,10 @@
   "demo": {
     "name": "demo",
     "cls": "demo",
-    "progress": {
-      "toefl_junior": {
-        "1": {
-          "done": true,
-          "pct": 100
-        }
-      }
-    },
-    "wrong_bank": {
-      "London": 1,
-      "week": 1,
-      "bus stop": 2,
-      "pleasantly": 9,
-      "pocket": 1,
-      "phrasebook": 11,
-      "suddenly": 28,
-      "speak": 1,
-      "shopping": 2,
-      "vegetable": 1
-    },
-    "trophies": 1,
-    "last_seen": "2026-06-06T14:57:55.208Z",
-    "last_saved": "2026-06-06T14:57:55.831Z"
+    "progress": {},
+    "wrong_bank": {},
+    "trophies": 0,
+    "last_seen": "2026-06-06T14:58:13.610Z",
+    "last_saved": "2026-06-06T14:58:14.375Z"
   }
 }
