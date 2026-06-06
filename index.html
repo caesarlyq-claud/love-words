@@ -1322,12 +1322,11 @@ function initSpellHiddenInput(){
   // For mobile: use input event
   newInp.addEventListener('input', function(e){
     var val = newInp.value;
+    newInp.value = '';  // Clear immediately to prevent double-processing
     if(!val) return;
-    // Process each character typed
-    for(var i=0; i<val.length; i++){
-      spellHandleKey(val[i], null);
-    }
-    newInp.value = '';
+    // Only process ONE character at a time (last typed)
+    var ch = val.slice(-1);
+    if(ch && ch !== ' ') spellHandleKey(ch, null);
   });
 }
 
@@ -1416,12 +1415,18 @@ function spellHandleKey(key, e){
       setTimeout(function(){ giveSpellHint(li); }, 400);
     }
     
-    // Flash red then clear
+    // Flash red then clear - stay on same position
+    // Clear hidden input immediately to prevent double-processing
+    var hiddenInp = document.getElementById('spell-hidden-input');
+    if(hiddenInp) hiddenInp.value = '';
+    
     setTimeout(function(){
       box.classList.remove('wrong');
       box.textContent = '';
-      document.getElementById('spell-hidden-input').focus();
-    }, 400);
+      // currentLetterIdx stays at li - student retypes same position
+      var hi = document.getElementById('spell-hidden-input');
+      if(hi){ hi.value=''; hi.focus(); }
+    }, 350);
   }
 }
 
@@ -1624,35 +1629,35 @@ document.addEventListener('DOMContentLoaded', function(){
 // ============================================================
 var PRAISE_LEVELS = {
   1: {
-    phrases: ["Good.", "Nice.", "Well done.", "That\'s correct."],
-    rate: 0.95, pitch: 1.0, vol: 0.9,
-    label: "Lv.1 · 基础肯定"
+    phrases: ["Good!", "Nice!", "Correct!", "Yes!"],
+    rate: 0.95, pitch: 1.05, vol: 0.9,
+    label: "Lv.1"
   },
   2: {
-    phrases: ["Great job!", "Very good!", "Awesome!", "You\'re on fire!"],
-    rate: 1.0, pitch: 1.1, vol: 1.0,
-    label: "Lv.2 · 明显表扬"
+    phrases: ["Great!", "Awesome!", "Well done!", "Bravo!"],
+    rate: 1.05, pitch: 1.15, vol: 1.0,
+    label: "Lv.2"
   },
   3: {
-    phrases: ["Excellent work!", "Fantastic!", "You\'re on a roll!", "Keep it going!"],
-    rate: 1.05, pitch: 1.2, vol: 1.0,
-    label: "Lv.3 · 强烈表扬"
+    phrases: ["Excellent!", "Fantastic!", "Superb!", "Brilliant!"],
+    rate: 1.1, pitch: 1.25, vol: 1.0,
+    label: "Lv.3"
   },
   4: {
-    phrases: ["Outstanding!", "That\'s impressive!", "You\'re unstoppable!", "Flawless streak!"],
-    rate: 1.1, pitch: 1.3, vol: 1.0,
-    label: "Lv.4 · 夸张表扬"
+    phrases: ["Outstanding!", "Incredible!", "Unstoppable!", "Flawless!"],
+    rate: 1.15, pitch: 1.35, vol: 1.0,
+    label: "Lv.4"
   },
   5: {
-    phrases: ["Absolutely legendary!", "You\'re a vocabulary master!", "Unbelievable — perfect streak!", "Genius level unlocked!"],
-    rate: 1.15, pitch: 1.45, vol: 1.0,
-    label: "Lv.5 · 神级表扬"
+    phrases: ["Legendary!", "Genius!", "Unbelievable!", "Magnificent!"],
+    rate: 1.2, pitch: 1.5, vol: 1.0,
+    label: "Lv.5"
   }
 };
 
 var RECORD_PHRASES = [
-  "New record! You\'ve never been this sharp.",
-  "All-time best! This is your peak performance."
+  "New record!",
+  "All-time best!"
 ];
 
 var _praiseTimer = null;
