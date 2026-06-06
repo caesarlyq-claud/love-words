@@ -1319,51 +1319,68 @@ function initSpellHiddenInput(){
   var inp = document.getElementById('spell-hidden-input');
   if(!inp) return;
   inp.value = '';
-  // Remove old listeners by cloning
   var newInp = inp.cloneNode(true);
   inp.parentNode.replaceChild(newInp, inp);
+
   newInp.addEventListener('keydown', function(e){
-    spellHandleKey(e.key, e);
+    if(e.key === 'Backspace'){
+      e.preventDefault();
+      spellHandleKey('Backspace', e);
+    } else if(/^[a-zA-Z]$/.test(e.key)){
+      e.preventDefault();
+      spellHandleKey(e.key, e);
+    }
   });
-  // For mobile: use input event
+
+  // Mobile: input event fires after keyboard inserts text
   newInp.addEventListener('input', function(e){
     var val = newInp.value;
-    newInp.value = '';  // Clear immediately to prevent double-processing
+    newInp.value = '';
     if(!val) return;
-    // Only process ONE character at a time (last typed)
     var ch = val.slice(-1);
     if(ch && ch !== ' ') spellHandleKey(ch, null);
   });
 }
 
-function spellOnInput(e){}  // legacy - kept for compatibility
-function spellOnKeydown(e){}  // legacy
-
 function spellHandleKey(key, e){
   if(!G.quiz || !G.quiz.currentWord) return;
   var word = G.quiz.currentWord.w;
-  var li = G.quiz.currentLetterIdx || 0;
 
-  // Skip spaces and non-letter chars
-  while(li < word.length && (word[li] === ' ' || /[^a-zA-Z]/.test(word[li]))){
-    li++;
+  // Find current position (first empty, non-static, non-hinted box)
+  var boxes = document.getElementById('spell-boxes');
+  var allBoxes = boxes.querySelectorAll('.spell-box[data-idx]');
+
+  // Find first unfilled box
+  var targetBox = null;
+  var targetIdx = -1;
+  for(var bi=0; bi<allBoxes.length; bi++){
+    var b = allBoxes[bi];
+    if(!b.classList.contains('filled') && !b.classList.contains('correct') && !b.classList.contains('hint')){
+      targetBox = b;
+      targetIdx = parseInt(b.dataset.idx);
+      break;
+    }
   }
-  if(li >= word.length) return;
+
+  if(!targetBox) return; // all filled
 
   if(key === 'Backspace'){
     if(e) e.preventDefault();
-    if(li > 0){
-      var prevLi = li - 1;
-      while(prevLi > 0 && (word[prevLi] === ' ' || /[^a-zA-Z]/.test(word[prevLi]))){
-        prevLi--;
+    // Find last filled box to clear
+    var lastFilled = null;
+    var lastFilledIdx = -1;
+    for(var bi2=allBoxes.length-1; bi2>=0; bi2--){
+      var b2 = allBoxes[bi2];
+      if(b2.classList.contains('filled') && !b2.classList.contains('hint')){
+        lastFilled = b2;
+        lastFilledIdx = parseInt(b2.dataset.idx);
+        break;
       }
-      var boxes = document.getElementById('spell-boxes');
-      var box = boxes.querySelector('[data-idx="'+prevLi+'"]');
-      if(box && !box.classList.contains('hint') && !box.classList.contains('correct')){
-        box.textContent = '';
-        box.classList.remove('filled','wrong','correct');
-        G.quiz.currentLetterIdx = prevLi;
-      }
+    }
+    if(lastFilled){
+      lastFilled.textContent = '';
+      lastFilled.classList.remove('filled','wrong','correct');
+      G.quiz.currentLetterIdx = lastFilledIdx;
     }
     return;
   }
@@ -1371,41 +1388,33 @@ function spellHandleKey(key, e){
   if(!/^[a-zA-Z]$/.test(key)) return;
   if(e) e.preventDefault();
 
-  // Uppercase check: does this position require a capital letter?
-  var correctChar = word[li];
+  var correctChar = word[targetIdx];
+  if(!correctChar) return;
+
   var isUpperRequired = /[A-Z]/.test(correctChar);
+  var typedChar = key;
 
-  // What the student typed (preserve case for comparison)
-  var typed = key;
-  // What we need (exact char from word)
-  var correct = correctChar;
-
-  // Accept both cases for lowercase positions, require exact for uppercase
+  // Compare: uppercase positions require exact match, others case-insensitive
   var isCorrect = isUpperRequired
-    ? (typed === correct)                        // must match exactly
-    : (typed.toLowerCase() === correct.toLowerCase()); // case-insensitive
-
-  var displayChar = isUpperRequired ? typed.toUpperCase() : typed.toLowerCase();
-
-  var boxes = document.getElementById('spell-boxes');
-  var box = boxes.querySelector('[data-idx="'+li+'"]');
-  if(!box) return;
+    ? (typedChar === correctChar)
+    : (typedChar.toLowerCase() === correctChar.toLowerCase());
 
   if(isCorrect){
-    // ✅ Correct
-    box.textContent = isUpperRequired ? correct : correct.toLowerCase();
-    box.classList.remove('wrong');
-    box.classList.add('filled');
+    // ✅ Correct - fill the box
+    targetBox.textContent = isUpperRequired ? correctChar : correctChar.toLowerCase();
+    targetBox.classList.remove('wrong');
+    targetBox.classList.add('filled');
+    G.quiz.currentLetterIdx = targetIdx + 1;
+
     var msg = document.getElementById('spell-msg');
     if(msg && msg.className === 'spell-msg-wrong'){ msg.textContent=''; msg.className=''; }
 
-    // Move to next letter
-    G.quiz.currentLetterIdx = li + 1;
+    // Check if all done
     checkSpellComplete();
   } else {
-    // ❌ Wrong
-    box.textContent = displayChar;
-    box.classList.add('wrong');
+    // ❌ Wrong - flash red, stay on same box
+    targetBox.textContent = typedChar;
+    targetBox.classList.add('wrong');
     G.quiz.attemptCount = (G.quiz.attemptCount||0) + 1;
 
     var w = G.quiz.currentWord.w;
@@ -1421,27 +1430,27 @@ function spellHandleKey(key, e){
     // Show message after 2nd wrong
     if(G.quiz.attemptCount >= 2){
       var msg2 = document.getElementById('spell-msg');
-      var hint = isUpperRequired ? '（需要大写字母）' : '';
-      msg2.textContent = '❌ 这个字母不对，再想想' + hint;
+      msg2.textContent = '❌ 这个字母不对' + (isUpperRequired ? '（需要大写）' : '') + '，再想想';
       msg2.className = 'spell-msg-wrong';
     }
 
     // Hint after 3rd wrong
     if(G.quiz.attemptCount >= 3){
-      setTimeout(function(){ giveSpellHint(li); }, 400);
+      setTimeout(function(){ giveSpellHint(targetIdx); }, 400);
     }
 
-    // Flash red then clear - stay on same position
+    // Flash red then clear, stay on same box
     var hiddenInp = document.getElementById('spell-hidden-input');
     if(hiddenInp) hiddenInp.value = '';
     setTimeout(function(){
-      box.classList.remove('wrong');
-      box.textContent = '';
+      targetBox.classList.remove('wrong');
+      targetBox.textContent = '';
       var hi = document.getElementById('spell-hidden-input');
       if(hi){ hi.value=''; hi.focus(); }
     }, 350);
   }
 }
+
 
 
 
@@ -1465,67 +1474,65 @@ function giveSpellHint(idx){
 }
 
 function checkSpellComplete(){
-  var word = G.quiz.currentWord.w.toLowerCase();
+  var word = G.quiz.currentWord.w;
   var boxes = document.getElementById('spell-boxes');
-  var li = G.quiz.currentLetterIdx || 0;
-  
-  // Check if all letter positions are filled
-  var allFilled = true;
-  for(var i=0; i<word.length; i++){
-    if(word[i] === ' ' || /[^a-zA-Z]/.test(word[i])) continue;
-    var box = boxes.querySelector('[data-idx="'+i+'"]');
-    if(!box || !box.textContent){ allFilled = false; break; }
-  }
-  
-  if(allFilled){
-    // All correct!
-    boxes.querySelectorAll('.spell-box[data-idx]').forEach(function(b){ b.classList.add('correct'); });
-    
-    var msg = document.getElementById('spell-msg');
-    msg.textContent = '✅ 太棒了！' + G.quiz.currentWord.w + ' - ' + G.quiz.currentWord.m;
-    msg.className = 'spell-msg-correct';
-    
-    // Score
-    var hadError = G.quiz.attemptCount > 0 || Object.keys(G.quiz.hintRevealed).length > 0;
-    if(!hadError){
-      G.quiz.correct++;
-      G.quiz.streak = (G.quiz.streak||0) + 1;
-    } else {
-      // Got through but with mistakes - already counted in wrong tracking
-      G.quiz.correct++;  // still counts as completed
+
+  // Check all letter boxes are filled
+  var allBoxes = boxes.querySelectorAll('.spell-box[data-idx]');
+  for(var bi=0; bi<allBoxes.length; bi++){
+    if(!allBoxes[bi].classList.contains('filled') &&
+       !allBoxes[bi].classList.contains('hint') &&
+       !allBoxes[bi].classList.contains('correct')){
+      return; // still empty boxes
     }
-    
-    saveProg();
-    playSound('correct');
-    
-    // Teacher praise popup
-    var streak = G.quiz.streak;
-    if(!hadError && streak >= 1){
-      var prevBest2 = (G.user.allTimeBest || 0);
-      var isRec2 = streak > prevBest2 && streak >= 3;
-      if(isRec2){ G.user.allTimeBest = streak; saveProg(); }
-      var prevLv2 = getStreakLevel(streak-1);
-      var currLv2 = getStreakLevel(streak);
-      if(currLv2 > prevLv2 || (currLv2===5 && streak%5===0)){
-        showPraise(streak, isRec2);
-        if(currLv2 >= 2) playSound('streak');
-      }
-      if(streak >= 3){
-        var sm2 = streak===3?'连对3题！':streak===5?'连对5题！太厉害了！':streak===10?'连对10题！单词小天才！':'';
-        if(sm2||streak>10){
-          document.getElementById('spell-streak-msg').textContent = sm2||'连对'+streak+'题！';
-          document.getElementById('spell-streak-display').style.display = 'flex';
-        }
+  }
+
+  // All filled! Mark correct
+  allBoxes.forEach(function(b){ b.classList.add('correct'); });
+
+  var msg = document.getElementById('spell-msg');
+  msg.textContent = '✅ 太棒了！' + G.quiz.currentWord.w + '  ' + G.quiz.currentWord.m;
+  msg.className = 'spell-msg-correct';
+
+  // Score
+  var hadError = G.quiz.attemptCount > 0 || (G.quiz.hintRevealed && Object.keys(G.quiz.hintRevealed).length > 0);
+  G.quiz.correct++;
+  if(!hadError){
+    G.quiz.streak = (G.quiz.streak||0) + 1;
+  } else {
+    G.quiz.streak = 0;
+  }
+
+  saveProg();
+  playSound('correct');
+
+  // Streak milestone
+  var streak = G.quiz.streak;
+  if(!hadError && streak >= 1){
+    var prevBest2 = (G.user.allTimeBest || 0);
+    var isRec2 = streak > prevBest2 && streak >= 3;
+    if(isRec2){ G.user.allTimeBest = streak; }
+    var prevLv2 = getStreakLevel(streak-1);
+    var currLv2 = getStreakLevel(streak);
+    if(currLv2 > prevLv2 || (currLv2===5 && streak%5===0)){
+      showPraise(streak, isRec2);
+      if(currLv2 >= 2) playSound('streak');
+    }
+    if(streak >= 3){
+      var sm2 = streak===3?'连对3题！':streak===5?'连对5题！太厉害了！':streak===10?'连对10题！单词小天才！':'';
+      if(sm2||(streak>10&&streak%5===0)){
+        document.getElementById('spell-streak-msg').textContent = sm2||('连对'+streak+'题！');
+        document.getElementById('spell-streak-display').style.display = 'flex';
       }
     }
-    
-    // Auto next after delay
-    setTimeout(function(){
-      G.quiz.qIdx++;
-      if(G.quiz.qIdx >= G.quiz.words.length) showSpellResult();
-      else renderSpellQ();
-    }, 1200);
   }
+
+  // Auto next after 1.2s
+  setTimeout(function(){
+    G.quiz.qIdx++;
+    if(G.quiz.qIdx >= G.quiz.words.length) showSpellResult();
+    else renderSpellQ();
+  }, 1200);
 }
 
 function speakSpellWord(){
