@@ -3,27 +3,32 @@
     "name": "demo",
     "cls": "demo",
     "progress": {
-      "toefl_junior": {
-        "1": {
-          "done": true,
-          "pct": 100
+      "nce1_lower": {
+        "73": {
+          "done": false,
+          "pct": 46
+        },
+        "77": {
+          "done": false,
+          "pct": 33
         }
       }
     },
     "wrong_bank": {
-      "London": 1,
-      "week": 1,
-      "bus stop": 2,
-      "pleasantly": 9,
-      "pocket": 1,
-      "phrasebook": 11,
-      "suddenly": 28,
-      "speak": 1,
+      "London": 3,
+      "appointment": 1,
+      "urgent": 1,
       "shopping": 2,
-      "vegetable": 1
+      "vegetable": 4,
+      "suddenly": 5,
+      "smile": 2,
+      "pleasantly": 3,
+      "understand": 1,
+      "pocket": 5,
+      "phrasebook": 4
     },
-    "trophies": 1,
-    "last_seen": "2026-06-09T16:47:39.264Z",
-    "last_saved": "2026-06-09T16:47:43.580Z"
+    "trophies": 0,
+    "last_seen": "2026-06-09T16:47:53.103Z",
+    "last_saved": "2026-06-09T16:47:56.330Z"
   }
 }
