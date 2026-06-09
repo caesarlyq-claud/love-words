@@ -2,33 +2,10 @@
   "demo": {
     "name": "demo",
     "cls": "demo",
-    "progress": {
-      "nce1_lower": {
-        "73": {
-          "done": false,
-          "pct": 46
-        },
-        "77": {
-          "done": false,
-          "pct": 33
-        }
-      }
-    },
-    "wrong_bank": {
-      "London": 3,
-      "appointment": 1,
-      "urgent": 1,
-      "shopping": 2,
-      "vegetable": 4,
-      "suddenly": 5,
-      "smile": 2,
-      "pleasantly": 3,
-      "understand": 1,
-      "pocket": 5,
-      "phrasebook": 4
-    },
+    "progress": {},
+    "wrong_bank": {},
     "trophies": 0,
-    "last_seen": "2026-06-06T15:11:21.354Z",
-    "last_saved": "2026-06-06T15:11:21.836Z"
+    "last_seen": "2026-06-09T15:35:49.833Z",
+    "last_saved": "2026-06-09T15:35:50.847Z"
   }
 }
