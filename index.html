@@ -217,6 +217,7 @@ html,body{font-family:'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-se
 
 /* ===== QUIZ ===== */
 #s-quiz{background:#eef2ff}
+#s-irregular{background:#eef2ff}
 .quiz-nav{background:white;padding:0.85rem 1.25rem;display:flex;align-items:center;gap:0.85rem;border-bottom:1px solid var(--g200);position:sticky;top:0;z-index:20;box-shadow:0 1px 4px rgba(0,0,0,0.06)}
 .btn-bk{background:none;border:none;color:var(--g500);cursor:pointer;font-size:1.3rem;padding:0.2rem;line-height:1}
 .qnav-title{font-weight:700;font-size:0.9rem;flex:1}
@@ -433,6 +434,14 @@ html,body{font-family:'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-se
 #teacher-praise .tp-lv{
   color:rgba(255,255,255,0.7);font-size:0.72rem;margin-top:0.2rem;
 }
+
+.irreg-box{width:26px;height:36px;border:none;border-bottom:2.5px solid rgba(255,255,255,0.4);background:transparent;text-align:center;font-size:1.15rem;font-weight:700;font-family:'Courier New',monospace;color:white;display:inline-flex;align-items:flex-end;justify-content:center;padding-bottom:3px;transition:all 0.15s;cursor:text;user-select:none;-webkit-user-select:none;}
+.irreg-box.filled{border-bottom-color:#34d399;}
+.irreg-box.wrong{border-bottom-color:#f87171;color:#f87171;animation:shake 0.4s;background:rgba(239,68,68,0.2);border-radius:5px 5px 0 0;}
+.irreg-box.correct{border-bottom-color:#34d399;color:#34d399;}
+.irreg-box.hint{color:#fbbf24;border-bottom-color:#fbbf24;}
+.irreg-box.space{border:none;width:8px;pointer-events:none;}
+.irreg-box.given{border-bottom-color:rgba(255,255,255,0.4);color:white;}
 </style>
 </head>
 <body>
@@ -598,6 +607,79 @@ html,body{font-family:'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-se
     
     <!-- Keyboard hint -->
     <div style="text-align:center;font-size:0.78rem;color:#9ca3af">点击字母格开始输入 · 全对自动进入下一题 · <span style="color:#f59e0b">橙色 = 需大写</span></div>
+  </div>
+</div>
+
+<!-- IRREGULAR VERB QUIZ -->
+<div class="screen" id="s-irregular">
+  <div class="top-nav">
+    <div class="nav-user">
+      <button class="btn-back" onclick="backFromIrregular()">←</button>
+      <div>
+        <div class="nav-name" id="irreg-title">不规则动词</div>
+        <div class="nav-class" id="irreg-prog">1/10</div>
+      </div>
+    </div>
+    <button class="btn-logout" onclick="backFromIrregular()">退出</button>
+  </div>
+  <div class="quiz-pbar"><div class="quiz-pbar-fill" id="irreg-pbar"></div></div>
+  <div class="quiz-body" style="padding-top:0.5rem">
+    <div class="qtype-pill">⚡ 不规则动词</div>
+    <div id="irreg-meaning" style="text-align:center;font-size:1.05rem;font-weight:700;color:var(--c1);margin:0.5rem 0 1rem;min-height:1.5em"></div>
+    <div class="question-card" style="padding:1.25rem 0.75rem;margin-bottom:0.75rem">
+    <div style="display:flex;gap:0.5rem;justify-content:center;align-items:flex-start">
+      <div style="flex:1;max-width:160px;text-align:center">
+        <div style="font-size:0.72rem;font-weight:700;color:rgba(255,255,255,0.75);margin-bottom:0.4rem;letter-spacing:0.08em">V1 原形</div>
+        <div id="irreg-v1-given" style="display:none">
+          <div id="irreg-v1-word" style="font-size:1.4rem;font-weight:800;color:white;margin-bottom:0.25rem"></div>
+          <button id="irreg-v1-speak" onclick="irregSpeak('v1')" style="display:none;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:0.85rem;align-items:center;justify-content:center">🔊</button>
+        </div>
+        <div id="irreg-v1-input" style="display:none">
+          <div id="irreg-v1-boxes" style="display:flex;flex-wrap:wrap;justify-content:center;gap:3px;margin-bottom:0.3rem"></div>
+          <div id="irreg-v1-msg" style="font-size:0.72rem;min-height:1em;color:#f59e0b"></div>
+        </div>
+        <div id="irreg-v1-done" style="display:none">
+          <div id="irreg-v1-result" style="font-size:1.4rem;font-weight:800;color:#10b981"></div>
+        </div>
+      </div>
+      <div style="color:rgba(255,255,255,0.5);font-size:1.2rem;margin-top:1.8rem">→</div>
+      <div style="flex:1;max-width:160px;text-align:center">
+        <div style="font-size:0.72rem;font-weight:700;color:rgba(255,255,255,0.6);margin-bottom:0.4rem;letter-spacing:0.08em">V2 过去式</div>
+        <div id="irreg-v2-given" style="display:none">
+          <div id="irreg-v2-word" style="font-size:1.4rem;font-weight:800;color:white;margin-bottom:0.25rem"></div>
+          <button id="irreg-v2-speak" onclick="irregSpeak('v2')" style="display:none;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:0.85rem;align-items:center;justify-content:center">🔊</button>
+        </div>
+        <div id="irreg-v2-input" style="display:none">
+          <div id="irreg-v2-boxes" style="display:flex;flex-wrap:wrap;justify-content:center;gap:3px;margin-bottom:0.3rem"></div>
+          <div id="irreg-v2-msg" style="font-size:0.72rem;min-height:1em;color:#f59e0b"></div>
+        </div>
+        <div id="irreg-v2-done" style="display:none">
+          <div id="irreg-v2-result" style="font-size:1.4rem;font-weight:800;color:#10b981"></div>
+        </div>
+      </div>
+      <div style="color:rgba(255,255,255,0.5);font-size:1.2rem;margin-top:1.8rem">→</div>
+      <div style="flex:1;max-width:160px;text-align:center">
+        <div style="font-size:0.72rem;font-weight:700;color:rgba(255,255,255,0.6);margin-bottom:0.4rem;letter-spacing:0.08em">V3 过去分词</div>
+        <div id="irreg-v3-given" style="display:none">
+          <div id="irreg-v3-word" style="font-size:1.4rem;font-weight:800;color:white;margin-bottom:0.25rem"></div>
+          <button id="irreg-v3-speak" onclick="irregSpeak('v3')" style="display:none;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:0.85rem;align-items:center;justify-content:center">🔊</button>
+        </div>
+        <div id="irreg-v3-input" style="display:none">
+          <div id="irreg-v3-boxes" style="display:flex;flex-wrap:wrap;justify-content:center;gap:3px;margin-bottom:0.3rem"></div>
+          <div id="irreg-v3-msg" style="font-size:0.72rem;min-height:1em;color:#f59e0b"></div>
+        </div>
+        <div id="irreg-v3-done" style="display:none">
+          <div id="irreg-v3-result" style="font-size:1.4rem;font-weight:800;color:#10b981"></div>
+        </div>
+      </div>
+    </div>
+    </div>
+    <div id="irreg-streak" style="display:none;background:#fef3c7;border:1.5px solid #fde68a;border-radius:12px;padding:0.6rem 1rem;margin-bottom:0.75rem;align-items:center;gap:0.5rem;font-weight:700;color:#d97706;font-size:0.9rem">
+      <span>🔥</span><span id="irreg-streak-msg"></span>
+    </div>
+    <div id="irreg-feedback" style="text-align:center;font-size:0.9rem;font-weight:600;min-height:1.5em;margin-bottom:0.75rem"></div>
+    <input type="text" id="irreg-hidden-input" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" inputmode="text" style="position:fixed;top:-100px;left:0;width:1px;height:1px;opacity:0;border:none;outline:none;z-index:9999">
+    <div style="text-align:center;font-size:0.75rem;color:#9ca3af">点击格子开始输入 · 两个单词都答对后自动进入下一题</div>
   </div>
 </div>
 
@@ -799,7 +881,7 @@ function _flushProgress(){
     if(_progQueue) _flushProgress();
   })
   .catch(function(e){
-    console.log('Cloud sync failed:', e.message);
+    console.log('Cloud sync (bg):', e.message); // Silent - background sync
     _progWriting = false;
   });
 }
@@ -1787,6 +1869,321 @@ function speakPraise(text, rate, pitch, vol){
 }
 
 
+
+// ============================================================
+// IRREGULAR VERB QUIZ - Full Implementation
+// ============================================================
+var _irregRounds = null;
+
+function buildIrregularRounds(numRounds){
+  var allVerbs = (G.book && G.book.id === 'nce2_irregular') ? NCE2_IRREGULAR : NCE1_IRREGULAR;
+  var verbs = allVerbs.slice();
+  for(var i=verbs.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var tmp=verbs[i];verbs[i]=verbs[j];verbs[j]=tmp;}
+  var rounds=[];
+  for(var r=0;r<numRounds;r++){
+    var round=[];
+    for(var k=0;k<10;k++){
+      var verb=verbs[(r*10+k)%verbs.length];
+      var modes=[0,1,2];
+      if(verb.v3.forms[0]==='/') modes=[0,1];
+      round.push({verb:verb,mode:modes[Math.floor(Math.random()*modes.length)]});
+    }
+    rounds.push(round);
+  }
+  return rounds;
+}
+
+function startIrregularRound(roundNum){
+  if(!_irregRounds) _irregRounds=buildIrregularRounds(G.book&&G.book.units||7);
+  var idx=Math.min(roundNum-1,_irregRounds.length-1);
+  G.quiz={unitNum:roundNum,isIrregular:true,round:_irregRounds[idx],qIdx:0,correct:0,wrong:0,wrongWords:[],firstWrong:{},streak:0};
+  document.getElementById('irreg-title').textContent='不规则动词 第'+roundNum+'关';
+  renderIrregQ();
+  scr('s-irregular');
+}
+
+function renderIrregQ(){
+  var q=G.quiz,item=q.round[q.qIdx],verb=item.verb,mode=item.mode,total=q.round.length;
+  document.getElementById('irreg-pbar').style.width=(q.qIdx/total*100)+'%';
+  document.getElementById('irreg-prog').textContent=(q.qIdx+1)+'/'+total;
+  document.getElementById('irreg-meaning').textContent=verb.meaning;
+  q.currentVerb=verb; q.currentMode=mode;
+  q.currentTarget=mode===0?['v2','v3']:mode===1?['v1','v3']:['v1','v2'];
+  q.currentGiven=mode===0?'v1':mode===1?'v2':'v3';
+  q.activeSlot=q.currentTarget[0]; q.slotDone={};
+  document.getElementById('irreg-feedback').textContent='';
+  document.getElementById('irreg-streak').style.display='none';
+  ['v1','v2','v3'].forEach(function(slot){
+    var given=document.getElementById('irreg-'+slot+'-given');
+    var input=document.getElementById('irreg-'+slot+'-input');
+    var done=document.getElementById('irreg-'+slot+'-done');
+    given.style.display='none'; input.style.display='none'; done.style.display='none';
+    var fd=verb[slot]; var dw=fd.forms[0]; var ph=fd.phonetic||'';
+    if(slot==='v2'&&verb.v2_alt&&mode===0){dw='was / were';}
+    if(slot===q.currentGiven){
+      given.style.display='block';
+      document.getElementById('irreg-'+slot+'-word').textContent=dw;
+      var sb=document.getElementById('irreg-'+slot+'-speak');
+      if(ph){sb.style.display='inline-flex';sb.dataset.word=fd.forms[0];}
+      else{sb.style.display='none';}
+      if(ph) setTimeout(function(){irregSpeak(slot);},300);
+    } else {
+      input.style.display='block';
+      document.getElementById('irreg-'+slot+'-msg').textContent='';
+      irregBuildBoxes(document.getElementById('irreg-'+slot+'-boxes'),dw,slot);
+    }
+  });
+  setTimeout(function(){
+    initIrregInput();
+    var inp=document.getElementById('irreg-hidden-input');
+    if(inp){inp.value='';inp.focus();}
+  },150);
+}
+
+function irregBuildBoxes(container,word,slot){
+  container.innerHTML='';
+  for(var i=0;i<word.length;i++){
+    var ch=word[i],box=document.createElement('div');
+    if(ch===' '){box.className='irreg-box space';}
+    else if(/[^a-zA-Z]/.test(ch)){box.className='irreg-box given';box.textContent=ch;box.style.pointerEvents='none';}
+    else{
+      box.className='irreg-box'; box.dataset.idx=i; box.dataset.slot=slot;
+      (function(s){box.onclick=function(){setActiveIrregSlot(s);};})(slot);
+    }
+    container.appendChild(box);
+  }
+}
+
+function setActiveIrregSlot(slot){
+  if(G.quiz.slotDone&&G.quiz.slotDone[slot]) return;
+  G.quiz.activeSlot=slot;
+  var inp=document.getElementById('irreg-hidden-input');
+  if(inp){inp.value='';inp.focus();}
+}
+
+function initIrregInput(){
+  var inp=document.getElementById('irreg-hidden-input');
+  if(!inp) return;
+  var newInp=inp.cloneNode(true);
+  inp.parentNode.replaceChild(newInp,inp);
+  newInp.addEventListener('keydown',function(e){
+    if(e.key==='Backspace'){e.preventDefault();irregHandleKey('Backspace');}
+    else if(/^[a-zA-Z]$/.test(e.key)){e.preventDefault();irregHandleKey(e.key);}
+  });
+  newInp.addEventListener('input',function(e){
+    var val=newInp.value; newInp.value='';
+    if(!val) return;
+    var ch=val.slice(-1);
+    if(ch&&ch!==' ') irregHandleKey(ch);
+  });
+}
+
+function irregHandleKey(key){
+  var q=G.quiz,slot=q.activeSlot;
+  if(!slot||q.slotDone[slot]){
+    for(var i=0;i<q.currentTarget.length;i++){
+      if(!q.slotDone[q.currentTarget[i]]){slot=q.currentTarget[i];q.activeSlot=slot;break;}
+    }
+    if(!slot) return;
+  }
+  var boxesEl=document.getElementById('irreg-'+slot+'-boxes');
+  var allBoxes=boxesEl.querySelectorAll('.irreg-box[data-idx]');
+  var word=q.currentVerb[slot].forms[0];
+  var targetBox=null,targetIdx=-1;
+  for(var bi=0;bi<allBoxes.length;bi++){
+    var b=allBoxes[bi];
+    if(!b.classList.contains('filled')&&!b.classList.contains('correct')&&!b.classList.contains('hint')){
+      targetBox=b;targetIdx=parseInt(b.dataset.idx);break;
+    }
+  }
+  if(key==='Backspace'){
+    var lf=null;
+    for(var bi2=allBoxes.length-1;bi2>=0;bi2--){
+      if(allBoxes[bi2].classList.contains('filled')&&!allBoxes[bi2].classList.contains('hint')){lf=allBoxes[bi2];break;}
+    }
+    if(lf){lf.textContent='';lf.classList.remove('filled','wrong','correct');}
+    return;
+  }
+  if(!targetBox) return;
+  if(!/^[a-zA-Z]$/.test(key)) return;
+  var correctChar=word[targetIdx];
+  var isUpper=/[A-Z]/.test(correctChar);
+  var isCorrect=isUpper?(key===correctChar):(key.toLowerCase()===correctChar.toLowerCase());
+  if(isCorrect){
+    targetBox.textContent=isUpper?correctChar:correctChar.toLowerCase();
+    targetBox.classList.add('filled');targetBox.classList.remove('wrong');
+    document.getElementById('irreg-'+slot+'-msg').textContent='';
+    var allFilled=true;
+    for(var bi3=0;bi3<allBoxes.length;bi3++){
+      if(!allBoxes[bi3].classList.contains('filled')&&!allBoxes[bi3].classList.contains('hint')){allFilled=false;break;}
+    }
+    if(allFilled) irregSlotComplete(slot);
+  } else {
+    targetBox.textContent=key;targetBox.classList.add('wrong');
+    if(!q.inputState) q.inputState={};
+    if(!q.inputState[slot]) q.inputState[slot]={attemptCount:0};
+    q.inputState[slot].attemptCount++;
+    playSound('wrong');
+    var w=q.currentVerb.v1.forms[0];
+    if(!q.firstWrong[w+slot]){q.firstWrong[w+slot]=true;q.wrong++;}
+    if(!q.wrongWords.includes(w)) q.wrongWords.push(w);
+    if(!G.user.wrong_bank) G.user.wrong_bank={};
+    G.user.wrong_bank[w]=(G.user.wrong_bank[w]||0)+1;
+    saveProg();
+    var msgEl=document.getElementById('irreg-'+slot+'-msg');
+    if(q.inputState[slot].attemptCount>=2) msgEl.textContent='❌ 再想想';
+    if(q.inputState[slot].attemptCount>=3) setTimeout(function(){irregHint(slot,targetIdx);},400);
+    var hi=document.getElementById('irreg-hidden-input');
+    if(hi) hi.value='';
+    setTimeout(function(){
+      targetBox.classList.remove('wrong');targetBox.textContent='';
+      var h=document.getElementById('irreg-hidden-input');
+      if(h){h.value='';h.focus();}
+    },350);
+  }
+}
+
+function irregHint(slot,idx){
+  var word=G.quiz.currentVerb[slot].forms[0];
+  var boxesEl=document.getElementById('irreg-'+slot+'-boxes');
+  var box=boxesEl.querySelector('[data-idx="'+idx+'"]');
+  if(!box) return;
+  box.textContent=word[idx].toLowerCase();
+  box.classList.add('hint','filled');
+  document.getElementById('irreg-'+slot+'-msg').textContent='💡 "'+word[idx].toLowerCase()+'"';
+  var allBoxes=boxesEl.querySelectorAll('.irreg-box[data-idx]');
+  var allFilled=true;
+  for(var bi=0;bi<allBoxes.length;bi++){
+    if(!allBoxes[bi].classList.contains('filled')&&!allBoxes[bi].classList.contains('hint')){allFilled=false;break;}
+  }
+  if(allFilled) irregSlotComplete(slot);
+}
+
+function irregSlotComplete(slot){
+  var q=G.quiz;
+  q.slotDone[slot]=true;
+  var word=q.currentVerb[slot].forms[0];
+  var boxesEl=document.getElementById('irreg-'+slot+'-boxes');
+  boxesEl.querySelectorAll('.irreg-box[data-idx]').forEach(function(b){b.classList.add('correct');});
+  playSound('correct');
+  document.getElementById('irreg-'+slot+'-input').style.display='none';
+  document.getElementById('irreg-'+slot+'-done').style.display='block';
+  document.getElementById('irreg-'+slot+'-result').textContent=word;
+  var allDone=true;
+  for(var i=0;i<q.currentTarget.length;i++){
+    if(!q.slotDone[q.currentTarget[i]]){allDone=false;break;}
+  }
+  if(allDone){
+    var hadError=q.wrong>0;
+    q.correct++;
+    if(!hadError){
+      q.streak=(q.streak||0)+1;
+      var s=q.streak,pb=G.user.allTimeBest||0,isRec=s>pb&&s>=3;
+      if(isRec) G.user.allTimeBest=s;
+      var pl=getStreakLevel(s-1),cl=getStreakLevel(s);
+      if(cl>pl||(cl===5&&s%5===0)){showPraise(s,isRec);if(cl>=2)playSound('streak');}
+      if(s>=3){
+        var sm=s===3?'连对3题！':s===5?'连对5题！':s===10?'连对10题！':'';
+        if(sm){document.getElementById('irreg-streak-msg').textContent=sm;document.getElementById('irreg-streak').style.display='flex';}
+      }
+    } else {q.streak=0;}
+    saveProg();
+    setTimeout(function(){q.qIdx++;if(q.qIdx>=q.round.length)showIrregResult();else renderIrregQ();},1200);
+  } else {
+    for(var i=0;i<q.currentTarget.length;i++){
+      if(!q.slotDone[q.currentTarget[i]]){
+        q.activeSlot=q.currentTarget[i];
+        var h=document.getElementById('irreg-hidden-input');
+        if(h){h.value='';h.focus();}
+        break;
+      }
+    }
+  }
+}
+
+function irregSpeak(slot){
+  var q=G.quiz;
+  if(!q||!q.currentVerb) return;
+  var btn=document.getElementById('irreg-'+slot+'-speak');
+  var word=q.currentVerb[slot].forms[0];
+  if(btn) btn.textContent='🔉';
+  fetch('https://api.dictionaryapi.dev/api/v2/entries/en/'+encodeURIComponent(word))
+    .then(function(r){return r.ok?r.json():null;})
+    .then(function(data){
+      if(data&&data[0]){
+        var au=null,phs=data[0].phonetics||[];
+        for(var i=0;i<phs.length;i++){if(phs[i].audio&&phs[i].audio.includes('us')){au=phs[i].audio;break;}}
+        if(!au) for(var i=0;i<phs.length;i++){if(phs[i].audio){au=phs[i].audio;break;}}
+        if(au){
+          if(au.startsWith('//')) au='https:'+au;
+          var a=new Audio(au);a.playbackRate=0.9;
+          a.onended=function(){if(btn)btn.textContent='🔊';};
+          a.onerror=function(){irregSpeakFb(word,btn);};
+          a.play().catch(function(){irregSpeakFb(word,btn);}); return;
+        }
+      }
+      irregSpeakFb(word,btn);
+    }).catch(function(){irregSpeakFb(word,btn);});
+}
+
+function irregSpeakFb(word,btn){
+  if(!('speechSynthesis' in window)){if(btn)btn.textContent='🔊';return;}
+  window.speechSynthesis.cancel();
+  var u=new SpeechSynthesisUtterance(word);
+  u.lang='en-US';u.rate=0.75;u.pitch=1.1;
+  var voices=window.speechSynthesis.getVoices();
+  var fv=['Samantha','Karen','Moira','Microsoft Aria','Microsoft Zira','Google US English'];
+  var v=null;
+  for(var fi=0;fi<fv.length;fi++){v=voices.find(function(x){return x.name.indexOf(fv[fi])>=0;});if(v)break;}
+  if(!v)v=voices.find(function(x){return x.name.toLowerCase().indexOf('female')>=0&&x.lang.startsWith('en');});
+  if(!v)v=voices.find(function(x){return x.lang==='en-US';});
+  if(v)u.voice=v;
+  u.onend=function(){if(btn)btn.textContent='🔊';};
+  window.speechSynthesis.speak(u);
+  setTimeout(function(){if(btn)btn.textContent='🔊';},3000);
+}
+
+function showIrregResult(){
+  var q=G.quiz;
+  if(!G.user.progress) G.user.progress={};
+  var bid=G.book.id;
+  if(!G.user.progress[bid]) G.user.progress[bid]={};
+  var prev=(G.user.progress[bid][q.unitNum]||{}).pct||0;
+  var wasDone=(G.user.progress[bid][q.unitNum]||{}).done;
+  var total=q.round.length,acc=Math.round(q.correct/total*100);
+  G.user.progress[bid][q.unitNum]={done:q.wrong===0,pct:Math.max(acc,prev)};
+  if(q.wrong===0&&!wasDone){G.user.trophies=(G.user.trophies||0)+1;playSound('finish');startConfetti();}
+  else{playSound('finish');}
+  saveProg();
+  var emoji='💪',title='继续加油！';
+  if(acc>=95){emoji='🏆';title='完美！';}
+  else if(acc>=80){emoji='🌟';title='非常优秀！';}
+  else if(acc>=60){emoji='👏';title='做得不错！';}
+  document.getElementById('res-emoji').textContent=emoji;
+  document.getElementById('res-title').textContent=title;
+  document.getElementById('res-sub').textContent='第'+q.unitNum+'关完成';
+  var fwc=Object.keys(q.firstWrong).length;
+  document.getElementById('rs-c').textContent=q.correct;
+  document.getElementById('rs-w').textContent=fwc;
+  document.getElementById('rs-t').textContent=total;
+  document.getElementById('rs-a').textContent=acc+'%';
+  var ring=document.getElementById('score-ring');
+  ring.textContent=acc+'%';
+  ring.className='score-ring '+(acc>=95?'s-perfect':acc>=70?'s-good':acc>=50?'s-fair':'s-poor');
+  var tc=G.user.trophies||0,tr=document.getElementById('trophy-row');
+  if(tc>0){var show=Math.min(tc,10);tr.innerHTML='🏆'.repeat(show)+(tc>10?'<span style="font-size:.9rem">...</span>':'')+'<span class="trophy-count">已收集 '+tc+' 个奖杯！</span>';}
+  else{tr.innerHTML='';}
+  var unique=[...new Set(q.wrongWords)];
+  var ws=document.getElementById('wrong-section'),rb=document.getElementById('btn-retry');
+  if(unique.length>0){ws.style.display='block';document.getElementById('ws-chips').innerHTML=unique.map(function(w){return '<span class="ws-chip">'+w+'</span>';}).join('');rb.style.display='block';}
+  else{ws.style.display='none';rb.style.display='none';}
+  var maxU=G.book&&G.book.units||7;
+  document.getElementById('btn-nu').style.display=q.unitNum<maxU?'block':'none';
+  scr('s-result');
+}
+
+function backFromIrregular(){showUnits();}
+
 // Login button + Enter key binding
 (function(){
   function tryBind(){
@@ -1812,28 +2209,6 @@ function speakPraise(text, rate, pitch, vol){
   }
 })();
 
-function buildIrregularRounds(numRounds){
-  var allVerbs = (G.book && G.book.id === 'nce2_irregular') ? NCE2_IRREGULAR : NCE1_IRREGULAR;
-  var verbs = allVerbs.slice();
-  for(var i=verbs.length-1;i>0;i--){
-    var j=Math.floor(Math.random()*(i+1));
-    var tmp=verbs[i];verbs[i]=verbs[j];verbs[j]=tmp;
-  }
-  var rounds = [];
-  for(var r=0;r<numRounds;r++){
-    var round = [];
-    for(var k=0;k<10;k++){
-      var verbIdx=(r*10+k)%verbs.length;
-      var verb=verbs[verbIdx];
-      var modes=[0,1,2];
-      if(verb.v3.forms[0]==='/') modes=[0,1];
-      var mode=modes[Math.floor(Math.random()*modes.length)];
-      round.push({verb:verb,mode:mode});
-    }
-    rounds.push(round);
-  }
-  return rounds;
-}
 
 </script>
 
