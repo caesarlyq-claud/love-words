@@ -434,13 +434,13 @@ html,body{font-family:'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-se
   color:rgba(255,255,255,0.7);font-size:0.72rem;margin-top:0.2rem;
 }
 
-.irreg-box{width:26px;height:36px;border:none;border-bottom:2.5px solid #cbd5e1;background:transparent;text-align:center;font-size:1.15rem;font-weight:700;font-family:'Courier New',monospace;color:#1f2937;display:inline-flex;align-items:flex-end;justify-content:center;padding-bottom:3px;transition:all 0.15s;cursor:text;user-select:none;-webkit-user-select:none;}
-.irreg-box.filled{border-bottom-color:#10b981;}
-.irreg-box.wrong{border-bottom-color:#dc2626;color:#dc2626;animation:shake 0.4s;background:#fee2e2;border-radius:5px 5px 0 0;}
-.irreg-box.correct{border-bottom-color:#10b981;color:#10b981;}
-.irreg-box.hint{color:#f59e0b;border-bottom-color:#f59e0b;}
+.irreg-box{width:26px;height:36px;border:none;border-bottom:2.5px solid rgba(255,255,255,0.4);background:transparent;text-align:center;font-size:1.15rem;font-weight:700;font-family:'Courier New',monospace;color:white;display:inline-flex;align-items:flex-end;justify-content:center;padding-bottom:3px;transition:all 0.15s;cursor:text;user-select:none;-webkit-user-select:none;}
+.irreg-box.filled{border-bottom-color:#34d399;}
+.irreg-box.wrong{border-bottom-color:#f87171;color:#f87171;animation:shake 0.4s;background:rgba(239,68,68,0.25);border-radius:5px 5px 0 0;}
+.irreg-box.correct{border-bottom-color:#34d399;color:#34d399;}
+.irreg-box.hint{color:#fbbf24;border-bottom-color:#fbbf24;}
 .irreg-box.space{border:none;width:8px;pointer-events:none;}
-.irreg-box.given{border-bottom-color:#818cf8;color:#4f46e5;}
+.irreg-box.given{border-bottom-color:rgba(255,255,255,0.3);color:rgba(255,255,255,0.7);}
 </style>
 </head>
 <body>
@@ -625,7 +625,8 @@ html,body{font-family:'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-se
   <div class="quiz-body" style="padding-top:0.5rem">
     <div class="qtype-pill">⚡ 不规则动词</div>
     <div id="irreg-meaning" style="text-align:center;font-size:1.05rem;font-weight:700;color:var(--c1);margin:0.5rem 0 1rem;min-height:1.5em"></div>
-    <div style="display:flex;gap:0.75rem;justify-content:center;align-items:flex-start;margin-bottom:1rem">
+    <div class="question-card" style="padding:1.25rem 0.75rem;margin-bottom:0.75rem">
+    <div style="display:flex;gap:0.5rem;justify-content:center;align-items:flex-start">
       <div style="flex:1;max-width:160px;text-align:center">
         <div style="font-size:0.72rem;font-weight:700;color:rgba(255,255,255,0.6);margin-bottom:0.4rem;letter-spacing:0.08em">V1 原形</div>
         <div id="irreg-v1-given" style="display:none">
@@ -670,6 +671,7 @@ html,body{font-family:'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-se
           <div id="irreg-v3-result" style="font-size:1.4rem;font-weight:800;color:#10b981"></div>
         </div>
       </div>
+    </div>
     </div>
     <div id="irreg-streak" style="display:none;background:#fef3c7;border:1.5px solid #fde68a;border-radius:12px;padding:0.6rem 1rem;margin-bottom:0.75rem;align-items:center;gap:0.5rem;font-weight:700;color:#d97706;font-size:0.9rem">
       <span>🔥</span><span id="irreg-streak-msg"></span>
