@@ -70,5 +70,17 @@
     "trophies": 0,
     "created_at": "2026-06-06T15:26:19.268Z",
     "last_seen": null
+  },
+  "陈佳仪": {
+    "name": "陈佳仪",
+    "cls": "小托福A班",
+    "account": "陈佳仪",
+    "pwd": "20110525",
+    "pwd_changed_at": null,
+    "progress": {},
+    "wrong_bank": {},
+    "trophies": 0,
+    "created_at": "2026-06-11T03:17:25.474Z",
+    "last_seen": null
   }
 }
