@@ -59,6 +59,21 @@
     }
   };
 
+  // The legacy single-file site registers its login handlers before this file loads.
+  // Capture the events first so authentication always goes through the private Worker.
+  var loginButton = document.getElementById('login-btn');
+  if (loginButton) loginButton.addEventListener('click', function (event) {
+    event.preventDefault(); event.stopImmediatePropagation(); window.doLogin(event);
+  }, true);
+  ['inp-name','inp-pwd'].forEach(function (id) {
+    var input = document.getElementById(id);
+    if (input) input.addEventListener('keydown', function (event) {
+      if (event.key === 'Enter') {
+        event.preventDefault(); event.stopImmediatePropagation(); window.doLogin(event);
+      }
+    }, true);
+  });
+
   var saving = Promise.resolve();
   window.saveProg = function () {
     if (!G.user || !G.account) return Promise.resolve();
