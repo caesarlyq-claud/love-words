@@ -11,14 +11,57 @@
   }
 
   function localKey(account) { return 'love_words_progress_' + account; }
-  function localRead(account) { try { return JSON.parse(localStorage.getItem(localKey(account)) || 'null'); } catch (_) { return null; } }
+  function readKey(key) { try { return JSON.parse(localStorage.getItem(key) || 'null'); } catch (_) { return null; } }
+  function clone(value) { return JSON.parse(JSON.stringify(value)); }
+  function mergeLearning(base, incoming) {
+    base = base || {}; incoming = incoming || {};
+    var out = Object.assign({}, base, incoming), progress = {};
+    var left = base.progress || {}, right = incoming.progress || {};
+    Object.keys(Object.assign({}, left, right)).forEach(function(book) {
+      progress[book] = Object.assign({}, left[book] || {});
+      Object.keys(right[book] || {}).forEach(function(key) {
+        var a = progress[book][key], b = right[book][key];
+        if (!a) { progress[book][key] = b; return; }
+        var at = Date.parse(a.updatedAt || a.finishedAt || '') || 0;
+        var bt = Date.parse(b.updatedAt || b.finishedAt || '') || 0;
+        if (at || bt) progress[book][key] = bt >= at ? b : a;
+        else progress[book][key] = Object.assign({}, a, b, {
+          pct: Math.max(Number(a.pct)||0, Number(b.pct)||0), done: !!(a.done || b.done)
+        });
+      });
+    });
+    out.progress = progress;
+    out.wrong_bank = Object.assign({}, base.wrongBank || {}, base.wrong_bank || {}, incoming.wrongBank || {}, incoming.wrong_bank || {});
+    out.wrongBank = out.wrong_bank;
+    out.trophies = Math.max(Number(base.trophies)||0, Number(incoming.trophies)||0);
+    delete out.pwd; delete out.password;
+    return out;
+  }
+  function localRead(account) { return mergeLearning(readKey('wiz_p_' + account), readKey(localKey(account))); }
   function localWrite(account, data) { localStorage.setItem(localKey(account), JSON.stringify(data)); }
+  function status(message, failed) {
+    if (!document.body || !document.createElement) return;
+    var el = document.getElementById('cloud-sync-status');
+    if (!el) {
+      el = document.createElement('div'); el.id = 'cloud-sync-status'; el.setAttribute('role','status');
+      el.style.cssText = 'position:fixed;bottom:6px;left:8px;right:8px;padding:8px 12px;border-radius:8px;background:#fff;color:#334155;box-shadow:0 1px 8px #0002;z-index:500;font-size:13px';
+      document.body.appendChild(el);
+    }
+    el.replaceChildren(document.createTextNode(message));
+    if (failed) {
+      var button = document.createElement('button'); button.textContent = '重试同步';
+      button.onclick = function(){ window.saveProg(); }; el.appendChild(button);
+    }
+  }
   async function request(path, options) {
-    var response = await fetch(API + path, options);
-    if (!response.ok) throw new Error('同步服务返回 ' + response.status);
+    var response = await fetch(API + path, Object.assign({cache:'no-store'}, options));
+    if (!response.ok) throw new Error(response.status === 401 ? '登录已失效，请重新登录' : '同步服务返回 ' + response.status);
     return response.status === 204 ? null : response.json();
   }
-
+  function contains(saved, expected) {
+    if (expected && typeof expected === 'object') return !!saved && Object.keys(expected).every(function(k){return contains(saved[k], expected[k]);});
+    return saved === expected;
+  }
   window.loveWordsCloud = {
     async login(account, password) {
       return request('/login', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({account:account,password:password})});
@@ -27,13 +70,19 @@
       return request('/progress/' + encodeURIComponent(account), {headers:{Authorization:'Bearer ' + token}});
     },
     async save(account, token, data) {
-      localWrite(account, data);
-      return request('/progress/' + encodeURIComponent(account), {method:'PUT',headers:{'Content-Type':'application/json',Authorization:'Bearer ' + token},body:JSON.stringify(data)});
+      // Never overwrite cloud progress when its initial read failed.
+      var previous = await this.load(account, token);
+      var merged = mergeLearning(previous && previous.data, data);
+      // wrong_bank is the canonical mutable map used by the original quiz.
+      merged.wrongBank = data.wrong_bank || data.wrongBank || {};
+      merged.wrong_bank = merged.wrongBank;
+      await request('/progress/' + encodeURIComponent(account), {method:'PUT',headers:{'Content-Type':'application/json',Authorization:'Bearer ' + token},body:JSON.stringify(merged)});
+      var check = await this.load(account, token);
+      return {confirmed: !!(check && check.data && contains(check.data.progress, merged.progress))};
     },
     localRead: localRead
   };
 
-  var oldLogin = window.doLogin;
   window.doLogin = async function (event) {
     if (event && event.preventDefault) event.preventDefault();
     var account = document.getElementById('inp-name').value.trim();
@@ -41,41 +90,17 @@
     if (!account || !password) return;
     try {
       var session = await window.loveWordsCloud.login(account, password);
-      var local = localRead(account) || {};
-      G.account = account;
-      G.user = Object.assign({}, session.student, local);
-      G.user.progress = G.user.progress || {};
-      G.user.wrongBank = G.user.wrongBank || G.user.wrong_bank || {};
-      G.cloudToken = session.token;
-      try {
-        var remote = await window.loveWordsCloud.load(account, session.token);
-        if (remote && remote.data) {
-          G.user = Object.assign(G.user, remote.data);
-          // Preserve locally saved PK work if an earlier upload failed.
-          G.user.progress = G.user.progress || {};
-          ['word_pk','word_pk_review','newthinking_4a','newthinking_4b'].forEach(function(id){
-            var cloudEntries = G.user.progress[id] || {};
-            var localEntries = (local.progress || {})[id] || {};
-            var merged = Object.assign({}, cloudEntries);
-            Object.keys(localEntries).forEach(function(key){
-              var a = localEntries[key], b = cloudEntries[key];
-              var at = Date.parse(a.updatedAt || a.finishedAt || '') || 0;
-              var bt = b ? Date.parse(b.updatedAt || b.finishedAt || '') || 0 : -1;
-              if (!b || at > bt) merged[key] = a;
-            });
-            if (id === 'word_pk') {
-              var keys = Object.keys(merged).sort(function(a,b){return (merged[b].finishedAt || '').localeCompare(merged[a].finishedAt || '');});
-              keys.slice(100).forEach(function(key){delete merged[key];});
-            }
-            if (Object.keys(merged).length) G.user.progress[id] = merged;
-          });
-        }
-      } catch (_) {}
+      var local = localRead(account);
+      var remote;
+      try { remote = await window.loveWordsCloud.load(account, session.token); }
+      catch (_) { remote = null; }
+      G.account = account; G.cloudToken = session.token;
+      G.user = Object.assign({}, session.student, mergeLearning(remote && remote.data, local));
       setNav(); showBooks();
-      saveProg();
+      if (remote) await window.saveProg();
+      else status('云端记录暂未读取成功。当前使用本机记录，请重试同步。', true);
     } catch (error) {
-      if (typeof flashInput === 'function') flashInput('inp-pwd', '账号或密码错误，或同步服务未部署');
-      else if (oldLogin) oldLogin(event);
+      if (typeof flashInput === 'function') flashInput('inp-pwd', '登录失败，请检查账号、密码和网络');
     }
   };
 
@@ -95,12 +120,41 @@
   });
 
   var saving = Promise.resolve();
+  var pending = {};
+  function enqueue(account, token, snapshot) {
+    var key = account + ':' + token;
+    if (pending[key]) { pending[key].snapshot = snapshot; return pending[key].promise; }
+    var job = {snapshot:snapshot};
+    pending[key] = job;
+    job.promise = saving.catch(function(){}).then(function(){
+      // Coalesce rapid answers and respect the KV per-key write interval.
+      return new Promise(function(resolve){setTimeout(resolve, 1200);});
+    }).then(function(){
+      delete pending[key];
+      return window.loveWordsCloud.save(account, token, job.snapshot);
+    });
+    saving = job.promise;
+    return job.promise;
+  }
   window.saveProg = function () {
-    if (!G.user || !G.account) return Promise.resolve();
+    if (!G.user || !G.account) return Promise.resolve({confirmed:false});
+    var account = G.account, token = G.cloudToken;
     G.user.lastSeen = new Date().toISOString();
-    localWrite(G.account, G.user);
-    if (!G.cloudToken) return Promise.resolve();
-    saving = saving.catch(function(){}).then(function(){return window.loveWordsCloud.save(G.account,G.cloudToken,G.user);});
-    return saving;
+    G.user.wrongBank = G.user.wrong_bank || G.user.wrongBank || {};
+    G.user.wrong_bank = G.user.wrongBank;
+    var snapshot = clone(G.user);
+    try { localWrite(account, snapshot); }
+    catch (_) { status('本机存储空间不足，请勿关闭页面，联网后重试。', true); }
+    if (!token) return Promise.resolve({confirmed:false});
+    status('成绩已保存在本机，正在同步…');
+    var resultPromise = enqueue(account, token, snapshot).then(function(result){
+      if (G.account === account) status(result.confirmed ? '云端已核验保存，老师刷新后台即可查看。' : '已提交，云端仍在更新。稍后重试核验，暂勿清除本机记录。', !result.confirmed);
+      return result;
+    }).catch(function(error){
+      if (G.account === account) status('成绩已保存在本机；' + error.message + '。', true);
+      // Existing quizzes do not catch save errors; keep their results screen usable.
+      return {confirmed:false, error:error.message};
+    });
+    return resultPromise;
   };
 })();
