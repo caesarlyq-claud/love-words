@@ -49,7 +49,27 @@
       G.cloudToken = session.token;
       try {
         var remote = await window.loveWordsCloud.load(account, session.token);
-        if (remote && remote.data) G.user = Object.assign(G.user, remote.data);
+        if (remote && remote.data) {
+          G.user = Object.assign(G.user, remote.data);
+          // Preserve locally saved PK work if an earlier upload failed.
+          G.user.progress = G.user.progress || {};
+          ['word_pk','word_pk_review','newthinking_4a','newthinking_4b'].forEach(function(id){
+            var cloudEntries = G.user.progress[id] || {};
+            var localEntries = (local.progress || {})[id] || {};
+            var merged = Object.assign({}, cloudEntries);
+            Object.keys(localEntries).forEach(function(key){
+              var a = localEntries[key], b = cloudEntries[key];
+              var at = Date.parse(a.updatedAt || a.finishedAt || '') || 0;
+              var bt = b ? Date.parse(b.updatedAt || b.finishedAt || '') || 0 : -1;
+              if (!b || at > bt) merged[key] = a;
+            });
+            if (id === 'word_pk') {
+              var keys = Object.keys(merged).sort(function(a,b){return (merged[b].finishedAt || '').localeCompare(merged[a].finishedAt || '');});
+              keys.slice(100).forEach(function(key){delete merged[key];});
+            }
+            if (Object.keys(merged).length) G.user.progress[id] = merged;
+          });
+        }
       } catch (_) {}
       setNav(); showBooks();
       saveProg();
