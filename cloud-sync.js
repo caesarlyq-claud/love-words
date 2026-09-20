@@ -47,17 +47,37 @@
       el.style.cssText = 'position:fixed;bottom:6px;left:8px;right:8px;padding:8px 12px;border-radius:8px;background:#fff;color:#334155;box-shadow:0 1px 8px #0002;z-index:500;font-size:13px';
       document.body.appendChild(el);
     }
-    el.replaceChildren(document.createTextNode(message));
+    el.textContent=message;
     if (failed) {
       var button = document.createElement('button'); button.textContent = '重试同步';
       button.onclick = function(){ window.saveProg(); }; el.appendChild(button);
     }
   }
   async function request(path, options) {
-    var response = await fetch(API + path, Object.assign({cache:'no-store'}, options));
-    if (!response.ok) throw new Error(response.status === 401 ? (path === '/login' ? '账号或密码验证未通过（HTTP 401）' : '登录已失效，请重新登录') : '登录或同步服务异常（HTTP ' + response.status + '）');
-    return response.status === 204 ? null : response.json();
+    var controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
+    var timer;
+    try {
+      return await Promise.race([
+        (async function(){
+          var response = await fetch(API + path, Object.assign({cache:'no-store'}, options, controller ? {signal:controller.signal} : {}));
+          if (!response.ok) throw new Error(response.status === 401 ? (path === '/login' ? '账号或密码验证未通过（HTTP 401）' : '登录已失效，请重新登录') : '登录或同步服务异常（HTTP ' + response.status + '）');
+          return response.status === 204 ? null : await response.json();
+        })(),
+        new Promise(function(_, reject){timer=setTimeout(function(){
+          reject(new Error('连接登录服务超时（15秒）。请切换 Wi-Fi／手机流量，或用手机自带浏览器打开后重试。'));
+          if(controller)controller.abort();
+        },15000);})
+      ]);
+    } catch(error) {
+      if(error instanceof TypeError || error.name === 'AbortError') throw new Error('无法连接登录服务。请切换 Wi-Fi／手机流量，或用手机自带浏览器打开后重试。');
+      throw error;
+    } finally { clearTimeout(timer); }
   }
+  function loginMessage(message) {
+    var box=document.getElementById('login-status');
+    if(box)box.textContent=message;
+  }
+  var loggingIn=false;
   function contains(saved, expected) {
     if (expected && typeof expected === 'object') return !!saved && Object.keys(expected).every(function(k){return contains(saved[k], expected[k]);});
     return saved === expected;
@@ -87,9 +107,15 @@
     if (event && event.preventDefault) event.preventDefault();
     var account = document.getElementById('inp-name').value.trim();
     var password = document.getElementById('inp-pwd').value;
-    if (!account || !password) return;
+    if(loggingIn)return;
+    if (!account || !password) {loginMessage('请填写学生账号和密码。');return;}
+    loggingIn=true;
+    var button=document.getElementById('login-btn');
+    if(button){button.disabled=true;button.textContent='正在连接登录服务…';}
+    loginMessage('正在验证账号，请稍候（最多15秒）…');
     try {
       var session = await window.loveWordsCloud.login(account, password);
+      loginMessage('账号验证成功，正在读取学习进度…');
       var local = localRead(account);
       var remote;
       try { remote = await window.loveWordsCloud.load(account, session.token); }
@@ -97,10 +123,14 @@
       G.account = account; G.cloudToken = session.token;
       G.user = Object.assign({}, session.student, mergeLearning(remote && remote.data, local));
       setNav(); showBooks();
+      loginMessage('');
       if (remote) await window.saveProg();
       else status('云端记录暂未读取成功。当前使用本机记录，请重试同步。', true);
     } catch (error) {
+      loginMessage(error.message || '登录失败，请检查网络后重试');
       if (typeof flashInput === 'function') flashInput('inp-pwd', error.message || '登录失败，请检查网络后重试');
+    } finally {
+      loggingIn=false;if(button){button.disabled=false;button.textContent='▶ 开始单词闯关';}
     }
   };
 
