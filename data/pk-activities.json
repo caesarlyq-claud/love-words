@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "activities": [
+    {
+      "id": "newthinking-launch",
+      "title": "新思维 · 单词大 PK",
+      "bookIds": [
+        "newthinking_4a",
+        "newthinking_4b"
+      ],
+      "lives": 5,
+      "streakGoal": 10,
+      "published": true
+    }
+  ]
+}

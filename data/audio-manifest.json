@@ -1,0 +1,730 @@
+[
+  {
+    "text": "animal",
+    "path": "audio/pk/ab91a82d14cfc6.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "camel",
+    "path": "audio/pk/4812585e944994.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "giraffe",
+    "path": "audio/pk/6bb7e067447139.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "owl",
+    "path": "audio/pk/10f7127b980b0b.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "peacock",
+    "path": "audio/pk/a095c7713e337f.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "eagle",
+    "path": "audio/pk/e73b48f750be95.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "hippo",
+    "path": "audio/pk/877cc977e7b033.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "rat",
+    "path": "audio/pk/9950cec246ece5.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "mouse",
+    "path": "audio/pk/47c5c28cae2574.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "elephant",
+    "path": "audio/pk/cd08c4c4316df2.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "dolphin",
+    "path": "audio/pk/532f011ec89ff0.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "shark",
+    "path": "audio/pk/31fc15942b0c47.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "turtle",
+    "path": "audio/pk/74dd730b5c36c1.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "eel",
+    "path": "audio/pk/70ac661021730b.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "crab",
+    "path": "audio/pk/3349a915f7cd0c.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "penguin",
+    "path": "audio/pk/0a4346f806b28b.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "cockroach",
+    "path": "audio/pk/16fd3c9b3a2850.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "parrot",
+    "path": "audio/pk/4488b8b86b1ac0.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "fly",
+    "path": "audio/pk/f4debdb7ab7dd9.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "exhibition",
+    "path": "audio/pk/83a2bff84b1d59.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "feather",
+    "path": "audio/pk/b52115ea553c55.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "noisy",
+    "path": "audio/pk/acd6beff7c3430.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "insect",
+    "path": "audio/pk/db7304319ed7d9.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "silver",
+    "path": "audio/pk/78cde64c3e47f2.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "tail",
+    "path": "audio/pk/0c62f876ef1dea.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "met",
+    "path": "audio/pk/6efcbfb1f9f195.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "caught",
+    "path": "audio/pk/a47a2e18728529.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "exciting",
+    "path": "audio/pk/5ae666e5b1a641.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "village",
+    "path": "audio/pk/05cfbe283381aa.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "island",
+    "path": "audio/pk/28cd2c5c15d139.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "temple",
+    "path": "audio/pk/67425801bf1a60.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "crocodile",
+    "path": "audio/pk/02766f3002eaa5.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "helicopter",
+    "path": "audio/pk/cbde83173a31f4.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "waterfall",
+    "path": "audio/pk/3cb562c897155c.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "cave",
+    "path": "audio/pk/b89a199ea81b6a.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "sight",
+    "path": "audio/pk/b991a49b1b0aa2.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "especially",
+    "path": "audio/pk/b109a53288ba6e.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "powerful",
+    "path": "audio/pk/58c48602d37340.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "underground",
+    "path": "audio/pk/be74175cb7637f.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "lighting",
+    "path": "audio/pk/72059e4ae63a5e.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "southern",
+    "path": "audio/pk/1cac4d101ee696.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "sheet",
+    "path": "audio/pk/78af7bdb5626eb.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "roar",
+    "path": "audio/pk/c2b644a1f2f11f.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "thunder",
+    "path": "audio/pk/49eff747f7b66f.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "water-skiing",
+    "path": "audio/pk/4a27a14fb227e5.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "beach",
+    "path": "audio/pk/ab36e84344729d.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "join",
+    "path": "audio/pk/58393216032be6.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "club",
+    "path": "audio/pk/cc2585df74ecdb.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "drama",
+    "path": "audio/pk/87da8bbbea6db3.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "pet",
+    "path": "audio/pk/bbba57318f7191.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "dress up",
+    "path": "audio/pk/662d0f591a89a5.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "Have fun!",
+    "path": "audio/pk/0947e148342b53.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "Get fit!",
+    "path": "audio/pk/89652fad1172c5.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "Keep fit!",
+    "path": "audio/pk/8a4b0f650c0179.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "improve",
+    "path": "audio/pk/2b35ed6944dd2e.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "gardening",
+    "path": "audio/pk/7e59a2d07356bb.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "poster",
+    "path": "audio/pk/293b9207228b78.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "interest",
+    "path": "audio/pk/828408e40d4fe6.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "quite",
+    "path": "audio/pk/9a3058157de8b0.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "enjoy",
+    "path": "audio/pk/75fba329cb6ee8.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "rap",
+    "path": "audio/pk/f7c465019a4774.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "verse",
+    "path": "audio/pk/5abde01ff92031.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "said",
+    "path": "audio/pk/fb46c79b7eb7af.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "heard",
+    "path": "audio/pk/0040953a08da7b.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "attendant",
+    "path": "audio/pk/7c5e0e76beb309.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "turn off",
+    "path": "audio/pk/0d6ad161c0cf03.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "mobile phone",
+    "path": "audio/pk/c339fb7706a7ed.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "litter",
+    "path": "audio/pk/ff4a41f6aa62a1.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "spit",
+    "path": "audio/pk/3a7647a8e327e8.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "dive",
+    "path": "audio/pk/0f8897661f1502.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "sign",
+    "path": "audio/pk/0b6f395ca14ac2.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "peaceful",
+    "path": "audio/pk/2a4baa647f524b.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "dangerous",
+    "path": "audio/pk/7eaa968417c5db.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "national park",
+    "path": "audio/pk/e7f8cf8c655a43.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "light fires",
+    "path": "audio/pk/c8bcce75ecd3c0.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "spoil",
+    "path": "audio/pk/af1c686bc18b12.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "flush",
+    "path": "audio/pk/f56175f2116fbf.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "use",
+    "path": "audio/pk/a3b142af6e97cf.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "shoplifting",
+    "path": "audio/pk/850f80a4cf8d8f.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "in case of something",
+    "path": "audio/pk/bf56809cd3355a.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "lift",
+    "path": "audio/pk/5364b92e50b194.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "organise",
+    "path": "audio/pk/554af0672faf84.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "relationship",
+    "path": "audio/pk/28d9e7bbbf8113.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "sang",
+    "path": "audio/pk/f28d18c311d2dd.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "shone",
+    "path": "audio/pk/b883197c66c95c.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "sat",
+    "path": "audio/pk/339efeab70b4cc.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "drove",
+    "path": "audio/pk/76720b4a11848d.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "kept",
+    "path": "audio/pk/79f076abdd19a7.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "had",
+    "path": "audio/pk/e02a753f0c0601.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "junior",
+    "path": "audio/pk/8fdd880f097cdd.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "ambassador",
+    "path": "audio/pk/cb74b011cacb3d.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "programme",
+    "path": "audio/pk/2c6ed1182b4176.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "arrival",
+    "path": "audio/pk/2ba137ba3df58b.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "the Bund",
+    "path": "audio/pk/3b307f05bf0fb7.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "Huangpu River",
+    "path": "audio/pk/8a37d6d0b19009.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "soup dumpling",
+    "path": "audio/pk/c99abced315e06.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "theme park",
+    "path": "audio/pk/570d7849544362.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "ocean",
+    "path": "audio/pk/47afad612b1f9c.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "aquarium",
+    "path": "audio/pk/cfb685eeca5933.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "science",
+    "path": "audio/pk/790fad4744a9da.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "museum",
+    "path": "audio/pk/4919063719e8c3.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "technology",
+    "path": "audio/pk/e91fadf24f78c0.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "flea market",
+    "path": "audio/pk/72740711ad0fc8.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  },
+  {
+    "text": "overseas",
+    "path": "audio/pk/4240e31b6a90fc.wav",
+    "voice": "Daniel",
+    "locale": "en-GB",
+    "reviewed": false
+  }
+]
