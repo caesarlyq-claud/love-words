@@ -55,7 +55,7 @@
   }
   async function request(path, options) {
     var response = await fetch(API + path, Object.assign({cache:'no-store'}, options));
-    if (!response.ok) throw new Error(response.status === 401 ? '登录已失效，请重新登录' : '同步服务返回 ' + response.status);
+    if (!response.ok) throw new Error(response.status === 401 ? (path === '/login' ? '账号或密码验证未通过（HTTP 401）' : '登录已失效，请重新登录') : '登录或同步服务异常（HTTP ' + response.status + '）');
     return response.status === 204 ? null : response.json();
   }
   function contains(saved, expected) {
@@ -100,7 +100,7 @@
       if (remote) await window.saveProg();
       else status('云端记录暂未读取成功。当前使用本机记录，请重试同步。', true);
     } catch (error) {
-      if (typeof flashInput === 'function') flashInput('inp-pwd', '登录失败，请检查账号、密码和网络');
+      if (typeof flashInput === 'function') flashInput('inp-pwd', error.message || '登录失败，请检查网络后重试');
     }
   };
 
